@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DiseaseSeeder::class);
         $this->call(YearlyCommonDiseaseSeeder::class);
 
+        // Enable to test User
+        // $this->call(UserSeeder::class); 
     }
 
 }
