@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PopulationSeeder::class);
         $this->call(AnimalTypeSeeder::class);
         $this->call(AffectedAnimalsSeeder::class);
+        $this->call(AnimalDeathSeeder::class);
     }
 
 }
