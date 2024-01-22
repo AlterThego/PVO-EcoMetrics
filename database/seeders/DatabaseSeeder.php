@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FishSanctuarySeeder::class);
         $this->call(FishProductionSeeder::class);
         $this->call(FishProductionAreaSeeder::class);
+        $this->call(DiseaseSeeder::class);
 
     }
 
