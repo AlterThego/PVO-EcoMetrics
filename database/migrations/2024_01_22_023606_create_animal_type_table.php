@@ -4,19 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('animal', function (Blueprint $table) {
+        Schema::create('animal_type', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('animal_id');
-            $table->string('animal_name');
-            $table->enum('classification', ['livestock', 'poultry', 'fish', 'pet', 'insect']);
-            $table->string('type', 11);
+
+            $table->unsignedBigInteger('animal_id');
+            $table->foreign('animal_id')->references('id')->on('animal')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->string('type', 11)->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('animal');
+        Schema::dropIfExists('animal_type');
     }
 };
