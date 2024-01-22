@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FishProductionSeeder::class);
         $this->call(FishProductionAreaSeeder::class);
         $this->call(DiseaseSeeder::class);
+        $this->call(YearlyCommonDiseaseSeeder::class);
 
     }
 
