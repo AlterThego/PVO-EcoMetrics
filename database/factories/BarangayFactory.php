@@ -4,11 +4,13 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use app\Models\FarmSupply;
-
-class FarmSupplyFactory extends Factory
+use App\Models\Barangay;
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Barangay>
+ */
+class BarangayFactory extends Factory
 {
-    protected $model = FarmSupply::class;
+    protected $model = Barangay::class;
 
     public function definition(): array
     {
@@ -17,9 +19,7 @@ class FarmSupplyFactory extends Factory
 
         return [
             'municipality_id' => $municipalityId,
-            'colonies' => $this->faker->numberBetween(1, 100),
-            'bee_keepers' => $this->faker->numberBetween(1, 100),
-            'year' => $this->faker->year,
+            'barangay_name' => $this->faker->unique()->city,
         ];
     }
 }
