@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BeeKeeperSeeder::class);
         $this->call(FarmSupplySeeder::class);
         $this->call(BarangaySeeder::class);
+        $this->call(FishSanctuarySeeder::class);
 
 
     }
