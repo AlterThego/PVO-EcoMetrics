@@ -15,10 +15,11 @@ class AnimalTypeFactory extends Factory
 
     public function definition(): array
     {
+        // Assuming there are existing Animal records, get a random animal_id
+        $animalId = \App\Models\Animal::inRandomOrder()->first()->id;
+
         return [
-            'animal_id' => function () {
-                return \App\Models\Animal::factory()->create()->id;
-            },
+            'animal_id' => $animalId,
             'type' => $this->faker->randomElement(['layers', 'broiler', 'native', 'fighting', null, 'n/a']),
         ];
     }
