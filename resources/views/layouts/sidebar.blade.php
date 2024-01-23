@@ -75,12 +75,15 @@
                         <div class="nav__items">
                             <h3 class="nav__subtitle">Menu</h3>
 
-                            <div class="nav__dropdown" id="animalsDropdown">
-                                <a href="#" class="nav__link" onclick="toggleDropdown('animalsDropdown')">
-                                    <svg xmlns="/benguetlivestock/assetes/images/animal.svg" class='bx nav__icon'
-                                        width="20" height="20" viewBox="0 0 32 32">
+                            <div class="nav__dropdown {{ request()->is('animal-population') || request()->is('trend') ? 'show' : '' }}"
+                                id="animalsDropdown">
+                                <a href="#"
+                                    class="nav__link {{ request()->is('animal-population') || request()->is('trend') ? 'active' : '' }}"
+                                    onclick="toggleDropdown('animalsDropdown')">
+                                    <svg xmlns="/benguetlivestock/assets/images/dog.svg" class='bx nav__icon'
+                                        width="20" height="20" viewBox="0 0 256 256">
                                         <path fill="currentColor"
-                                            d="M16.337 4.917a3.002 3.002 0 0 1 4.322.006l7.173 7.46A6 6 0 0 1 24.105 23a4 4 0 0 1-4 4H18v-2.5a4.5 4.5 0 0 0-4.5-4.5H12a1 1 0 1 0 0 2h1.5a2.5 2.5 0 0 1 2.5 2.5V27h-5a5 5 0 0 1-5-5v-2.1A5.002 5.002 0 0 1 7 10a4.99 4.99 0 0 1 4 2h6.6c.135-.265.291-.518.466-.756l-1.904-2.35a3.002 3.002 0 0 1 .175-3.977" />
+                                            d="M108 136a16 16 0 1 1-16-16a16 16 0 0 1 16 16m56-16a16 16 0 1 0 16 16a16 16 0 0 0-16-16m68.24 26.18a20.42 20.42 0 0 1-8.41 1.85a19.59 19.59 0 0 1-3.83-.39V184a44.05 44.05 0 0 1-44 44H80a44.05 44.05 0 0 1-44-44v-36.37a19 19 0 0 1-3.85.39a20.31 20.31 0 0 1-8.39-1.84a19.71 19.71 0 0 1-11.4-21.9l16.42-88a20 20 0 0 1 24.51-15.69l.47.13l52 15.27h44.54l52-15.27l.47-.13a20 20 0 0 1 24.51 15.72l16.42 88a19.71 19.71 0 0 1-11.46 21.87m-60-91.63L217 112.42l-12.56-67.33ZM39 112.42l44.76-57.87l-32.2-9.46ZM196 184v-59.52L146.11 60h-36.22L60 124.48V184a20 20 0 0 0 20 20h36v-7l-12.48-12.49a12 12 0 0 1 17-17L128 175l7.51-7.52a12 12 0 0 1 17 17L140 197v7h36a20 20 0 0 0 20-20" />
                                     </svg>
                                     <span class="nav__name">Animals</span>
                                     <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
@@ -88,15 +91,15 @@
 
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="/benguetlivestock/frontend/animal-population.php"
-                                            class="nav__dropdown-item">Population</a>
+                                        <a href="/animal-population"
+                                            class="nav__dropdown-item {{ request()->is('animal-population') ? ' active' : '' }}">Population</a>
                                         <a href="/benguetlivestock/frontend/animal-trend.php"
                                             class="nav__dropdown-item">Trend</a>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="nav__dropdown" id="petsDropdown">
+                            {{-- <div class="nav__dropdown" id="petsDropdown">
                                 <a href="#" class="nav__link" onclick="toggleDropdown('petsDropdown')">
                                     <svg xmlns="/benguetlivestock/assets/images/dog.svg" class='bx nav__icon'
                                         width="20" height="20" viewBox="0 0 256 256">
@@ -115,12 +118,12 @@
                                             class="nav__dropdown-item">Trend</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="nav__dropdown" id="poultryDropdown">
                                 <a href="#" class="nav__link" onclick="toggleDropdown('poultryDropdown')">
-                                    <svg xmlns="/benguetlivestock/assets/images/chicken.svg" class='bx nav__icon'
-                                        width="20" height="20" viewBox="0 0 32 32">
+                                    <svg xmlns="/animal" class='bx nav__icon' width="20" height="20"
+                                        viewBox="0 0 32 32">
                                         <path fill="currentColor"
                                             d="M30 10.5a8.5 8.5 0 0 0-16.862-1.534c-.777 2.366-1.467 3.695-1.86 4.342l-3.985 3.985A1 1 0 0 0 8 19h.108l-3.024 3.024a3.5 3.5 0 0 0-1.716 6.255c.135.104.257.225.361.36a3.5 3.5 0 0 0 6.248-1.736L13 23.878V24a1 1 0 0 0 1.707.707l3.986-3.986c.654-.395 1.992-1.087 4.372-1.865A8.502 8.502 0 0 0 30 10.5M10.937 19H13v2.05l-4.683 4.684A1.084 1.084 0 0 0 8 26.5a1.5 1.5 0 0 1-2.688.916a3.978 3.978 0 0 0-.727-.724A1.5 1.5 0 0 1 5.495 24c.283 0 .553-.112.753-.311z" />
                                     </svg>
