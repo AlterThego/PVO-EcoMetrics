@@ -4,16 +4,42 @@
 /*========== VARIABLES CSS ==========*/
 :root {
   --nav-width: 219px;
-
-  /*========== Colors ==========*/
-  --first-color: #008000;
   /* --first-color-light: #F0FFF0; */
+  /*========== Colors ==========*/
+  /* --first-color: #008000;
+
+  --first-color-light: #F3F4F6;
+  --title-color: #4F0A09;
+  --text-color: #1F2937;
+  --text-color-light: #A5A1AA;
+  --body-color: #F0FFF0;
+  --container-color: #FFFFFF; */
+
+
+  /*========== Light Mode Colors ==========*/
+:root {
+  --first-color: #008000;
   --first-color-light: #F3F4F6;
   --title-color: #4F0A09;
   --text-color: #1F2937;
   --text-color-light: #A5A1AA;
   --body-color: #F0FFF0;
   --container-color: #FFFFFF;
+}
+
+/*========== Dark Mode Colors ==========*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --first-color: #00A86B; /* Change to your preferred dark mode color */
+    --first-color-light: #2D3748;
+    --title-color: #F0FFF0;
+    --text-color: #E2E8F0;
+    --text-color-light: #CBD5E0;
+    --body-color: #1A202C;
+    --container-color: #2D3748;
+  }
+}
+
 
   /*========== Font and typography ==========*/
   --body-font: 'Poppins', sans-serif;
