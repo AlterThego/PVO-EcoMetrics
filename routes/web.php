@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnimalPopulationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,11 @@ Route::get('/dashboard', function () {
 Route::get('/animal-population', function () {
     return view('animal.population');
 })->middleware(['auth', 'verified'])->name('animal.population');
+// web.php
+// web.php
+Route::post('/animal-population', 'App\Http\Controllers\AnimalPopulationController@store')->middleware(['auth', 'verified'])->name('animal.population.store');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,4 +38,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

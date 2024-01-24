@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\AnimalPopulation;
 use App\Models\Municipality;
 use App\Models\Animal;
+use App\Models\AnimalType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -48,7 +49,12 @@ final class AnimalPopulationTable extends PowerGridComponent
         return AnimalPopulation::query()
             ->join('municipalities', 'animal_population.municipality_id', '=', 'municipalities.id')
             ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
-            ->select('animal_population.*', 'animal.animal_name as animal_id', 'municipalities.municipality_name as municipality_id');
+            ->join('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
+            ->select(
+                'animal_population.*',
+                'animal.animal_name as animal_id',
+                'municipalities.municipality_name as municipality_id',
+                'animal_type.type as animal_type_id',);
 
     }
 
@@ -82,7 +88,9 @@ final class AnimalPopulationTable extends PowerGridComponent
             Column::make('Type', 'animal_type_id'),
             Column::make('Population', 'animal_population_count')
                 ->sortable()
+                ->editOnClick(true)
                 ->searchable(),
+
 
             Column::make('Volume', 'volume')
                 ->sortable()
@@ -112,6 +120,15 @@ final class AnimalPopulationTable extends PowerGridComponent
                 ->dataSource(Animal::all())
                 ->optionLabel('animal_name')
                 ->optionValue('id'),
+
+            // If enum is used
+            // Filter::select('animal_type_id', 'animal_type_id')
+            //     ->dataSource(AnimalType::all())
+            //     ->optionLabel('type')
+            //     ->optionValue('id'),
+
+
+
         ];
     }
 
@@ -144,5 +161,15 @@ final class AnimalPopulationTable extends PowerGridComponent
         ];
     }
     */
+
+    public function onUpdatedEditable(string|int $id, string $field, string $value): void
+    {
+        // $this->validate();
+
+               AnimalPopulation::query()->find($id)->update([
+                   $field => $value,
+               ]);
+    }
+
 
 }

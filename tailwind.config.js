@@ -1,14 +1,16 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
-const colors = require('tailwindcss/colors') 
+const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./src/**/*.{html,js}",
-    
+
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+
+        "./node_modules/flowbite/**/*.js", 
 
         './app/Http/Livewire/**/*Table.php',
         './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
@@ -19,11 +21,14 @@ module.exports = {
                 sans: ['Poppins', 'sans-serif'],
             },
             colors: {
-                "pg-primary": colors.gray, 
+                "pg-primary": colors.gray,
             },
 
         },
     },
-    plugins: [forms],
+    plugins: [forms,
+        require('flowbite/plugin')],
     darkMode: 'class',
 }
+
+
