@@ -16,4 +16,9 @@ class Municipality extends Model
         'zip_code',
         'land_area',
     ];
+
+    public function animalPopulations()
+    {
+        return $this->hasMany(AnimalPopulation::class, 'municipality_id');
+    }
 }

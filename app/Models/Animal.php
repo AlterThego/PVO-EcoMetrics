@@ -13,7 +13,6 @@ class Animal extends Model
     protected $table = 'animal';
 
     protected $fillable = [
-        'animal_id',
         'animal_name',
         'classification',
         'type',
@@ -22,9 +21,8 @@ class Animal extends Model
     // If you don't want timestamps, you can set it to false
     public $timestamps = true;
 
-    // You can customize the timestamp column names if needed
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-    // You may want to define other relationships or methods here
+    public function animalPopulation()
+    {
+        return $this->hasMany(AnimalPopulation::class, 'animal_id');
+    }
 }
