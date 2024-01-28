@@ -20,7 +20,7 @@ class AnimalPopulationController extends Controller
                 'animal' => 'required|exists:animal,id',
                 'animal_type' => 'required|exists:animal_type,id',
                 'animal_population_count' => 'required|integer',
-                'volume' => 'required|integer',
+                'volume' => 'required|numeric',
             ]);
 
             Log::info('Validation passed. Data: ' . json_encode($validatedData));

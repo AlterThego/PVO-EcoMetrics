@@ -19,7 +19,7 @@
 
 </head>
 
-<body class="font-sans antialiased overflow-y-auto">
+<body class="font-sans antialiased lg:overflow-y-auto sm:overflow-y-hidden">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         @include('layouts.navigation')
 
@@ -37,7 +37,7 @@
             {{ $slot }}
         </main>
     </div>
-
+    @livewireScripts
 </body>
 
 </html>

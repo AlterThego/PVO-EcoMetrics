@@ -24,7 +24,7 @@ final class AnimalPopulationTable extends PowerGridComponent
 {
     use WithExport;
     public bool $showFilters = true;
-
+    public string $sortDirection = 'desc';
     public function setUp(): array
     {
         // $this->showCheckBox();
@@ -49,12 +49,13 @@ final class AnimalPopulationTable extends PowerGridComponent
         return AnimalPopulation::query()
             ->join('municipalities', 'animal_population.municipality_id', '=', 'municipalities.id')
             ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
-            ->join('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
+            // ->join('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
             ->select(
                 'animal_population.*',
                 'animal.animal_name as animal_id',
                 'municipalities.municipality_name as municipality_id',
-                'animal_type.type as animal_type_id',);
+                // 'animal_type.type as animal_type_id',
+            );
 
     }
 
@@ -79,7 +80,8 @@ final class AnimalPopulationTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            // Column::make('Id', 'id'),
+            Column::make('Id', 'id')
+                ->sortable(),
             Column::make('Year', 'year')
                 ->sortable()
                 ->searchable(),
@@ -132,7 +134,7 @@ final class AnimalPopulationTable extends PowerGridComponent
         ];
     }
 
-    #[\Livewire\Attributes\On('edit')]
+    #[\Livewire\Attributes\On('destroy')]
     public function edit($rowId): void
     {
         $this->js('alert(' . $rowId . ')');
@@ -141,15 +143,12 @@ final class AnimalPopulationTable extends PowerGridComponent
     public function actions(AnimalPopulation $row): array
     {
         return [
-            Button::add('edit')
+            Button::add('delete-row')
                 ->slot('Delete')
-                ->id()
                 ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
-
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->openModal('delete-row', ['animalPopulation' => $row->id])
         ];
     }
-
     /*
     public function actionRules($row): array
     {
@@ -166,9 +165,9 @@ final class AnimalPopulationTable extends PowerGridComponent
     {
         // $this->validate();
 
-               AnimalPopulation::query()->find($id)->update([
-                   $field => $value,
-               ]);
+        AnimalPopulation::query()->find($id)->update([
+            $field => $value,
+        ]);
     }
 
 
