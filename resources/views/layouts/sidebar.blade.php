@@ -245,23 +245,10 @@
 
     <script>
         // Function to toggle between light and dark mode
-        function toggleDarkMode() {
-            const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-
-            // Select the root element to change CSS variables
+        function toggleDarkMode(isDarkMode) {
             const root = document.documentElement;
 
             if (isDarkMode) {
-                // Toggle to light mode
-                root.style.setProperty('--first-color', '#008000');
-                root.style.setProperty('--first-color-light', '#F3F4F6');
-                root.style.setProperty('--title-color', '#4F0A09');
-                root.style.setProperty('--text-color', '#1F2937');
-                root.style.setProperty('--text-color-light', '#A5A1AA');
-                root.style.setProperty('--body-color', '#F0FFF0');
-                root.style.setProperty('--container-color', '#FFFFFF');
-                // Add more properties for other variables if needed
-            } else {
                 // Toggle to dark mode
                 root.style.setProperty('--first-color', '#00A86B');
                 root.style.setProperty('--first-color-light', '#2D3748');
@@ -271,11 +258,24 @@
                 root.style.setProperty('--body-color', '#1A202C');
                 root.style.setProperty('--container-color', '#2D3748');
                 // Add more properties for other variables if needed
+            } else {
+                // Toggle to light mode
+                root.style.setProperty('--first-color', '#008000');
+                root.style.setProperty('--first-color-light', '#F3F4F6');
+                root.style.setProperty('--title-color', '#4F0A09');
+                root.style.setProperty('--text-color', '#1F2937');
+                root.style.setProperty('--text-color-light', '#A5A1AA');
+                root.style.setProperty('--body-color', '#F0FFF0');
+                root.style.setProperty('--container-color', '#FFFFFF');
+                // Add more properties for other variables if needed
             }
-        }
 
-        // Call the function to toggle mode on page load
-        toggleDarkMode();
+            // Toggle dark mode class on the body element
+            document.body.classList.toggle('dark', isDarkMode);
+
+            // Save the user's choice in localStorage
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        }
     </script>
 
     <!-- Save State of Page Script -->

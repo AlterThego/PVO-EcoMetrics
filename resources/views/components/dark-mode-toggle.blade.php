@@ -8,27 +8,28 @@
 
 
 <script>
-    // Get the toggle element
+    // Function to set initial theme based on user preference
+function setInitialTheme() {
+    const savedTheme = localStorage.getItem('theme');
     const darkModeToggle = document.getElementById('darkModeToggle');
 
-    // Function to toggle dark mode
-    function toggleDarkMode() {
-        const isDarkMode = darkModeToggle.checked;
-
-        // Apply dark mode styles to the whole page if it's enabled
-        document.documentElement.classList.toggle('dark', isDarkMode);
-
-        // Save the user's choice in localStorage
-        localStorage.theme = isDarkMode ? 'dark' : 'light';
-    }
-
-    // Event listener for when the toggle is clicked
-    darkModeToggle.addEventListener('change', toggleDarkMode);
-
-    // Check user's preference on page load
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
-            '(prefers-color-scheme: dark)').matches)) {
+    if (savedTheme === 'dark') {
         darkModeToggle.checked = true;
-        toggleDarkMode();
+        toggleDarkMode(true);
+    } else {
+        toggleDarkMode(false);
     }
+}
+
+// Call the function to set initial theme on page load
+setInitialTheme();
+
+// Get the toggle element
+const darkModeToggle = document.getElementById('darkModeToggle');
+
+// Event listener for when the toggle is clicked
+darkModeToggle.addEventListener('change', function () {
+    toggleDarkMode(darkModeToggle.checked);
+});
+
 </script>

@@ -30,7 +30,7 @@
 /*========== Dark Mode Colors ==========*/
 @media (prefers-color-scheme: dark) {
   :root {
-    --first-color: #00A86B; /* Change to your preferred dark mode color */
+    --first-color: #00A86B; 
     --first-color-light: #2D3748;
     --title-color: #F0FFF0;
     --text-color: #E2E8F0;
@@ -77,6 +77,7 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
   color: var(--text-color);
+
 }
 
 h3 {
@@ -161,8 +162,8 @@ img {
   padding: 1rem 1rem 0;
   background-color: var(--container-color);
   box-shadow: 1px 0 0 rgba(22, 8, 43, 0.1);
-  z-index: var(--z-fixed);
   transition: .4s;
+  z-index: 1;
 }
 
 .nav__container {
