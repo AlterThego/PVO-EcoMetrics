@@ -24,6 +24,7 @@ return new class extends Migration {
 
             $table->integer('year');
             $table->integer('animal_population_count');
+            
             $table->decimal('volume', 10, 2);
             $table->timestamps();
         });

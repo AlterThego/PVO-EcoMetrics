@@ -146,9 +146,10 @@ final class AnimalPopulationTable extends PowerGridComponent
             Button::add('delete-row')
                 ->slot('Delete')
                 ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
-                ->openModal('delete-row', ['animalPopulation' => $row->id])
+                ->openModal('delete-row', ['animalPopulationId' => $row->id])
         ];
     }
+
     /*
     public function actionRules($row): array
     {

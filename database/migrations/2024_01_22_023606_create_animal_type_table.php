@@ -14,9 +14,9 @@ return new class extends Migration {
             $table->id();
 
             $table->unsignedBigInteger('animal_id');
-            $table->foreign('animal_id')->references('id')->on('animal'); 
-            // ->onUpdate('cascade')->onDelete('cascade')
-
+            $table->foreign('animal_id')->references('id')->on('animal')->onUpdate('cascade')->onDelete('cascade')
+            ;
+            // 
             $table->string('type', 11)->nullable();
             $table->timestamps();
         });

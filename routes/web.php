@@ -15,6 +15,7 @@ use App\Http\Controllers\AnimalPopulationController;
 |
 */
 
+// Primary
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,8 +27,17 @@ Route::get('/dashboard', function () {
 Route::get('/animal-population', function () {
     return view('animal.population');
 })->middleware(['auth', 'verified'])->name('animal.population');
-// web.php
-// web.php
+
+Route::get('/animal-list', function () {
+    return view('animal.list');
+})->middleware(['auth', 'verified'])->name('animal.list');
+
+Route::get('/animal-type', function () {
+    return view('animal.type');
+})->middleware(['auth', 'verified'])->name('animal.type');
+
+
+// Add data
 Route::post('/animal-population', 'App\Http\Controllers\AnimalPopulationController@store')->middleware(['auth', 'verified'])->name('animal.population.store');
 
 

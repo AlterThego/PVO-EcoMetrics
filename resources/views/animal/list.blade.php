@@ -62,39 +62,23 @@
                         @csrf
                         <div class="grid gap-4 mb-4 sm:grid-cols-2">
                             <div>
-                                <label for="year"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
-                                <input type="number" name="year" id="year"
+                                <label for="animal_name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Name</label>
+                                <input type="text" name="animal_name" id="animal_name"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year" required="">
+                                    placeholder="Type Animal Name" required="">
                             </div>
 
                             <div>
-                                <label for="municipality"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
-                                <select name="municipality" id="municipality"
+                                <label for="animal_classification"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Classification</label>
+                                <input type="text" name="animal_classification" id="animal_classification"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required="">
-                                    <option value="" disabled selected>Select Municipality</option>
-                                    @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
-                                        <option value="{{ $id }}">{{ $municipalityName }}</option>
-                                    @endforeach
-                                </select>
+                                    placeholder="Type Animal Classification" required="">
                             </div>
 
-
-                            <div>
-                                <label for="animal"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal</label>
-                                <select name="animal" id="animal"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required="">
-                                    <option value="" disabled selected>Select Animal</option>
-                                    @foreach (\App\Models\Animal::pluck('animal_name', 'id') as $id => $animalName)
-                                        <option value="{{ $id }}">{{ $animalName }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             <div>
                                 <label for="animal_type"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal

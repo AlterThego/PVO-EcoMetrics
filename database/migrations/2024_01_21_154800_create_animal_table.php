@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('animal_name');
             $table->enum('classification', ['livestock', 'poultry', 'fish', 'pet', 'insect']);
-            $table->string('type', 11);
+            // $table->string('type', 11);
             $table->timestamps();
         });
     }

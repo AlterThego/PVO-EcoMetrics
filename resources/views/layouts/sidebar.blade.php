@@ -23,8 +23,20 @@
             <nav class="nav__container">
                 <div>
                     <a href="#" class="nav__link nav__logo">
-                        <i class='bx bxs-disc nav__icon'></i>
+                        {{-- <i class='bx bxs-disc nav__icon'></i> --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" class="bx nav__icon" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5">
+                                <path
+                                    d="M9.5 15.5v-7A.5.5 0 0 1 10 8h2a3.5 3.5 0 0 1 3.5 3.5v1A3.5 3.5 0 0 1 12 16h-2a.5.5 0 0 1-.5-.5" />
+                                <path
+                                    d="M7.805 3.469C8.16 3.115 8.451 3 8.937 3h6.126c.486 0 .778.115 1.132.469l4.336 4.336c.354.354.469.646.469 1.132v6.126c0 .5-.125.788-.469 1.132l-4.336 4.336c-.354.354-.646.469-1.132.469H8.937c-.5 0-.788-.125-1.132-.469L3.47 16.195c-.355-.355-.47-.646-.47-1.132V8.937c0-.5.125-.788.469-1.132z" />
+                            </g>
+                        </svg>
                         <span class="nav__logo-name">DigiStock</span>
+                        <div class="header__toggle">
+                            <i class='bx bx-menu' id="header-toggle"></i>
+                        </div>
                     </a>
 
                     <div class="nav__list">
@@ -32,7 +44,11 @@
                             <!-- <h3 class="nav__subtitle">Shortcut</h3> -->
 
                             <a href="/dashboard" class="nav__link{{ request()->is('dashboard') ? ' active' : '' }}">
-                                <i class='bx bxs-dashboard nav__icon'></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bx nav__icon" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1m0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1m10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1M13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1" />
+                                </svg>
+                                {{-- <i class='bx bxs-dashboard nav__icon'></i> --}}
                                 <span class="nav__name">Dashboard</span>
                             </a>
 
@@ -75,17 +91,17 @@
                         <div class="nav__items">
                             <h3 class="nav__subtitle">Menu</h3>
 
-                            <div class="nav__dropdown {{ request()->is('animal-population') || request()->is('trend') ? 'show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('animal-population') || request()->is('animal-list') || request()->is('animal-type') ? 'show' : '' }}"
                                 id="animalsDropdown">
                                 <a href="#"
-                                    class="nav__link {{ request()->is('animal-population') || request()->is('trend') ? 'active' : '' }}"
+                                    class="nav__link {{ request()->is('animal-population') || request()->is('animal-list') || request()->is('animal-type') ? 'active' : '' }}"
                                     onclick="toggleDropdown('animalsDropdown')">
                                     <svg xmlns="/benguetlivestock/assets/images/dog.svg" class='bx nav__icon'
                                         width="20" height="20" viewBox="0 0 256 256">
                                         <path fill="currentColor"
                                             d="M108 136a16 16 0 1 1-16-16a16 16 0 0 1 16 16m56-16a16 16 0 1 0 16 16a16 16 0 0 0-16-16m68.24 26.18a20.42 20.42 0 0 1-8.41 1.85a19.59 19.59 0 0 1-3.83-.39V184a44.05 44.05 0 0 1-44 44H80a44.05 44.05 0 0 1-44-44v-36.37a19 19 0 0 1-3.85.39a20.31 20.31 0 0 1-8.39-1.84a19.71 19.71 0 0 1-11.4-21.9l16.42-88a20 20 0 0 1 24.51-15.69l.47.13l52 15.27h44.54l52-15.27l.47-.13a20 20 0 0 1 24.51 15.72l16.42 88a19.71 19.71 0 0 1-11.46 21.87m-60-91.63L217 112.42l-12.56-67.33ZM39 112.42l44.76-57.87l-32.2-9.46ZM196 184v-59.52L146.11 60h-36.22L60 124.48V184a20 20 0 0 0 20 20h36v-7l-12.48-12.49a12 12 0 0 1 17-17L128 175l7.51-7.52a12 12 0 0 1 17 17L140 197v7h36a20 20 0 0 0 20-20" />
                                     </svg>
-                                    <span class="nav__name">Animals</span>
+                                    <span class="nav__name">Animal</span>
                                     <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                                 </a>
 
@@ -93,8 +109,10 @@
                                     <div class="nav__dropdown-content">
                                         <a href="/animal-population"
                                             class="nav__dropdown-item {{ request()->is('animal-population') ? ' active' : '' }}">Population</a>
-                                        <a href="/benguetlivestock/frontend/animal-trend.php"
-                                            class="nav__dropdown-item">Trend</a>
+                                        <a href="/animal-list"
+                                            class="nav__dropdown-item {{ request()->is('animal-list') ? ' active' : '' }}">List</a>
+                                        <a href="/animal-type"
+                                            class="nav__dropdown-item {{ request()->is('animal-type') ? ' active' : '' }}">Type</a>
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +269,7 @@
             if (isDarkMode) {
                 // Toggle to dark mode
                 root.style.setProperty('--first-color', '#00A86B');
-                root.style.setProperty('--first-color-light', '#2D3748');
+                root.style.setProperty('--first-color-light', '#374151');
                 root.style.setProperty('--title-color', '#F0FFF0');
                 root.style.setProperty('--text-color', '#E2E8F0');
                 root.style.setProperty('--text-color-light', '#CBD5E0');
@@ -281,7 +299,7 @@
     <!-- Save State of Page Script -->
     {{-- <script src="./assets/js/save-state.js"></script> --}}
     <!-- Sidebar Responsive Script -->
-    <script src="./assets/js/sidebar.js"></script>
+    <script src="/assets/js/sidebar.js"></script>
     <!-- Dropdown Script -->
     <script src="./assets/js/dropdown.js"></script>
 </body>

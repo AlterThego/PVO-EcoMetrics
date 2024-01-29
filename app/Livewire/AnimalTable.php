@@ -19,16 +19,20 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 final class AnimalTable extends PowerGridComponent
 {
     use WithExport;
-
+    public string $sortDirection = 'desc';
     public function setUp(): array
     {
-        $this->showCheckBox();
+        // $this->showCheckBox();
+
 
         return [
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            Header::make()
+                ->showToggleColumns()
+                ->withoutLoading()
+                ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -58,21 +62,20 @@ final class AnimalTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
+            Column::make('Id', 'id')
+                ->sortable(),
             Column::make('Animal name', 'animal_name')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Classification', 'classification')
-                ->sortable()
                 ->searchable(),
 
-            Column::make('Type', 'type')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Type', 'type')
+            //     ->searchable(),
 
 
-            Column::make('Created at', 'created_at')
+            Column::make('Date Added', 'created_at')
                 ->sortable()
                 ->searchable(),
 
@@ -89,14 +92,14 @@ final class AnimalTable extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(Animal $row): array
     {
         return [
             Button::add('edit')
-                ->slot('Edit: '.$row->id)
+                ->slot('Edit: ' . $row->id)
                 ->id()
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
                 ->dispatch('edit', ['rowId' => $row->id])

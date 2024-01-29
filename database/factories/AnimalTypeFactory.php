@@ -20,7 +20,7 @@ class AnimalTypeFactory extends Factory
 
         return [
             'animal_id' => $animalId,
-            'type' => $this->faker->randomElement(['layers', 'broiler', 'native', 'fighting', null, 'n/a']),
+            'type' => $this->faker->randomElement(['Layers', 'Broiler', 'Native', 'Fighting', null]),
         ];
     }
 }
