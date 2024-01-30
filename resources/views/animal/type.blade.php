@@ -12,7 +12,7 @@
                 <!-- Buttons at the center -->
                 <div data-modal-target="crud-modal"
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
-                    <button id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal"
+                    <button id="animalTypeModalButton" data-modal-target="animalTypeModal" data-modal-toggle="animalTypeModal"
                         class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
                         + Add Data
                     </button>
@@ -33,7 +33,7 @@
 
 
         <!-- Main modal -->
-        <div id="defaultModal" tabindex="-1" aria-hidden="true"
+        <div id="animalTypeModal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
             <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
                 <!-- Modal content -->
@@ -46,7 +46,7 @@
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="defaultModal">
+                            data-modal-toggle="animalTypeModal">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -58,73 +58,16 @@
                     </div>
 
                     <!-- Modal body -->
-                    <form action="{{ route('animal.population.store') }}" method="post">
+                    <form action="{{ route('animal.type.store') }}" method="post">
                         @csrf
-                        <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                        <div class="grid gap-4 mb-4 sm:grid-cols-1">
                             <div>
-                                <label for="year"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
-                                <input type="number" name="year" id="year"
+                                <label for="type"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal Type</label>
+                                <input type="text" name="type" id="type"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year" required="">
+                                    placeholder="Type Animal Type" required="" autocomplete="off">
                             </div>
-
-                            <div>
-                                <label for="municipality"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
-                                <select name="municipality" id="municipality"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required="">
-                                    <option value="" disabled selected>Select Municipality</option>
-                                    @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
-                                        <option value="{{ $id }}">{{ $municipalityName }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-
-                            <div>
-                                <label for="animal"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal</label>
-                                <select name="animal" id="animal"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required="">
-                                    <option value="" disabled selected>Select Animal</option>
-                                    @foreach (\App\Models\Animal::pluck('animal_name', 'id') as $id => $animalName)
-                                        <option value="{{ $id }}">{{ $animalName }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div>
-                                <label for="animal_type"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal
-                                    Type</label>
-                                <select name="animal_type" id="animal_type"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required="">
-                                    <option value="" disabled selected>Select Animal Type</option>
-                                    @foreach (\App\Models\AnimalType::pluck('type', 'id') as $id => $animalType)
-                                        <option value="{{ $id }}">{{ $animalType }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="animal_population_count"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Population</label>
-                                <input type="number" name="animal_population_count" id="animal_population_count"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Input Population" required="">
-                            </div>
-
-                            <div>
-                                <label for="volume"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Volume</label>
-                                <input type="number" name="volume" id="volume" step="any"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Input Volume" required="">
-                            </div>
-
 
                         </div>
                         <button type="submit"
@@ -135,7 +78,7 @@
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            Add New Animal Data
+                            Add New Animal Type
                         </button>
 
 
@@ -144,11 +87,12 @@
             </div>
         </div>
 
-
+        @livewire('wire-elements-modal')
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
-                document.getElementById('defaultModalButton').click();
+                document.getElementById('animalTypeModalButton').click();
             });
         </script>
+
 
 </x-app-layout>

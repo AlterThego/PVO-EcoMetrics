@@ -49,12 +49,12 @@ final class AnimalPopulationTable extends PowerGridComponent
         return AnimalPopulation::query()
             ->join('municipalities', 'animal_population.municipality_id', '=', 'municipalities.id')
             ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
-            // ->join('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
+            ->join('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
             ->select(
                 'animal_population.*',
                 'animal.animal_name as animal_id',
                 'municipalities.municipality_name as municipality_id',
-                // 'animal_type.type as animal_type_id',
+                'animal_type.type as animal_type_id',
             );
 
     }
@@ -114,9 +114,11 @@ final class AnimalPopulationTable extends PowerGridComponent
 
 
             Filter::select('municipality_id', 'municipality_id')
+                // ->dataSource(Municipality::where('id', 2)->get())
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
                 ->optionValue('id'),
+                
 
             Filter::select('animal_id', 'animal_id')
                 ->dataSource(Animal::all())

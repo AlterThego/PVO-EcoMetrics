@@ -38,7 +38,14 @@ Route::get('/animal-type', function () {
 
 
 // Add data
-Route::post('/animal-population', 'App\Http\Controllers\AnimalPopulationController@store')->middleware(['auth', 'verified'])->name('animal.population.store');
+Route::post('/animal-population', 'App\Http\Controllers\AnimalPopulationController@store')
+->middleware(['auth', 'verified'])->name('animal.population.store');
+
+Route::post('/animal-list', 'App\Http\Controllers\AnimalController@store')
+->middleware(['auth', 'verified'])->name('animal.store');
+
+Route::post('/animal-type', 'App\Http\Controllers\AnimalTypeController@store')
+->middleware(['auth', 'verified'])->name('animal.type.store');
 
 
 

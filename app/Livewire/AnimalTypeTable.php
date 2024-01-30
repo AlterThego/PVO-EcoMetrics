@@ -49,7 +49,7 @@ final class AnimalTypeTable extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('animal_id')
+            // ->addColumn('animal_id')
             ->addColumn('type')
             ->addColumn('created_at');
     }
@@ -58,9 +58,10 @@ final class AnimalTypeTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Animal id', 'animal_id'),
+            // Column::make('Animal id', 'animal_id'),
             Column::make('Type', 'type')
                 ->sortable()
+                ->editOnClick(true)
                 ->searchable(),
 
             Column::make('Created at', 'created_at')
@@ -86,11 +87,10 @@ final class AnimalTypeTable extends PowerGridComponent
     public function actions(AnimalType $row): array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+            Button::add('delete-row')
+                ->slot('Delete')
+                ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
+                ->openModal('delete-row', ['animalTypeId' => $row->id])
         ];
     }
 
@@ -105,4 +105,13 @@ final class AnimalTypeTable extends PowerGridComponent
         ];
     }
     */
+
+    public function onUpdatedEditable(string|int $id, string $field, string $value): void
+    {
+        // $this->validate();
+
+        AnimalType::query()->find($id)->update([
+            $field => $value,
+        ]);
+    }
 }

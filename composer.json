@@ -14,7 +14,8 @@
         "laravel/tinker": "^2.8",
         "openspout/openspout": "^4.23",
         "power-components/livewire-powergrid": "^5.2",
-        "wire-elements/modal": "^2.0"
+        "wire-elements/modal": "^2.0",
+        "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

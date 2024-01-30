@@ -1,37 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\AnimalPopulation;
+use App\Models\AnimalType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
-
-class AnimalPopulationController extends Controller
+class AnimalTypeController extends Controller
 {
-    // AnimalPopulationController.php
     public function store(Request $request)
     {
         try {
             // Validate the form data
             $validatedData = $request->validate([
-                'year' => 'required|integer',
-                'municipality' => 'required|exists:municipalities,id',
-                'animal' => 'required|exists:animal,id',
-                'animal_type' => 'required|exists:animal_type,id',
-                'animal_population_count' => 'required|integer',
-                'volume' => 'required|numeric',
+                'type' => 'required',
             ]);
 
             
             // Save the data to the database
-            AnimalPopulation::create([
-                'year' => $validatedData['year'],
-                'municipality_id' => $validatedData['municipality'],
-                'animal_id' => $validatedData['animal'],
-                'animal_type_id' => $validatedData['animal_type'],
-                'animal_population_count' => $validatedData['animal_population_count'],
-                'volume' => $validatedData['volume'],
+            AnimalType::create([
+                'type' => $validatedData['type'],
             ]);
 
             toastr()->success('Data has been saved successfully!');
