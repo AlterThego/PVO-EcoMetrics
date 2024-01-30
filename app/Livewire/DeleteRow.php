@@ -8,6 +8,7 @@ use App\Models\Animal;
 use App\Models\AnimalType;
 use App\Models\AnimalPopulation;
 use App\Models\AffectedAnimals;
+use App\Models\AnimalDeath;
 
 
 class DeleteRow extends ModalComponent
@@ -15,8 +16,8 @@ class DeleteRow extends ModalComponent
     public $animalPopulationId;
     public $animalId;
     public $animalTypeId;
-
     public $affectedAnimalsId;
+    public $animalDeathId;
     public function render()
     {
         return view('livewire.delete-row');
@@ -30,6 +31,7 @@ class DeleteRow extends ModalComponent
             $animal = Animal::find($this->animalId);
             $animalType = AnimalType::find($this->animalTypeId);
             $affectedAnimals = AffectedAnimals::find($this->affectedAnimalsId);
+            $animalDeath = AnimalDeath::find($this->animalDeathId);
 
             if ($animalPopulation) {
                 $animalPopulation->delete();
@@ -39,6 +41,8 @@ class DeleteRow extends ModalComponent
                 $animalType->delete();
             } else if ($affectedAnimals) {
                 $affectedAnimals->delete();
+            } else if ($animalDeath) {
+                $animalDeath->delete();
             }
 
 

@@ -28,7 +28,9 @@ final class AnimalTypeTable extends PowerGridComponent
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            Header::make()
+                ->showToggleColumns()
+                ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -81,14 +83,14 @@ final class AnimalTypeTable extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(AnimalType $row): array
     {
         return [
             Button::add('delete-row')
-                ->slot('Delete')
+                ->slot('- Delete')
                 ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
                 ->openModal('delete-row', ['animalTypeId' => $row->id])
         ];

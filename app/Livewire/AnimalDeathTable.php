@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\AnimalDeath;
+use App\Models\Municipality;
 use App\Models\Animal;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,14 +18,14 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class AnimalTable extends PowerGridComponent
+final class AnimalDeathTable extends PowerGridComponent
 {
     use WithExport;
+    public bool $showFilters = true;
     public string $sortDirection = 'desc';
     public function setUp(): array
     {
         // $this->showCheckBox();
-
 
         return [
             Exportable::make('export')
@@ -40,7 +42,14 @@ final class AnimalTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Animal::query();
+        return AnimalDeath::query()
+            ->join('municipalities', 'animal_deaths.municipality_id', '=', 'municipalities.id')
+            ->join('animal', 'animal_deaths.animal_id', '=', 'animal.id')
+            ->select(
+                'animal_deaths.*',
+                'animal.animal_name as animal_id',
+                'municipalities.municipality_name as municipality_id',
+            );
     }
 
     public function relationSearch(): array
@@ -52,29 +61,30 @@ final class AnimalTable extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('animal_name')
-            ->addColumn('classification')
-            ->addColumn('type')
+            ->addColumn('year')
+            ->addColumn('municipality_id')
+            ->addColumn('animal_id')
+            ->addColumn('count')
             ->addColumn('created_at');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id')
-                ->sortable(),
-            Column::make('Animal name', 'animal_name')
+            Column::make('Id', 'id'),
+
+            Column::make('Year', 'year')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Classification', 'classification')
+            Column::make('Municipality id', 'municipality_id'),
+            Column::make('Animal id', 'animal_id'),
+
+            Column::make('Count', 'count')
+                ->sortable()
                 ->searchable(),
 
-            // Column::make('Type', 'type')
-            //     ->searchable(),
-
-
-            Column::make('Date Added', 'created_at')
+            Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),
 
@@ -85,22 +95,36 @@ final class AnimalTable extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::inputText('year')
+                ->operators(['contains']),
+
+            Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id'),
+
+
+            Filter::select('animal_id', 'animal_id')
+                ->dataSource(Animal::all())
+                ->optionLabel('animal_name')
+                ->optionValue('id'),
+
         ];
     }
 
-    #[\Livewire\Attributes\On('destroy')]
+    #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
         $this->js('alert(' . $rowId . ')');
     }
 
-    public function actions(Animal $row): array
+    public function actions(AnimalDeath $row): array
     {
         return [
             Button::add('delete-row')
                 ->slot('- Delete')
                 ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
-                ->openModal('delete-row', ['animalId' => $row->id])
+                ->openModal('delete-row', ['animalDeathId' => $row->id])
         ];
     }
 

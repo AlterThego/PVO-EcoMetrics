@@ -33,7 +33,6 @@ final class AffectedAnimalsTable extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
-                ->withoutLoading()
                 ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
@@ -66,14 +65,19 @@ final class AffectedAnimalsTable extends PowerGridComponent
             ->addColumn('municipality_id')
             ->addColumn('animal_id')
             ->addColumn('year')
-            ->addColumn('count')
-            ->addColumn('created_at');
+            ->addColumn('count');
+            // ->addColumn('created_at');
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
+            
+            Column::make('Year', 'year')
+            ->sortable()
+            ->searchable(),
+
             Column::make('Municipality id', 'municipality_id'),
             Column::make('Animal id', 'animal_id'),
             Column::make('Year', 'year')
@@ -84,9 +88,9 @@ final class AffectedAnimalsTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Created at', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
             Column::action('Action')
         ];
@@ -122,7 +126,7 @@ final class AffectedAnimalsTable extends PowerGridComponent
     {
         return [
             Button::add('delete-row')
-                ->slot('Delete')
+                ->slot('- Delete')
                 ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
                 ->openModal('delete-row', ['affectedAnimalsId' => $row->id])
         ];

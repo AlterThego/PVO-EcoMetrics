@@ -91,10 +91,12 @@
                         <div class="nav__items">
                             <h3 class="nav__subtitle">Menu</h3>
 
-                            <div class="nav__dropdown {{ request()->is('animal-population') || request()->is('animal-list') || request()->is('animal-type') || request()->is('animal-infected') ? 'show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('animal-population') || request()->is('animal-list') 
+                            || request()->is('animal-type') || request()->is('animal-infected') || request()->is('animal-death')? 'show' : '' }}"
                                 id="animalsDropdown">
                                 <a href="#"
-                                    class="nav__link {{ request()->is('animal-population') || request()->is('animal-list') || request()->is('animal-type') || request()->is('animal-infected') ? 'active' : '' }}"
+                                    class="nav__link {{ request()->is('animal-population') || request()->is('animal-list') || request()->is('animal-type') 
+                                    || request()->is('animal-infected') || request()->is('animal-death') ? 'active' : '' }}"
                                     onclick="toggleDropdown('animalsDropdown')">
                                     <svg xmlns="/benguetlivestock/assets/images/dog.svg" class='bx nav__icon'
                                         width="20" height="20" viewBox="0 0 256 256">
@@ -115,6 +117,8 @@
                                             class="nav__dropdown-item {{ request()->is('animal-type') ? ' active' : '' }}">Type</a>
                                         <a href="/animal-infected"
                                             class="nav__dropdown-item {{ request()->is('animal-infected') ? ' active' : '' }}">Infected</a>
+                                        <a href="/animal-death"
+                                            class="nav__dropdown-item {{ request()->is('animal-death') ? ' active' : '' }}">Death</a>
                                     </div>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@
 
 
   /*========== Light Mode Colors ==========*/
-:root {
+/* :root {
   --first-color: #008000;
   --first-color-light: #F3F4F6;
   --title-color: #4F0A09;
@@ -25,10 +25,10 @@
   --text-color-light: #A5A1AA;
   --body-color: #F0FFF0;
   --container-color: #FFFFFF;
-}
+} */
 
 /*========== Dark Mode Colors ==========*/
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --first-color: #00A86B; 
     --first-color-light: #2D3748;
@@ -38,7 +38,7 @@
     --body-color: #1A202C;
     --container-color: #2D3748;
   }
-}
+} */
 
 
   /*========== Font and typography ==========*/

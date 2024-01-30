@@ -36,7 +36,6 @@ final class AnimalPopulationTable extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
-                ->withoutLoading()
                 ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
@@ -51,14 +50,17 @@ final class AnimalPopulationTable extends PowerGridComponent
             ->join('municipalities', 'animal_population.municipality_id', '=', 'municipalities.id')
             ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
             ->join('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
+
             ->select(
                 'animal_population.*',
                 'animal.animal_name as animal_id',
                 'municipalities.municipality_name as municipality_id',
                 'animal_type.type as animal_type_id',
+                'animal.classification as classification'
             );
-
     }
+
+
 
     public function relationSearch(): array
     {
@@ -72,6 +74,7 @@ final class AnimalPopulationTable extends PowerGridComponent
             ->addColumn('municipality_id')
             ->addColumn('animal_id')
             ->addColumn('animal_type_id')
+            ->addColumn('classification')
             ->addColumn('year')
             ->addColumn('animal_population_count')
             ->addColumn('volume');
@@ -88,6 +91,7 @@ final class AnimalPopulationTable extends PowerGridComponent
                 ->searchable(),
             Column::make('Municipality', 'municipality_id'),
             Column::make('Animal', 'animal_id'),
+            Column::make('Classification', 'classification'),
             Column::make('Type', 'animal_type_id'),
             Column::make('Population', 'animal_population_count')
                 ->sortable()
@@ -147,7 +151,7 @@ final class AnimalPopulationTable extends PowerGridComponent
     {
         return [
             Button::add('delete-row')
-                ->slot('Delete')
+                ->slot('- Delete')
                 ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
                 ->openModal('delete-row', ['animalPopulationId' => $row->id])
         ];
