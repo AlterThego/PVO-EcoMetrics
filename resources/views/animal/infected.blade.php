@@ -1,4 +1,4 @@
-<title>Animal Types</title>
+<title>Animals Affected with Disease</title>
 
 <x-app-layout>
     <div class="pt-12 pb-5">
@@ -6,13 +6,14 @@
             <div class="grid grid-cols-2">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
                     <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
-                        {{ __('Animal Types') }}
+                        {{ __('Animals Affected with Disease') }}
                     </div>
                 </div>
                 <!-- Buttons at the center -->
-                <div data-modal-target="animalTypeModal"
+                <div data-modal-target="affectedAnimalsModal"
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
-                    <button id="animalTypeModalButton" data-modal-target="animalTypeModal" data-modal-toggle="animalTypeModal"
+                    <button id="affectedAnimalsModalButton" data-modal-target="affectedAnimalsModal"
+                        data-modal-toggle="affectedAnimalsModal"
                         class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
                         + Add Data
                     </button>
@@ -26,14 +27,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <livewire:animal-type-table />
+                    <livewire:affected-animals-table />
                 </div>
             </div>
         </div>
 
 
         <!-- Main modal -->
-        <div id="animalTypeModal" tabindex="-1" aria-hidden="true"
+        <div id="affectedAnimalsModal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
             <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
                 <!-- Modal content -->
@@ -46,7 +47,7 @@
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="animalTypeModal">
+                            data-modal-toggle="affectedAnimalsModal">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -56,18 +57,56 @@
                             <span class="sr-only">Close modal</span>
                         </button>
                     </div>
-
                     <!-- Modal body -->
-                    <form action="{{ route('animal.type.store') }}" method="post">
+                    <form action="{{ route('affected.animals.store') }}" method="post">
                         @csrf
-                        <div class="grid gap-4 mb-4 sm:grid-cols-1">
+                        <div class="grid gap-4 mb-4 sm:grid-cols-2">
+
                             <div>
-                                <label for="type"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal Type</label>
-                                <input type="text" name="type" id="type"
+                                <label for="year"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
+                                <input type="number" name="year" id="year"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Animal Type" required="" autocomplete="off">
+                                    placeholder="Type Year" required="">
                             </div>
+
+
+                            <div>
+                                <label for="municipality"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
+                                <select name="municipality" id="municipality"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    required="">
+                                    <option value="" disabled selected>Select Municipality</option>
+                                    @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
+                                        <option value="{{ $id }}">{{ $municipalityName }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
+                            <div>
+                                <label for="animal"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal</label>
+                                <select name="animal" id="animal"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    required="">
+                                    <option value="" disabled selected>Select Animal</option>
+                                    @foreach (\App\Models\Animal::pluck('animal_name', 'id') as $id => $animalName)
+                                        <option value="{{ $id }}">{{ $animalName }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="count"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Infected
+                                    Animals Count</label>
+                                <input type="number" name="count" id="count"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Input Infected Animals Count" required="">
+                            </div>
+
 
                         </div>
                         <button type="submit"
@@ -78,7 +117,7 @@
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            Add New Animal Type
+                            Add New Animal Data
                         </button>
 
 
@@ -90,9 +129,8 @@
         @livewire('wire-elements-modal')
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
-                document.getElementById('animalTypeModalButton').click();
+                document.getElementById('affectedAnimalsModalButton').click();
             });
         </script>
-
 
 </x-app-layout>

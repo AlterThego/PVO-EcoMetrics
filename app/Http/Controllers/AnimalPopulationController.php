@@ -12,6 +12,7 @@ class AnimalPopulationController extends Controller
     // AnimalPopulationController.php
     public function store(Request $request)
     {
+        \DB::beginTransaction();
         try {
             // Validate the form data
             $validatedData = $request->validate([
@@ -23,7 +24,7 @@ class AnimalPopulationController extends Controller
                 'volume' => 'required|numeric',
             ]);
 
-            
+
             // Save the data to the database
             AnimalPopulation::create([
                 'year' => $validatedData['year'],
@@ -34,23 +35,24 @@ class AnimalPopulationController extends Controller
                 'volume' => $validatedData['volume'],
             ]);
 
+            \DB::commit();
             toastr()->success('Data has been saved successfully!');
             return back();
-
 
         } catch (ValidationException $e) {
             Log::error('Validation failed: ' . json_encode($e->validator->errors()));
 
             // Redirect back with validation errors
-            toastr()->error('An error occurred while saving data. Please try again.'. $e->getMessage());
+            toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
             return back();
-            
+
         } catch (\Exception $e) {
-            // Log or handle the exception
+            \DB::rollBack(); 
+
             Log::error('Error saving data: ' . $e->getMessage());
 
             // Redirect with an error message or handle the error accordingly
-            toastr()->error('An error occurred while saving data. Please try again.'. $e->getMessage());
+            toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
             return back();
         }
     }

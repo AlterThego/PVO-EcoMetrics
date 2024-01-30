@@ -9,6 +9,7 @@ class AnimalTypeController extends Controller
 {
     public function store(Request $request)
     {
+        \DB::beginTransaction();
         try {
             // Validate the form data
             $validatedData = $request->validate([
@@ -21,6 +22,7 @@ class AnimalTypeController extends Controller
                 'type' => $validatedData['type'],
             ]);
 
+            \DB::commit();
             toastr()->success('Data has been saved successfully!');
             return back();
 
@@ -28,15 +30,14 @@ class AnimalTypeController extends Controller
         } catch (ValidationException $e) {
             Log::error('Validation failed: ' . json_encode($e->validator->errors()));
 
-            // Redirect back with validation errors
+            \DB::rollback();
             toastr()->error('An error occurred while saving data. Please try again.'. $e->getMessage());
             return back();
             
         } catch (\Exception $e) {
-            // Log or handle the exception
             Log::error('Error saving data: ' . $e->getMessage());
 
-            // Redirect with an error message or handle the error accordingly
+            \DB::rollback();
             toastr()->error('An error occurred while saving data. Please try again.'. $e->getMessage());
             return back();
         }

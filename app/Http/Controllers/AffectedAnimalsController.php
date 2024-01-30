@@ -4,30 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Models\Animal;
 use Illuminate\Validation\ValidationException;
+use App\Models\AffectedAnimals;
 
-class AnimalController extends Controller
+class AffectedAnimalsController extends Controller
 {
     public function store(Request $request)
     {
         try {
             \DB::beginTransaction();
             $validatedData = $request->validate([
-                'animal_name' => 'required',
-                'classification' => 'required',
-                // 'animal_type' => 'required|exists:animal_type,id',
+                'year' => 'required|integer|digits:4',
+                'municipality' => 'required|exists:municipalities,id',
+                'animal' => 'required|exists:animal,id',
+                'count' => 'required|integer',
             ]);
 
-            Log::info('Validation passed. Data: ' . json_encode($validatedData));
 
             // Save the data to the database
-            Animal::create([
-                'animal_name' => $validatedData['animal_name'],
-                'classification' => $validatedData['classification'],
-                // 'animal_type_id' => $validatedData['animal_type'],
-            ]);
+            AffectedAnimals::create([
+                'year' => $validatedData['year'],
+                'municipality_id' => $validatedData['municipality'],
+                'animal_id' => $validatedData['animal'],
+                'count' => $validatedData['count'],
 
+            ]);
             \DB::commit();
             toastr()->success('Data has been saved successfully!');
             return back();
@@ -45,7 +46,8 @@ class AnimalController extends Controller
             Log::error('Error saving data: ' . $e->getMessage());
 
             \DB::rollback();
-            return redirect()->back()->with('error', 'An error occurred while saving data. Please try again.');
+            toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
+            return back();
         }
     }
 }

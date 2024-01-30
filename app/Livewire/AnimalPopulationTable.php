@@ -19,6 +19,7 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use Illuminate\Support\Facades\Log;
 
 final class AnimalPopulationTable extends PowerGridComponent
 {
@@ -118,7 +119,7 @@ final class AnimalPopulationTable extends PowerGridComponent
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
                 ->optionValue('id'),
-                
+
 
             Filter::select('animal_id', 'animal_id')
                 ->dataSource(Animal::all())
@@ -166,12 +167,26 @@ final class AnimalPopulationTable extends PowerGridComponent
 
     public function onUpdatedEditable(string|int $id, string $field, string $value): void
     {
-        // $this->validate();
+        try {
+            // $this->validate(); // Uncomment this line if you have validation logic
 
-        AnimalPopulation::query()->find($id)->update([
-            $field => $value,
-        ]);
+            AnimalPopulation::query()->find($id)->update([
+                $field => $value,
+            ]);
+
+            toastr()->success('Data has been saved successfully');
+            // Additional logic after the update if needed...
+
+        } catch (\Exception $e) {
+            // Handle the exception, you can log it for debugging
+            Log::error('Failed to save data. Error: ' . $e->getMessage());
+            toastr()->error('Failed to save data. Please try again. Make sure to input the correct format');
+        }
+
     }
 
 
+
 }
+
+

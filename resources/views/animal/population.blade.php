@@ -19,9 +19,9 @@
                     </div>
                 </div>
                 <!-- Buttons at the center -->
-                <div data-modal-target="crud-modal"
+                <div data-modal-target="animalPopulationModal"
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
-                    <button id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal"
+                    <button id="animalPopulationModalButton" data-modal-target="animalPopulationModal" data-modal-toggle="animalPopulationModal"
                         class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
                         + Add Data
                     </button>
@@ -45,7 +45,7 @@
 
 
         <!-- Main modal -->
-        <div id="defaultModal" tabindex="-1" aria-hidden="true"
+        <div id="animalPopulationModal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
             <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
                 <!-- Modal content -->
@@ -58,7 +58,7 @@
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="defaultModal">
+                            data-modal-toggle="animalPopulationModal">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -157,7 +157,7 @@
         @livewire('wire-elements-modal')
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
-                document.getElementById('defaultModalButton').click();
+                document.getElementById('animalPopulationModalButton').click();
             });
         </script>
 

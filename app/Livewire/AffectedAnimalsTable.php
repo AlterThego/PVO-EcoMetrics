@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\AffectedAnimals;
+use App\Models\Municipality;
+use App\Models\Animal;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -19,16 +21,20 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 final class AffectedAnimalsTable extends PowerGridComponent
 {
     use WithExport;
-
+    public bool $showFilters = true;
+    public string $sortDirection = 'desc';
     public function setUp(): array
     {
-        $this->showCheckBox();
+        // $this->showCheckBox();
 
         return [
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            Header::make()
+                ->showToggleColumns()
+                ->withoutLoading()
+                ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -37,7 +43,15 @@ final class AffectedAnimalsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return AffectedAnimals::query();
+        return AffectedAnimals::query()
+            ->join('municipalities', 'affected_animals.municipality_id', '=', 'municipalities.id')
+            ->join('animal', 'affected_animals.animal_id', '=', 'animal.id')
+            ->select(
+                'affected_animals.*',
+                'animal.animal_name as animal_id',
+                'municipalities.municipality_name as municipality_id',
+            );
+        ;
     }
 
     public function relationSearch(): array
@@ -70,9 +84,6 @@ final class AffectedAnimalsTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
-
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),
@@ -84,23 +95,36 @@ final class AffectedAnimalsTable extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::inputText('year')
+                ->operators(['contains']),
+
+            Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id'),
+
+
+            Filter::select('animal_id', 'animal_id')
+                ->dataSource(Animal::all())
+                ->optionLabel('animal_name')
+                ->optionValue('id'),
+
         ];
     }
 
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
-    public function actions(\App\Models\AffectedAnimals $row): array
+    public function actions(AffectedAnimals $row): array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+            Button::add('delete-row')
+                ->slot('Delete')
+                ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
+                ->openModal('delete-row', ['affectedAnimalsId' => $row->id])
         ];
     }
 
