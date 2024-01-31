@@ -53,6 +53,10 @@ Route::get('/fish-production-area', function () {
     return view('fish.production-area');
 })->middleware(['auth', 'verified'])->name('fish.production-area');
 
+Route::get('/disease', function () {
+    return view('health.disease');
+})->middleware(['auth', 'verified'])->name('health.disease');
+
 
 
 // Add data
@@ -76,6 +80,10 @@ Route::post('/fish-production', 'App\Http\Controllers\FishProductionController@s
 
 Route::post('/fish-production-area', 'App\Http\Controllers\FishProductionAreaController@store')
 ->middleware(['auth', 'verified'])->name('fish.production-area.store');
+
+
+Route::post('/disease', 'App\Http\Controllers\DiseaseController@store')
+->middleware(['auth', 'verified'])->name('health.disease.store');
 
 
 

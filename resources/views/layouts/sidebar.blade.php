@@ -199,7 +199,8 @@
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
                                         <a href="/fish-production"
-                                            class="nav__dropdown-item {{ request()->is('fish-production') ? ' active' : '' }}">Production Type</a>
+                                            class="nav__dropdown-item {{ request()->is('fish-production') ? ' active' : '' }}">Production
+                                            Type</a>
                                         <a href="/fish-production-area"
                                             class="nav__dropdown-item {{ request()->is('fish-production-area') ? ' active' : '' }}">Production
                                             Area</a>
@@ -207,8 +208,10 @@
                                 </div>
                             </div>
 
-                            <div class="nav__dropdown" id="healthDropdown">
-                                <a href="#" class="nav__link" onclick="toggleDropdown('healthDropdown')">
+                            <div class="nav__dropdown {{ request()->is('disease') ? ' show' : '' }}"
+                                id="healthDropdown">
+                                <a href="#" class="nav__link {{ request()->is('disease') ? ' active' : '' }}"
+                                    onclick="toggleDropdown('healthDropdown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                         height="20" viewBox="0 0 16 16">
                                         <path fill="currentColor" fill-rule="evenodd"
@@ -221,8 +224,8 @@
 
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="/benguetlivestock/frontend/common-diseases.php"
-                                            class="nav__dropdown-item">Diseases</a>
+                                        <a href="/disease"
+                                            class="nav__dropdown-item {{ request()->is('disease') ? ' active' : '' }}">Diseases</a>
                                         <a href="/benguetlivestock/frontend/animal-deaths.php"
                                             class="nav__dropdown-item">Yearly Diseases</a>
                                     </div>
