@@ -41,7 +41,7 @@
 
                     <div class="nav__list">
                         <div class="nav__items">
-                            <!-- <h3 class="nav__subtitle">Shortcut</h3> -->
+                            <h3 class="nav__subtitle">Shortcut</h3>
 
                             <a href="/dashboard" class="nav__link{{ request()->is('dashboard') ? ' active' : '' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="bx nav__icon" viewBox="0 0 24 24">
@@ -61,31 +61,7 @@
                                 <span class="nav__name">Compare</span>
                             </a>
 
-                            <div class="nav__dropdown" id="healthDropdown">
-                                <a href="#" class="nav__link" onclick="toggleDropdown('healthDropdown')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
-                                        height="20" viewBox="0 0 16 16">
-                                        <path fill="currentColor" fill-rule="evenodd"
-                                            d="M7.999 1a.75.75 0 0 1 .715.521L12 11.79l1.286-4.018A.75.75 0 0 1 14 7.25h1.25a.75.75 0 0 1 0 1.5h-.703l-1.833 5.729a.75.75 0 0 1-1.428 0L8.005 4.226l-2.29 7.25a.75.75 0 0 1-1.42.03L3.031 8.03l-.07.208a.75.75 0 0 1-.711.513H.75a.75.75 0 0 1 0-1.5h.96l.578-1.737a.75.75 0 0 1 1.417-.02L4.95 8.919l2.335-7.394A.75.75 0 0 1 7.999 1"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <span class="nav__name">Health</span>
-                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                                </a>
 
-                                <div class="nav__dropdown-collapse">
-                                    <div class="nav__dropdown-content">
-                                        <a href="/benguetlivestock/frontend/common-diseases.php"
-                                            class="nav__dropdown-item">Diseases</a>
-                                        <a href="/benguetlivestock/frontend/animal-deaths.php"
-                                            class="nav__dropdown-item">Deaths</a>
-                                        <a href="/benguetlivestock/frontend/affected-animals.php"
-                                            class="nav__dropdown-item">Infected</a>
-                                        <a href="/benguetlivestock/frontend/veterinary-clinics.php"
-                                            class="nav__dropdown-item">Veterinary</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="nav__items">
@@ -197,9 +173,10 @@
                                 </div>
                             </div> --}}
 
-                            <div class="nav__dropdown {{ request()->is('fish-production') ? 'show' : '' }}" id="fisheryDropdown">
+                            <div class="nav__dropdown {{ request()->is('fish-production') || request()->is('fish-production-area') ? 'show' : '' }}"
+                                id="fisheryDropdown">
                                 <a href="#"
-                                    class="nav__link {{ request()->is('fish-production') ? 'active' : '' }}"
+                                    class="nav__link {{ request()->is('fish-production') || request()->is('fish-production-area') ? 'active' : '' }}"
                                     onclick="toggleDropdown('fisheryDropdown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                         height="20" viewBox="0 0 48 48">
@@ -222,13 +199,35 @@
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
                                         <a href="/fish-production"
-                                            class="nav__dropdown-item {{ request()->is('fish-production') ? ' active' : '' }}">Production</a>
-                                        <a href="/benguetlivestock/frontend/fish-production.php"
-                                            class="nav__dropdown-item">Production Area</a>
+                                            class="nav__dropdown-item {{ request()->is('fish-production') ? ' active' : '' }}">Production Type</a>
+                                        <a href="/fish-production-area"
+                                            class="nav__dropdown-item {{ request()->is('fish-production-area') ? ' active' : '' }}">Production
+                                            Area</a>
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="nav__dropdown" id="healthDropdown">
+                                <a href="#" class="nav__link" onclick="toggleDropdown('healthDropdown')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
+                                        height="20" viewBox="0 0 16 16">
+                                        <path fill="currentColor" fill-rule="evenodd"
+                                            d="M7.999 1a.75.75 0 0 1 .715.521L12 11.79l1.286-4.018A.75.75 0 0 1 14 7.25h1.25a.75.75 0 0 1 0 1.5h-.703l-1.833 5.729a.75.75 0 0 1-1.428 0L8.005 4.226l-2.29 7.25a.75.75 0 0 1-1.42.03L3.031 8.03l-.07.208a.75.75 0 0 1-.711.513H.75a.75.75 0 0 1 0-1.5h.96l.578-1.737a.75.75 0 0 1 1.417-.02L4.95 8.919l2.335-7.394A.75.75 0 0 1 7.999 1"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="nav__name">Health</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+
+                                <div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="/benguetlivestock/frontend/common-diseases.php"
+                                            class="nav__dropdown-item">Diseases</a>
+                                        <a href="/benguetlivestock/frontend/animal-deaths.php"
+                                            class="nav__dropdown-item">Yearly Diseases</a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="nav__dropdown" id="beekeepingDropdown">
                                 <a href="#" class="nav__link" onclick="toggleDropdown('beekeepingDropdown')">
                                     <svg class='bx nav__icon' width="20" height="20" viewBox="0 0 512 512">

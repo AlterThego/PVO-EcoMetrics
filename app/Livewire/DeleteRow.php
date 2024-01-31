@@ -20,6 +20,8 @@ class DeleteRow extends ModalComponent
     public $affectedAnimalsId;
     public $animalDeathId;
     public $fishProductionId;
+
+    public $fishProductionAreaId;
     public function render()
     {
         return view('livewire.delete-row');
@@ -35,6 +37,7 @@ class DeleteRow extends ModalComponent
             $affectedAnimals = AffectedAnimals::find($this->affectedAnimalsId);
             $animalDeath = AnimalDeath::find($this->animalDeathId);
             $fishProduction = FishProduction::find($this->fishProductionId);
+            $fishProductionArea = FishProduction::find($this->fishProductionAreaId);
 
             if ($animalPopulation) {
                 $animalPopulation->delete();
@@ -48,6 +51,8 @@ class DeleteRow extends ModalComponent
                 $animalDeath->delete();
             } else if ($fishProduction) {
                 $fishProduction->delete();
+            }else if ($fishProductionArea) {
+                $fishProductionArea->delete();
             }
 
 
