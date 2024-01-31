@@ -9,6 +9,8 @@ module.exports = {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        "./resources/**/*.vue",
+        "./resources/**/*.js",
 
         "./node_modules/flowbite/**/*.js", 
 
@@ -27,7 +29,9 @@ module.exports = {
         },
     },
     plugins: [forms,
-        require('flowbite/plugin')],
+        require('flowbite/plugin')({
+            charts: true,
+        })],
     darkMode: 'class',
 }
 

@@ -17,6 +17,7 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use Illuminate\Support\Facades\Log;
 
 final class AnimalDeathTable extends PowerGridComponent
 {
@@ -82,11 +83,12 @@ final class AnimalDeathTable extends PowerGridComponent
 
             Column::make('Count', 'count')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->editOnClick(true),
 
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Created at', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
             Column::action('Action')
         ];
@@ -139,4 +141,24 @@ final class AnimalDeathTable extends PowerGridComponent
         ];
     }
     */
+
+    public function onUpdatedEditable(string|int $id, string $field, string $value): void
+    {
+        try {
+            // $this->validate(); // Uncomment this line if you have validation logic
+
+            AnimalDeath::query()->find($id)->update([
+                $field => $value,
+            ]);
+
+            toastr()->success('Data has been saved successfully');
+            // Additional logic after the update if needed...
+
+        } catch (\Exception $e) {
+            // Handle the exception, you can log it for debugging
+            Log::error('Failed to save data. Error: ' . $e->getMessage());
+            toastr()->error('Failed to save data. Please try again. Make sure to input the correct format');
+        }
+
+    }
 }

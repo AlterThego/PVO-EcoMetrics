@@ -1,5 +1,6 @@
 import './bootstrap';
 
+
 import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus'
 Alpine.plugin(focus)
@@ -7,7 +8,7 @@ Alpine.plugin(focus)
 
 window.Alpine = Alpine;
 
-Alpine.start();
+// Alpine.start();
 
 import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
 

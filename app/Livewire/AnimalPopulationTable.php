@@ -101,6 +101,7 @@ final class AnimalPopulationTable extends PowerGridComponent
 
             Column::make('Volume', 'volume')
                 ->sortable()
+                ->editOnClick(true)
                 ->searchable(),
 
             // Column::make('Created at', 'created_at')

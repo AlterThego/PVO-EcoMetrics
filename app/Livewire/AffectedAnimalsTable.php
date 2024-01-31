@@ -17,6 +17,7 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use Illuminate\Support\Facades\Log;
 
 final class AffectedAnimalsTable extends PowerGridComponent
 {
@@ -66,28 +67,29 @@ final class AffectedAnimalsTable extends PowerGridComponent
             ->addColumn('animal_id')
             ->addColumn('year')
             ->addColumn('count');
-            // ->addColumn('created_at');
+        // ->addColumn('created_at');
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-            
+
             Column::make('Year', 'year')
-            ->sortable()
-            ->searchable(),
+                ->sortable()
+                ->searchable(),
+
 
             Column::make('Municipality id', 'municipality_id'),
             Column::make('Animal id', 'animal_id'),
-            Column::make('Year', 'year')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Year', 'year')
+            //     ->sortable()
+            //     ->searchable(),
 
             Column::make('Count', 'count')
                 ->sortable()
-                ->searchable(),
-
+                ->searchable()
+                ->editOnClick(true),
             // Column::make('Created at', 'created_at')
             //     ->sortable()
             //     ->searchable(),
@@ -143,4 +145,25 @@ final class AffectedAnimalsTable extends PowerGridComponent
         ];
     }
     */
+
+    public function onUpdatedEditable(string|int $id, string $field, string $value): void
+    {
+        try {
+            // $this->validate(); // Uncomment this line if you have validation logic
+
+            AffectedAnimals::query()->find($id)->update([
+                $field => $value,
+            ]);
+
+            toastr()->success('Data has been saved successfully');
+            // Additional logic after the update if needed...
+
+        } catch (\Exception $e) {
+            // Handle the exception, you can log it for debugging
+            Log::error('Failed to save data. Error: ' . $e->getMessage());
+            toastr()->error('Failed to save data. Please try again. Make sure to input the correct format');
+        }
+
+    }
+
 }
