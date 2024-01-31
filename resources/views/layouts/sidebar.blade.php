@@ -197,8 +197,10 @@
                                 </div>
                             </div> --}}
 
-                            <div class="nav__dropdown" id="fisheryDropdown">
-                                <a href="#" class="nav__link" onclick="toggleDropdown('fisheryDropdown')">
+                            <div class="nav__dropdown {{ request()->is('fish-production') ? 'show' : '' }}" id="fisheryDropdown">
+                                <a href="#"
+                                    class="nav__link {{ request()->is('fish-production') ? 'active' : '' }}"
+                                    onclick="toggleDropdown('fisheryDropdown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                         height="20" viewBox="0 0 48 48">
                                         <defs>
@@ -219,8 +221,8 @@
 
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="/benguetlivestock/frontend/fish-sanctuary.php"
-                                            class="nav__dropdown-item">Production</a>
+                                        <a href="/fish-production"
+                                            class="nav__dropdown-item {{ request()->is('fish-production') ? ' active' : '' }}">Production</a>
                                         <a href="/benguetlivestock/frontend/fish-production.php"
                                             class="nav__dropdown-item">Production Area</a>
                                     </div>

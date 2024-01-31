@@ -44,6 +44,11 @@ Route::get('/animal-death', function () {
     return view('animal.death');
 })->middleware(['auth', 'verified'])->name('animal.death');
 
+Route::get('/fish-production', function () {
+    return view('fish.production');
+})->middleware(['auth', 'verified'])->name('fish.production');
+
+
 
 
 // Add data
@@ -61,6 +66,9 @@ Route::post('/animal-infected', 'App\Http\Controllers\AffectedAnimalsController@
 
 Route::post('/animal-death', 'App\Http\Controllers\AnimalDeathController@store')
 ->middleware(['auth', 'verified'])->name('animal.death.store');
+
+Route::post('/fish-production', 'App\Http\Controllers\FishProductionController@store')
+->middleware(['auth', 'verified'])->name('fish.production.store');
 
 
 
