@@ -19,7 +19,7 @@ class VeterinaryClinicsFactory extends Factory
 
         return [
             'municipality_id' => $municipalityId,
-            'sector' => $this->faker->randomElement(['government', 'private']),
+            'sector' => $this->faker->randomElement(['Government', 'Private']),
             'clinic_name' => $this->faker->unique()->company,
             'year_established' => $this->faker->year,
             'year_closed' => $this->faker->optional(0.2)->year, // 20% chance of being nullable

@@ -14,7 +14,7 @@ use App\Models\Disease;
 use App\Models\YearlyCommonDisease;
 use App\Models\Farm;
 use App\Models\FarmSupply;
-
+use App\Models\VeterinaryClinics;
 
 class DeleteRow extends ModalComponent
 {
@@ -29,7 +29,7 @@ class DeleteRow extends ModalComponent
     public $yearlyCommonDiseaseId;
     public $farmId;
     public $farmSuppliesId;
-
+    public $veterinaryClinicsId;
     public function render()
     {
         return view('livewire.delete-row');
@@ -50,6 +50,7 @@ class DeleteRow extends ModalComponent
             $yearlycommondisease = YearlyCommonDisease::find($this->yearlyCommonDiseaseId);
             $farm = Farm::find($this->farmId);
             $farmSupply = FarmSupply::find($this->farmSuppliesId);
+            $veterinaryClinics = VeterinaryClinics::find($this->veterinaryClinicsId);
 
             if ($animalPopulation) {
                 $animalPopulation->delete();
@@ -73,6 +74,8 @@ class DeleteRow extends ModalComponent
                 $farm->delete();
             } else if ($farmSupply) {
                 $farmSupply->delete();
+            } else if ($veterinaryClinics) {
+                $veterinaryClinics->delete();
             }
 
 

@@ -69,42 +69,48 @@ Route::get('/farm-supply', function () {
     return view('farm.supply');
 })->middleware(['auth', 'verified'])->name('farm.supply');
 
+Route::get('/veterinary-clinics', function () {
+    return view('health.veterinary-clinics');
+})->middleware(['auth', 'verified'])->name('farm.veterinary-clinics');
 
 
 // Add data
 Route::post('/animal-population', 'App\Http\Controllers\AnimalPopulationController@store')
-->middleware(['auth', 'verified'])->name('animal.population.store');
+    ->middleware(['auth', 'verified'])->name('animal.population.store');
 
 Route::post('/animal-list', 'App\Http\Controllers\AnimalController@store')
-->middleware(['auth', 'verified'])->name('animal.store');
+    ->middleware(['auth', 'verified'])->name('animal.store');
 
 Route::post('/animal-type', 'App\Http\Controllers\AnimalTypeController@store')
-->middleware(['auth', 'verified'])->name('animal.type.store');
+    ->middleware(['auth', 'verified'])->name('animal.type.store');
 
 Route::post('/animal-infected', 'App\Http\Controllers\AffectedAnimalsController@store')
-->middleware(['auth', 'verified'])->name('affected.animals.store');
+    ->middleware(['auth', 'verified'])->name('affected.animals.store');
 
 Route::post('/animal-death', 'App\Http\Controllers\AnimalDeathController@store')
-->middleware(['auth', 'verified'])->name('animal.death.store');
+    ->middleware(['auth', 'verified'])->name('animal.death.store');
 
 Route::post('/fish-production', 'App\Http\Controllers\FishProductionController@store')
-->middleware(['auth', 'verified'])->name('fish.production.store');
+    ->middleware(['auth', 'verified'])->name('fish.production.store');
 
 Route::post('/fish-production-area', 'App\Http\Controllers\FishProductionAreaController@store')
-->middleware(['auth', 'verified'])->name('fish.production-area.store');
+    ->middleware(['auth', 'verified'])->name('fish.production-area.store');
 
 
 Route::post('/disease', 'App\Http\Controllers\DiseaseController@store')
-->middleware(['auth', 'verified'])->name('health.disease.store');
+    ->middleware(['auth', 'verified'])->name('health.disease.store');
 
 Route::post('/yearly-disease', 'App\Http\Controllers\YearlyCommonDiseaseController@store')
-->middleware(['auth', 'verified'])->name('health.yearly-disease.store');
+    ->middleware(['auth', 'verified'])->name('health.yearly-disease.store');
 
 Route::post('/farm', 'App\Http\Controllers\FarmController@store')
-->middleware(['auth', 'verified'])->name('farm.list.store');
+    ->middleware(['auth', 'verified'])->name('farm.list.store');
 
 Route::post('/farm-supply', 'App\Http\Controllers\FarmSupplyController@store')
-->middleware(['auth', 'verified'])->name('farm.supply.store');
+    ->middleware(['auth', 'verified'])->name('farm.supply.store');
+
+    Route::post('/veterinary-clinics', 'App\Http\Controllers\VeterinaryClinicsController@store')
+    ->middleware(['auth', 'verified'])->name('health.veterinary-clinics.store');
 
 
 

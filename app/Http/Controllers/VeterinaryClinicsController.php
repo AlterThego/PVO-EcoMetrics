@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
-use App\Models\Farm;
-class FarmController extends Controller
+use App\Models\VeterinaryClinics;
+class VeterinaryClinicsController extends Controller
 {
     public function store(Request $request)
     {
@@ -15,12 +15,8 @@ class FarmController extends Controller
             // Validate the form data
             $validatedData = $request->validate([
                 'municipality' => 'required|exists:municipalities,id',
-                'level' => 'required',
-                'farm_name' => 'required',
-                'farm_area' => 'required|numeric',
-
-                'farm_sector' => 'required',
-                'farm_type' => 'required',
+                'sector' => 'required',
+                'clinic_name' => 'required',
                 'year_established' => 'required|integer',
                 'year_closed' => 'nullable|integer',
 
@@ -29,14 +25,10 @@ class FarmController extends Controller
 
 
             // Save the data to the database
-            Farm::create([
+            VeterinaryClinics::create([
                 'municipality_id' => $validatedData['municipality'],
-                'level' => $validatedData['level'],
-                'farm_name' => $validatedData['farm_name'],
-                'farm_area' => $validatedData['farm_area'],
-
-                'farm_sector' => $validatedData['farm_sector'],
-                'farm_type' => $validatedData['farm_type'],
+                'clinic_name' => $validatedData['clinic_name'],
+                'sector' => $validatedData['sector'],
                 'year_established' => $validatedData['year_established'],
                 'year_closed' => $validatedData['year_closed'],
             ]);
