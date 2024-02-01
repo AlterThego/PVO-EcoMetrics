@@ -13,13 +13,13 @@ return new class extends Migration {
             $table->unsignedBigInteger('municipality_id');
             $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade')->onDelete('cascade');
 
-
-            $table->integer('colonies');
-            $table->integer('bee_keepers');
-            $table->integer('year');
+            $table->string('establishment_name', 20);
+            $table->integer('year_established');
+            $table->integer('year_closed')->nullable();
             $table->timestamps();
         });
     }
+
 
 
     /**

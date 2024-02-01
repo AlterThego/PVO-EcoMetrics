@@ -234,10 +234,10 @@
                                 </div>
                             </div>
 
-                            <div class="nav__dropdown {{ request()->is('farm') || request()->is('supplies') ? 'show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('farm') || request()->is('farm-supply') ? 'show' : '' }}"
                                 id="farmDropDown">
                                 <a href="#"
-                                    class="nav__link {{ request()->is('farm') || request()->is('supplies') ? 'active' : '' }}"
+                                    class="nav__link {{ request()->is('farm') || request()->is('farm-supply') ? 'active' : '' }}"
                                     onclick="toggleDropdown('farmDropDown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -251,8 +251,8 @@
                                     <div class="nav__dropdown-content">
                                         <a href="/farm"
                                             class="nav__dropdown-item {{ request()->is('farm') ? ' active' : '' }}">List</a>
-                                        <a href="/benguetlivestock/frontend/commercial-poultry.php"
-                                            class="nav__dropdown-item">Supplies</a>
+                                        <a href="/farm-supply"
+                                            class="nav__dropdown-item{{ request()->is('farm-supply') ? ' active' : '' }}">Supplies</a>
                                     </div>
                                 </div>
                             </div>

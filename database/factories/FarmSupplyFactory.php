@@ -17,9 +17,9 @@ class FarmSupplyFactory extends Factory
 
         return [
             'municipality_id' => $municipalityId,
-            'colonies' => $this->faker->numberBetween(1, 100),
-            'bee_keepers' => $this->faker->numberBetween(1, 100),
-            'year' => $this->faker->year,
+            'establishment_name' =>$this->faker->text(20),
+            'year_established' => $this->faker->year,
+            'year_closed' => $this->faker->optional(0.2)->year,
         ];
     }
 }

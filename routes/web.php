@@ -65,6 +65,10 @@ Route::get('/farm', function () {
     return view('farm.list');
 })->middleware(['auth', 'verified'])->name('farm.list');
 
+Route::get('/farm-supply', function () {
+    return view('farm.supply');
+})->middleware(['auth', 'verified'])->name('farm.supply');
+
 
 
 // Add data
@@ -98,6 +102,9 @@ Route::post('/yearly-disease', 'App\Http\Controllers\YearlyCommonDiseaseControll
 
 Route::post('/farm', 'App\Http\Controllers\FarmController@store')
 ->middleware(['auth', 'verified'])->name('farm.list.store');
+
+Route::post('/farm-supply', 'App\Http\Controllers\FarmSupplyController@store')
+->middleware(['auth', 'verified'])->name('farm.supply.store');
 
 
 

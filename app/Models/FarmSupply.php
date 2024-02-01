@@ -13,8 +13,8 @@ class FarmSupply extends Model
 
     protected $fillable = [
         'municipality_id',
-        'colonies',
-        'bee_keepers',
-        'year',
+        'establishment_name',
+        'year_established',
+        'year_closed',
     ];
 }
