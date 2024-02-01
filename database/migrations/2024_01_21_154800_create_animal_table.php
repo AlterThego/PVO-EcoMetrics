@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('animal', function (Blueprint $table) {
             $table->id();
             $table->string('animal_name');
-            $table->enum('classification', ['livestock', 'poultry', 'fish', 'pet', 'insect']);
+            $table->enum('classification', ['Livestock', 'Poultry', 'Fish', 'Pet', 'Insect']);
             // $table->string('type', 11);
             $table->timestamps();
         });

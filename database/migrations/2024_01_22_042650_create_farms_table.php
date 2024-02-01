@@ -13,11 +13,11 @@ return new class extends Migration {
             $table->unsignedBigInteger('municipality_id');
             $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->enum('level', ['provincial', 'municipal']);
+            $table->enum('level', ['Provincial', 'Municipal']);
             $table->string('farm_name', 50);
             $table->decimal('farm_area', 10, 2);
-            $table->enum('farm_sector', ['government', 'commercial']);
-            $table->enum('farm_type', ['animal_and_fishery_breeding', 'cattle', 'poultry', 'piggery']);
+            $table->enum('farm_sector', ['Government', 'Commercial']);
+            $table->enum('farm_type', ['Animal and Fishery Breeding', 'Cattle', 'Poultry', 'Piggery']);
             $table->integer('year_established');
             $table->integer('year_closed')->nullable();
             $table->timestamps();

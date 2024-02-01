@@ -23,7 +23,7 @@ class FarmFactory extends Factory
             'farm_name' => $this->faker->unique()->company,
             'farm_area' => $this->faker->randomFloat(2, 1, 100),
             'farm_sector' => $this->faker->randomElement(['government', 'commercial']),
-            'farm_type' => $this->faker->randomElement(['animal_and_fishery_breeding', 'cattle', 'poultry', 'piggery']),
+            'farm_type' => $this->faker->randomElement(['Animal and Fishery Breeding', 'Cattle', 'Poultry', 'Piggery']),
             'year_established' => $this->faker->year,
             'year_closed' => $this->faker->optional(0.2)->year, // 20% chance of being nullable
         ];

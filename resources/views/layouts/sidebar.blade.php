@@ -233,6 +233,30 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="nav__dropdown {{ request()->is('farm') || request()->is('supplies') ? 'show' : '' }}"
+                                id="farmDropDown">
+                                <a href="#"
+                                    class="nav__link {{ request()->is('farm') || request()->is('supplies') ? 'active' : '' }}"
+                                    onclick="toggleDropdown('farmDropDown')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 3L3 8.2V21h6l2.9-3l3.1 3h6V8.2zM7.9 20v-6l3 3zm1-7h6l-3 3zm7 7l-3-3l3-3zm-.9-9H8.8V9H15z" />
+                                    </svg>
+                                    <span class="nav__name">Farm</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+
+                                <div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="/farm"
+                                            class="nav__dropdown-item {{ request()->is('farm') ? ' active' : '' }}">List</a>
+                                        <a href="/benguetlivestock/frontend/commercial-poultry.php"
+                                            class="nav__dropdown-item">Supplies</a>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="nav__dropdown" id="beekeepingDropdown">
                                 <a href="#" class="nav__link" onclick="toggleDropdown('beekeepingDropdown')">
                                     <svg class='bx nav__icon' width="20" height="20" viewBox="0 0 512 512">
@@ -253,28 +277,7 @@
 
 
 
-                            <div class="nav__dropdown" id="breedingDropdown">
-                                <a href="#" class="nav__link" onclick="toggleDropdown('breedingDropdown')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' viewBox="0 0 32 32"
-                                        width="20" height="20">
-                                        <path fill="currentColor"
-                                            d="M30 22H17v-2h9v-6h-9v-2h5V6h-5V2h-2v4h-5v6h5v2H6v6h9v2H2v6h13v2h2v-2h13ZM20 8v2h-3V8Zm-8 2V8h3v2Zm12 6v2h-7v-2ZM8 18v-2h7v2Zm-4 8v-2h11v2Zm24 0H17v-2h11Z" />
-                                    </svg>
-                                    <span class="nav__name">Breeding</span>
-                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                                </a>
 
-                                <div class="nav__dropdown-collapse">
-                                    <div class="nav__dropdown-content">
-                                        <a href="/benguetlivestock/frontend/breeding-stations.php"
-                                            class="nav__dropdown-item">Stations</a>
-                                        <a href="/benguetlivestock/frontend/commercial-poultry.php"
-                                            class="nav__dropdown-item">Commercial Farms</a>
-                                        <a href="/benguetlivestock/frontend/veterinary-poultry.php"
-                                            class="nav__dropdown-item">Supplies</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

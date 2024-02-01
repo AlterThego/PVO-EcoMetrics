@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+
+use App\Enums\AnimalClassification;
 use App\Models\AnimalPopulation;
 use App\Models\Municipality;
 use App\Models\Animal;
@@ -91,7 +93,8 @@ final class AnimalPopulationTable extends PowerGridComponent
                 ->searchable(),
             Column::make('Municipality', 'municipality_id'),
             Column::make('Animal', 'animal_id'),
-            Column::make('Classification', 'classification'),
+            // Column::make('Classification', 'classification'),
+            Column::make('Animal Classification', 'classification', 'animal.classification'),
             Column::make('Type', 'animal_type_id'),
             Column::make('Population', 'animal_population_count')
                 ->sortable()
@@ -130,6 +133,10 @@ final class AnimalPopulationTable extends PowerGridComponent
                 ->dataSource(Animal::all())
                 ->optionLabel('animal_name')
                 ->optionValue('id'),
+
+            Filter::enumSelect('classification', 'animal.classification')
+                ->dataSource(AnimalClassification::cases())
+                ->optionLabel('animal.classification'),
 
             // If enum is used
             // Filter::select('animal_type_id', 'animal_type_id')
