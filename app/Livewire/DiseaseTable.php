@@ -18,7 +18,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class DiseaseTable extends PowerGridComponent
 {
-    use WithExport;
+
+    public bool $showFilters = true;
 
     public function setUp(): array
     {
@@ -28,7 +29,9 @@ final class DiseaseTable extends PowerGridComponent
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            Header::make()
+                ->showToggleColumns()
+                ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),

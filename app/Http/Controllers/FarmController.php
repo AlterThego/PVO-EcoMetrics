@@ -22,7 +22,7 @@ class FarmController extends Controller
                 'farm_sector' => 'required',
                 'farm_type' => 'required',
                 'year_established' => 'required|integer',
-                'year_closed' => 'required|integer',
+                'year_closed' => 'integer',
 
 
             ]);

@@ -45,7 +45,9 @@ class AnimalController extends Controller
             Log::error('Error saving data: ' . $e->getMessage());
 
             \DB::rollback();
-            return redirect()->back()->with('error', 'An error occurred while saving data. Please try again.');
+            // return redirect()->back()->with('error', 'An error occurred while saving data. Please try again.');
+            toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
+            return back();
         }
     }
 }
