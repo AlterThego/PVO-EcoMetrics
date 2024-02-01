@@ -73,6 +73,10 @@ Route::get('/veterinary-clinics', function () {
     return view('health.veterinary-clinics');
 })->middleware(['auth', 'verified'])->name('farm.veterinary-clinics');
 
+Route::get('/bee-keeping', function () {
+    return view('farm.bee-keeping');
+})->middleware(['auth', 'verified'])->name('farm.bee-keeping');
+
 
 // Add data
 Route::post('/animal-population', 'App\Http\Controllers\AnimalPopulationController@store')

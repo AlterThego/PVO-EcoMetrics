@@ -242,10 +242,10 @@
                                 </div>
                             </div>
 
-                            <div class="nav__dropdown {{ request()->is('farm') || request()->is('farm-supply') ? 'show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('farm') || request()->is('farm-supply') || request()->is('bee-keeping') ? 'show' : '' }}"
                                 id="farmDropDown">
                                 <a href="#"
-                                    class="nav__link {{ request()->is('farm') || request()->is('farm-supply') ? 'active' : '' }}"
+                                    class="nav__link {{ request()->is('farm') || request()->is('farm-supply') || request()->is('bee-keeping')? 'active' : '' }}"
                                     onclick="toggleDropdown('farmDropDown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -261,11 +261,14 @@
                                             class="nav__dropdown-item {{ request()->is('farm') ? ' active' : '' }}">List</a>
                                         <a href="/farm-supply"
                                             class="nav__dropdown-item{{ request()->is('farm-supply') ? ' active' : '' }}">Supplies</a>
+                                        <a href="/bee-keeping"
+                                            class="nav__dropdown-item{{ request()->is('bee-keeping') ? ' active' : '' }}">Bee
+                                            Keeping</a>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="nav__dropdown" id="beekeepingDropdown">
+                            {{-- <div class="nav__dropdown" id="beekeepingDropdown">
                                 <a href="#" class="nav__link" onclick="toggleDropdown('beekeepingDropdown')">
                                     <svg class='bx nav__icon' width="20" height="20" viewBox="0 0 512 512">
                                         <path fill="currentColor"
@@ -279,6 +282,25 @@
                                     <div class="nav__dropdown-content">
                                         <a href="#" class="nav__dropdown-item">Beekeepers and Colonies</a>
                                         <a href="#" class="nav__dropdown-item">Trend</a>
+                                    </div>
+                                </div>
+                            </div> --}}
+
+                            <div class="nav__dropdown" id="miscellaneousDropdown">
+                                <a href="#" class="nav__link"
+                                    onclick="toggleDropdown('miscellaneousDropdown')">
+                                    <svg class='bx nav__icon'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="m18 13l.989 7.875A1 1 0 0 1 17.997 22H6.003a1 1 0 0 1-.992-1.125L6 13Zm3-3H3v2h18Zm-6.286-4.196A6.303 6.303 0 0 0 15 3.835C15 2.27 14.552 1 14 1s-1 1.27-1 2.835a7.115 7.115 0 0 0 .115 1.301a4.626 4.626 0 0 0-2.234.001A7.094 7.094 0 0 0 11 3.835C11 2.27 10.552 1 10 1S9 2.27 9 3.835a6.31 6.31 0 0 0 .283 1.971A5.11 5.11 0 0 0 7 9h2a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0h2a5.11 5.11 0 0 0-2.286-3.196" />
+                                    </svg>
+                                    <span class="nav__name">Miscellaneous</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+
+                                <div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="#" class="nav__dropdown-item">Municipalities</a>
+                                        <a href="#" class="nav__dropdown-item">Barangays</a>
                                     </div>
                                 </div>
                             </div>
