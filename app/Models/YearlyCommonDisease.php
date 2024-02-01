@@ -14,5 +14,6 @@ class YearlyCommonDisease extends Model
     protected $fillable = [
         'disease_id',
         'year',
+        'disease_count',
     ];
 }

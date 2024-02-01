@@ -208,9 +208,10 @@
                                 </div>
                             </div>
 
-                            <div class="nav__dropdown {{ request()->is('disease') ? ' show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('disease') || request()->is('yearly-disease') ? ' show' : '' }}"
                                 id="healthDropdown">
-                                <a href="#" class="nav__link {{ request()->is('disease') ? ' active' : '' }}"
+                                <a href="#"
+                                    class="nav__link {{ request()->is('disease') || request()->is('yearly-disease') ? ' active' : '' }}"
                                     onclick="toggleDropdown('healthDropdown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                         height="20" viewBox="0 0 16 16">
@@ -226,8 +227,9 @@
                                     <div class="nav__dropdown-content">
                                         <a href="/disease"
                                             class="nav__dropdown-item {{ request()->is('disease') ? ' active' : '' }}">Diseases</a>
-                                        <a href="/benguetlivestock/frontend/animal-deaths.php"
-                                            class="nav__dropdown-item">Yearly Diseases</a>
+                                        <a href="/yearly-disease"
+                                            class="nav__dropdown-item {{ request()->is('yearly-disease') ? ' active' : '' }}">Yearly
+                                            Diseases</a>
                                     </div>
                                 </div>
                             </div>

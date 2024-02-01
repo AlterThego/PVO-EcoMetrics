@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->foreign('disease_id')->references('id')->on('diseases')->onUpdate('cascade')->onDelete('cascade');
 
             $table->integer('year');
+            $table->integer('disease_count');
             // Add other columns as needed
             $table->timestamps();
         });

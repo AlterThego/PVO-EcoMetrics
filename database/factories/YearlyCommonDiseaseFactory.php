@@ -20,6 +20,7 @@ class YearlyCommonDiseaseFactory extends Factory
         return [
             'disease_id' => $diseaseId,
             'year' => $this->faker->year,
+            'disease_count' => $this->faker->numberBetween(100, 10000),
         ];
     }
 }
