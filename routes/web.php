@@ -77,6 +77,15 @@ Route::get('/bee-keeping', function () {
     return view('farm.bee-keeping');
 })->middleware(['auth', 'verified'])->name('farm.bee-keeping');
 
+Route::get('/municipalities', function () {
+    return view('miscellaneous.municipalities');
+})->middleware(['auth', 'verified'])->name('miscellaneous.municipalities');
+
+Route::get('/barangays', function () {
+    return view('miscellaneous.barangays');
+})->middleware(['auth', 'verified'])->name('miscellaneous.barangays');
+
+
 
 // Add data
 Route::post('/animal-population', 'App\Http\Controllers\AnimalPopulationController@store')
@@ -113,7 +122,7 @@ Route::post('/farm', 'App\Http\Controllers\FarmController@store')
 Route::post('/farm-supply', 'App\Http\Controllers\FarmSupplyController@store')
     ->middleware(['auth', 'verified'])->name('farm.supply.store');
 
-    Route::post('/veterinary-clinics', 'App\Http\Controllers\VeterinaryClinicsController@store')
+Route::post('/veterinary-clinics', 'App\Http\Controllers\VeterinaryClinicsController@store')
     ->middleware(['auth', 'verified'])->name('health.veterinary-clinics.store');
 
 

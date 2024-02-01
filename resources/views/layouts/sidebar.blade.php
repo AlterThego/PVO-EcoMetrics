@@ -245,7 +245,7 @@
                             <div class="nav__dropdown {{ request()->is('farm') || request()->is('farm-supply') || request()->is('bee-keeping') ? 'show' : '' }}"
                                 id="farmDropDown">
                                 <a href="#"
-                                    class="nav__link {{ request()->is('farm') || request()->is('farm-supply') || request()->is('bee-keeping')? 'active' : '' }}"
+                                    class="nav__link {{ request()->is('farm') || request()->is('farm-supply') || request()->is('bee-keeping') ? 'active' : '' }}"
                                     onclick="toggleDropdown('farmDropDown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -286,8 +286,10 @@
                                 </div>
                             </div> --}}
 
-                            <div class="nav__dropdown" id="miscellaneousDropdown">
-                                <a href="#" class="nav__link"
+                            <div class="nav__dropdown {{ request()->is('municipalities') || request()->is('barangays') ? ' show' : '' }}"
+                                id="miscellaneousDropdown">
+                                <a href="#"
+                                    class="nav__link {{ request()->is('municipalities') || request()->is('barangays') ? ' active' : '' }}"
                                     onclick="toggleDropdown('miscellaneousDropdown')">
                                     <svg class='bx nav__icon'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -299,8 +301,10 @@
 
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="#" class="nav__dropdown-item">Municipalities</a>
-                                        <a href="#" class="nav__dropdown-item">Barangays</a>
+                                        <a href="/municipalities"
+                                            class="nav__dropdown-item {{ request()->is('municipalities') ? ' active' : '' }}">Municipalities</a>
+                                        <a href="/barangays"
+                                            class="nav__dropdown-item {{ request()->is('barangays') ? ' active' : '' }}">Barangays</a>
                                     </div>
                                 </div>
                             </div>
