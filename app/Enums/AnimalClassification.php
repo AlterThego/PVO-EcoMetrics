@@ -3,7 +3,7 @@ namespace App\Enums;
 
 enum AnimalClassification: string
 {
-    case Fish = 'Fish';
+    case Fishery = 'Fishery';
     case Livestock = 'Livestock';
     case Poultry = 'Poultry';
     case Pet = 'Pet';
@@ -12,7 +12,7 @@ enum AnimalClassification: string
     public function labels(): string
     {
         return match ($this) {
-            self::Fish => 'Fish',
+            self::Fishery => 'Fishery',
             self::Livestock => 'Livestock',
             self::Poultry => 'Poultry',
             self::Pet => 'Pet',

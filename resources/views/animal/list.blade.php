@@ -80,7 +80,7 @@
                                     <option value="Pet">Pet</option>
                                     <option value="Poultry">Poultry</option>
                                     <option value="Livestock">Livestock</option>
-                                    <option value="Fishery">Fisery</option>
+                                    <option value="Fishery">Fishery</option>
                                     <option value="Insect">Insect</option>
                                 </select>
                             </div>

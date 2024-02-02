@@ -39,7 +39,15 @@ final class BarangayTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Barangay::query();
+        return Barangay::query()
+            ->join('municipalities', 'barangays.municipality_id', '=', 'municipalities.id')
+
+
+            ->select(
+                'barangays.*',
+                'municipalities.municipality_name as municipality_id',
+
+            );
     }
 
     public function relationSearch(): array
@@ -53,7 +61,7 @@ final class BarangayTable extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('municipality_id')
             ->addColumn('barangay_name');
-            // ->addColumn('created_at');
+        // ->addColumn('created_at');
     }
 
     public function columns(): array
@@ -68,9 +76,9 @@ final class BarangayTable extends PowerGridComponent
             // Column::make('Created at', 'created_at_formatted', 'created_at')
             //     ->sortable(),
 
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Created at', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
             // Column::action('Action')
         ];

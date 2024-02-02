@@ -69,7 +69,7 @@ final class MunicipalityTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Land area', 'land_area')
+            Column::make('Land area (km²)', 'land_area')
                 ->sortable()
                 ->searchable(),
 
