@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/telescope": "^4.17",
         "laravel/tinker": "^2.8",
+        "markrogoyski/math-php": "2.*",
         "openspout/openspout": "^4.23",
         "power-components/livewire-powergrid": "^5.2",
         "wire-elements/modal": "^2.0",

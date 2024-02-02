@@ -1,4 +1,4 @@
-<title>Municipalities</title>
+<title>Barangays</title>
 
 <x-app-layout>
     <div class="pt-12 pb-5">
@@ -6,7 +6,7 @@
             <div class="grid grid-cols-1">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
                     <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
-                        {{ __('Municipalities') }}
+                        {{ __('Barangays') }}
                     </div>
                 </div>
             </div>

@@ -77,6 +77,12 @@ Route::get('/bee-keeping', function () {
     return view('farm.bee-keeping');
 })->middleware(['auth', 'verified'])->name('farm.bee-keeping');
 
+Route::get('/sanctuaries', function () {
+    return view('fish.sanctuaries');
+})->middleware(['auth', 'verified'])->name('fish.sanctuaries');
+
+
+
 Route::get('/municipalities', function () {
     return view('miscellaneous.municipalities');
 })->middleware(['auth', 'verified'])->name('miscellaneous.municipalities');
@@ -125,10 +131,13 @@ Route::post('/farm-supply', 'App\Http\Controllers\FarmSupplyController@store')
 Route::post('/veterinary-clinics', 'App\Http\Controllers\VeterinaryClinicsController@store')
     ->middleware(['auth', 'verified'])->name('health.veterinary-clinics.store');
 
+Route::post('/fish-sanctuaries', 'App\Http\Controllers\FishSanctuaryController@store')
+    ->middleware(['auth', 'verified'])->name('fish.sanctuaries.store');
 
 
 
 
+Route::get('/linear-regression', [AnimalPopulationController::class, 'showLinearRegression']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

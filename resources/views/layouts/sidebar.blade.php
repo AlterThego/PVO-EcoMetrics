@@ -173,10 +173,10 @@
                                 </div>
                             </div> --}}
 
-                            <div class="nav__dropdown {{ request()->is('fish-production') || request()->is('fish-production-area') ? 'show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('fish-production') || request()->is('fish-production-area') || request()->is('sanctuaries') ? 'show' : '' }}"
                                 id="fisheryDropdown">
                                 <a href="#"
-                                    class="nav__link {{ request()->is('fish-production') || request()->is('fish-production-area') ? 'active' : '' }}"
+                                    class="nav__link {{ request()->is('fish-production') || request()->is('fish-production-area') || request()->is('sanctuaries') ? 'active' : '' }}"
                                     onclick="toggleDropdown('fisheryDropdown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                         height="20" viewBox="0 0 48 48">
@@ -204,6 +204,9 @@
                                         <a href="/fish-production-area"
                                             class="nav__dropdown-item {{ request()->is('fish-production-area') ? ' active' : '' }}">Production
                                             Area</a>
+
+                                        <a href="/sanctuaries"
+                                            class="nav__dropdown-item {{ request()->is('sanctuaries') ? ' active' : '' }}">Sanctuaries</a>
                                     </div>
                                 </div>
                             </div>

@@ -14,7 +14,7 @@ class FishProductionFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => $this->faker->randomElement(['fish pond', 'fish cage', 'fish in tank', 'rice-fish culture', 'communal bodies of water']),
+            'type' => $this->faker->randomElement(['Fish Pond', 'Fish Cage', 'Fish in Tank', 'Rice-Fish Culture', 'Communal Bodies of Water']),
             // Add other attributes and their respective values as needed
         ];
     }
