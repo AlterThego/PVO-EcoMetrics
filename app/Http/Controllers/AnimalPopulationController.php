@@ -6,6 +6,7 @@ use App\Models\AnimalPopulation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
+use App\Charts\AnimalPopulationChart;
 
 class AnimalPopulationController extends Controller
 {
@@ -47,7 +48,7 @@ class AnimalPopulationController extends Controller
             return back();
 
         } catch (\Exception $e) {
-            \DB::rollBack(); 
+            \DB::rollBack();
 
             Log::error('Error saving data: ' . $e->getMessage());
 
@@ -56,4 +57,10 @@ class AnimalPopulationController extends Controller
             return back();
         }
     }
+    public function index(AnimalPopulationChart $chart)
+    {
+        return view('animal.population', ['chart' => $chart->build()]);
+    }
+
 }
+

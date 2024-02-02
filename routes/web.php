@@ -96,6 +96,8 @@ Route::get('/barangays', function () {
 })->middleware(['auth', 'verified'])->name('miscellaneous.barangays');
 
 
+// Charts
+Route::get('/animal-population', 'App\Http\Controllers\AnimalPopulationController@index')->name('animal.population');
 
 // Add data
 Route::post('/animal-population', 'App\Http\Controllers\AnimalPopulationController@store')

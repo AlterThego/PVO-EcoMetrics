@@ -9,8 +9,32 @@
         </div>
       </x-slot>
        --}}
-
     <div class="pt-12 pb-5">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
+                    <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
+                        {{ __('Total Animal Population Across Municipalities (Latest 6 Years)') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pb-5">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
+                    <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
+                        @include('charts.animal-population-chart')
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- pt-12 --}}
+    <div class="pb-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-2">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
@@ -21,13 +45,11 @@
                 <!-- Buttons at the center -->
                 <div data-modal-target="animalPopulationModal"
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
-                    <button id="animalPopulationModalButton" data-modal-target="animalPopulationModal" data-modal-toggle="animalPopulationModal"
+                    <button id="animalPopulationModalButton" data-modal-target="animalPopulationModal"
+                        data-modal-toggle="animalPopulationModal"
                         class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
                         + Add Data
                     </button>
-                    <!-- Outside of any Livewire component -->
-
-
                 </div>
             </div>
         </div>
