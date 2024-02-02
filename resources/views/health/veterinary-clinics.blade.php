@@ -10,10 +10,10 @@
                     </div>
                 </div>
                 <!-- Buttons at the center -->
-                <div data-modal-target="fishProductionModal"
+                <div data-modal-target="veterinaryClinicsModal"
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
-                    <button id="fishProductionModalButton" data-modal-target="fishProductionModal"
-                        data-modal-toggle="fishProductionModal"
+                    <button id="veterinaryClinicsModalButton" data-modal-target="veterinaryClinicsModal"
+                        data-modal-toggle="veterinaryClinicsModal"
                         class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
                         + Add Data
                     </button>
@@ -37,7 +37,7 @@
 
 
         <!-- Main modal -->
-        <div id="fishProductionModal" tabindex="-1" aria-hidden="true"
+        <div id="veterinaryClinicsModal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
             <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
                 <!-- Modal content -->
@@ -50,7 +50,7 @@
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="fishProductionModal">
+                            data-modal-toggle="veterinaryClinicsModal">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -81,9 +81,9 @@
                                 <label for="sector"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Sector</label>
-                                <select id="sector" name="sector"
+                                <select id="sector" name="sector" required=""
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option selected="">Select level</option>
+                                    <option value="" disabled selected>Select Level</option>
                                     <option value="Private">Private</option>
                                     <option value="Government">Government</option>
                                 </select>
@@ -102,7 +102,7 @@
                                     Established</label>
                                 <input type="number" name="year_established" id="year_established"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year Established" required="">
+                                    placeholder="Type Year Established" required="" min="1900" max="2100">
                             </div>
                             <div>
                                 <label for="year_closed"
@@ -124,7 +124,7 @@
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            Add New Disease
+                            Add New Veterinary Clinic Data
                         </button>
 
 
@@ -136,7 +136,7 @@
         @livewire('wire-elements-modal')
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
-                document.getElementById('fishProductionModalButton').click();
+                document.getElementById('veterinaryClinicsModalButton').click();
             });
         </script>
 

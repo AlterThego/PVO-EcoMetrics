@@ -1,4 +1,4 @@
-<title>Farms List</title>
+<title>Farms Supplies</title>
 
 <x-app-layout>
     <div class="pt-12 pb-5">
@@ -6,7 +6,7 @@
             <div class="grid grid-cols-2">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
                     <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
-                        {{ __('Farms List') }}
+                        {{ __('Farms Supplies') }}
                     </div>
                 </div>
                 <!-- Buttons at the center -->
@@ -92,7 +92,7 @@
                                     Established</label>
                                 <input type="number" name="year_established" id="year_established"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year Established" required="">
+                                    placeholder="Type Year Established" required="" min="1900" max="2100">
                             </div>
 
                             <div>
@@ -101,7 +101,7 @@
                                     Closed</label>
                                 <input type="number" name="year_closed" id="year_closed"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year Closed (optional)">
+                                    placeholder="Type Year Closed (optional)" min="1900" max="2100">
                             </div>
 
                         </div>
@@ -113,7 +113,7 @@
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            Add New Farm Data
+                            Add New Farm Supply Data
                         </button>
 
 

@@ -20,6 +20,7 @@ final class BarangayTable extends PowerGridComponent
 {
     use WithExport;
     public bool $showFilters = true;
+    public string $sortDirection = 'desc';
     public function setUp(): array
     {
         // $this->showCheckBox();
@@ -80,7 +81,7 @@ final class BarangayTable extends PowerGridComponent
             //     ->sortable()
             //     ->searchable(),
 
-            // Column::action('Action')
+            Column::action('Action')
         ];
     }
 
@@ -96,16 +97,15 @@ final class BarangayTable extends PowerGridComponent
         $this->js('alert(' . $rowId . ')');
     }
 
-    // public function actions(Barangay $row): array
-    // {
-    //     return [
-    //         Button::add('edit')
-    //             ->slot('Edit: ' . $row->id)
-    //             ->id()
-    //             ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-    //             ->dispatch('edit', ['rowId' => $row->id])
-    //     ];
-    // }
+    public function actions(Barangay $row): array
+    {
+        return [
+            Button::add('delete-row')
+                ->slot('- Delete')
+                ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
+                ->openModal('delete-row', ['barangayId' => $row->id])
+        ];
+    }
 
     /*
     public function actionRules($row): array

@@ -79,9 +79,9 @@
                             <div>
                                 <label for="level"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Level</label>
-                                <select id="level" name="level"
+                                <select id="level" name="level" required=""
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option selected="">Select level</option>
+                                    <option value="" disabled selected>Select Level</option>
                                     <option value="Provincial">Provincial</option>
                                     <option value="Municipal">Municipal</option>
                                 </select>
@@ -92,7 +92,7 @@
                                     Name</label>
                                 <input type="text" name="farm_name" id="farm_name"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Farm Name" required="" autocomplete="off"> 
+                                    placeholder="Type Farm Name" required="" autocomplete="off">
                             </div>
 
                             <div>
@@ -108,9 +108,9 @@
                                 <label for="farm_sector"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farm
                                     Sector</label>
-                                <select id="farm_sector" name="farm_sector"
+                                <select id="farm_sector" name="farm_sector" required=""
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option selected="">Select level</option>
+                                    <option value="" disabled selected>Select Sector</option>
                                     <option value="Commercial">Commercial</option>
                                     <option value="Government">Government</option>
                                 </select>
@@ -120,9 +120,9 @@
                                 <label for="farm_type"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farm
                                     Type</label>
-                                <select id="farm_type" name="farm_type"
+                                <select id="farm_type" name="farm_type" required=""
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option selected="">Select farm type</option>
+                                    <option value="" disabled selected>Select Farm Type</option>
                                     <option value="Animal and Fishery Breeding">Animal and Fishery Breeding</option>
                                     <option value="Poultry">Poultry</option>
                                     <option value="Piggery">Piggery</option>
@@ -136,7 +136,7 @@
                                     Established</label>
                                 <input type="number" name="year_established" id="year_established"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year Established" required="">
+                                    placeholder="Type Year Established" required="" min="1900" max="2100">
                             </div>
 
                             <div>
@@ -145,7 +145,8 @@
                                     Closed</label>
                                 <input type="number" name="year_closed" id="year_closed"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year Closed (optional)">
+                                    placeholder="Type Year Closed (optional)" min="1900"
+                                    max="2100">
                             </div>
 
                         </div>

@@ -134,9 +134,17 @@ final class AnimalPopulationTable extends PowerGridComponent
                 ->optionLabel('animal_name')
                 ->optionValue('id'),
 
-            Filter::enumSelect('classification', 'animal.classification')
-                ->dataSource(AnimalClassification::cases())
-                ->optionLabel('animal.classification'),
+            // Filter::enumSelect('classification', 'animal.classification')
+            //     ->dataSource(AnimalClassification::cases())
+            //     ->optionLabel('animal.classification'),
+
+
+            // Add if necessary
+            // Filter::select('animal_type_id', 'animal_type_id')
+            //     // ->dataSource(Municipality::where('id', 2)->get())
+            //     ->dataSource(AnimalType::all())
+            //     ->optionLabel('type')
+            //     ->optionValue('id'),
 
             // If enum is used
             // Filter::select('animal_type_id', 'animal_type_id')

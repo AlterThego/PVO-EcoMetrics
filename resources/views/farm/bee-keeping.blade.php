@@ -61,9 +61,16 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form action="{{ route('farm.list.store') }}" method="post">
+                    <form action="{{ route('farm.bee-keeping.store') }}" method="post">
                         @csrf
                         <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                            <div>
+                                <label for="year"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
+                                <input type="number" name="year" id="year"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Type Year" required="" min="2000" max="2100">
+                            </div>
                             <div>
                                 <label for="municipality"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
@@ -77,75 +84,19 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="level"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Level</label>
-                                <select id="level" name="level"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option selected="">Select level</option>
-                                    <option value="Provincial">Provincial</option>
-                                    <option value="Municipal">Municipal</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="farm_name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farm
-                                    Name</label>
-                                <input type="text" name="farm_name" id="farm_name"
+                                <label for="colonies"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Colonies</label>
+                                <input type="number" name="colonies" id="colonies"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Farm Name" required="" autocomplete="off">
+                                    placeholder="Input Colonies" required="">
                             </div>
-
                             <div>
-                                <label for="farm_area"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farm
-                                    Area</label>
-                                <input type="number" step="any" name="farm_area" id="farm_area"
+                                <label for="beeKeepers"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bee
+                                    Keepers</label>
+                                <input type="number" name="beeKeepers" id="beeKeepers"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Input Volume" required="">
-                            </div>
-
-                            <div>
-                                <label for="farm_sector"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farm
-                                    Sector</label>
-                                <select id="farm_sector" name="farm_sector"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option selected="">Select level</option>
-                                    <option value="Commercial">Commercial</option>
-                                    <option value="Government">Government</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="farm_type"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farm
-                                    Type</label>
-                                <select id="farm_type" name="farm_type"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option selected="">Select farm type</option>
-                                    <option value="Animal and Fishery Breeding">Animal and Fishery Breeding</option>
-                                    <option value="Poultry">Poultry</option>
-                                    <option value="Piggery">Piggery</option>
-                                    <option value="Cattle">Cattle</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="year_established"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year
-                                    Established</label>
-                                <input type="number" name="year_established" id="year_established"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year Established" required="">
-                            </div>
-
-                            <div>
-                                <label for="year_closed"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year
-                                    Closed</label>
-                                <input type="number" name="year_closed" id="year_closed"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year Closed (optional)">
+                                    placeholder="Input Bee Keepers" required="">
                             </div>
 
                         </div>
@@ -157,7 +108,7 @@
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            Add New Farm Data
+                            Add New Bee Keeping Data
                         </button>
 
 

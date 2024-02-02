@@ -12,7 +12,7 @@ class AnimalPopulationSeeder extends Seeder
     public function run()
     {
         // Adjust the number inside the loop based on how many records you want
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             AnimalPopulation::factory()->create();
         }
     }

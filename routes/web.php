@@ -24,6 +24,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/compare', function () {
+    return view('compare');
+})->middleware(['auth', 'verified'])->name('compare');
+
 Route::get('/animal-population', function () {
     return view('animal.population');
 })->middleware(['auth', 'verified'])->name('animal.population');
@@ -134,10 +138,12 @@ Route::post('/veterinary-clinics', 'App\Http\Controllers\VeterinaryClinicsContro
 Route::post('/fish-sanctuaries', 'App\Http\Controllers\FishSanctuaryController@store')
     ->middleware(['auth', 'verified'])->name('fish.sanctuaries.store');
 
+Route::post('/barangays', 'App\Http\Controllers\BarangayController@store')
+    ->middleware(['auth', 'verified'])->name('miscellaneous.barangays.store');
 
+Route::post('/bee-keeping', 'App\Http\Controllers\BeeKeeperController@store')
+    ->middleware(['auth', 'verified'])->name('farm.bee-keeping.store');
 
-
-Route::get('/linear-regression', [AnimalPopulationController::class, 'showLinearRegression']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

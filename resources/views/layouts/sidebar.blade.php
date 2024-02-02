@@ -52,7 +52,8 @@
                                 <span class="nav__name">Dashboard</span>
                             </a>
 
-                            <a href="/benguetlivestock/frontend/compare.php" class="nav__link">
+                            <a href="/compare"
+                                class="nav__link {{ request()->is('compare') ? 'active' : '' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                     height="220" viewBox="0 0 24 24">
                                     <path fill="currentColor"
