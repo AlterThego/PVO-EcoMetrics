@@ -24,6 +24,7 @@ module.exports = {
             },
             colors: {
                 "pg-primary": colors.gray,
+                "custom-gray": '#F2F3F5',
             },
 
         },
@@ -31,7 +32,9 @@ module.exports = {
     plugins: [forms,
         require('flowbite/plugin')({
             charts: true,
-        })],
+        }),
+        require('tailwind-scrollbar'),],
+        
     darkMode: 'class',
 }
 

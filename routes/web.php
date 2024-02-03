@@ -97,7 +97,13 @@ Route::get('/barangays', function () {
 
 
 // Charts
-Route::get('/animal-population', 'App\Http\Controllers\AnimalPopulationController@index')->name('animal.population');
+Route::get('/animal-population', 'App\Http\Controllers\AnimalPopulationController@index')->middleware(['auth', 'verified'])->name('animal.population');
+
+
+// Regression
+Route::get('/animal-population-regression', 'App\Http\Controllers\AnimalPopulationController@linearRegression')
+    ->middleware(['auth', 'verified'])
+    ->name('animal.population.regression');
 
 // Add data
 Route::post('/animal-population', 'App\Http\Controllers\AnimalPopulationController@store')

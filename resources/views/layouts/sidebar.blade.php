@@ -52,8 +52,7 @@
                                 <span class="nav__name">Dashboard</span>
                             </a>
 
-                            <a href="/compare"
-                                class="nav__link {{ request()->is('compare') ? 'active' : '' }}">
+                            <a href="/compare" class="nav__link {{ request()->is('compare') ? 'active' : '' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                     height="220" viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -326,6 +325,17 @@
 
     </div>
 
+    <div id="floating-btn" onclick="goToTop()"
+        class="fixed bottom-8 right-8 bg-green-500 hover:bg-green-700 text-white dark:text-gray-300 font-bold py-2 px-4 rounded-full hidden cursor-pointer z-10">
+        <button>
+            <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M5 15h4v6h6v-6h4l-7-8zM4 3h16v2H4z" />
+            </svg>
+        </button>
+    </div>
+
+
+
     <script>
         // Function to toggle between light and dark mode
         function toggleDarkMode(isDarkMode) {
@@ -361,12 +371,52 @@
         }
     </script>
 
+    <script>
+        // Show/hide button based on scroll position
+        window.onscroll = function() {
+            var floatingBtn = document.getElementById('floating-btn');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                floatingBtn.classList.remove('hidden');
+            } else {
+                floatingBtn.classList.add('hidden');
+            }
+        };
+
+        // Scroll to top function with transition effect
+        function goToTop() {
+            const duration = 500; // Set the duration of the scroll animation in milliseconds
+            const start = performance.now();
+            const from = window.scrollY || document.documentElement.scrollTop;
+
+            function scrollStep(timestamp) {
+                const elapsed = timestamp - start;
+                window.scrollTo(0, easeInOutCubic(elapsed, from, -from, duration));
+
+                if (elapsed < duration) {
+                    requestAnimationFrame(scrollStep);
+                }
+            }
+
+            function easeInOutCubic(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+
+            requestAnimationFrame(scrollStep);
+        }
+    </script>
+
+
     <!-- Save State of Page Script -->
     {{-- <script src="./assets/js/save-state.js"></script> --}}
     <!-- Sidebar Responsive Script -->
-    <script src="/assets/js/sidebar.js"></script>
+    {{-- <script src="/assets/js/sidebar.js"></script> --}}
+    <script src="{{ asset('./assets/js/sidebar.js') }}">
+    </script>
     <!-- Dropdown Script -->
-    <script src="./assets/js/dropdown.js"></script>
+    {{-- <script src="./assets/js/dropdown.js"></script> --}}
 </body>
 
 </html>

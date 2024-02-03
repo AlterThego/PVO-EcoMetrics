@@ -17,10 +17,9 @@
 
 
             <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-                <div class="flex justify-between mb-5">
+                <div class="flex justify-between mb-5 fill-blue-500">
 
                     <!-- SVG Map -->
-
                     <svg width="415" version="1.1" viewBox="0 0 3072 4208" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
 

@@ -29,16 +29,15 @@ class AnimalPopulationChart
 
         // Build and configure the chart using the fetched data
         return $this->chart->lineChart()
-            ->setTitle('Total Animal Population Across Municipalities')
-            ->setSubtitle('Latest 6 Years')
-            ->addData('Total Animal Population', $totalPopulationCounts)
-            ->setXAxis($years)
+            // ->setTitle('Total Animal Population Across Municipalities')
+            // ->setSubtitle('Latest 6 Years')
+            ->addData('Total Animal Population', array_reverse($totalPopulationCounts))
+            ->setXAxis(array_reverse($years))
             ->setColors(['#ff6384'])
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
             ->setGrid()
-            ->setHeight(400)
-            ->setXAxis(array_reverse($years));
+            ->setHeight(400);
             // ->setSparkline();
             // ->setWidth(600);
     }
