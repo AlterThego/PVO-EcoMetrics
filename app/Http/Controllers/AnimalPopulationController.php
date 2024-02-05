@@ -138,7 +138,7 @@ class AnimalPopulationController extends Controller
             // Predict the total animal population for the next year
             $predictedYear = $latestYear + 1;
             $predictedPopulation = $regression->evaluate($predictedYear);
-            $formattedPopulation = number_format($predictedPopulation, 0);
+            $formattedPopulation = str_replace(',', '', number_format($predictedPopulation, 0));
 
             return [
                 'predictedYear' => $predictedYear,
@@ -185,6 +185,10 @@ class AnimalPopulationController extends Controller
         }
     }
 
+    
+
 
 }
+
+
 

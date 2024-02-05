@@ -16,7 +16,7 @@
             </div> --}}
 
 
-            <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+            <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 z-10">
                 <div class="flex justify-between mb-5 fill-blue-500">
 
                     <!-- SVG Map -->

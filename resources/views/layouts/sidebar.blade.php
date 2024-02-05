@@ -344,7 +344,7 @@
             if (isDarkMode) {
                 // Toggle to dark mode
                 root.style.setProperty('--first-color', '#00A86B');
-                root.style.setProperty('--first-color-light', '#374151');
+                root.style.setProperty('--first-color-light', '#2B313F');
                 root.style.setProperty('--title-color', '#F0FFF0');
                 root.style.setProperty('--text-color', '#E2E8F0');
                 root.style.setProperty('--text-color-light', '#CBD5E0');

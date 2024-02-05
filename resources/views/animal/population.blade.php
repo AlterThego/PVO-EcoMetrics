@@ -11,37 +11,43 @@
        --}}
 
 
-    <div class="pt-10 pb-5">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm col-span-2 sm:col-span-2 row-end-auto">
 
-                    <div class="bg-white dark:bg-gray-800 grid-cols-2 overflow-hidden p-6 gap-3">
-                        <div class="font-semibold text-xl text-gray-900 dark:text-gray-100 row-span-1">
-                            {{ __('Animal Population Trend Across Municipalities') }}
-                        </div>
-                        <div class="text-sm text-gray-900 dark:text-gray-100">
-                            {{ __('Latest 6 Years') }}
-                        </div>
-                        <div class="mt-5 border dark:border-gray-600 p-4">
-                            @include('charts.animal-population-chart')
+    <div class="pt-10">
+        <div class="max-w-7xl mx-auto sm:px-2 lg:px-4">
+            <div class="container relative">
+                <div class="flex flex-col space-y-1">
+                    <h1 class="text-4xl font-bold">Animal Population</h1>
+                    <p class="text-base font-normal text-gray-700 dark:text-gray-100">Latest 6 Years</p>
+                </div>
+
+                <div class="relative pb-10 md:py-4 lg:pb-28">
+                    <div class="relative mt-20 flex flex-col-reverse justify-end md:flex-row">
+                        <div class="w-full md:w-4/5 lg:w-2/3">
+                            <div
+                                class="pb-10 bg-white-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-0 border border-gray-300 dark:border-gray-500 col-span-2 sm:col-span-2 row-end-auto z-30">
+                                <div
+                                    class="relative aspect-w-16 aspect-h-14 sm:aspect-h-10 md:aspect-h-14 lg:aspect-h-10 2xl:aspect-h-9">
+                                    @include('charts.animal-population-chart')
+
+                                </div>
+                                <div class="absolute right-6 top-6 h-8 w-8 md:h-10 md:w-10">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
+                 @include('regression.animal-population-regression', $regressionData)
 
-
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 col-span-1 sm:col-span-1">
-                    {{-- Content for Linear Regression Analysis --}}
-                    @include('regression.animal-population-regression', $regressionData)
-                </div>
             </div>
         </div>
     </div>
 
 
+
+
     {{-- pt-12 --}}
-    <div class="pb-5">
+    <div class="pb-5" id="secondPage">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-2">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
@@ -54,13 +60,14 @@
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
                     <button id="animalPopulationModalButton" data-modal-target="animalPopulationModal"
                         data-modal-toggle="animalPopulationModal"
-                        class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                        class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded z-40">
                         + Add Data
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 
@@ -71,7 +78,6 @@
             </div>
         </div>
     </div>
-
 
 
     <!-- Main modal -->
@@ -98,6 +104,7 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
+
                 <!-- Modal body -->
                 <form action="{{ route('animal.population.store') }}" method="post">
                     @csrf
@@ -185,12 +192,46 @@
     </div>
 
     @livewire('wire-elements-modal')
+
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
             document.getElementById('animalPopulationModalButton').click();
         });
     </script>
 
+    <script>
+        function scrollToSecondPage() {
+            // Assuming the second page has an element with an id of 'secondPage'
+            document.getElementById('secondPage').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollToSecondPage() {
+            const duration = 500;
+            const start = performance.now();
+            const from = window.scrollY || document.documentElement.scrollTop;
+            const to = document.getElementById('secondPage').offsetTop;
+
+            function scrollStep(timestamp) {
+                const elapsed = timestamp - start;
+                window.scrollTo(0, easeInOutCubic(elapsed, from, to - from, duration));
+
+                if (elapsed < duration) {
+                    requestAnimationFrame(scrollStep);
+                }
+            }
+
+            function easeInOutCubic(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+
+            requestAnimationFrame(scrollStep);
+        }
+    </script>
 
 
 

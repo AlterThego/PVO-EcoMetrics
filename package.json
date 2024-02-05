@@ -6,6 +6,7 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@tailwindcss/aspect-ratio": "^0.4.2",
         "@tailwindcss/forms": "^0.5.2",
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.17",
@@ -21,6 +22,7 @@
         "@alpinejs/focus": "^3.13.5",
         "apexcharts": "^3.45.2",
         "tailwind-toast": "^1.1.0",
-        "toastr": "^2.1.4"
+        "toastr": "^2.1.4",
+        "vue3-apexcharts": "^1.4.4"
     }
 }

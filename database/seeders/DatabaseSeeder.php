@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AnimalTypeSeeder::class);
         $this->call(AffectedAnimalsSeeder::class);
         $this->call(AnimalDeathSeeder::class);
-        // $this->call(AnimalPopulationSeeder::class);
+        $this->call(AnimalPopulationSeeder::class);
         $this->call(VeterinaryClinicsSeeder::class);
         $this->call(FarmSeeder::class);
         $this->call(BeeKeeperSeeder::class);

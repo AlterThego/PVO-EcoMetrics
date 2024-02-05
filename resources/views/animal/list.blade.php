@@ -13,7 +13,7 @@
                 <div data-modal-target="animalModal"
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
                     <button id="animalModalButton" data-modal-target="animalModal" data-modal-toggle="animalModal"
-                        class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                        class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded z-40">
                         + Add Data
                     </button>
                 </div>

@@ -20,7 +20,7 @@ class AnimalPopulationChart
         $totalPopulationData = AnimalPopulation::select('year', \DB::raw('SUM(animal_population_count) as total_population_count'))
             ->groupBy('year')
             ->orderBy('year', 'desc')
-            ->take(6) 
+            ->take(6)
             ->get();
 
         // Extract years and total population counts from the fetched data
@@ -31,15 +31,18 @@ class AnimalPopulationChart
         return $this->chart->lineChart()
             // ->setTitle('Total Animal Population Across Municipalities')
             // ->setSubtitle('Latest 6 Years')
+
             ->addData('Total Animal Population', array_reverse($totalPopulationCounts))
             ->setXAxis(array_reverse($years))
             ->setColors(['#ff6384'])
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
             ->setGrid()
-            ->setHeight(400);
-            // ->setSparkline();
-            // ->setWidth(600);
+            ->setHeight(400)
+            ->setMarkers(['#FF5722', '#E040FB'], 7, 10);
+        // ->setSparkline();
+        // ->setWidth(600);
+
     }
 
 
