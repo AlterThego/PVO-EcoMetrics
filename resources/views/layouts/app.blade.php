@@ -23,9 +23,9 @@
     <div class="min-h-screen bg-custom-gray dark:bg-gray-900">
         <div class="absolute inset-x-0 top-0 z-0 flex min-h-0 flex-col overflow-hidden py-32 pl-10">
             <span
-                class="lg:h-9w-96 h-80 w-80 rounded-full bg-red-300 opacity-20 mix-blend-multiply blur-3xl filter lg:w-96"></span>
+                class="lg:h-9w-96 h-80 w-80 rounded-full bg-red-200 opacity-20 mix-blend-multiply blur-3xl filter lg:w-96"></span>
             <span
-                class="lg:h-9w-96 nc-animation-delay-2000 ml-10 -mt-10 h-80 w-80 rounded-full bg-emerald-300 opacity-20 mix-blend-multiply blur-3xl filter lg:w-96"></span>
+                class="lg:h-9w-96 nc-animation-delay-2000 ml-10 -mt-10 h-80 w-80 rounded-full bg-emerald-200 opacity-20 mix-blend-multiply blur-3xl filter lg:w-96"></span>
         </div>
         @include('layouts.navigation')
 

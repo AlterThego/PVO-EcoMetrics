@@ -27,6 +27,7 @@
                             class="inline-block w-full py-4 rounded-ss-lg hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-600">Prediction</button>
                     </li>
                 </ul>
+                
                 <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600">
                     <div class="hidden p-2 md:p-4" id="stats" role="tabpanel" aria-labelledby="stats-tab">
                         <dl
