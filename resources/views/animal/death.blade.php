@@ -11,7 +11,7 @@
                 </div>
                 <!-- Buttons at the center -->
                 <div data-modal-target="affectedAnimalsModal"
-                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
+                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end z-40">
                     <button id="affectedAnimalsModalButton" data-modal-target="affectedAnimalsModal"
                         data-modal-toggle="affectedAnimalsModal"
                         class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
