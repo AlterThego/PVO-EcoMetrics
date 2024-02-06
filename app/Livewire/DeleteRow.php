@@ -104,5 +104,6 @@ class DeleteRow extends ModalComponent
             return redirect()->to(url()->previous());
         }
     }
+    
 
 }
