@@ -10,6 +10,7 @@ use App\Models\AnimalPopulation;
 use App\Models\AffectedAnimals;
 use App\Models\AnimalDeath;
 use App\Models\FishProduction;
+use App\Models\FishProductionArea;
 use App\Models\Disease;
 use App\Models\YearlyCommonDisease;
 use App\Models\Farm;
@@ -48,7 +49,7 @@ class DeleteRow extends ModalComponent
             $affectedAnimals = AffectedAnimals::find($this->affectedAnimalsId);
             $animalDeath = AnimalDeath::find($this->animalDeathId);
             $fishProduction = FishProduction::find($this->fishProductionId);
-            $fishProductionArea = FishProduction::find($this->fishProductionAreaId);
+            $fishProductionArea = FishProductionArea::find($this->fishProductionAreaId);
             $disease = Disease::find($this->diseaseId);
             $yearlycommondisease = YearlyCommonDisease::find($this->yearlyCommonDiseaseId);
             $farm = Farm::find($this->farmId);
