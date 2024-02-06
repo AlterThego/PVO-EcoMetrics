@@ -42,6 +42,7 @@ class AnimalPopulationController extends Controller
             return back();
 
         } catch (ValidationException $e) {
+            \DB::rollBack();
             Log::error('Validation failed: ' . json_encode($e->validator->errors()));
 
             // Redirect back with validation errors
@@ -58,6 +59,8 @@ class AnimalPopulationController extends Controller
             return back();
         }
     }
+
+
     public function index(AnimalPopulationChart $chart)
     {
         // Call linearRegressionData method to get the data

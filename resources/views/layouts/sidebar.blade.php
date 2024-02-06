@@ -75,14 +75,13 @@
                                 ? 'show'
                                 : '' }}"
                                 id="animalsDropdown">
-                                <a href="#"
-                                    class="nav__link {{ request()->is('animal-population') ||
-                                    request()->is('animal-list') ||
-                                    request()->is('animal-type') ||
-                                    request()->is('animal-infected') ||
-                                    request()->is('animal-death')
-                                        ? 'active'
-                                        : '' }}"
+                                <a class="nav__link {{ request()->is('animal-population') ||
+                                request()->is('animal-list') ||
+                                request()->is('animal-type') ||
+                                request()->is('animal-infected') ||
+                                request()->is('animal-death')
+                                    ? 'active'
+                                    : '' }}"
                                     onclick="toggleDropdown('animalsDropdown')">
                                     <svg xmlns="/benguetlivestock/assets/images/dog.svg" class='bx nav__icon'
                                         width="20" height="20" viewBox="0 0 256 256">
@@ -175,8 +174,7 @@
 
                             <div class="nav__dropdown {{ request()->is('fish-production') || request()->is('fish-production-area') || request()->is('sanctuaries') ? 'show' : '' }}"
                                 id="fisheryDropdown">
-                                <a href="#"
-                                    class="nav__link {{ request()->is('fish-production') || request()->is('fish-production-area') || request()->is('sanctuaries') ? 'active' : '' }}"
+                                <a class="nav__link {{ request()->is('fish-production') || request()->is('fish-production-area') || request()->is('sanctuaries') ? 'active' : '' }}"
                                     onclick="toggleDropdown('fisheryDropdown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                         height="20" viewBox="0 0 48 48">
@@ -215,10 +213,9 @@
                                 ? ' show'
                                 : '' }}"
                                 id="healthDropdown">
-                                <a href="#"
-                                    class="nav__link {{ request()->is('disease') || request()->is('yearly-disease') || request()->is('veterinary-clinics')
-                                        ? ' active'
-                                        : '' }}"
+                                <a class="nav__link {{ request()->is('disease') || request()->is('yearly-disease') || request()->is('veterinary-clinics')
+                                    ? ' active'
+                                    : '' }}"
                                     onclick="toggleDropdown('healthDropdown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                         height="20" viewBox="0 0 16 16">
@@ -247,8 +244,7 @@
 
                             <div class="nav__dropdown {{ request()->is('farm') || request()->is('farm-supply') || request()->is('bee-keeping') ? 'show' : '' }}"
                                 id="farmDropDown">
-                                <a href="#"
-                                    class="nav__link {{ request()->is('farm') || request()->is('farm-supply') || request()->is('bee-keeping') ? 'active' : '' }}"
+                                <a class="nav__link {{ request()->is('farm') || request()->is('farm-supply') || request()->is('bee-keeping') ? 'active' : '' }}"
                                     onclick="toggleDropdown('farmDropDown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -291,8 +287,7 @@
 
                             <div class="nav__dropdown {{ request()->is('municipalities') || request()->is('barangays') ? ' show' : '' }}"
                                 id="miscellaneousDropdown">
-                                <a href="#"
-                                    class="nav__link {{ request()->is('municipalities') || request()->is('barangays') ? ' active' : '' }}"
+                                <a class="nav__link {{ request()->is('municipalities') || request()->is('barangays') ? ' active' : '' }}"
                                     onclick="toggleDropdown('miscellaneousDropdown')">
                                     <svg class='bx nav__icon'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -413,8 +408,7 @@
     {{-- <script src="./assets/js/save-state.js"></script> --}}
     <!-- Sidebar Responsive Script -->
     {{-- <script src="/assets/js/sidebar.js"></script> --}}
-    <script src="{{ asset('./assets/js/sidebar.js') }}">
-    </script>
+    <script src="{{ asset('./assets/js/sidebar.js') }}"></script>
     <!-- Dropdown Script -->
     {{-- <script src="./assets/js/dropdown.js"></script> --}}
 </body>

@@ -192,7 +192,6 @@
     </div>
 
     @livewire('wire-elements-modal')
-
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
             document.getElementById('animalPopulationModalButton').click();
