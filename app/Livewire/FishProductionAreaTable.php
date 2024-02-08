@@ -79,9 +79,8 @@ final class FishProductionAreaTable extends PowerGridComponent
 
             Column::make('Land area', 'land_area')
                 ->sortable()
-                ->searchable()
-                ->editOnClick(true),
-
+                ->searchable(),
+                
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),

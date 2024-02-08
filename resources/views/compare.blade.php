@@ -28,7 +28,7 @@
                                 xlink:href="../assets/images/BenguetMap.svg">
                         </g>
                         <a href="#" id="itogon-link">
-                            <g>
+                            <g class="svg-path">
                                 <path class="hoverable dark:fill-opacity-35 dark:stroke-opacity-35"
                                     d="m1450.4 2461 155.53 42.633 582.13 313.73 149.31 125.31-24.885 154.64-233.74 4.4437-64.003 265.45-89.238 61.587 43.99 184.76-10.055 56.559-589.47 340.61-81.697-301.65-15.082-17.596 1.2569-23.88 6.2843-52.788 45.247-569.36-5.0275-12.569-31.422-36.449v-40.22l3.7706-8.7981v-33.936l22.624-95.522-16.339-70.385-5.0274-76.669-7.5413-84.21 46.504 1.2569 18.853 7.5412 26.394-67.871 35.192-30.165z"
                                     style="fill-opacity:0;stroke-opacity:0" />
@@ -141,7 +141,7 @@
                     </svg>
 
 
-                 
+
                 </div>
             </div>
 
@@ -194,19 +194,7 @@
             </div>
         </div>
     </div>
-    <script>
-        // Add an event listener to the link
-        document.getElementById('itogon-link').addEventListener('click', function(event) {
-            // Prevent the default behavior of the link
-            event.preventDefault();
 
-            // Show the modal
-            document.getElementById('static-modal').style.display = 'block';
-
-            // You can fetch data from the database here and update the modal content
-            // For simplicity, I'm leaving the data fetching part to you
-        });
-    </script>
     <script>
         const hoverableElements = document.querySelectorAll('.hoverable');
 
@@ -234,5 +222,7 @@
             element.style.fillOpacity = opacity;
         }
     </script>
+
+  
 
 </x-app-layout>

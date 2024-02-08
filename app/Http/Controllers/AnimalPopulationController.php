@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use App\Charts\AnimalPopulationChart;
 use MathPHP\Statistics\Regression\Linear;
+use Illuminate\Database\QueryException;
 
 class AnimalPopulationController extends Controller
 {
@@ -25,7 +26,6 @@ class AnimalPopulationController extends Controller
                 'animal_population_count' => 'required|integer',
                 'volume' => 'required|numeric',
             ]);
-
 
             // Save the data to the database
             AnimalPopulation::create([
@@ -47,6 +47,17 @@ class AnimalPopulationController extends Controller
 
             // Redirect back with validation errors
             toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
+            return back();
+
+        } catch (QueryException $e) {
+            \DB::rollBack();
+            // Check if the error is due to duplicate entry
+            if ($e->errorInfo[1] == 1062) {
+                toastr()->error('Duplicate entry. Please check your data.');
+            } else {
+                Log::error('Error saving data: ' . $e->getMessage());
+                toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
+            }
             return back();
 
         } catch (\Exception $e) {
@@ -188,7 +199,7 @@ class AnimalPopulationController extends Controller
         }
     }
 
-    
+
 
 
 }

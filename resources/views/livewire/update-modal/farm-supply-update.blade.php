@@ -1,10 +1,10 @@
-<div tabindex="-1" class="relative rounded-lg shadow ">
-    <div class="relative bg-white dark:bg-gray-800 p-4 w-full h-full md:h-auto items-center m-auto">
+<div tabindex="-1" class="relative rounded-lg shadow fixed top-0 left-0 w-full h-full flex items-center justify-center">
+    <div class="relative rounded-lg bg-white dark:bg-gray-800 p-4 max-w-2xl w-full h-full md:h-auto">
         <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                 Update Data
             </h3>
-            
+
             <button wire:click="$dispatch('closeModal')" type="button"
                 class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 data-modal-hide="popup-modal">
@@ -22,14 +22,6 @@
             @csrf
             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
-                    <label for="year"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
-                    <input wire:model="year" type="number" name="year" id="year"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Type Year" required="" min="2000" max="2100">
-                </div>
-
-                <div>
                     <label for="municipality"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
                     <select wire:model="municipalityId" name="municipality" id="municipality"
@@ -42,47 +34,32 @@
                     </select>
                 </div>
 
+
                 <div>
-                    <label for="animal"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal</label>
-                    <select wire:model="animalId" name="animal" id="animal"
+                    <label for="establishment_name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Establishment
+                        Name</label>
+                    <input wire:model="establishmentName" type="text" name="establishment_name"
+                        id="establishment_name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        required="">
-                        <option value="" disabled selected>Select Animal</option>
-                        @foreach (\App\Models\Animal::pluck('animal_name', 'id') as $id => $animalName)
-                            <option value="{{ $id }}">{{ $animalName }}</option>
-                        @endforeach
-                    </select>
+                        placeholder="Enter Establishment Name" required="" autocomplete="off">
                 </div>
 
                 <div>
-                    <label for="animal_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal
-                        Type</label>
-                    <select wire:model="animalTypeId" name="animal_type" id="animal_type"
+                    <label for="year_established"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Established</label>
+                    <input wire:model="yearEstablished" type="number" name="year_established" id="year_established"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        required="">
-                        <option value="" disabled selected>Select Animal Type</option>
-                        @foreach (\App\Models\AnimalType::pluck('type', 'id') as $id => $animalType)
-                            <option value="{{ $id }}">{{ $animalType }}</option>
-                        @endforeach
-                    </select>
+                        placeholder="Type Year Established" required="" min="2000" max="2100">
                 </div>
 
-                <div>
-                    <label for="animal_population_count"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Population</label>
-                    <input wire:model="animalPopulationCount" type="number" name="animal_population_count"
-                        id="animal_population_count"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Input Population" required="">
-                </div>
 
                 <div>
-                    <label for="volume"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Volume</label>
-                    <input wire:model="volume" type="number" step="any" name="volume" id="volume"
+                    <label for="year_closed" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year
+                        Closed</label>
+                    <input wire:model="yearClosed" type="number" name="year_closed" id="year_closed"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Input Volume" required="">
+                        placeholder="Type Year Closed" min="2000" max="2100">
                 </div>
 
             </div>
@@ -94,7 +71,7 @@
                         d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                         clip-rule="evenodd"></path>
                 </svg>
-                Update Animal Population Data
+                Update Farm List Data
             </button>
         </form>
 

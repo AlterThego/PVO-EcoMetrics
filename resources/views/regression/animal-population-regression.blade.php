@@ -1,11 +1,10 @@
 <div class="z-10 w-full flex justify-center items-center">
     <div
-        class="w-full sm:px-6 md:absolute md:left-1 md:top-1/2 md:mt-0 md:w-2/5 md:-translate-y-3/4 md:px-0 lg:w-2/6 xl:w-2/6 xl:pl-24">
+        class="w-full sm:px-6 md:absolute md:left-1 md:top-2/3 md:mt-0 md:w-2/5 md:-translate-y-3/4 md:px-0 lg:w-2/6 xl:w-2/6 xl:pl-24">
         <div class="rounded-lg !border-opacity-0 bg-opacity-40 backdrop-blur-lg backdrop-filter sm:space-y-5">
 
-
             <div
-                class="w-full bg-stone-100 dark:bg-gray-900 border border-gray-200 rounded-sm shadow-lg dark:border-gray-700">
+                class="w-full bg-stone-100 dark:bg-gray-900 border border-white dark:border-gray-950 rounded-lg shadow-sm">
                 <div class="sm:hidden">
                     <label for="tabs" class="sr-only">Select tab</label>
                     <select id="tabs"
@@ -19,27 +18,28 @@
                     <li class="w-full">
                         <button id="stats-tab" data-tabs-target="#stats" type="button" role="tab"
                             aria-controls="stats" aria-selected="true"
-                            class="inline-block w-full py-4 rounded-ss-lg hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-600">Statistics</button>
+                            class="inline-block w-full py-4  hover:bg-gray-200 dark:hover:bg-gray-800 focus:outline-none dark:hover:bg-gray-600">Statistics</button>
                     </li>
                     <li class="w-full">
                         <button id="regression-tab" data-tabs-target="#regression" type="button" role="tab"
                             aria-controls="regression" aria-selected="false"
-                            class="inline-block w-full py-4 rounded-ss-lg hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-600">Prediction</button>
+                            class="inline-block w-full py-4 hover:bg-gray-200 dark:hover:bg-gray-800 focus:outline-none dark:hover:bg-gray-600">Prediction</button>
                     </li>
                 </ul>
-                
+
                 <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600">
                     <div class="hidden p-2 md:p-4" id="stats" role="tabpanel" aria-labelledby="stats-tab">
                         <dl
                             class="grid max-w-screen-xl grid-cols-2 gap-4 p-2 mx-auto text-gray-900 sm:grid-cols-2 xl:grid-cols-2 dark:text-white sm:p-8">
                             <div class="flex flex-col items-center text-center">
-                                <dt class="mb-2 text-4xl text-red-600 font-extrabold justify-center">{{ $latestYear }}
+                                <dt class="mb-2 text-4xl text-rose-600 font-extrabold justify-center">
+                                    {{ $latestYear }}
                                 </dt>
                                 <dd class="text-gray-500 dark:text-gray-400 justify-center">Year</dd>
                             </div>
 
                             <div class="flex flex-col items-right text-center justify-center">
-                                <dt class="mb-2 text-5xl text-green-600 font-extrabold">{{ $latestPopulation }}</dt>
+                                <dt class="mb-2 text-5xl text-lime-600 font-extrabold">{{ $latestPopulation }}</dt>
                                 <dd class="text-gray-500 dark:text-gray-400">Animal Population</dd>
                             </div>
                         </dl>

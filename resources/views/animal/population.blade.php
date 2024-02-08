@@ -24,12 +24,15 @@
                     <div class="relative mt-20 flex flex-col-reverse justify-end md:flex-row">
                         <div class="w-full md:w-4/5 lg:w-2/3">
                             <div
-                                class="pb-10 bg-white-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-0 border border-gray-300 dark:border-gray-500 col-span-2 sm:col-span-2 row-end-auto z-30">
+                                class="border border-gray-200 dark:border-gray-950 rounded-md bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30">
                                 <div
-                                    class="relative aspect-w-16 aspect-h-14 sm:aspect-h-10 md:aspect-h-14 lg:aspect-h-10 2xl:aspect-h-9">
-                                    @include('charts.animal-population-chart')
-
+                                    class="relative aspect-w-16 aspect-h-14 sm:aspect-h-14 md:aspect-h-14 lg:aspect-h-14 2xl:aspect-h-10">
+                                    <div
+                                        class="p-2 bg-stone-100 dark:bg-gray-900 overflow-hidden shadow-sm items-center justify-end h-full w-full rounded-lg">
+                                        @include('charts.animal-population-chart')
+                                    </div>
                                 </div>
+
                                 <div class="absolute right-6 top-6 h-8 w-8 md:h-10 md:w-10">
 
                                 </div>
@@ -37,8 +40,8 @@
                         </div>
                     </div>
                 </div>
-                 @include('regression.animal-population-regression', $regressionData)
 
+                @include('regression.animal-population-regression', $regressionData)
             </div>
         </div>
     </div>
@@ -50,17 +53,17 @@
     <div class="pb-5" id="secondPage">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-2">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
+                <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 z-30">
                     <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
                         {{ __('Animal Population') }}
                     </div>
                 </div>
                 <!-- Buttons at the center -->
                 <div data-modal-target="animalPopulationModal"
-                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
+                    class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 flex items-center justify-end z-10">
                     <button id="animalPopulationModalButton" data-modal-target="animalPopulationModal"
                         data-modal-toggle="animalPopulationModal"
-                        class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded z-40">
+                        class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
                         + Add Data
                     </button>
                 </div>
@@ -71,9 +74,9 @@
 
 
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 text-gray-900 dark:text-gray-100">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="position: relative; z-index: 10;">
+        <div class="overflow-hidden shadow-sm rounded-lg">
+            <div class="bg-white dark:bg-gray-900 bg-opacity-90 p-6 text-gray-900 dark:text-gray-100">
                 <livewire:animal-population-table />
             </div>
         </div>
@@ -82,10 +85,10 @@
 
     <!-- Main modal -->
     <div id="animalPopulationModal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full z-index">
         <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
             <!-- Modal content -->
-            <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <div class="relative p-4 bg-white dark:bg-gray-800 rounded-lg shadow sm:p-5">
                 <!-- Modal header -->
                 <div
                     class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
@@ -143,6 +146,7 @@
                                 @endforeach
                             </select>
                         </div>
+
                         <div>
                             <label for="animal_type"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal

@@ -4,14 +4,14 @@
     <div class="pt-12 pb-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-2">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
+                <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 z-30">
                     <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
                         {{ __('Animal Diseases') }}
                     </div>
                 </div>
                 <!-- Buttons at the center -->
                 <div data-modal-target="fishProductionModal"
-                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end z-40">
+                    class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 flex items-center justify-end z-10">
                     <button id="fishProductionModalButton" data-modal-target="fishProductionModal"
                         data-modal-toggle="fishProductionModal"
                         class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
@@ -27,8 +27,8 @@
 
 
     <div class="py-1">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="position: relative; z-index: 10;">
+            <div class="bg-white dark:bg-gray-900 bg-opacity-90 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <livewire:disease-table />
                 </div>

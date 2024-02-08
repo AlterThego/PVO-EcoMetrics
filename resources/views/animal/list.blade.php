@@ -4,16 +4,16 @@
     <div class="pt-12 pb-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-2">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
+                <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 z-30">
                     <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
                         {{ __('Animals List') }}
                     </div>
                 </div>
                 <!-- Buttons at the center -->
                 <div data-modal-target="animalModal"
-                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6 flex items-center justify-end">
+                    class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 flex items-center justify-end z-10">
                     <button id="animalModalButton" data-modal-target="animalModal" data-modal-toggle="animalModal"
-                        class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded z-40">
+                        class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
                         + Add Data
                     </button>
                 </div>
@@ -23,9 +23,9 @@
 
 
     <div class="py-1">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="position: relative; z-index: 10;">
+            <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white dark:bg-gray-900 bg-opacity-90 p-6 text-gray-900 dark:text-gray-100">
                     <livewire:animal-table />
                 </div>
             </div>
@@ -35,7 +35,7 @@
         <!-- Main modal -->
         <div id="animalModal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-            <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+            <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
                 <!-- Modal content -->
                 <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                     <!-- Modal header -->
@@ -60,7 +60,7 @@
                     <!-- Modal body -->
                     <form action="{{ route('animal.store') }}" method="post">
                         @csrf
-                        <div class="grid gap-4 mb-4 sm:grid-cols-1">
+                        <div class="grid gap-4 mb-4 sm:grid-cols-2">
                             <div>
                                 <label for="animal_name"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -68,9 +68,9 @@
                                 <input type="text" name="animal_name" id="animal_name"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Type Animal Name" required="" autocomplete="off">
-                            </div>
 
-                            <div class="col-span-2 sm:col-span-1">
+                            </div>
+                            <div>
                                 <label for="classification"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal
                                     Classification</label>
@@ -84,6 +84,7 @@
                                     <option value="Insect">Insect</option>
                                 </select>
                             </div>
+
 
 
                             {{-- <div>

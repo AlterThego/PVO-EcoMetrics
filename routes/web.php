@@ -95,6 +95,10 @@ Route::get('/barangays', function () {
     return view('miscellaneous.barangays');
 })->middleware(['auth', 'verified'])->name('miscellaneous.barangays');
 
+Route::get('/pet-owners', function () {
+    return view('miscellaneous.petowners');
+})->middleware(['auth', 'verified'])->name('miscellaneous.petowners');
+
 
 // Charts
 Route::get('/animal-population', 'App\Http\Controllers\AnimalPopulationController@index')->middleware(['auth', 'verified'])->name('animal.population');
@@ -127,7 +131,6 @@ Route::post('/fish-production', 'App\Http\Controllers\FishProductionController@s
 Route::post('/fish-production-area', 'App\Http\Controllers\FishProductionAreaController@store')
     ->middleware(['auth', 'verified'])->name('fish.production-area.store');
 
-
 Route::post('/disease', 'App\Http\Controllers\DiseaseController@store')
     ->middleware(['auth', 'verified'])->name('health.disease.store');
 
@@ -151,6 +154,9 @@ Route::post('/barangays', 'App\Http\Controllers\BarangayController@store')
 
 Route::post('/bee-keeping', 'App\Http\Controllers\BeeKeeperController@store')
     ->middleware(['auth', 'verified'])->name('farm.bee-keeping.store');
+
+Route::post('/pet-owners', 'App\Http\Controllers\PopulationController@store')
+    ->middleware(['auth', 'verified'])->name('miscellaneous.petowners.store');
 
 
 Route::middleware('auth')->group(function () {

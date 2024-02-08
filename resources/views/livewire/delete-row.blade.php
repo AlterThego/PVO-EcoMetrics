@@ -1,4 +1,4 @@
-<div tabindex="-1" class="relative rounded-lg shadow dark:bg-gray-700">
+<div tabindex="-1" class="relative rounded-lg shadow bg-white dark:bg-gray-800">
     <button wire:click="$dispatch('closeModal')" type="button"
         class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
         data-modal-hide="popup-modal">

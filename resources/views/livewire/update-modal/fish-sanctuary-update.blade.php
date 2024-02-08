@@ -1,10 +1,10 @@
-<div tabindex="-1" class="relative rounded-lg shadow dark:bg-gray-700">
-    <div class="relative p-4 max-w-2xl w-full h-full md:h-auto">
+<div tabindex="-1" class="relative shadow shadow fixed top-0 left-0 w-full h-full flex items-center justify-center">
+    <div class="relative rounded-lg bg-white dark:bg-gray-800 p-4 max-w-md w-full h-full md:h-auto">
         <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                 Update Data
             </h3>
-            
+
             <button wire:click="$dispatch('closeModal')" type="button"
                 class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 data-modal-hide="popup-modal">
@@ -22,17 +22,9 @@
             @csrf
             <div class="grid gap-4 mb-4 sm:grid-cols-1">
                 <div>
-                    <label for="year"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
-                    <input wire:model="year" type="number" name="year" id="year"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Type Year" required="" min="2000" max="2100">
-                </div>
-
-                <div>
-                    <label for="fish_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal
-                        Type</label>
-                    <select wire:model="barangayId" name="fish_type" id="fish_type"
+                    <label for="barangay_name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barangay Name</label>
+                    <select wire:model="barangayId" name="barangay_name" id="barangay_name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         required="">
                         <option value="" disabled selected>Select Fish Production Type</option>
@@ -42,9 +34,19 @@
                     </select>
                 </div>
 
+            </div>
+            <div class="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
-                    <label for="land_area"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Land Area</label>
+                    <label for="year"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
+                    <input wire:model="year" type="number" name="year" id="year"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Type Year" required="" min="2000" max="2100">
+                </div>
+
+                <div>
+                    <label for="land_area" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Land
+                        Area</label>
                     <input wire:model="landArea" type="number" step="any" name="land_area" id="land_area"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Input Land Area" required="">

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Population;
 use LivewireUI\Modal\ModalComponent;
 use App\Models\FishSanctuary;
 use App\Models\Animal;
@@ -17,6 +18,7 @@ use App\Models\Farm;
 use App\Models\FarmSupply;
 use App\Models\VeterinaryClinics;
 use App\Models\Barangay;
+
 
 class DeleteRow extends ModalComponent
 {
@@ -34,6 +36,8 @@ class DeleteRow extends ModalComponent
     public $veterinaryClinicsId;
     public $fishSanctuariesId;
     public $barangayId;
+    public $populationId;
+
     public function render()
     {
         return view('livewire.delete-row');
@@ -57,6 +61,7 @@ class DeleteRow extends ModalComponent
             $veterinaryClinics = VeterinaryClinics::find($this->veterinaryClinicsId);
             $fishSanctuaries = FishSanctuary::find($this->fishSanctuariesId);
             $barangay = Barangay::find($this->barangayId);
+            $population = Population::find($this->populationId);
 
             if ($animalPopulation) {
                 $animalPopulation->delete();
@@ -86,6 +91,8 @@ class DeleteRow extends ModalComponent
                 $fishSanctuaries->delete();
             } else if ($barangay) {
                 $barangay->delete();
+            }else if ($population) {
+                $population->delete();
             }
 
 

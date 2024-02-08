@@ -1,4 +1,4 @@
-<div tabindex="-1" class="relative rounded-lg shadow fixed top-0 left-0 w-full h-full flex items-center justify-center">
+<div tabindex="-1" class="relative shadow fixed top-0 left-0 w-full h-full flex items-center justify-center">
     <div class="relative rounded-lg bg-white dark:bg-gray-800 p-4 max-w-md w-full h-full md:h-auto">
         <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -23,11 +23,23 @@
             <div class="grid gap-4 mb-4 sm:grid-cols-1">
 
                 <div>
-                    <label for="disease_name"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disease Name</label>
-                    <input wire:model="diseaseName" type="text" name="disease_name" id="disease_name"
+                    <label for="municipality"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
+                    <select wire:model="municipalityId" name="municipality" id="municipality"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Enter Disease Name" required autocomplete="off">
+                        required="">
+                        <option value="" disabled selected>Select Municipality</option>
+                        @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
+                            <option value="{{ $id }}">{{ $municipalityName }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label for="barangay_name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barangay Name</label>
+                    <input wire:model="barangayName" type="text" name="barangay_name" id="barangay_name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Enter Barangay Name" required autocomplete="off">
                 </div>
 
             </div>
@@ -39,7 +51,7 @@
                         d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                         clip-rule="evenodd"></path>
                 </svg>
-                Update Animal Data
+                Update Barangay Data
             </button>
         </form>
 

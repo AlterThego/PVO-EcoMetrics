@@ -4,7 +4,7 @@
     <div class="pt-12 pb-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm p-6">
+                <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 z-30">
                     <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
                         {{ __('Municipalities') }}
                     </div>
@@ -15,8 +15,8 @@
 
 
     <div class="py-1">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="position: relative; z-index: 10;">
+            <div class="bg-white dark:bg-gray-900 bg-opacity-90 overflow-hidden shadow-sm sm:rounded-lg z-10">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <livewire:municipality-table />
                 </div>

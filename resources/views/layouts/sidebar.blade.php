@@ -285,9 +285,9 @@
                                 </div>
                             </div> --}}
 
-                            <div class="nav__dropdown {{ request()->is('municipalities') || request()->is('barangays') ? ' show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('municipalities') || request()->is('barangays') || request()->is('pet-owners') ? ' show' : '' }}"
                                 id="miscellaneousDropdown">
-                                <a class="nav__link {{ request()->is('municipalities') || request()->is('barangays') ? ' active' : '' }}"
+                                <a class="nav__link {{ request()->is('municipalities') || request()->is('barangays') || request()->is('pet-owners') ? ' active' : '' }}"
                                     onclick="toggleDropdown('miscellaneousDropdown')">
                                     <svg class='bx nav__icon'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -303,6 +303,9 @@
                                             class="nav__dropdown-item {{ request()->is('municipalities') ? ' active' : '' }}">Municipalities</a>
                                         <a href="/barangays"
                                             class="nav__dropdown-item {{ request()->is('barangays') ? ' active' : '' }}">Barangays</a>
+                                        <a href="/pet-owners"
+                                            class="nav__dropdown-item {{ request()->is('pet-owners') ? ' active' : '' }}">Pet
+                                            Owners</a>
                                     </div>
                                 </div>
                             </div>
@@ -345,6 +348,8 @@
                 root.style.setProperty('--text-color-light', '#CBD5E0');
                 root.style.setProperty('--body-color', '#1A202C');
                 root.style.setProperty('--container-color', '#2D3748');
+                root.style.setProperty('--nav-dropdown-collapse', '#1f2937');
+
                 // Add more properties for other variables if needed
             } else {
                 // Toggle to light mode
@@ -355,6 +360,7 @@
                 root.style.setProperty('--text-color-light', '#A5A1AA');
                 root.style.setProperty('--body-color', '#F0FFF0');
                 root.style.setProperty('--container-color', '#FFFFFF');
+                root.style.setProperty('--nav-dropdown-collapse', '#e5e7eb');
                 // Add more properties for other variables if needed
             }
 

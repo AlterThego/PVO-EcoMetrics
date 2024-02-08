@@ -63,7 +63,6 @@ final class AnimalTypeTable extends PowerGridComponent
             // Column::make('Animal id', 'animal_id'),
             Column::make('Type', 'type')
                 ->sortable()
-                ->editOnClick(true)
                 ->searchable(),
 
             Column::make('Created at', 'created_at')

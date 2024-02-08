@@ -83,8 +83,7 @@ final class AnimalDeathTable extends PowerGridComponent
 
             Column::make('Count', 'count')
                 ->sortable()
-                ->searchable()
-                ->editOnClick(true),
+                ->searchable(),
 
             // Column::make('Created at', 'created_at')
             //     ->sortable()
