@@ -16,11 +16,11 @@ class AnimalTypeSeeder extends Seeder
         //     AnimalType::factory()->create();
         // }
         DB::table('animal_type')->insert([
-            ['type' => 'Not Applicable', 'created_at' => now(), 'updated_at' => now()],
             ['type' => 'Layers', 'created_at' => now(), 'updated_at' => now()],
             ['type' => 'Broiler', 'created_at' => now(), 'updated_at' => now()],
             ['type' => 'Native/Range', 'created_at' => now(), 'updated_at' => now()],
             ['type' => 'Fancy/Fighting Fowl', 'created_at' => now(), 'updated_at' => now()],
+            // ['type' => '', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

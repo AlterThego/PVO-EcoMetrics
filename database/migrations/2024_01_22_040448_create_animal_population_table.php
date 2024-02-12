@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('animal_id');
             $table->foreign('animal_id')->references('id')->on('animal')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger('animal_type_id');
+            $table->unsignedBigInteger('animal_type_id')->nullable();
             $table->foreign('animal_type_id')->references('id')->on('animal_type')->onUpdate('cascade')->onDelete('cascade');
 
             $table->integer('year');

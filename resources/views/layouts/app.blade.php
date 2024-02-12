@@ -13,17 +13,13 @@
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-
-
-
 </head>
 
 <body class="font-sans antialiased lg:overflow-y-auto sm:overflow-y-hidden overflow-x-hidden z-10">
-    <div class="min-h-screen bg-custom-gray dark:bg-gray-900 z-0">
+    <div class="min-h-screen bg-custom-gray dark:bg-gray-900 z-0 dark:[color-scheme:dark]">
         <div class="absolute inset-x-0 top-0 z-0 flex min-h-0 flex-col overflow-hidden pt-32 pl-10 h-screen w-screen">
             <span
-                class="lg:h-9w-96 h-full w-80 rounded-full bg-rose-200 dark:bg-blue-400 opacity-20 mix-blend-multiply blur-3xl filter lg:w-full fixed z-0 bottom-0 left-0"></span>
+                class="lg:h-9w-96 h-full w-80 rounded-full bg-rose-200 dark:bg-blue-300 opacity-20 mix-blend-multiply blur-3xl filter lg:w-full fixed z-0 bottom-0 left-0"></span>
             <span
                 class="lg:h-9w-96 nc-animation-delay-2000 ml-10 -mt-10 h-80 w-80 rounded-full bg-emerald-200 dark:bg-violet-400 opacity-20 mix-blend-multiply blur-3xl filter lg:w-full fixed z-0 top-0 right-0"></span>
         </div>

@@ -324,9 +324,9 @@
     </div>
 
     <div id="floating-btn" onclick="goToTop()"
-        class="fixed bottom-8 right-8 bg-green-500 hover:bg-green-700 text-white dark:text-gray-300 font-bold py-2 px-4 rounded-full hidden cursor-pointer z-10">
-        <button>
-            <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        class="fixed bottom-8 right-8 bg-green-500 hover:bg-green-700 text-white dark:text-gray-300 font-bold py-2 px-4 rounded-full hidden cursor-pointer z-40">
+        <button class="w-6 h-6 flex justify-center items-center"> <!-- Added width and height classes -->
+            <svg class="h-6 w-6 fill-current"> <!-- Adjusted the size of the SVG -->
                 <path fill="currentColor" d="M5 15h4v6h6v-6h4l-7-8zM4 3h16v2H4z" />
             </svg>
         </button>

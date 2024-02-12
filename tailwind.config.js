@@ -32,6 +32,7 @@ module.exports = {
 
             fontFamily: {
                 sans: ['Poppins', 'sans-serif'],
+                serif: ['Aboreto', 'serif'],
             },
             colors: {
                 "pg-primary": colors.gray,

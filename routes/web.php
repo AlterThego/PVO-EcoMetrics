@@ -102,7 +102,7 @@ Route::get('/pet-owners', function () {
 
 // Charts
 Route::get('/animal-population', 'App\Http\Controllers\AnimalPopulationController@index')->middleware(['auth', 'verified'])->name('animal.population');
-
+Route::get('/dashboard', 'App\Http\Controllers\DashboardController@dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 
 // Regression
 Route::get('/animal-population-regression', 'App\Http\Controllers\AnimalPopulationController@linearRegression')

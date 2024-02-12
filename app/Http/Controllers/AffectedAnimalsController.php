@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\DashboardAffectedAnimalsChart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
@@ -50,4 +51,5 @@ class AffectedAnimalsController extends Controller
             return back();
         }
     }
+
 }

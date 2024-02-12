@@ -45,13 +45,13 @@ class AnimalPopulationUpdate extends ModalComponent
         \DB::beginTransaction();
         try {
             $animalPopulation = AnimalPopulation::find($this->animalPopulationUpdateId);
-
+            $animalTypeId = $this->animalTypeId ?: null;
 
             $this->validate([
                 'year' => 'required|integer',
                 'municipalityId' => 'required|exists:municipalities,id',
                 'animalId' => 'required|exists:animal,id',
-                'animalTypeId' => 'required|exists:animal_type,id',
+                'animalTypeId' => 'nullable|exists:animal_type,id',
                 'animalPopulationCount' => 'required|integer',
                 'volume' => 'required|numeric',
             ]);
@@ -59,7 +59,7 @@ class AnimalPopulationUpdate extends ModalComponent
             $animalPopulation->update([
                 'municipality_id' => $this->municipalityId,
                 'animal_id' => $this->animalId,
-                'animal_type_id' => $this->animalTypeId,
+                'animal_type_id' => $animalTypeId, 
                 'year' => $this->year,
                 'animal_population_count' => $this->animalPopulationCount,
                 'volume' => $this->volume,

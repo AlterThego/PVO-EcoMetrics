@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\DashboardAnimalPopulationChart;
 use App\Models\AnimalPopulation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -22,7 +23,7 @@ class AnimalPopulationController extends Controller
                 'year' => 'required|integer',
                 'municipality' => 'required|exists:municipalities,id',
                 'animal' => 'required|exists:animal,id',
-                'animal_type' => 'required|exists:animal_type,id',
+                'animal_type' => 'nullable|exists:animal_type,id',
                 'animal_population_count' => 'required|integer',
                 'volume' => 'required|numeric',
             ]);
@@ -169,10 +170,6 @@ class AnimalPopulationController extends Controller
         }
     }
 
-
-
-
-
     public function getLatestYearAndPopulation()
     {
         // Get the latest year and total population from the AnimalPopulation model
@@ -200,7 +197,7 @@ class AnimalPopulationController extends Controller
     }
 
 
-
+     
 
 }
 

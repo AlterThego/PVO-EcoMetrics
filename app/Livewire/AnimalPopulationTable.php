@@ -51,7 +51,7 @@ final class AnimalPopulationTable extends PowerGridComponent
         return AnimalPopulation::query()
             ->join('municipalities', 'animal_population.municipality_id', '=', 'municipalities.id')
             ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
-            ->join('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
+            ->leftJoin('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
 
             ->select(
                 'animal_population.*',

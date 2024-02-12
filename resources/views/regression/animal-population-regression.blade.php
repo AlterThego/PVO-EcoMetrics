@@ -32,14 +32,14 @@
                         <dl
                             class="grid max-w-screen-xl grid-cols-2 gap-4 p-2 mx-auto text-gray-900 sm:grid-cols-2 xl:grid-cols-2 dark:text-white sm:p-8">
                             <div class="flex flex-col items-center text-center">
-                                <dt class="mb-2 text-4xl text-rose-600 font-extrabold justify-center">
+                                <dt class="mb-2 text-3xl text-rose-600 font-extrabold justify-center">
                                     {{ $latestYear }}
                                 </dt>
                                 <dd class="text-gray-500 dark:text-gray-400 justify-center">Year</dd>
                             </div>
 
                             <div class="flex flex-col items-right text-center justify-center">
-                                <dt class="mb-2 text-5xl text-lime-600 font-extrabold">{{ $latestPopulation }}</dt>
+                                <dt class="mb-2 text-4xl text-lime-600 font-extrabold">{{ $latestPopulation }}</dt>
                                 <dd class="text-gray-500 dark:text-gray-400">Animal Population</dd>
                             </div>
                         </dl>
@@ -50,12 +50,12 @@
                         <dl
                             class="grid max-w-screen-xl grid-cols-2 gap-4 p-2 mx-auto text-gray-900 sm:grid-cols-2 xl:grid-cols-2 dark:text-white sm:p-8">
                             <div class="flex flex-col items-center text-center">
-                                <dt class="mb-2 text-4xl text-red-600 font-extrabold">{{ $predictedYear }}</dt>
+                                <dt class="mb-2 text-3xl text-red-600 font-extrabold">{{ $predictedYear }}</dt>
                                 <dd class="text-gray-500 dark:text-gray-400">Year</dd>
                             </div>
 
                             <div class="flex flex-col items-right text-center">
-                                <dt class="mb-2 text-5xl text-green-600 font-extrabold">{{ $predictedPopulation }}</dt>
+                                <dt class="mb-2 text-4xl text-lime-600 font-extrabold">{{ $predictedPopulation }}</dt>
                                 <dd class="text-gray-500 dark:text-gray-400">Animal Population</dd>
                             </div>
                         </dl>
@@ -65,11 +65,12 @@
                         <a onclick="scrollToSecondPage()"
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer">
                             Know more
-                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="rtl:rotate-180 w-3.5 h-3.5 ms-2" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M1.6 8.034L1.634 8l10.633 10.608L22.901 8l.034.034v5.319L12.268 24L1.602 13.353z" />
+                                <path fill="currentColor" d="M14.044 0v18.666h-3.555V0z" />
                             </svg>
+
+                            
                         </a>
                     </div>
                 </div>
