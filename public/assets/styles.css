@@ -168,7 +168,6 @@ img {
   transition: .4s;
   z-index: 40;
 
-  background-image: url("./assets/images/bg.svg");
   background: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20px);
@@ -216,6 +215,7 @@ img {
   text-transform: uppercase;
   letter-spacing: .1rem;
   color: var(--text-color-light);
+  user-select: none;
 }
 
 .nav__link {

@@ -360,7 +360,7 @@
                 root.style.setProperty('--text-color-light', '#A5A1AA');
                 root.style.setProperty('--body-color', '#F0FFF0');
                 root.style.setProperty('--container-color', '#FFFFFF');
-                root.style.setProperty('--nav-dropdown-collapse', '#e5e7eb');
+                root.style.setProperty('--nav-dropdown-collapse', '#FFFAEB');
                 // Add more properties for other variables if needed
             }
 

@@ -21,7 +21,7 @@ class DashboardAnimalPopulationChart
 
         return $this->chart->barChart()
             ->addData('Population', $populationCounts)
-            ->setColors(['#008FFB', '#ff6384'])
+            ->setColors(['rgba(54, 162, 235, 1)', '#ff6384'])
             ->setGrid()
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')

@@ -12,12 +12,12 @@ class DashboardAnimalDeathChart
     {
         $this->chart = $chart;
     }
-    public function build(array $data): \ArielMejiaDev\LarapexCharts\LineChart
+    public function build(array $data): \ArielMejiaDev\LarapexCharts\AreaChart
     {
         $years = array_keys($data);
         $counts = array_values($data);
 
-        return $this->chart->lineChart()
+        return $this->chart->areaChart()
             ->addData('Animal Deaths Count', $counts)
             ->setXAxis($years)
             ->setColors(['#FF69B4'])

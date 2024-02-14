@@ -4,7 +4,7 @@
         <div class="rounded-lg !border-opacity-0 bg-opacity-40 backdrop-blur-lg backdrop-filter sm:space-y-5">
 
             <div
-                class="w-full bg-stone-100 dark:bg-gray-900 border border-white dark:border-gray-950 rounded-lg shadow-sm">
+                class="w-full bg-white dark:bg-gray-900 border border-white dark:border-gray-950 rounded-lg shadow">
                 <div class="sm:hidden">
                     <label for="tabs" class="sr-only">Select tab</label>
                     <select id="tabs"

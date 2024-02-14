@@ -37,6 +37,14 @@ module.exports = {
             colors: {
                 "pg-primary": colors.gray,
                 "custom-gray": '#F2F3F5',
+                "custom-black": "#030400",
+                "transparent": "transparent",
+                "custom-white": "#f1f1f1",
+                "custom-orange": "#eda358",
+                "custom-yellow": "#FF8400",
+
+                "custom-background": "#FFFAEB",
+                "custom-tab": "#FF8400",
             },
 
         },

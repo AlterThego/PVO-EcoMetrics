@@ -1,11 +1,8 @@
 <title>Dashboard</title>
 <x-app-layout>
-    <div class="max-w-7xl mx-auto p-3" style="position:relative; z-index:30;">
+    <div class="max-w-7xl mx-auto" style="position:relative; z-index:30;">
         <div class="w-full">
-            <div class="flex flex-col space-y-1 pt-3 pb-4">
-                <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
-                <p class="text-sm font-normal text-gray-700 dark:text-gray-300">Benguet Animals and Agriculture</p>
-            </div>
+
             <!-- Dropdown for small screens -->
             <div class="sm:hidden">
                 <label for="tabs" class="sr-only">Select tab</label>
@@ -16,33 +13,108 @@
                     <option value="#summary">Summary Report</option>
                 </select>
             </div>
-            <!-- Tabs for larger screens -->
-            <ul class="hidden sm:flex text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-t-lg !border-opacity-0 bg-gray-300 dark:bg-gray-900 bg-opacity-40 shadow-lg backdrop-blur-lg backdrop-filter   "
-                id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
-                <li class="w-full relative">
-                    <button id="overview-tab" data-tabs-target="#overview" type="button" role="tab"
-                        aria-controls="overview" aria-selected="true"
-                        class="font-serif font-black inline-block w-full p-4 rounded-ss-lg hover:bg-gray-300 focus:outline-none dark:hover:bg-gray-700">
-                        Overview (Recent Year: {{$recentYear}})
-                    </button>
-                </li>
-                <li class="w-full relative">
-                    <button id="trend-tab" data-tabs-target="#trend" type="button" role="tab" aria-controls="trend"
-                        aria-selected="false"
-                        class="font-serif font-extrabold inline-block w-full p-4 hover:bg-gray-300 focus:outline-none dark:hover:bg-gray-600">
-                        Trends
-                    </button>
-                </li>
-                <li class="w-full relative">
-                    <button id="summary-tab" data-tabs-target="#summary" type="button" role="tab" aria-controls="summary"
-                        aria-selected="false"
-                        class="font-serif font-extrabold inline-block w-full p-4 rounded-se-lg hover:bg-gray-300 focus:outline-none dark:hover:bg-gray-600">
-                        Summary Report
-                    </button>
-                </li>
-            </ul>
+
+            <div class="grid grid-cols-6 gap-3 pt-8">
+                <div class="flex flex-col space-y-1 col-span-2 text-center pb-6">
+                    <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+                    <p class="text-sm font-normal text-gray-700 dark:text-gray-300">Benguet Animals and Agriculture</p>
+                </div>
+                <!-- Tabs for larger screens -->
+                <ul class="col-span-2 hidden sm:flex text-sm font-medium text-center items-end justify-end text-gray-500 divide-x divide-gray-100 dark:divide-gray-950 
+            rounded-t-lg"
+                    id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
+                    <li class="w-full relative">
+                        <button id="overview-tab" data-tooltip-target="tooltip-overview" data-tabs-target="#overview"
+                            type="button" role="tab" aria-controls="overview" aria-selected="true"
+                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center rounded-tl-lg w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6">
+                                <path fill="currentColor"
+                                    d="M3 19q-.825 0-1.412-.587T1 17V7q0-.825.588-1.412T3 5h10q.825 0 1.413.588T15 7v10q0 .825-.587 1.413T13 19zm14 0V5h2v14zm4 0V5h2v14z" />
+                            </svg>
+
+                            <div id="tooltip-overview" role="tooltip"
+                                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                Overview ({{ $recentYear }})
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+
+                        </button>
+                    </li>
+                    <li class="w-full relative">
+                        <button id="trend-tab" data-tooltip-target="tooltip-trend" data-tabs-target="#trend"
+                            type="button" role="tab" aria-controls="trend" aria-selected="false"
+                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-6 h-6">
+                                <path fill="currentColor"
+                                    d="M244 56v64a12 12 0 0 1-24 0V85l-75.51 75.52a12 12 0 0 1-17 0L96 129l-63.51 63.49a12 12 0 0 1-17-17l72-72a12 12 0 0 1 17 0L136 135l67-67h-35a12 12 0 0 1 0-24h64a12 12 0 0 1 12 12" />
+                            </svg>
+                            <div id="tooltip-trend" role="tooltip"
+                                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                Trends
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </button>
+                    </li>
+
+                    <li class="w-full relative">
+                        <button id="summary-tab" data-tooltip-target="tooltip-summary" data-tabs-target="#summary"
+                            type="button" role="tab" aria-controls="summary" aria-selected="false"
+                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center rounded-tr-lg w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6">
+                                <path fill="currentColor"
+                                    d="m20 8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9 19H7v-9h2zm4 0h-2v-6h2zm4 0h-2v-3h2zM14 9h-1V4l5 5z" />
+                            </svg>
+                            <div id="tooltip-summary" role="tooltip"
+                                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                Summary Report
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="flex text-center align-center justify-center col-span-2">
+                    <form method="GET" action="{{ route('dashboard') }}" class="flex items-center justify-between">
+                        <svg data-tooltip-target="tooltip-help" class="w-4 h-4 mr-3 text-gray-500 dark:text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M11.95 18q.525 0 .888-.363t.362-.887q0-.525-.362-.888t-.888-.362q-.525 0-.887.363t-.363.887q0 .525.363.888t.887.362m-.9-3.85h1.85q0-.825.188-1.3t1.062-1.3q.65-.65 1.025-1.238T15.55 8.9q0-1.4-1.025-2.15T12.1 6q-1.425 0-2.312.75T8.55 8.55l1.65.65q.125-.45.563-.975T12.1 7.7q.8 0 1.2.438t.4.962q0 .5-.3.938t-.75.812q-1.1.975-1.35 1.475t-.25 1.825M12 22q-2.075 0-3.9-.787t-3.175-2.138q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8" />
+                        </svg>
+                        <div id="tooltip-help" role="tooltip"
+                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm text-xs text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                            Choose a year to view corresponding dashboard data. </br>The dashboard content will update
+                            accordingly based on your selection.
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                        <div class="relative max-w-sm flex-grow">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
+                            </div>
+                            <select name="year" id="year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-4 py-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                @foreach ($years as $year)
+                                    <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>{{ $year }}</option>
+                                @endforeach
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-1 pointer-events-none">
+                                <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="m7 10l5 5l5-5z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">View
+                            Data</button>
+                    </form>
+                </div>
+            </div>
+
             <!-- Tab content -->
-            <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600">
+            <div id="fullWidthTabContent" class="border rounded-lg dark:border-gray-950">
                 @include('dashboard-components.first-tab')
                 @include('dashboard-components.second-tab')
                 @include('dashboard-components.third-tab')
@@ -53,6 +125,8 @@
 
 </x-app-layout>
 
+
+{{-- Dynamic Tab when pressed --}}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var tabs = document.querySelectorAll('[role="tab"]');
@@ -74,11 +148,21 @@
 
                     // Remove border bottom from all tab buttons
                     tabs.forEach(function(tab) {
-                        tab.classList.remove('border-b-2', 'border-blue-500');
+                        tab.classList.remove('border-b-4', 'border-green-500',
+                            'dark:border-custom-orange', 'dark:text-white',
+                            'hover:bg-white', 'dark:hover:bg-gray-900',
+                            'hover:text-green-500', 'dark:hover:text-white',
+                            'text-green-500', 'shadow-2xl', 'bg-white',
+                            'bg-opacity-60',
+                            'dark:bg-gray-900');
                     });
 
                     // Add border bottom to the selected tab button
-                    this.classList.add('border-b-2', 'border-blue-500');
+                    this.classList.add('border-b-4', 'border-green-500',
+                        'dark:border-custom-orange', 'dark:text-white', 'hover:bg-white',
+                        'dark:hover:bg-gray-900',
+                        'hover:text-green-500', 'dark:hover:text-white', 'text-green-500',
+                        'shadow-2xl', 'bg-white', 'bg-opacity-60', 'dark:bg-gray-900');
                 }
             });
         });
@@ -103,4 +187,152 @@
             }
         });
     });
+</script>
+
+
+{{-- Save Selected Year Script --}}
+{{-- Stable script --}}
+{{-- <script>
+    // Function to save selected year to local storage
+    function saveSelectedYear() {
+        var yearSelect = document.getElementById('year');
+        var selectedYear = yearSelect.value;
+        localStorage.setItem('selectedYear', selectedYear);
+    }
+
+    // Function to load selected year from local storage
+    function loadSelectedYear() {
+        var selectedYear = localStorage.getItem('selectedYear');
+        if (selectedYear) {
+            document.getElementById('year').value = selectedYear;
+        }
+    }
+
+    // Load selected year when the page loads
+    window.onload = function() {
+        loadSelectedYear();
+    };
+
+    // Save selected year when it changes
+    document.getElementById('year').addEventListener('change', function() {
+        saveSelectedYear();
+    });
+</script> --}}
+
+{{-- Experimental 1: success --}}
+<script>
+    // Function to save selected year to local storage
+    function saveSelectedYear() {
+        var yearSelect = document.getElementById('year');
+        var selectedYear = yearSelect.value;
+        localStorage.setItem('selectedYear', selectedYear);
+    }
+
+    // Function to load selected year from local storage
+    function loadSelectedYear() {
+        var selectedYear = localStorage.getItem('selectedYear');
+        if (selectedYear) {
+            document.getElementById('year').value = selectedYear;
+        }
+    }
+
+    // Function to set default value to the latest year
+    function setDefaultYear() {
+        var yearSelect = document.getElementById('year');
+        var latestYearOption = yearSelect.lastElementChild;
+        yearSelect.value = latestYearOption.value; // Set default value to the latest year option
+    }
+
+    // Load selected year when the page loads
+    window.onload = function() {
+        setDefaultYear(); // Set default value to the latest year
+        loadSelectedYear(); // Load selected year from local storage
+    };
+
+    // Save selected year when it changes
+    document.getElementById('year').addEventListener('change', function() {
+        saveSelectedYear();
+    });
+</script>
+
+{{-- Experimental 2: --}}
+{{-- <script>
+    // Function to save selected year to local storage
+    function saveSelectedYear() {
+        var yearSelect = document.getElementById('year');
+        var selectedYear = yearSelect.value;
+        localStorage.setItem('selectedYear', selectedYear);
+    }
+
+    // Function to load selected year from local storage
+    function loadSelectedYear() {
+        var selectedYear = localStorage.getItem('selectedYear');
+        var yearSelect = document.getElementById('year');
+        if (selectedYear) {
+            yearSelect.value = selectedYear;
+            // Trigger the page content loading after the selected year is set
+            loadPageContent();
+        }
+    }
+
+    // Set default value to the latest year
+    function setDefaultYear() {
+        var yearSelect = document.getElementById('year');
+        var latestYearOption = yearSelect.lastElementChild;
+        yearSelect.value = latestYearOption.value; // Set default value to the latest year option
+    }
+
+    // Load selected year when the page loads
+    window.onload = function() {
+        setDefaultYear(); // Set default value to the latest year
+        loadSelectedYear(); // Load selected year from local storage
+    };
+
+    // Save selected year when it changes
+    document.getElementById('year').addEventListener('change', function() {
+        saveSelectedYear();
+    });
+
+    // Function to load page content
+    function loadPageContent() {
+        // Add your code to load the page content here
+    }
+</script> --}}
+
+
+
+
+{{-- Button to Start --}}
+<script>
+    function scrollToStart() {
+        // Assuming the second page has an element with an id of 'secondPage'
+        document.getElementById('startPage').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
+    function scrollToStart() {
+        const duration = 500;
+        const start = performance.now();
+        const from = window.scrollY || document.documentElement.scrollTop;
+        const to = document.getElementById('startPage').offsetTop;
+
+        function scrollStep(timestamp) {
+            const elapsed = timestamp - start;
+            window.scrollTo(0, easeInOutCubic(elapsed, from, to - from, duration));
+
+            if (elapsed < duration) {
+                requestAnimationFrame(scrollStep);
+            }
+        }
+
+        function easeInOutCubic(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t * t + b;
+            t -= 2;
+            return c / 2 * (t * t * t + 2) + b;
+        }
+
+        requestAnimationFrame(scrollStep);
+    }
 </script>

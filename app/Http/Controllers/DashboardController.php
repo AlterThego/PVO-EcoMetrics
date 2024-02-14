@@ -18,19 +18,31 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function dashboard(
-        DashboardAnimalPopulationChart $chart,
+        Request $request,
+        DashboardAnimalPopulationChart $animalPopulationChart,
         DashboardAffectedAnimalsChart $affectedAnimalsChart,
         DashboardAnimalDeathChart $animalDeathChart,
         DashboardYearlyCommonDisease $yearlyCommonDiseaseChart,
-        VeterinaryClinicsChart $veterinaryClinicsChart,
+        VeterinaryClinicsChart $veterinaryClinicsChart
     ) {
-        $latestYearPopulationData = $this->getLatestYearPopulationData();
-        $recentYearsAffectedAnimalsData = $this->getRecentYearsAffectedAnimalsData();
-        $recentYearAnimalDeathData = $this->getRecentYearsAnimalDeathData();
+        // Get the selected year from the request
+        $selectedYear = $request->input('year', session('selectedYear'));
+        $years = AnimalPopulation::distinct()->pluck('year');
+        
+        session(['selectedYear' => $selectedYear]);
 
+        // If no year is selected, default to the latest year
+        if (!$selectedYear) {
+            $selectedYear = AnimalPopulation::max('year');
+        }
+
+        // Pass the selected year to the data retrieval methods
+        $latestYearPopulationData = $this->getLatestYearPopulationData($selectedYear);
+        $recentYearsAffectedAnimalsData = $this->getRecentYearsAffectedAnimalsData($selectedYear);
+        $recentYearAnimalDeathData = $this->getRecentYearsAnimalDeathData($selectedYear);
 
         // Animal Population
-        $chart = $chart->build($latestYearPopulationData);
+        $animalPopulationChart = $animalPopulationChart->build($latestYearPopulationData);
 
         // Affected Animals
         $affectedAnimalsChart = $affectedAnimalsChart->build($recentYearsAffectedAnimalsData);
@@ -43,7 +55,7 @@ class DashboardController extends Controller
 
         // Animal Type Cards
         $animalTypes = AnimalType::whereNotNull('type')->get();
-        $animalPopulationData = $this->getLatestAnimalPopulationData($animalTypes);
+        $animalPopulationData = $this->getLatestAnimalPopulationData($selectedYear, $animalTypes);
         $overallCount = array_sum($animalPopulationData);
 
         // Veterinary Clinics Chart
@@ -56,60 +68,51 @@ class DashboardController extends Controller
         // Animal Population Data
         $recentYear = AnimalPopulation::max('year');
 
-        $animalPopulationsByMunicipality = AnimalPopulation::where('year', $recentYear)
+        $animalPopulationsByMunicipality = AnimalPopulation::where('year', $selectedYear)
             ->with('municipality', 'animal')
             ->get()
             ->groupBy('municipality_id');
         $municipalities = Municipality::all();
-        $currentSlide = 0; 
+        $currentSlide = 0;
 
-
-        return view(
-            'dashboard',
-            compact(
-                'chart',
-                'affectedAnimalsChart',
-                'animalDeathChart',
-                'yearlyCommonDiseaseChart',
-                'animalTypes',
-                'animalPopulationData',
-                'overallCount',
-                'veterinaryClinicsChart',
-                'animalPopulationsByMunicipality',
-                'municipalities',
-                'recentYear',
-                'currentSlide'
-            )
-        );
+        return view('dashboard', compact(
+            'animalPopulationChart',
+            'affectedAnimalsChart',
+            'animalDeathChart',
+            'yearlyCommonDiseaseChart',
+            'animalTypes',
+            'animalPopulationData',
+            'overallCount',
+            'veterinaryClinicsChart',
+            'animalPopulationsByMunicipality',
+            'municipalities',
+            'recentYear',
+            'currentSlide',
+            'years',
+            'selectedYear'
+        ));
     }
 
-
-    public function getLatestYearPopulationData()
+    // Retrieve latest year population data
+    public function getLatestYearPopulationData($selectedYear)
     {
-        // Get the latest year's population data from the database
-        $latestYear = AnimalPopulation::max('year');
-
-        $populationData = AnimalPopulation::where('year', $latestYear)
+        return AnimalPopulation::where('year', $selectedYear)
             ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
             ->pluck('animal_population_count', 'animal.animal_name');
-
-        return $populationData;
     }
 
-    public function getRecentYearsAffectedAnimalsData()
+    // Retrieve recent years affected animals data
+    public function getRecentYearsAffectedAnimalsData($selectedYear)
     {
-        // Get the distinct years from the affected animals data in descending order and limit to 6 years
         $recentYears = AffectedAnimals::distinct('year')
             ->orderBy('year', 'desc')
             ->take(6)
             ->pluck('year')
             ->toArray();
 
-        // Query the affected animals data for the recent 6 years
         $affectedAnimalsData = AffectedAnimals::whereIn('year', $recentYears)
             ->get();
 
-        // Organize the data into an associative array with years as keys and counts as values
         $data = [];
         foreach ($affectedAnimalsData as $record) {
             $data[$record->year] = $record->count;
@@ -120,20 +123,18 @@ class DashboardController extends Controller
         return $data;
     }
 
-    public function getRecentYearsAnimalDeathData()
+    // Retrieve recent years animal death data
+    public function getRecentYearsAnimalDeathData($selectedYear)
     {
-        // Get the distinct years from the affected animals data in descending order and limit to 6 years
         $recentYears = AnimalDeath::distinct('year')
             ->orderBy('year', 'desc')
             ->take(6)
             ->pluck('year')
             ->toArray();
 
-        // Query the affected animals data for the recent 6 years
         $animalDeathdata = AnimalDeath::whereIn('year', $recentYears)
             ->get();
 
-        // Organize the data into an associative array with years as keys and counts as values
         $data = [];
         foreach ($animalDeathdata as $record) {
             $data[$record->year] = $record->count;
@@ -144,20 +145,16 @@ class DashboardController extends Controller
         return $data;
     }
 
-    private function getLatestAnimalPopulationData($animalTypes)
+    // Retrieve latest animal population data
+    private function getLatestAnimalPopulationData($selectedYear, $animalTypes)
     {
         $animalPopulationData = [];
 
-        // Get the most recent year
-        $latestYear = AnimalPopulation::max('year');
-
         foreach ($animalTypes as $animalType) {
-            // Get the latest animal population data for the current animal type and latest year
             $latestPopulationData = AnimalPopulation::where('animal_type_id', $animalType->id)
-                ->where('year', $latestYear)
+                ->where('year', $selectedYear)
                 ->first();
 
-            // If there's no population data for this type, set count to 0
             if (!$latestPopulationData) {
                 $count = 0;
             } else {
@@ -170,5 +167,9 @@ class DashboardController extends Controller
         return $animalPopulationData;
     }
 
-
+    // Retrieve latest year from database
+    private function getLatestYear()
+    {
+        return AnimalPopulation::max('year');
+    }
 }

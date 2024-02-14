@@ -1,4 +1,4 @@
-<div class="tab-content hidden rounded-b-lg !border-opacity-0 bg-white dark:bg-gray-900 bg-opacity-50 dark:bg-opacity-20 shadow-base backdrop-blur-lg backdrop-filter sm:space-y-5 sm:p-8 md:px-10 xl:py-5"
+<div class="tab-content hidden rounded-lg !border-opacity-0 bg-white dark:bg-gray-900 bg-opacity-60 dark:bg-opacity-60 shadow-base backdrop-blur-lg backdrop-filter sm:space-y-5 sm:p-8 md:px-10 xl:py-5"
     id="overview" role="tabpanel" aria-labelledby="overview-tab">
 
 
@@ -12,12 +12,12 @@
                 }
             @endphp
             <a href="#"
-                class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+                class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 shadow transition-transform duration-300 transform hover:scale-105 border dark:border-gray-900">
                 <div>
                     <div class="flex justify-between items-center">
                         <p class="pl-2 text-base font-normal tracking-tight text-gray-700 dark:text-gray-400">
                             {{ $animalType->type }}</p>
-                        <p class="pl-2 text-xs md:text-xs lg:text-xs tracking-tight text-gray-900 dark:text-white">
+                        <p class="pl-2 text-yellow-900 text-semibold text-xs md:text-xs lg:text-xs tracking-tight text-gray-900 dark:text-white">
                             Poultry</p>
                     </div>
                     <div class="flex justify-between items-center">
@@ -40,26 +40,27 @@
 
     {{-- Animal Population Chart --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
-        <div class="bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30">
+        <div class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
             <div
-                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-semibold text-base text-gray-900 dark:text-gray-100">
-                {{ __('Animal Population') }}
+                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-base text-gray-900 dark:text-gray-100">
+                {{ __('Overall Animal Population') }}
             </div>
-            <div class="relative aspect-w-16 aspect-h-11 sm:aspect-h-11 md:aspect-h-11 lg:aspect-h-11 2xl:aspect-h-10">
+            <div class="relative aspect-w-16 aspect-h-11 sm:aspect-h-11 md:aspect-h-11 lg:aspect-h-10">
                 <div
                     class="bg-white rounded-b-xl px-3 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
-                    {!! $chart->container() !!}
-                    <script src="{{ $chart->cdn() }}"></script>
-                    {!! $chart->script() !!}
+                    {!! $animalPopulationChart->container() !!}
+                    <script src="{{ $animalPopulationChart->cdn() }}"></script>
+                    {!! $animalPopulationChart->script() !!}
                 </div>
             </div>
         </div>
 
-        <div class="bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30">
+        <div class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
             <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-semibold text-base text-gray-900 dark:text-gray-100">
                 {{ __('Veterinary Clinics by Sector') }}
             </div>
+            
             <div class="relative aspect-w-16 aspect-h-11 sm:aspect-h-11 md:aspect-h-11 lg:aspect-h-11 2xl:aspect-h-10">
                 <div
                     class="bg-white rounded-b-xl px-3 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
@@ -75,10 +76,10 @@
 
 
     <div class="grid grid-cols-1 gap-4 pb-10">
-        <div id="indicators-carousel" class="relative w-full pt-10" data-carousel="static">
+        <div id="indicators-carousel" class="rounded-xl relative w-full pt-10" data-carousel="static">
             <!-- Carousel wrapper -->
-            <div class="bg-white rounded-xl px-3 dark:bg-gray-900 overflow-hidden items-center h-lvh w-full items-center">
-                <div class="z-30 relative h-full overflow-hidden rounded-lg md:h-full">
+            <div class="bg-white rounded-xl shadow-lg dark:bg-gray-900 overflow-hidden items-center h-lvh w-full items-center">
+                <div class="z-30 relative h-full overflow-hidden rounded-lg md:h-full border dark:border-gray-900">
                     @foreach ($municipalities as $index => $municipality)
                         <!-- Item {{ $index + 1 }} -->
                         <div class="{{ $index === $currentSlide ? 'block' : 'hidden' }} duration-700 ease-in-out"
@@ -86,7 +87,7 @@
                             <div class="max-w-5xl mx-auto pt-15">
                                 <div class="inline flex flex-row justify-between pb-5 pt-10">
                                     <div class="rounded-t-xl bg-white dark:bg-gray-900 pt-3 text-base text-gray-900 dark:text-gray-100">
-                                        <p>{{ __('Animal Population per Municipality') }}({{$recentYear}})</p>
+                                        <p>{{ __('Animal Population per Municipality') }}({{$selectedYear}})</p>
                                     </div>
                                     <p class="text-end text-3xl font-bold pe-10">{{ $municipality->municipality_name }}</p>
                                 </div>
