@@ -46,8 +46,8 @@
                     @foreach ($animalTypes as $animalType)
                         @php
                             $percentage = 0; // Default value in case of division by zero
-                            if ($overallCount !== 0) {
-                                $percentage = ($animalPopulationData[$animalType->type] / $overallCount) * 100;
+                            if ($overallAnimalPopulationCount !== 0) {
+                                $percentage = ($animalPopulationData[$animalType->type] / $overallAnimalPopulationCount) * 100;
                             }
                         @endphp
 

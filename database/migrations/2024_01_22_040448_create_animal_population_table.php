@@ -11,7 +11,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('animal_population', function (Blueprint $table) {
-            $table->unique(['year', 'municipality_id', 'animal_id', 'animal_type_id'], 'animal_population_count');
+            $table->unique(['year', 'municipality_id', 'animal_id',], 'animal_population_count');
+            //  'animal_type_id'
             $table->id();
 
             $table->unsignedBigInteger('municipality_id');
@@ -25,7 +26,7 @@ return new class extends Migration {
 
             $table->integer('year');
             $table->integer('animal_population_count');
-            
+
             $table->decimal('volume', 10, 2);
             $table->timestamps();
         });

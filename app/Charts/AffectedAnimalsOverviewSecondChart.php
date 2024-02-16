@@ -4,7 +4,7 @@ namespace App\Charts;
 
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
-class AnimalDeathOverviewSecondChart
+class AffectedAnimalsOverviewSecondChart
 {
     protected $chart;
 
@@ -13,16 +13,16 @@ class AnimalDeathOverviewSecondChart
         $this->chart = $chart;
     }
 
-    public function build($animalDeathOverviewSecondData): \ArielMejiaDev\LarapexCharts\HorizontalBar
+    public function build($affectedAnimalsOverviewSecondData): \ArielMejiaDev\LarapexCharts\HorizontalBar
     {
-        $animalNames = collect($animalDeathOverviewSecondData)->pluck('animal_name')->toArray();
-        $counts = collect($animalDeathOverviewSecondData)->pluck('count')->toArray();
+        $animalNames = collect($affectedAnimalsOverviewSecondData)->pluck('animal_name')->toArray();
+        $counts = collect($affectedAnimalsOverviewSecondData)->pluck('count')->toArray();
 
         return $this->chart->horizontalBarChart()
-            ->setTitle('Animal Death per Kind')
+            ->setTitle('Affected Animals per Kind')
             ->setLabels($animalNames)
             ->addData('Animal Deaths', $counts)
-            ->setColors(['#8c564b'])
+            ->setColors(['#9467bd'])
             ->setGrid()
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')

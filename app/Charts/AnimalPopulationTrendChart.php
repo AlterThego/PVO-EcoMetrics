@@ -2,31 +2,34 @@
 
 namespace App\Charts;
 
+use App\Models\AnimalPopulation;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
-use App\Models\AffectedAnimals;
 
-class DashboardAffectedAnimalsChart
+class AnimalPopulationTrendChart
 {
+
     protected $chart;
 
     public function __construct(LarapexChart $chart)
     {
         $this->chart = $chart;
     }
-
     public function build(array $data): \ArielMejiaDev\LarapexCharts\AreaChart
     {
         $years = array_keys($data);
         $counts = array_values($data);
 
         return $this->chart->areaChart()
-            ->addData('Affected Animals Count', $counts)
+            ->setTitle('Animal Population Trend')
+            ->setSubtitle('For the past 20 years')
+            ->addData('Animal Deaths Count', $counts)
             ->setXAxis($years)
-            ->setColors(['#00FFFF'])
+            ->setColors(['#FF69B4'])
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
             ->setGrid()
-            ->setHeight(350)
-            ->setMarkers(['#FF0000 ', '#E040FB '], 7, 10);
+            ->setHeight(525)
+            // ->setMarkers(['#FF5722', '#E040FB'], 7, 10)
+            ;
     }
 }

@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\AnimalDeathOverviewChart;
-use App\Charts\AnimalDeathOverviewSecondChart;
-use App\Charts\DashboardAffectedAnimalsChart;
-use App\Charts\DashboardAnimalDeathChart;
-use App\Charts\DashboardAnimalPopulationChart;
-use App\Charts\DashboardYearlyCommonDisease;
-use App\Charts\VeterinaryClinicsChart;
+// Models
+use App\Charts\AffectedAnimalsOverviewSecondChart;
+use App\Charts\AnimalPopulationTrendChart;
 use App\Models\AffectedAnimals;
 use App\Models\Animal;
 use App\Models\AnimalDeath;
@@ -18,23 +14,42 @@ use App\Models\Municipality;
 use App\Models\VeterinaryClinics;
 use Illuminate\Http\Request;
 
+// Overview
+use App\Charts\AnimalPopulationOverviewChart;
+use App\Charts\VeterinaryClinicsChart;
+use App\Charts\AnimalDeathOverviewChart;
+use App\Charts\AnimalDeathOverviewSecondChart;
+use App\Charts\AffectedAnimalsOverviewChart;
+
+// Trend
+use App\Charts\YearlyCommonDiseaseTrendChart;
+use App\Charts\AffectedAnimalsTrendChart;
+use App\Charts\AnimalDeathTrendChart;
+
+
 class DashboardController extends Controller
 {
     public function dashboard(
         Request $request,
-        DashboardAnimalPopulationChart $animalPopulationChart,
-        DashboardAffectedAnimalsChart $affectedAnimalsChart,
-        DashboardAnimalDeathChart $animalDeathChart,
-        DashboardYearlyCommonDisease $yearlyCommonDiseaseChart,
+
+        // Overview
+        AnimalPopulationOverviewChart $animalPopulationOverviewChart,
         VeterinaryClinicsChart $veterinaryClinicsChart,
         AnimalDeathOverviewChart $animalDeathOverviewChart,
         AnimalDeathOverviewSecondChart $animalDeathOverviewSecondChart,
+        AffectedAnimalsOverviewChart $affectedAnimalsOverviewChart,
+        AffectedAnimalsOverviewSecondChart $affectedAnimalsOverviewSecondChart,
+
+        // Trend
+        AnimalPopulationTrendChart $animalPopulationTrendChart,
+        YearlyCommonDiseaseTrendChart $yearlyCommonDiseaseTrendChart,
+        AffectedAnimalsTrendChart $affectedAnimalsTrendChart,
+        AnimalDeathTrendChart $animalDeathTrendChart,
 
     ) {
+        // Years
         // Get the selected year from the request
         $selectedYear = $request->input('year', session('selectedYear'));
-        $years = AnimalPopulation::distinct()->pluck('year');
-
         session(['selectedYear' => $selectedYear]);
 
         // If no year is selected, default to the latest year
@@ -42,38 +57,21 @@ class DashboardController extends Controller
             $selectedYear = AnimalPopulation::max('year');
         }
 
-        // Pass the selected year to the data retrieval methods
-        $latestYearPopulationData = $this->getLatestYearPopulationData($selectedYear);
-        $recentYearsAffectedAnimalsData = $this->getRecentYearsAffectedAnimalsData($selectedYear);
-        $recentYearAnimalDeathData = $this->getRecentYearsAnimalDeathData($selectedYear);
-
-        // Animal Population
-        $animalPopulationChart = $animalPopulationChart->build($latestYearPopulationData);
-
-        // Affected Animals
-        $affectedAnimalsChart = $affectedAnimalsChart->build($recentYearsAffectedAnimalsData);
-
-        // Animal Death
-        $animalDeathChart = $animalDeathChart->build($recentYearAnimalDeathData);
-
-        // Yearly Common Disease
-        $yearlyCommonDiseaseChart = $yearlyCommonDiseaseChart->build();
-
-        // Animal Type Cards
-        $animalTypes = AnimalType::whereNotNull('type')->get();
-        $animalPopulationData = $this->getLatestAnimalPopulationData($selectedYear, $animalTypes);
-        $overallCount = array_sum($animalPopulationData);
-
-        // Veterinary Clinics Chart
-        $veterinaryClinicsChartData = [
-            'private' => VeterinaryClinics::where('sector', 'private')->count(),
-            'government' => VeterinaryClinics::where('sector', 'government')->count(),
-        ];
-        $veterinaryClinicsChart = $veterinaryClinicsChart->build($veterinaryClinicsChartData);
-
-        // Animal Population Data
+        // Fetch year and recent year
+        $years = AnimalPopulation::distinct()->pluck('year');
         $recentYear = AnimalPopulation::max('year');
 
+
+
+        // Overview contents
+        // 
+        // Animal Type Cards (mostly poultry types)
+        $animalTypes = AnimalType::whereNotNull('type')->get();
+        $animalPopulationData = $this->getAnimalTypeData($selectedYear, $animalTypes);
+        $overallAnimalPopulationCount = array_sum($animalPopulationData);
+
+
+        // Table Carousel per municipality (Animal Population)
         $animalPopulationsByMunicipality = AnimalPopulation::where('year', $selectedYear)
             ->with('municipality', 'animal')
             ->get()
@@ -82,94 +80,109 @@ class DashboardController extends Controller
         $currentSlide = 0;
 
 
+        // Animal Population Overview Chart
+        $animalPopulationOverviewData = $this->getAnimalPopulationData($selectedYear);
+        $animalPopulationOverviewChart = $animalPopulationOverviewChart->build($animalPopulationOverviewData);
+
+        // Affected Animals
+        $AffectedAnimalsTrendData = $this->getAffectedAnimalsTrendData();
+        $affectedAnimalsTrendChart = $affectedAnimalsTrendChart->build($AffectedAnimalsTrendData);
+
 
         // Animal Death Overview Data
         $animalDeathOverviewData = $this->getAnimalDeathOverviewData($selectedYear);
         $animalDeathOverviewChart = $animalDeathOverviewChart->build($animalDeathOverviewData);
-
-
         // Second Animal Death Chart
         $animalDeathOverviewSecondData = $this->getAnimalDeathOverviewSecondData($selectedYear);
         $animalDeathOverviewSecondChart = $animalDeathOverviewSecondChart->build($animalDeathOverviewSecondData);
 
+        // Affected Animals Overview Data
+        $affectedAnimalsOverviewData = $this->getAffectedAnimalsOverviewData($selectedYear);
+        $affectedAnimalsOverviewChart = $affectedAnimalsOverviewChart->build($affectedAnimalsOverviewData);
+
+        // Second Animal Death Chart
+        $affectedAnimalsOverviewData = $this->getAffectedAnimalsOverviewSecondData($selectedYear);
+        $affectedAnimalsOverviewSecondChart = $affectedAnimalsOverviewSecondChart->build($affectedAnimalsOverviewData);
+
+        // Veterinary Clinics Chart
+        $veterinaryClinicsChartData = [
+            'private' => VeterinaryClinics::where('sector', 'private')->count(),
+            'government' => VeterinaryClinics::where('sector', 'government')->count(),
+        ];
+        $veterinaryClinicsChart = $veterinaryClinicsChart->build($veterinaryClinicsChartData);
+
+        // 
+        // End of Overview contents
+
+
+        // Trend Content
+        // 
+        // Animal Population  
+        $AnimalPopulationTrendData = $this->getAnimalPopulationTrendData();
+        $animalPopulationTrendChart = $animalPopulationTrendChart->build($AnimalPopulationTrendData);
+
+        // Animal Death 
+        $AnimalDeathTrendData = $this->getAnimalDeathTrendData();
+        $animalDeathTrendChart = $animalDeathTrendChart->build($AnimalDeathTrendData);
+
+        // Yearly Common Disease
+        $yearlyCommonDiseaseTrendChart = $yearlyCommonDiseaseTrendChart->build();
 
         return view(
             'dashboard',
             compact(
-                'animalPopulationChart',
-                'affectedAnimalsChart',
-                'animalDeathChart',
-                'yearlyCommonDiseaseChart',
-                'animalTypes',
-                'animalPopulationData',
-                'overallCount',
-                'veterinaryClinicsChart',
-                'animalPopulationsByMunicipality',
-                'municipalities',
+                // Extras
                 'recentYear',
                 'currentSlide',
                 'years',
                 'selectedYear',
+                'municipalities',
+                'animalTypes',
+                'animalPopulationData',
+                'overallAnimalPopulationCount',
+
+
+                // Overview
+                'animalPopulationOverviewChart',
+                'animalPopulationsByMunicipality',
                 'animalDeathOverviewChart',
-                'animalDeathOverviewSecondChart'
+                'animalDeathOverviewSecondChart',
+                'affectedAnimalsOverviewChart',
+                'affectedAnimalsOverviewSecondChart',
+                'veterinaryClinicsChart',
+                
+
+                // Trend
+                'animalPopulationTrendChart',
+                'yearlyCommonDiseaseTrendChart',
+                'affectedAnimalsTrendChart',
+                'animalDeathTrendChart',
+
+
+
+
             )
         );
     }
 
-    // Retrieve latest year population data
-    public function getLatestYearPopulationData($selectedYear)
+    private function getLatestYear()
+    {
+        return AnimalPopulation::max('year');
+    }
+
+    // Overview
+    // 
+
+
+    // Animal Population Overview
+    public function getAnimalPopulationData($selectedYear)
     {
         return AnimalPopulation::where('year', $selectedYear)
             ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
             ->pluck('animal_population_count', 'animal.animal_name');
     }
 
-    // Retrieve recent years affected animals data
-    public function getRecentYearsAffectedAnimalsData($selectedYear)
-    {
-        $recentYears = AffectedAnimals::distinct('year')
-            ->orderBy('year', 'desc')
-            ->take(6)
-            ->pluck('year')
-            ->toArray();
-
-        $affectedAnimalsData = AffectedAnimals::whereIn('year', $recentYears)
-            ->get();
-
-        $data = [];
-        foreach ($affectedAnimalsData as $record) {
-            $data[$record->year] = $record->count;
-        }
-
-        ksort($data);
-
-        return $data;
-    }
-
-    // Retrieve recent years animal death data
-    public function getRecentYearsAnimalDeathData($selectedYear)
-    {
-        $recentYears = AnimalDeath::distinct('year')
-            ->orderBy('year', 'desc')
-            ->take(6)
-            ->pluck('year')
-            ->toArray();
-
-        $animalDeathdata = AnimalDeath::whereIn('year', $recentYears)
-            ->get();
-
-        $data = [];
-        foreach ($animalDeathdata as $record) {
-            $data[$record->year] = $record->count;
-        }
-
-        ksort($data);
-
-        return $data;
-    }
-
-    // Retrieve latest animal population data
-    private function getLatestAnimalPopulationData($selectedYear, $animalTypes)
+    private function getAnimalTypeData($selectedYear, $animalTypes)
     {
         $animalPopulationData = [];
 
@@ -190,34 +203,29 @@ class DashboardController extends Controller
         return $animalPopulationData;
     }
 
-    // Retrieve latest year from database
-    private function getLatestYear()
-    {
-        return AnimalPopulation::max('year');
-    }
 
     public function getAnimalDeathOverviewData($selectedYear)
-{
-    // Retrieve all municipalities
-    $municipalities = Municipality::all();
+    {
+        // Retrieve all municipalities
+        $municipalities = Municipality::all();
 
-    $data = [];
-    foreach ($municipalities as $municipality) {
-        // Retrieve the count of animal deaths for the given municipality and year
-        $deathCount = AnimalDeath::where('year', $selectedYear)
+        $data = [];
+        foreach ($municipalities as $municipality) {
+            // Retrieve the count of animal deaths for the given municipality and year
+            $deathCount = AnimalDeath::where('year', $selectedYear)
                 ->where('municipality_id', $municipality->id)
                 ->sum('count');
 
-        // Add the municipality data to the result array
-        $data[] = [
-            'year' => $selectedYear,
-            'municipality' => $municipality->municipality_name,
-            'count' => $deathCount,
-        ];
-    }
+            // Add the municipality data to the result array
+            $data[] = [
+                'year' => $selectedYear,
+                'municipality' => $municipality->municipality_name,
+                'count' => $deathCount,
+            ];
+        }
 
-    return $data;
-}
+        return $data;
+    }
 
     public function getAnimalDeathOverviewSecondData($selectedYear)
     {
@@ -238,6 +246,124 @@ class DashboardController extends Controller
 
         return $data;
     }
+
+    public function getAffectedAnimalsOverviewData($selectedYear)
+    {
+        $municipalities = Municipality::all();
+
+        $data = [];
+        foreach ($municipalities as $municipality) {
+            $affectedAnimalsCount = AffectedAnimals::where('year', $selectedYear)
+                ->where('municipality_id', $municipality->id)
+                ->sum('count');
+
+            $data[] = [
+                'year' => $selectedYear,
+                'municipality' => $municipality->municipality_name,
+                'count' => $affectedAnimalsCount,
+            ];
+        }
+
+        return $data;
+    }
+
+    public function getAffectedAnimalsOverviewSecondData($selectedYear)
+    {
+        $animals = Animal::all();
+
+        $data = [];
+        foreach ($animals as $animal) {
+            $affectedAnimalsSecondCount = AffectedAnimals::where('year', $selectedYear)
+                ->where('animal_id', $animal->id)
+                ->sum('count');
+
+            $data[] = [
+                'year' => $selectedYear,
+                'animal_name' => $animal->animal_name,
+                'count' => $affectedAnimalsSecondCount,
+            ];
+        }
+
+        return $data;
+    }
+
+
+
+
+
+    // Trend
+    // 
+
+    // Affected Animals Trend
+    public function getAffectedAnimalsTrendData()
+    {
+        $recentYears = AffectedAnimals::distinct('year')
+            ->orderBy('year', 'desc')
+            ->take(20)
+            ->pluck('year')
+            ->toArray();
+
+        $affectedAnimalsData = AffectedAnimals::whereIn('year', $recentYears)
+            ->get();
+
+        $data = [];
+        foreach ($affectedAnimalsData as $record) {
+            $data[$record->year] = $record->count;
+        }
+
+        ksort($data);
+
+        return $data;
+    }
+
+    // Animal Death Trend
+    public function getAnimalDeathTrendData()
+    {
+        $recentYears = AnimalDeath::distinct('year')
+            ->orderBy('year', 'desc')
+            ->take(20)
+            ->pluck('year')
+            ->toArray();
+
+        $animalDeathdata = AnimalDeath::whereIn('year', $recentYears)
+            ->get();
+
+        $data = [];
+        foreach ($animalDeathdata as $record) {
+            $data[$record->year] = $record->count;
+        }
+
+        ksort($data);
+
+        return $data;
+    }
+
+
+    public function getAnimalPopulationTrendData()
+    {
+        $recentYears = AnimalPopulation::distinct('year')
+            ->orderBy('year', 'desc')
+            ->take(20)
+            ->pluck('year')
+            ->toArray();
+
+        $animalPopulationData = AnimalPopulation::whereIn('year', $recentYears)
+            ->get();
+
+        $data = [];
+        foreach ($animalPopulationData as $record) {
+            $data[$record->year] = $record->animal_population_count;
+        }
+
+        ksort($data);
+
+        return $data;
+    }
+
+
+
+
+
 
 
 

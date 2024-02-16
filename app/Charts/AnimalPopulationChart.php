@@ -1,9 +1,10 @@
 <?php
-
+// *This is for animal.population view 
 namespace App\Charts;
 
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 use App\Models\AnimalPopulation;
+
 
 class AnimalPopulationChart
 {

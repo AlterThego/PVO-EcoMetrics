@@ -4,7 +4,7 @@ namespace App\Charts;
 
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
-class DashboardAnimalPopulationChart
+class AnimalPopulationOverviewChart
 {
     protected $chart;
 
@@ -13,19 +13,20 @@ class DashboardAnimalPopulationChart
         $this->chart = $chart;
     }
 
-    public function build($latestYearPopulationData): \ArielMejiaDev\LarapexCharts\BarChart
+    public function build($animalPopulationOverviewData): \ArielMejiaDev\LarapexCharts\BarChart
     {
-        $animalIds = $latestYearPopulationData->keys()->toArray();
-        $populationCounts = $latestYearPopulationData->values()->toArray();
-     
+        $animalIds = $animalPopulationOverviewData->keys()->toArray();
+        $populationCounts = $animalPopulationOverviewData->values()->toArray();
+
 
         return $this->chart->barChart()
+            ->setTitle('Overall Animal Population')
             ->addData('Population', $populationCounts)
             ->setColors(['rgba(54, 162, 235, 1)', '#ff6384'])
             ->setGrid()
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
-            ->setHeight(350)
+            ->setHeight(425)
             ->setXAxis($animalIds);
     }
 }

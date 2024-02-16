@@ -17,4 +17,14 @@ class AffectedAnimals extends Model
         'year',
         'count',
     ];
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+
+    public function animal()
+    {
+        return $this->belongsTo(Animal::class, 'animal_id');
+    }
 }

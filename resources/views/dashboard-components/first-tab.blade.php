@@ -7,8 +7,8 @@
         @foreach ($animalTypes as $animalType)
             @php
                 $percentage = 0; // Default value in case of division by zero
-                if ($overallCount !== 0) {
-                    $percentage = ($animalPopulationData[$animalType->type] / $overallCount) * 100;
+                if ($overallAnimalPopulationCount !== 0) {
+                    $percentage = ($animalPopulationData[$animalType->type] / $overallAnimalPopulationCount) * 100;
                 }
             @endphp
             <a href="#"
@@ -17,7 +17,8 @@
                     <div class="flex justify-between items-center">
                         <p class="pl-2 text-base font-normal tracking-tight text-gray-700 dark:text-gray-400">
                             {{ $animalType->type }}</p>
-                        <p class="pl-2 text-yellow-900 text-semibold text-xs md:text-xs lg:text-xs tracking-tight text-gray-900 dark:text-white">
+                        <p
+                            class="pl-2 text-yellow-900 text-semibold text-xs md:text-xs lg:text-xs tracking-tight text-gray-900 dark:text-white">
                             Poultry</p>
                     </div>
                     <div class="flex justify-between items-center">
@@ -40,30 +41,32 @@
 
     {{-- Animal Population Chart --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
-        <div class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
-            <div
-                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-base text-gray-900 dark:text-gray-100">
+        <div
+            class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
+            {{-- <div
+                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-lg text-gray-900 dark:text-gray-100">
                 {{ __('Overall Animal Population') }}
-            </div>
-            <div class="relative aspect-w-16 aspect-h-11 sm:aspect-h-11 md:aspect-h-11 lg:aspect-h-10">
+            </div> --}}
+            <div class="relative h-fit">
                 <div
-                    class="bg-white rounded-b-xl px-3 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
-                    {!! $animalPopulationChart->container() !!}
-                    <script src="{{ $animalPopulationChart->cdn() }}"></script>
-                    {!! $animalPopulationChart->script() !!}
+                    class="bg-white rounded-b-xl px-3 pt-5 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                    {!! $animalPopulationOverviewChart->container() !!}
+                    <script src="{{ $animalPopulationOverviewChart->cdn() }}"></script>
+                    {!! $animalPopulationOverviewChart->script() !!}
                 </div>
             </div>
         </div>
 
-        <div class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
-            <div
-                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-semibold text-base text-gray-900 dark:text-gray-100">
+        <div
+            class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
+            {{-- <div
+                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-semibold text-lg text-gray-900 dark:text-gray-100">
                 {{ __('Veterinary Clinics by Sector') }}
-            </div>
-            
-            <div class="relative aspect-w-16 aspect-h-11 sm:aspect-h-11 md:aspect-h-11 lg:aspect-h-11 2xl:aspect-h-10">
+            </div> --}}
+
+            <div class="relative h-fit">
                 <div
-                    class="bg-white rounded-b-xl px-3 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                    class="bg-white rounded-b-xl px-3 pt-5 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
                     {!! $veterinaryClinicsChart->container() !!}
                     <script src="{{ $veterinaryClinicsChart->cdn() }}"></script>
                     {!! $veterinaryClinicsChart->script() !!}
@@ -78,7 +81,8 @@
     <div class="grid grid-cols-1 gap-4 pb-10">
         <div id="indicators-carousel" class="rounded-xl relative w-full pt-10" data-carousel="static">
             <!-- Carousel wrapper -->
-            <div class="bg-white rounded-xl shadow-lg dark:bg-gray-900 overflow-hidden items-center h-lvh w-full items-center">
+            <div
+                class="bg-white rounded-xl shadow-lg dark:bg-gray-900 overflow-hidden items-center h-lvh w-full items-center">
                 <div class="z-30 relative h-full overflow-hidden rounded-lg md:h-full border dark:border-gray-900">
                     @foreach ($municipalities as $index => $municipality)
                         <!-- Item {{ $index + 1 }} -->
@@ -86,10 +90,12 @@
                             data-carousel-item="{{ $index === $currentSlide ? 'active' : '' }}">
                             <div class="max-w-5xl mx-auto pt-15">
                                 <div class="inline flex flex-row justify-between pb-5 pt-10">
-                                    <div class="rounded-t-xl bg-white dark:bg-gray-900 pt-3 text-base text-gray-900 dark:text-gray-100">
-                                        <p>{{ __('Animal Population per Municipality') }}({{$selectedYear}})</p>
+                                    <div
+                                        class="rounded-t-xl bg-white dark:bg-gray-900 pt-3 text-base text-gray-900 dark:text-gray-100">
+                                        <p>{{ __('Animal Population per Municipality') }}({{ $selectedYear }})</p>
                                     </div>
-                                    <p class="text-end text-3xl font-bold pe-10">{{ $municipality->municipality_name }}</p>
+                                    <p class="text-end text-3xl font-bold pe-10">{{ $municipality->municipality_name }}
+                                    </p>
                                 </div>
 
                                 <table class="table-auto w-full border border-gray-300">
@@ -149,7 +155,7 @@
                     <span class="sr-only">Previous</span>
                 </span>
             </button>
-            
+
             <button type="button"
                 class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-5 cursor-pointer group focus:outline-none"
                 data-carousel-next>
@@ -169,48 +175,78 @@
 
 
 
+    {{-- Affected Animals Overview Chart --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
+        <div
+            class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
+            {{-- <div
+                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-2xl text-gray-900 dark:text-gray-100">
+                {{ __('Affected Animals per Municipality') }}
+            </div> --}}
+            <div class="relative h-fit">
+                <div
+                    class="bg-white rounded-b-xl px-3 pt-5 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                    {!! $affectedAnimalsOverviewChart->container() !!}
+                    <script src="{{ $affectedAnimalsOverviewChart->cdn() }}"></script>
+                    {!! $affectedAnimalsOverviewChart->script() !!}
+                </div>
+            </div>
+        </div>
 
 
+        <div
+            class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
+            {{-- <div
+                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-2xl text-gray-900 dark:text-gray-100">
+                {{ __('Affected Animals per Kind') }}
+            </div> --}}
+            <div class="relative h-fit">
+                <div
+                    class="bg-white rounded-b-xl px-3 pt-5 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                    {!! $affectedAnimalsOverviewSecondChart->container() !!}
+                    <script src="{{ $affectedAnimalsOverviewSecondChart->cdn() }}"></script>
+                    {!! $affectedAnimalsOverviewSecondChart->script() !!}
+                </div>
+            </div>
+        </div>
+    </div>
 
-    
+
     {{-- Animal Death Overview Chart --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
-        <div class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
-            <div
-                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-base text-gray-900 dark:text-gray-100">
+        <div
+            class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
+            {{-- <div
+                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-2xl text-gray-900 dark:text-gray-100">
                 {{ __('Animal Death per Municipality') }}
-            </div>
-            <div class="relative aspect-w-16 aspect-h-11">
+            </div> --}}
+            <div class="relative h-fit">
                 <div
-                    class="bg-white rounded-b-xl px-3 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                    class="bg-white rounded-b-xl px-3 pt-5 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
                     {!! $animalDeathOverviewChart->container() !!}
                     <script src="{{ $animalDeathOverviewChart->cdn() }}"></script>
                     {!! $animalDeathOverviewChart->script() !!}
                 </div>
             </div>
         </div>
-        
 
-        <div class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
-            <div
-                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-base text-gray-900 dark:text-gray-100">
+
+        <div
+            class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
+            {{-- <div
+                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-2xl text-gray-900 dark:text-gray-100">
                 {{ __('Animal Death per Animal') }}
-            </div>
-            <div class="relative aspect-w-16 aspect-h-11">
+            </div> --}}
+            <div class="relative h-fit">
                 <div
-                    class="bg-white rounded-b-xl px-3 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                    class="bg-white rounded-b-xl px-3 pt-5 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
                     {!! $animalDeathOverviewSecondChart->container() !!}
                     <script src="{{ $animalDeathOverviewSecondChart->cdn() }}"></script>
                     {!! $animalDeathOverviewSecondChart->script() !!}
                 </div>
             </div>
         </div>
-
-
-
     </div>
-
-
 
 
 
