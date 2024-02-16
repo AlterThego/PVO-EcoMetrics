@@ -17,4 +17,9 @@ class AnimalDeath extends Model
         'year',
         'count',
     ];
+
+    public function animal()
+    {
+        return $this->belongsTo(Animal::class, 'animal_id');
+    }
 }

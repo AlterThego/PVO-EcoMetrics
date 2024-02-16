@@ -169,4 +169,49 @@
 
 
 
+
+
+
+    
+    {{-- Animal Death Overview Chart --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
+        <div class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
+            <div
+                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-base text-gray-900 dark:text-gray-100">
+                {{ __('Animal Death per Municipality') }}
+            </div>
+            <div class="relative aspect-w-16 aspect-h-11">
+                <div
+                    class="bg-white rounded-b-xl px-3 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                    {!! $animalDeathOverviewChart->container() !!}
+                    <script src="{{ $animalDeathOverviewChart->cdn() }}"></script>
+                    {!! $animalDeathOverviewChart->script() !!}
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="rounded-t-xl rounded-b-xl bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow border dark:border-gray-900">
+            <div
+                class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-base text-gray-900 dark:text-gray-100">
+                {{ __('Animal Death per Animal') }}
+            </div>
+            <div class="relative aspect-w-16 aspect-h-11">
+                <div
+                    class="bg-white rounded-b-xl px-3 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                    {!! $animalDeathOverviewSecondChart->container() !!}
+                    <script src="{{ $animalDeathOverviewSecondChart->cdn() }}"></script>
+                    {!! $animalDeathOverviewSecondChart->script() !!}
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
 </div>
