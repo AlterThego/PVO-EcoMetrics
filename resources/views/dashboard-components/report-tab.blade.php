@@ -1,4 +1,4 @@
-<div class="tab-content hidden rounded-b-lg !border-opacity-0 bg-white dark:bg-gray-900 bg-opacity-60 dark:bg-opacity-60 shadow-base backdrop-blur-lg backdrop-filter sm:space-y-5 sm:p-8 md:px-10 xl:py-5"
+<div class="tab-content hidden rounded-lg !border-opacity-0 bg-white dark:bg-gray-900 bg-opacity-60 dark:bg-opacity-60 shadow-base backdrop-blur-lg backdrop-filter sm:space-y-5 sm:p-8 md:px-10 xl:py-5"
     id="summary" role="tabpanel" aria-labelledby="summary-tab">
     <!-- Component Code -->
     <div class="relative">
@@ -110,4 +110,4 @@
 
     </div>
 </div>
-</div>
+

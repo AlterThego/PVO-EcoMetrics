@@ -11,6 +11,7 @@ use App\Models\AnimalDeath;
 use App\Models\AnimalPopulation;
 use App\Models\AnimalType;
 use App\Models\Municipality;
+use App\Models\Population;
 use App\Models\VeterinaryClinics;
 use Illuminate\Http\Request;
 
@@ -128,6 +129,12 @@ class DashboardController extends Controller
         // Yearly Common Disease
         $yearlyCommonDiseaseTrendChart = $yearlyCommonDiseaseTrendChart->build();
 
+
+        // Density and Ratio
+        $animalDensityAndRatio = [];
+        foreach ($municipalities as $municipality) {
+            $animalDensityAndRatio[$municipality->id] = $this->calculateAnimalPopulationDensityAndRatio($municipality->id, $selectedYear);
+        }
         return view(
             'dashboard',
             compact(
@@ -150,7 +157,7 @@ class DashboardController extends Controller
                 'affectedAnimalsOverviewChart',
                 'affectedAnimalsOverviewSecondChart',
                 'veterinaryClinicsChart',
-                
+
 
                 // Trend
                 'animalPopulationTrendChart',
@@ -158,7 +165,8 @@ class DashboardController extends Controller
                 'affectedAnimalsTrendChart',
                 'animalDeathTrendChart',
 
-
+                // Compare
+                'animalDensityAndRatio'
 
 
             )
@@ -358,6 +366,41 @@ class DashboardController extends Controller
         ksort($data);
 
         return $data;
+    }
+
+    // Comparison of Density and Ratio per Municipality
+    public function calculateAnimalPopulationDensityAndRatio($municipalityId, $selectedYear)
+    {
+        // Get total animal population count for the specified municipality and year
+        $totalAnimalPopulation = AnimalPopulation::where('municipality_id', $municipalityId)
+            ->where('year', $selectedYear)
+            ->sum('animal_population_count');
+
+        // Get total human population count for the specified municipality and year
+        $totalHumanPopulation = Population::where('municipality_id', $municipalityId)
+            ->where('census_year', $selectedYear)
+            ->sum('population_count');
+
+        // Calculate density (animals per square kilometer, assuming land area is in square kilometers)
+        $municipality = Municipality::find($municipalityId);
+        if ($municipality) {
+            $density = $totalAnimalPopulation / $municipality->land_area;
+        } else {
+            $density = null;
+        }
+
+        // Check if totalHumanPopulation is greater than zero to avoid division by zero
+        if ($totalHumanPopulation > 0) {
+            // Calculate ratio of animals to humans
+            $ratio = $totalAnimalPopulation / $totalHumanPopulation;
+        } else {
+            $ratio = null;
+        }
+
+        return [
+            'density' => $density,
+            'ratio' => $ratio,
+        ];
     }
 
 

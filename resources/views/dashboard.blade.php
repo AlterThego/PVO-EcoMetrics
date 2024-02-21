@@ -11,6 +11,7 @@
                     <option value="#overview">Overview</option>
                     <option value="#trend">Trends</option>
                     <option value="#summary">Summary Report</option>
+                    <option value="#compare">Density and Ratio</option>
                 </select>
             </div>
 
@@ -20,8 +21,8 @@
                     <p class="text-sm font-normal text-gray-700 dark:text-gray-300">Benguet Animals and Agriculture</p>
                 </div>
                 <!-- Tabs for larger screens -->
-                <ul class="col-span-2 hidden sm:flex text-sm font-medium text-center items-end justify-end text-gray-500 divide-x divide-gray-100 dark:divide-gray-950 
-            rounded-t-lg"
+                <ul class="col-span-2 hidden sm:flex text-sm font-medium text-center items-end justify-end text-gray-500 divide-x 
+                divide-gray-100 dark:divide-gray-950 rounded-t-lg"
                     id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
                     <li class="w-full relative">
                         <button id="overview-tab" data-tooltip-target="tooltip-overview" data-tabs-target="#overview"
@@ -40,17 +41,18 @@
 
                         </button>
                     </li>
+
                     <li class="w-full relative">
-                        <button id="trend-tab" data-tooltip-target="tooltip-trend" data-tabs-target="#trend"
-                            type="button" role="tab" aria-controls="trend" aria-selected="false"
+                        <button id="compare-tab" data-tooltip-target="tooltip-compare" data-tabs-target="#compare"
+                            type="button" role="tab" aria-controls="compare" aria-selected="false"
                             class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-6 h-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class='w-6 h-6' viewBox="0 0 24 24">
                                 <path fill="currentColor"
-                                    d="M244 56v64a12 12 0 0 1-24 0V85l-75.51 75.52a12 12 0 0 1-17 0L96 129l-63.51 63.49a12 12 0 0 1-17-17l72-72a12 12 0 0 1 17 0L136 135l67-67h-35a12 12 0 0 1 0-24h64a12 12 0 0 1 12 12" />
+                                    d="M10 23v-2H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h5V1h2v22zm-5-5h5v-6zm9 3v-9l5 6V5h-5V3h5q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21z" />
                             </svg>
-                            <div id="tooltip-trend" role="tooltip"
+                            <div id="tooltip-compare" role="tooltip"
                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                Trends
+                                Density and Ratio
                                 <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         </button>
@@ -59,7 +61,7 @@
                     <li class="w-full relative">
                         <button id="summary-tab" data-tooltip-target="tooltip-summary" data-tabs-target="#summary"
                             type="button" role="tab" aria-controls="summary" aria-selected="false"
-                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center rounded-tr-lg w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
+                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6">
                                 <path fill="currentColor"
                                     d="m20 8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9 19H7v-9h2zm4 0h-2v-6h2zm4 0h-2v-3h2zM14 9h-1V4l5 5z" />
@@ -67,6 +69,22 @@
                             <div id="tooltip-summary" role="tooltip"
                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                 Summary Report
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </button>
+                    </li>
+
+                    <li class="w-full relative">
+                        <button id="trend-tab" data-tooltip-target="tooltip-trend" data-tabs-target="#trend"
+                            type="button" role="tab" aria-controls="trend" aria-selected="false"
+                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center rounded-tr-lg w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-6 h-6">
+                                <path fill="currentColor"
+                                    d="M244 56v64a12 12 0 0 1-24 0V85l-75.51 75.52a12 12 0 0 1-17 0L96 129l-63.51 63.49a12 12 0 0 1-17-17l72-72a12 12 0 0 1 17 0L136 135l67-67h-35a12 12 0 0 1 0-24h64a12 12 0 0 1 12 12" />
+                            </svg>
+                            <div id="tooltip-trend" role="tooltip"
+                                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                Trends
                                 <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         </button>
@@ -94,14 +112,16 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <select name="year" id="year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-4 py-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select name="year" id="year"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-4 py-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 @foreach ($years as $year)
-                                    <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>{{ $year }}</option>
+                                    <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>
+                                        {{ $year }}</option>
                                 @endforeach
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-1 pointer-events-none">
-                                <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24">
+                                <svg class="w-6 h-6 text-gray-500 dark:text-gray-400"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path fill="currentColor" d="m7 10l5 5l5-5z" />
                                 </svg>
                             </div>
@@ -115,9 +135,10 @@
 
             <!-- Tab content -->
             <div id="fullWidthTabContent" class="border rounded-lg dark:border-gray-950">
-                @include('dashboard-components.first-tab')
-                @include('dashboard-components.second-tab')
-                @include('dashboard-components.third-tab')
+                @include('dashboard-components.overview-tab')
+                @include('dashboard-components.compare-tab')
+                @include('dashboard-components.report-tab')
+                @include('dashboard-components.trend-tab')
             </div>
         </div>
     </div>
@@ -186,6 +207,59 @@
                 tabContentToShow.style.display = 'block';
             }
         });
+    });
+</script>
+    
+{{-- Script for saving state of the tab selected --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to handle tab button click
+        function handleTabClick(event) {
+            var selectedTabId = event.currentTarget.getAttribute('data-tabs-target');
+            var tabContentToShow = document.querySelector(selectedTabId);
+
+            if (tabContentToShow) {
+                // Hide all tab contents
+                var allTabContents = document.querySelectorAll('.tab-content');
+                allTabContents.forEach(function(tab) {
+                    tab.style.display = 'none';
+                });
+
+                // Show selected tab content
+                tabContentToShow.style.display = 'block';
+
+                // Remove selected state from all tab buttons
+                var allTabButtons = document.querySelectorAll('[role="tab"]');
+                allTabButtons.forEach(function(button) {
+                    button.setAttribute('aria-selected', 'false');
+                });
+
+                // Add selected state to the clicked tab button
+                event.currentTarget.setAttribute('aria-selected', 'true');
+
+                // Store the ID of the selected tab in localStorage
+                localStorage.setItem('selectedTab', selectedTabId);
+            }
+        }
+
+        // Get all tab buttons
+        var tabButtons = document.querySelectorAll('[role="tab"]');
+
+        // Add click event listener to each tab button
+        tabButtons.forEach(function(button) {
+            button.addEventListener('click', handleTabClick);
+        });
+
+        // Retrieve the ID of the selected tab from localStorage
+        var selectedTabId = localStorage.getItem('selectedTab');
+
+        // If there's a stored selected tab, click on it to show its content
+        if (selectedTabId) {
+            var selectedTabButton = document.querySelector('[data-tabs-target="' + selectedTabId + '"]');
+            if (selectedTabButton) {
+                selectedTabButton.click();
+            }
+        }
     });
 </script>
 
@@ -336,3 +410,10 @@
         requestAnimationFrame(scrollStep);
     }
 </script>
+
+
+
+
+
+
+

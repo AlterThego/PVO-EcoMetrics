@@ -52,14 +52,14 @@
                                 <span class="nav__name">Dashboard</span>
                             </a>
 
-                            <a href="/compare" class="nav__link {{ request()->is('compare') ? 'active' : '' }}">
+                            {{-- <a href="/compare" class="nav__link {{ request()->is('compare') ? 'active' : '' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                     height="220" viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M10 23v-2H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h5V1h2v22zm-5-5h5v-6zm9 3v-9l5 6V5h-5V3h5q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21z" />
                                 </svg>
                                 <span class="nav__name">Compare</span>
-                            </a>
+                            </a> --}}
 
 
                         </div>
@@ -360,7 +360,7 @@
                 root.style.setProperty('--text-color-light', '#A5A1AA');
                 root.style.setProperty('--body-color', '#F0FFF0');
                 root.style.setProperty('--container-color', '#FFFFFF');
-                root.style.setProperty('--nav-dropdown-collapse', '#FFFAEB');
+                root.style.setProperty('--nav-dropdown-collapse', '#f0fdf4');
                 // Add more properties for other variables if needed
             }
 

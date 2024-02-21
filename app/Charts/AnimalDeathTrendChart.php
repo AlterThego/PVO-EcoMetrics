@@ -25,8 +25,9 @@ class AnimalDeathTrendChart
             ->setColors(['#B10DC9'])
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
-            ->setGrid()
+            // ->setGrid()
             ->setHeight(525)
-            ->setMarkers(['#E040FB', '#E040FB '], 7, 10);
+            // ->setMarkers(['#E040FB', '#E040FB '], 7, 10)
+            ;
     }
 }
