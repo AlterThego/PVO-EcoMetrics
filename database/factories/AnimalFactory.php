@@ -12,8 +12,10 @@ class AnimalFactory extends Factory
 
     public function definition(): array
     {
+        $animalName = $this->faker->unique()->text(20);
+
         return [
-            'animal_name' =>$this->faker->text(20),
+            'animal_name' => $animalName,
             'classification' => $this->faker->randomElement(['Livestock', 'Poultry', 'Fish', 'Pet', 'Insect']),
             // 'type' => $this->faker->text(11),
             // 'timestamps' will be automatically managed by Eloquent

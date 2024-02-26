@@ -18,11 +18,12 @@ class AffectedAnimalsFactory extends Factory
         // Assuming there are existing Municipality and Animal records
         $municipalityId = \App\Models\Municipality::inRandomOrder()->first()->id;
         $animalId = \App\Models\Animal::inRandomOrder()->first()->id;
+        $year = $this->faker->unique()->year;
 
         return [
             'municipality_id' => $municipalityId,
             'animal_id' => $animalId,
-            'year' => $this->faker->year,
+            'year' => $year,
             'count' => $this->faker->numberBetween(1, 100),
         ];
     }

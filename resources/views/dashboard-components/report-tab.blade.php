@@ -39,7 +39,7 @@
                     <h3 class="text-2xl font-bold my-5">Year: {{ $selectedYear }}</h3>
 
                     <p class="text-base leading-8 my-5">
-                        Beginning our report, we'll be examining the Poultry Population. Let's jump in and uncover the
+                        Beginning our report, we'll be examining the animal types, primarily poultry. Let's jump in and uncover the
                         facts and figures behind this important aspect of agriculture.
                     </p>
 

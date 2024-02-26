@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Disease;
+use App\Models\YearlyCommonDisease;
+use Illuminate\Http\Request;
 
 // Models
-use App\Charts\AffectedAnimalsOverviewSecondChart;
-use App\Charts\AnimalPopulationTrendChart;
 use App\Models\AffectedAnimals;
 use App\Models\Animal;
 use App\Models\AnimalDeath;
@@ -13,7 +14,7 @@ use App\Models\AnimalType;
 use App\Models\Municipality;
 use App\Models\Population;
 use App\Models\VeterinaryClinics;
-use Illuminate\Http\Request;
+
 
 // Overview
 use App\Charts\AnimalPopulationOverviewChart;
@@ -21,12 +22,14 @@ use App\Charts\VeterinaryClinicsChart;
 use App\Charts\AnimalDeathOverviewChart;
 use App\Charts\AnimalDeathOverviewSecondChart;
 use App\Charts\AffectedAnimalsOverviewChart;
+use App\Charts\AffectedAnimalsOverviewSecondChart;
+use App\Charts\YearlyCommonDiseaseOverviewChart;
 
 // Trend
 use App\Charts\YearlyCommonDiseaseTrendChart;
 use App\Charts\AffectedAnimalsTrendChart;
 use App\Charts\AnimalDeathTrendChart;
-
+use App\Charts\AnimalPopulationTrendChart;
 
 class DashboardController extends Controller
 {
@@ -40,6 +43,7 @@ class DashboardController extends Controller
         AnimalDeathOverviewSecondChart $animalDeathOverviewSecondChart,
         AffectedAnimalsOverviewChart $affectedAnimalsOverviewChart,
         AffectedAnimalsOverviewSecondChart $affectedAnimalsOverviewSecondChart,
+        YearlyCommonDiseaseOverviewChart $yearlyCommonDiseaseOverviewChart,
 
         // Trend
         AnimalPopulationTrendChart $animalPopulationTrendChart,
@@ -82,7 +86,7 @@ class DashboardController extends Controller
 
 
         // Animal Population Overview Chart
-        $animalPopulationOverviewData = $this->getAnimalPopulationData($selectedYear);
+        $animalPopulationOverviewData = $this->getAnimalPopulationOverviewData($selectedYear);
         $animalPopulationOverviewChart = $animalPopulationOverviewChart->build($animalPopulationOverviewData);
 
         // Affected Animals
@@ -112,6 +116,9 @@ class DashboardController extends Controller
         ];
         $veterinaryClinicsChart = $veterinaryClinicsChart->build($veterinaryClinicsChartData);
 
+        // Yearly Common Disease Overview
+        $yearlyCommonDiseaseOverviewData = $this->getYearlyCommonDiseaseOverviewData($selectedYear);
+        $yearlyCommonDiseaseOverviewChart = $yearlyCommonDiseaseOverviewChart->build($yearlyCommonDiseaseOverviewData);
         // 
         // End of Overview contents
 
@@ -150,13 +157,14 @@ class DashboardController extends Controller
 
 
                 // Overview
-                'animalPopulationOverviewChart',
                 'animalPopulationsByMunicipality',
+                'animalPopulationOverviewChart',
                 'animalDeathOverviewChart',
                 'animalDeathOverviewSecondChart',
                 'affectedAnimalsOverviewChart',
                 'affectedAnimalsOverviewSecondChart',
                 'veterinaryClinicsChart',
+                'yearlyCommonDiseaseOverviewChart',
 
 
                 // Trend
@@ -183,11 +191,24 @@ class DashboardController extends Controller
 
 
     // Animal Population Overview
-    public function getAnimalPopulationData($selectedYear)
+    public function getAnimalPopulationOverviewData($selectedYear)
     {
-        return AnimalPopulation::where('year', $selectedYear)
-            ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
-            ->pluck('animal_population_count', 'animal.animal_name');
+        $animals = Animal::all();
+
+        $data = [];
+        foreach ($animals as $animal) {
+            $animalPopulationCount = AnimalPopulation::where('year', $selectedYear)
+                ->where('animal_id', $animal->id)
+                ->sum('animal_population_count');
+
+            $data[] = [
+                'year' => $selectedYear,
+                'animal_name' => $animal->animal_name,
+                'count' => $animalPopulationCount,
+            ];
+        }
+
+        return $data;
     }
 
     private function getAnimalTypeData($selectedYear, $animalTypes)
@@ -401,6 +422,28 @@ class DashboardController extends Controller
             'density' => $density,
             'ratio' => $ratio,
         ];
+    }
+
+
+    public function getYearlyCommonDiseaseOverviewData($selectedYear)
+    {
+        // Retrieve all municipalities
+        $diseases = Disease::all();
+
+        $data = [];
+        foreach ($diseases as $disease) {
+            $diseaseCount = YearlyCommonDisease::where('year', $selectedYear)
+                ->where('disease_id', $disease->id)
+                ->sum('disease_count');
+
+            $data[] = [
+                'year' => $selectedYear,
+                'disease' => $disease->disease_name,
+                'disease_count' => $diseaseCount,
+            ];
+        }
+
+        return $data;
     }
 
 

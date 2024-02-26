@@ -18,8 +18,12 @@ class Animal extends Model
         'type',
     ];
 
-    // If you don't want timestamps, you can set it to false
     public $timestamps = true;
+
+    public function setAnimalNameAttribute($value)
+    {
+        $this->attributes['animal_name'] = ucfirst(strtolower($value));
+    }
 
     public function animalPopulation()
     {

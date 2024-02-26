@@ -25,7 +25,7 @@ class AnimalPopulationController extends Controller
                 'animal' => 'required|exists:animal,id',
                 'animal_type' => 'nullable|exists:animal_type,id',
                 'animal_population_count' => 'required|integer',
-                'volume' => 'required|numeric',
+                'volume' => 'nullable|numeric',
             ]);
 
             // Save the data to the database

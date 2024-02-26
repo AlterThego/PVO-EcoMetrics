@@ -11,6 +11,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('populations', function (Blueprint $table) {
+            $table->unique(['municipality_id', 'census_year']);
+
             $table->id();
             $table->integer('census_year');
             $table->integer('population_count');

@@ -105,7 +105,9 @@ final class BeeKeeperTable extends PowerGridComponent
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
                 ->optionValue('id'),
-
+                
+            Filter::inputText('year')
+                ->operators(['contains']),
         ];
     }
 

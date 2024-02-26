@@ -80,7 +80,7 @@
                             <div class="h-px bg-gray-400 m-2"></div> <!-- Horizontal line break -->
                         </div>
                         <div class="hidden sm:block">
-                            <h1 class="text-xs">Republic of the Philippines</h1>
+                            <h1 class="text-xs">Province of Benguet</h1>
                             {{-- <div class="h-px bg-gray-400"></div> <!-- Horizontal line break --> --}}
                             <h1 class="font-bold text-md">Provincial Veterinary Office</h1>
                         </div>
@@ -416,6 +416,52 @@
 
         </div>
     </div>
+    <div class=" mx-auto py-16 xl:px-20 lg:px-12 sm:px-6 px-4 text-center"
+    style="position:relative; z-index:30;">
+    <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+    <div class="flex w-full flex-col items-center justify-center pb-10">
+        <img class="h-20"
+            src="https://benguet.gov.ph/wp-content/uploads/2020/09/province-of-benguet-banner-1-768x154.png">
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 md:gap-8 gap-4">
+        <div class="flex flex-col">
+            <p class="text-lg font-bold leading-none text-gray-800 dark:text-white">DigiStock</p>
+            <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">Copyright © 2021 DigiStock
+            </p>
+            <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">All rights reserved</p>
+        </div>
+        <div class="flex flex-col">
+            <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Company</h2>
+            <a href="javascript:void(0)"
+                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Blog</a>
+            <a href="javascript:void(0)"
+                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Pricing</a>
+            <a href="javascript:void(0)"
+                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">About
+                Us</a>
+            <a href="javascript:void(0)"
+                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Contact
+                us</a>
+            <a href="javascript:void(0)"
+                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Testimonials</a>
+        </div>
+        <div class="flex flex-col">
+            <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Support</h2>
+            <a href="javascript:void(0)"
+                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Legal
+                policy</a>
+            <a href="javascript:void(0)"
+                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Status
+                policy</a>
+            <a href="javascript:void(0)"
+                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Privacy
+                policy</a>
+            <a href="javascript:void(0)"
+                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Terms
+                of service</a>
+        </div>
+    </div>
+</div>
     @livewireScripts
 
     <script>

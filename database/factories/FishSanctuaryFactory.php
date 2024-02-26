@@ -16,10 +16,11 @@ class FishSanctuaryFactory extends Factory
     {
         // Assuming there are existing Barangay records
         $barangayId = \App\Models\Barangay::inRandomOrder()->first()->id;
+        $year = $this->faker->unique()->year;
 
         return [
             'barangay_id' => $barangayId,
-            'year' => $this->faker->year,
+            'year' => $year,
             'land_area' => $this->faker->randomFloat(2, 1, 100),
         ];
     }

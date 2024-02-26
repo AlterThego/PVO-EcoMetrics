@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Barangay;
 use App\Models\FishSanctuary;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -89,6 +90,14 @@ final class FishSanctuaryTable extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::select('barangay_id', 'barangay_id')
+            ->dataSource(Barangay::all())
+            ->optionLabel('barangay_name')
+            ->optionValue('id'),
+
+
+            Filter::inputText('year')
+                ->operators(['contains']),
         ];
     }
 

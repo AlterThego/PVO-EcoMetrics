@@ -3,7 +3,7 @@
 
 
     {{-- 4 Cards --}}
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
         @foreach ($animalTypes as $animalType)
             @php
                 $percentage = 0; // Default value in case of division by zero
@@ -39,10 +39,10 @@
     </div>
 
 
-    {{-- Animal Population Chart --}}
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
+    {{-- Animal Population Overview Chart --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 justify-center items-center">
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-5 sm:col-span-5 row-end-auto z-30 shadow-lg border dark:border-gray-900">
             {{-- <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-lg text-gray-900 dark:text-gray-100">
                 {{ __('Overall Animal Population') }}
@@ -58,7 +58,7 @@
         </div>
 
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-3 sm:col-span-3 row-end-auto z-30 shadow-lg border dark:border-gray-900">
             {{-- <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-semibold text-lg text-gray-900 dark:text-gray-100">
                 {{ __('Veterinary Clinics by Sector') }}
@@ -78,6 +78,7 @@
     </div>
 
 
+    {{-- Animal Population per Municipality Carousel --}}
     <div class="grid grid-cols-1 gap-4 pb-10">
         <div id="indicators-carousel" class="rounded-xl relative w-full pt-10" data-carousel="static">
             <!-- Carousel wrapper -->
@@ -247,6 +248,24 @@
             </div>
         </div>
     </div>
+
+    {{-- Yearly Common Disease Overview Chart --}}
+    <div class="grid grid-cols-4 gap-3 justify-center items-center">
+        <div
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-4 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            <div class="relative h-fit">
+                <div
+                    class="bg-white rounded-lg px-3 pt-5 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                    {!! $yearlyCommonDiseaseOverviewChart->container() !!}
+                    <script src="{{ $yearlyCommonDiseaseOverviewChart->cdn() }}"></script>
+                    {!! $yearlyCommonDiseaseOverviewChart->script() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
 
 

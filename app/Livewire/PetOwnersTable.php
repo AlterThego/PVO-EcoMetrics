@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Municipality;
 use App\Models\Population;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -91,6 +92,14 @@ final class PetOwnersTable extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::select('municipality_id', 'municipality_id')
+                // ->dataSource(Municipality::where('id', 2)->get())
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id'),
+                
+            Filter::inputText('census_year')
+                ->operators(['contains']),
         ];
     }
 

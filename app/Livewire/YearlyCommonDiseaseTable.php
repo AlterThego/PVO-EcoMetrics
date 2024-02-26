@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Disease;
 use App\Models\YearlyCommonDisease;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -87,6 +88,14 @@ final class YearlyCommonDiseaseTable extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::select('disease_id', 'disease_id')
+            ->dataSource(Disease::all())
+            ->optionLabel('disease_name')
+            ->optionValue('id'),
+
+
+            Filter::inputText('year')
+                ->operators(['contains']),
         ];
     }
 

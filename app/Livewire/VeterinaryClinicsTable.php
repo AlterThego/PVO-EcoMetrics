@@ -111,6 +111,10 @@ final class VeterinaryClinicsTable extends PowerGridComponent
                 ->optionLabel('municipality_name')
                 ->optionValue('id'),
 
+            Filter::inputText('year_established')
+                ->placeholder('Year')
+                ->operators(['contains']),
+
         ];
     }
 

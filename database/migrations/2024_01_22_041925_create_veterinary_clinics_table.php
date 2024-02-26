@@ -8,6 +8,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('veterinary_clinics', function (Blueprint $table) {
+            $table->unique(['municipality_id', 'clinic_name']);
+
             $table->id();
 
 

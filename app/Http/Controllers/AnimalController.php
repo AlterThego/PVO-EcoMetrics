@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Animal;
@@ -38,6 +39,17 @@ class AnimalController extends Controller
 
             \DB::rollback();
             toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
+            return back();
+            
+        } catch (QueryException $e) {
+            \DB::rollBack();
+            // Check if the error is due to duplicate entry
+            if ($e->errorInfo[1] == 1062) {
+                toastr()->error('Duplicate entry. Please check your data.');
+            } else {
+                Log::error('Error saving data: ' . $e->getMessage());
+                toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
+            }
             return back();
 
         } catch (\Exception $e) {

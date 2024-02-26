@@ -12,6 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('animal', function (Blueprint $table) {
+            $table->unique(['animal_name', 'classification']);
+
+
             $table->id();
             $table->string('animal_name');
             $table->enum('classification', ['Livestock', 'Poultry', 'Fishery', 'Pet', 'Insect']);

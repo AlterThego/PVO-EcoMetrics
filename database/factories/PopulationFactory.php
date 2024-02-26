@@ -17,10 +17,11 @@ class PopulationFactory extends Factory
     {
         // Assuming there are existing Municipality records
         $municipalityId = \App\Models\Municipality::inRandomOrder()->first()->id;
+        $year = $this->faker->unique()->year;
 
         return [
             'municipality_id' => $municipalityId,
-            'census_year' => $this->faker->year,
+            'census_year' => $year,
             'population_count' => $this->faker->numberBetween(100, 10000),
         ];
     }

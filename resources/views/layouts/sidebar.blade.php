@@ -22,7 +22,7 @@
         <div class="nav" id="navbar">
             <nav class="nav__container">
                 <div>
-                    <a href="#" class="nav__link nav__logo">
+                    <a href="/" class="nav__link nav__logo">
                         {{-- <i class='bx bxs-disc nav__icon'></i> --}}
                         <svg xmlns="http://www.w3.org/2000/svg" class="bx nav__icon" viewBox="0 0 24 24">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -303,9 +303,8 @@
                                             class="nav__dropdown-item {{ request()->is('municipalities') ? ' active' : '' }}">Municipalities</a>
                                         <a href="/barangays"
                                             class="nav__dropdown-item {{ request()->is('barangays') ? ' active' : '' }}">Barangays</a>
-                                        <a href="/pet-owners"
-                                            class="nav__dropdown-item {{ request()->is('pet-owners') ? ' active' : '' }}">Pet
-                                            Owners</a>
+                                        <a href="/population"
+                                            class="nav__dropdown-item {{ request()->is('population') ? ' active' : '' }}">Population</a>
                                     </div>
                                 </div>
                             </div>

@@ -8,6 +8,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('fish_production_areas', function (Blueprint $table) {
+            $table->unique(['fish_production_id', 'year'], 'land_area');
+
             $table->id();
 
             $table->unsignedBigInteger('fish_production_id');

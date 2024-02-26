@@ -3,23 +3,14 @@
     <div class="max-w-7xl mx-auto" style="position:relative; z-index:30;">
         <div class="w-full">
 
-            <!-- Dropdown for small screens -->
-            <div class="sm:hidden">
-                <label for="tabs" class="sr-only">Select tab</label>
-                <select id="tabs"
-                    class="block w-full bg-gray-40 border border-gray-200 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="#overview">Overview</option>
-                    <option value="#trend">Trends</option>
-                    <option value="#summary">Summary Report</option>
-                    <option value="#compare">Density and Ratio</option>
-                </select>
-            </div>
+
 
             <div class="grid grid-cols-6 gap-3 pt-8">
                 <div class="flex flex-col space-y-1 col-span-2 text-center pb-6">
                     <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
                     <p class="text-sm font-normal text-gray-700 dark:text-gray-300">Benguet Animals and Agriculture</p>
                 </div>
+
                 <!-- Tabs for larger screens -->
                 <ul class="col-span-2 hidden sm:flex text-sm font-medium text-center items-end justify-end text-gray-500 divide-x 
                 divide-gray-100 dark:divide-gray-950 rounded-t-lg"
@@ -91,6 +82,7 @@
                     </li>
                 </ul>
 
+                {{-- Year Dropdown Selection --}}
                 <div class="flex text-center align-center justify-center col-span-2">
                     <form method="GET" action="{{ route('dashboard') }}" class="flex items-center justify-between">
                         <svg data-tooltip-target="tooltip-help" class="w-4 h-4 mr-3 text-gray-500 dark:text-gray-400"
@@ -113,7 +105,10 @@
                                 </svg>
                             </div>
                             <select name="year" id="year"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-4 py-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-4 py-2.5 
+                                dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 @foreach ($years as $year)
                                     <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>
                                         {{ $year }}</option>
@@ -131,6 +126,17 @@
                             Data</button>
                     </form>
                 </div>
+            </div>
+            <!-- Dropdown for small screens -->
+            <div class="sm:hidden">
+                <label for="tabs" class="sr-only">Select tab</label>
+                <select id="tabs"
+                    class="block w-full mb-5 bg-gray-40 border border-gray-200 dark:border-gray-950 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-lg">
+                    <option value="#overview">Overview</option>
+                    <option value="#trend">Trends</option>
+                    <option value="#summary">Summary Report</option>
+                    <option value="#compare">Density and Ratio</option>
+                </select>
             </div>
 
             <!-- Tab content -->
@@ -174,16 +180,15 @@
                             'hover:bg-white', 'dark:hover:bg-gray-900',
                             'hover:text-green-500', 'dark:hover:text-white',
                             'text-green-500', 'shadow-2xl', 'bg-white',
-                            'bg-opacity-60',
                             'dark:bg-gray-900');
                     });
 
                     // Add border bottom to the selected tab button
                     this.classList.add('border-b-4', 'border-green-500',
                         'dark:border-custom-orange', 'dark:text-white', 'hover:bg-white',
-                        'dark:hover:bg-gray-900',
-                        'hover:text-green-500', 'dark:hover:text-white', 'text-green-500',
-                        'shadow-2xl', 'bg-white', 'bg-opacity-60', 'dark:bg-gray-900');
+                        'dark:hover:bg-gray-900', 'hover:text-green-500',
+                        'dark:hover:text-white',
+                        'text-green-500', 'shadow-2xl', 'bg-white', 'dark:bg-gray-900');
                 }
             });
         });
@@ -209,7 +214,7 @@
         });
     });
 </script>
-    
+
 {{-- Script for saving state of the tab selected --}}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -292,6 +297,7 @@
         saveSelectedYear();
     });
 </script> --}}
+
 
 {{-- Experimental 1: success --}}
 <script>
@@ -410,10 +416,3 @@
         requestAnimationFrame(scrollStep);
     }
 </script>
-
-
-
-
-
-
-

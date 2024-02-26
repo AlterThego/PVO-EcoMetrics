@@ -17,6 +17,11 @@ class Municipality extends Model
         'land_area',
     ];
 
+    public function setMunicipalityNameAttribute($value)
+    {
+        $this->attributes['municipality_name'] = ucfirst(strtolower($value));
+    }
+
     public function animalPopulations()
     {
         return $this->hasMany(AnimalPopulation::class, 'municipality_id');

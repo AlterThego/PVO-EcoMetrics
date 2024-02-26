@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fish_productions', function (Blueprint $table) {
+            $table->unique(['type']);
+
             $table->id();
             $table->string('type', 50);
             $table->timestamps();

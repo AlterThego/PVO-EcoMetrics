@@ -19,12 +19,12 @@ class AnimalPopulationFactory extends Factory
         $municipalityId = \App\Models\Municipality::inRandomOrder()->first()->id;
         $animalId = \App\Models\Animal::inRandomOrder()->first()->id;
         $animalTypeId = \App\Models\AnimalType::inRandomOrder()->first()->id;
-
+        $year = $this->faker->unique()->year;
         return [
             'municipality_id' => $municipalityId,
             'animal_id' => $animalId,
             'animal_type_id' => $animalTypeId,
-            'year' => $this->faker->year,
+            'year' => $year,
             'animal_population_count' => $this->faker->numberBetween(100, 10000),
             'volume' => $this->faker->randomFloat(2, 1, 100),
         ];

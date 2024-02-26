@@ -14,4 +14,15 @@ class FishProduction extends Model
     protected $fillable = [
         'type',
     ];
+
+    /**
+     * Mutator to set the type attribute to title case.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setTypeAttribute($value)
+    {
+        $this->attributes['type'] = ucfirst(strtolower($value));
+    }
 }

@@ -22,7 +22,7 @@ class AnimalPopulationTrendChart
         return $this->chart->areaChart()
             ->setTitle('Animal Population Trend')
             ->setSubtitle('For the past 20 years')
-            ->addData('Animal Deaths Count', $counts)
+            ->addData('Animal Population Count', $counts)
             ->setXAxis($years)
             ->setColors(['#FF69B4'])
             ->setFontFamily('Poppins')

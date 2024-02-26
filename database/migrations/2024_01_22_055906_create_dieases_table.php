@@ -8,6 +8,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('diseases', function (Blueprint $table) {
+            $table->unique(['disease_name']);
+
             $table->id();
             $table->string('disease_name', 50);
             // Add other columns as needed

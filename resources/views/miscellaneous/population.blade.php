@@ -1,4 +1,4 @@
-<title>Barangays</title>
+<title>Population</title>
 
 <x-app-layout>
     <div class="pt-12 pb-5">
@@ -6,7 +6,7 @@
             <div class="grid grid-cols-2">
                 <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 z-30">
                     <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
-                        {{ __('Pet Owners Population') }}
+                        {{ __('Population per Municipality') }}
                     </div>
                 </div>
                 <div data-modal-target="populationModal"
@@ -59,7 +59,7 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form action="{{ route('miscellaneous.petowners.store') }}" method="post">
+                    <form action="{{ route('miscellaneous.population.store') }}" method="post">
                         @csrf
                         <div class="grid gap-4 mb-4 sm:grid-cols-1">
                             <div>

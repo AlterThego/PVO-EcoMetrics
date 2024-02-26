@@ -8,6 +8,9 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('bee_keepers', function (Blueprint $table) {
+
+            $table->unique(['municipality_id', 'year']);
+
             $table->id();
             
             $table->unsignedBigInteger('municipality_id');

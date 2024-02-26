@@ -37,7 +37,7 @@ class AnimalPopulationChart
             ->setXAxis(array_reverse($years))
             ->setColors(['#ff6384'])
             ->setFontFamily('Poppins')
-            ->setFontColor('#808080')
+            ->setFontColor('#777')
             ->setGrid()
             ->setHeight(400)
             ->setMarkers(['#FF5722', '#E040FB'], 7, 10);
