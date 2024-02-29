@@ -24,6 +24,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/user-management', function () {
+    return view('user-management');
+})->middleware(['auth', 'verified'])->name('user-mangement');
+
+
 Route::get('/compare', function () {
     return view('compare');
 })->middleware(['auth', 'verified'])->name('compare');
