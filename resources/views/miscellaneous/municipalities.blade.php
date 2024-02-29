@@ -3,11 +3,19 @@
 <x-app-layout>
     <div class="pt-12 pb-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1">
+            <div class="grid grid-cols-2">
                 <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 z-30">
                     <div class="font-semibold text-xl text-gray-900 dark:text-gray-100">
                         {{ __('Municipalities') }}
                     </div>
+                </div>
+                <div data-modal-target="municipalityModal"
+                    class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 flex items-center justify-end z-10">
+                    <button id="municipalityModalButton" data-modal-target="municipalityModal"
+                        data-modal-toggle="municipalityModal"
+                        class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                        + Add Data
+                    </button>
                 </div>
             </div>
         </div>
@@ -25,9 +33,9 @@
 
 
         <!-- Main modal -->
-        <div id="fishProductionModal" tabindex="-1" aria-hidden="true"
+        <div id="municipalityModal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-            <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+            <div class="relative p-4 w-full max-w-md h-full md:h-auto">
                 <!-- Modal content -->
                 <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                     <!-- Modal header -->
@@ -38,7 +46,7 @@
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="fishProductionModal">
+                            data-modal-toggle="municipalityModal">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -49,16 +57,32 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form action="{{ route('health.disease.store') }}" method="post">
+                    <form action="{{ route('miscellaneous.municipalities.store') }}" method="post">
                         @csrf
                         <div class="grid gap-4 mb-4 sm:grid-cols-1">
                             <div>
-                                <label for="disease_name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disease
+                                <label for="municipality_name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality
                                     Name</label>
-                                <input type="text" name="disease_name" id="disease_name"
+                                <input type="text" name="municipality_name" id="municipality_name"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Input Disease Name" required="" autocomplete="off">
+                                    placeholder="Input Municipality Name" required="" autocomplete="off">
+                            </div>
+                            <div>
+                                <label for="zip_code"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Zip
+                                    Code</label>
+                                <input type="number" name="zip_code" id="zip_code"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Input Zip Code" required="" autocomplete="off">
+                            </div>
+                            <div>
+                                <label for="land_area"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Land
+                                    Area</label>
+                                <input type="number" step="any" name="land_area" id="land_area"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Input Barangay Name" required="" autocomplete="off">
                             </div>
                         </div>
                         <button type="submit"
@@ -69,7 +93,7 @@
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            Add New Disease
+                            Add New Municipality
                         </button>
 
 
@@ -77,6 +101,7 @@
                 </div>
             </div>
         </div>
+        @livewire('wire-elements-modal')
 
 
 </x-app-layout>

@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\BeeKeeper;
+use App\Models\Municipality;
 use App\Models\Population;
 use LivewireUI\Modal\ModalComponent;
 use App\Models\FishSanctuary;
@@ -39,6 +40,7 @@ class DeleteRow extends ModalComponent
     public $fishSanctuariesId;
     public $barangayId;
     public $populationId;
+    public $municipalityId;
 
     public function render()
     {
@@ -65,7 +67,7 @@ class DeleteRow extends ModalComponent
             $barangay = Barangay::find($this->barangayId);
             $population = Population::find($this->populationId);
             $beeKeeper = BeeKeeper::find($this->beeKeeperId);
-
+            $municipality = Municipality::find($this->municipalityId);
             if ($animalPopulation) {
                 $animalPopulation->delete();
             } else if ($animal) {
@@ -94,11 +96,14 @@ class DeleteRow extends ModalComponent
                 $fishSanctuaries->delete();
             } else if ($barangay) {
                 $barangay->delete();
-            }else if ($population) {
+            } else if ($population) {
                 $population->delete();
-            }else if ($beeKeeper) {
+            } else if ($beeKeeper) {
                 $beeKeeper->delete();
+            } else if ($municipality) {
+                $municipality->delete();
             }
+
 
 
             toastr()->success('Item deleted successfully!', 'Success');
@@ -115,7 +120,9 @@ class DeleteRow extends ModalComponent
             // Redirect back to the previous page
             return redirect()->to(url()->previous());
         }
+
+        
     }
-    
+
 
 }

@@ -158,6 +158,8 @@ Route::post('/bee-keeping', 'App\Http\Controllers\BeeKeeperController@store')
 Route::post('/population', 'App\Http\Controllers\PopulationController@store')
     ->middleware(['auth', 'verified'])->name('miscellaneous.population.store');
 
+Route::post('/municipalities', 'App\Http\Controllers\MunicipalityController@store')
+    ->middleware(['auth', 'verified'])->name('miscellaneous.municipalities.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
