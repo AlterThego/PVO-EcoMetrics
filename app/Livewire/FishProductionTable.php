@@ -59,6 +59,7 @@ final class FishProductionTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
+            Column::action('Action'),
             Column::make('Type', 'type')
                 ->sortable()
                 ->searchable(),
@@ -67,7 +68,7 @@ final class FishProductionTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+          
         ];
     }
 

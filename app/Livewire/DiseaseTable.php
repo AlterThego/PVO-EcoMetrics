@@ -60,6 +60,7 @@ final class DiseaseTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
+            Column::action('Action'),
             Column::make('Disease name', 'disease_name')
                 ->sortable()
                 ->searchable(),
@@ -68,7 +69,7 @@ final class DiseaseTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+          
         ];
     }
 

@@ -77,6 +77,7 @@ final class FarmTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
+            Column::action('Action'),
             Column::make('Municipality id', 'municipality_id'),
             // Column::make('Level', 'level')
             Column::make('Farm Level', 'level', 'farms.level')
@@ -111,7 +112,7 @@ final class FarmTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+       
         ];
     }
 

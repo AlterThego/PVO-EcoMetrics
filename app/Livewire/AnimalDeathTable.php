@@ -73,7 +73,7 @@ final class AnimalDeathTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-
+            Column::action('Action'),
             Column::make('Year', 'year')
                 ->sortable()
                 ->searchable(),
@@ -89,7 +89,7 @@ final class AnimalDeathTable extends PowerGridComponent
             //     ->sortable()
             //     ->searchable(),
 
-            Column::action('Action')
+           
         ];
     }
 

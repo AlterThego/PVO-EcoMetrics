@@ -69,6 +69,7 @@ final class BarangayTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
+            Column::action('Action'),
             Column::make('Municipality id', 'municipality_id'),
             Column::make('Barangay name', 'barangay_name')
                 ->sortable()
@@ -81,7 +82,7 @@ final class BarangayTable extends PowerGridComponent
             //     ->sortable()
             //     ->searchable(),
 
-            Column::action('Action')
+          
         ];
     }
 

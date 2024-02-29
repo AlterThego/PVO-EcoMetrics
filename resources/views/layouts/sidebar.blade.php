@@ -285,9 +285,9 @@
                                 </div>
                             </div> --}}
 
-                            <div class="nav__dropdown {{ request()->is('municipalities') || request()->is('barangays') || request()->is('pet-owners') ? ' show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('municipalities') || request()->is('barangays') || request()->is('population') ? ' show' : '' }}"
                                 id="miscellaneousDropdown">
-                                <a class="nav__link {{ request()->is('municipalities') || request()->is('barangays') || request()->is('pet-owners') ? ' active' : '' }}"
+                                <a class="nav__link {{ request()->is('municipalities') || request()->is('barangays') || request()->is('population') ? ' active' : '' }}"
                                     onclick="toggleDropdown('miscellaneousDropdown')">
                                     <svg class='bx nav__icon'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path fill="currentColor"

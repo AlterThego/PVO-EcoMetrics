@@ -70,6 +70,7 @@ final class FishSanctuaryTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
+            Column::action('Action'),
             Column::make('Barangay id', 'barangay_id'),
             Column::make('Year', 'year')
                 ->sortable()
@@ -83,7 +84,7 @@ final class FishSanctuaryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+            
         ];
     }
 

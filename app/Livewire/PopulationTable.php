@@ -17,7 +17,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class PetOwnersTable extends PowerGridComponent
+final class PopulationTable extends PowerGridComponent
 {
     use WithExport;
     public bool $showFilters = true;

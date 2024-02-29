@@ -71,6 +71,8 @@ final class BeeKeeperTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
+            
+            Column::action('Action'),
 
             Column::make('Year', 'year')
                 ->sortable()
@@ -93,7 +95,7 @@ final class BeeKeeperTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+          
         ];
     }
 

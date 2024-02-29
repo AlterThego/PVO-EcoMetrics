@@ -88,6 +88,7 @@ final class AnimalPopulationTable extends PowerGridComponent
         return [
             Column::make('Id', 'id')
                 ->sortable(),
+            Column::action('Action'),
             Column::make('Year', 'year')
                 ->sortable()
                 ->searchable(),
@@ -111,7 +112,7 @@ final class AnimalPopulationTable extends PowerGridComponent
             //     ->sortable()
             //     ->searchable(),
 
-            Column::action('Action')
+
         ];
     }
 

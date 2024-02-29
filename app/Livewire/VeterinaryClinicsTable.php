@@ -73,6 +73,8 @@ final class VeterinaryClinicsTable extends PowerGridComponent
         return [
             Column::make('Id', 'id')
                 ->sortable(),
+                
+            Column::action('Action'),
 
             Column::make('Municipality id', 'municipality_id')
                 ->searchable(),
@@ -95,7 +97,7 @@ final class VeterinaryClinicsTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+
         ];
     }
 

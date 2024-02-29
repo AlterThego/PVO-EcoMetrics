@@ -61,6 +61,7 @@ final class AnimalTypeTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             // Column::make('Animal id', 'animal_id'),
+            Column::action('Action'),
             Column::make('Type', 'type')
                 ->sortable()
                 ->searchable(),
@@ -69,7 +70,7 @@ final class AnimalTypeTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+         
         ];
     }
 

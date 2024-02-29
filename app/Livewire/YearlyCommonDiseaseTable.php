@@ -68,6 +68,7 @@ final class YearlyCommonDiseaseTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
+            Column::action('Action'),
             Column::make('Disease id', 'disease_id'),
             Column::make('Year', 'year')
                 ->sortable()
@@ -81,7 +82,7 @@ final class YearlyCommonDiseaseTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+
         ];
     }
 
@@ -89,9 +90,9 @@ final class YearlyCommonDiseaseTable extends PowerGridComponent
     {
         return [
             Filter::select('disease_id', 'disease_id')
-            ->dataSource(Disease::all())
-            ->optionLabel('disease_name')
-            ->optionValue('id'),
+                ->dataSource(Disease::all())
+                ->optionLabel('disease_name')
+                ->optionValue('id'),
 
 
             Filter::inputText('year')
