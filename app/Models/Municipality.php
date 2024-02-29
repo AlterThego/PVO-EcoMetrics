@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Municipality extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'municipalities';
 
     protected $fillable = [
@@ -16,6 +16,8 @@ class Municipality extends Model
         'zip_code',
         'land_area',
     ];
+
+    protected $softDeleteColumn = 'deleted_at'; 
 
     public function setMunicipalityNameAttribute($value)
     {

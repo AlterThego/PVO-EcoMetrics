@@ -18,13 +18,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call(UserSeeder::class); 
         $this->call(AnimalSeeder::class);
         $this->call(MunicipalitySeeder::class);
         $this->call(PopulationSeeder::class);
         $this->call(AnimalTypeSeeder::class);
         $this->call(AffectedAnimalsSeeder::class);
         $this->call(AnimalDeathSeeder::class);
-        $this->call(AnimalPopulationSeeder::class);
+
         $this->call(VeterinaryClinicsSeeder::class);
         $this->call(FarmSeeder::class);
         $this->call(BeeKeeperSeeder::class);
@@ -35,9 +36,9 @@ class DatabaseSeeder extends Seeder
         $this->call(FishProductionAreaSeeder::class);
         $this->call(DiseaseSeeder::class);
         $this->call(YearlyCommonDiseaseSeeder::class);
+        $this->call(AnimalPopulationSeeder::class);
 
-        // Enable to test User
-        $this->call(UserSeeder::class); 
+
     }
 
 }

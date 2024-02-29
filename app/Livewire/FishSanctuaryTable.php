@@ -32,6 +32,7 @@ final class FishSanctuaryTable extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
+                ->showSoftDeletes()
                 ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
@@ -84,7 +85,7 @@ final class FishSanctuaryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            
+
         ];
     }
 
@@ -92,9 +93,9 @@ final class FishSanctuaryTable extends PowerGridComponent
     {
         return [
             Filter::select('barangay_id', 'barangay_id')
-            ->dataSource(Barangay::all())
-            ->optionLabel('barangay_name')
-            ->optionValue('id'),
+                ->dataSource(Barangay::all())
+                ->optionLabel('barangay_name')
+                ->optionValue('id'),
 
 
             Filter::inputText('year')

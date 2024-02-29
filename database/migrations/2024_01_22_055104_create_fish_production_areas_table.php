@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->decimal('land_area', 10, 2);
             // Add other columns as needed
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

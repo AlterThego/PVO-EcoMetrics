@@ -30,7 +30,10 @@ final class FarmSupplyTable extends PowerGridComponent
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            Header::make()
+                ->showToggleColumns()
+                ->showSoftDeletes()
+                ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -84,7 +87,7 @@ final class FarmSupplyTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-       
+
         ];
     }
 

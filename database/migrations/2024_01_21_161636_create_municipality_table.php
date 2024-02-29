@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->string('zip_code');
             $table->decimal('land_area', 10, 2);
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

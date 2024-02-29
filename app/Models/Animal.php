@@ -5,10 +5,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Animal extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'animal';
 
@@ -17,8 +18,8 @@ class Animal extends Model
         'classification',
         'type',
     ];
-
-    public $timestamps = true;
+    protected $softDeleteColumn = 'deleted_at'; 
+    // public $timestamps = true;
 
     public function setAnimalNameAttribute($value)
     {

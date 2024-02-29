@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class AnimalDeath extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'animal_deaths';
 
@@ -17,6 +17,8 @@ class AnimalDeath extends Model
         'year',
         'count',
     ];
+
+    protected $softDeleteColumn = 'deleted_at'; 
 
     public function animal()
     {

@@ -19,7 +19,10 @@ return new class extends Migration {
             // $table->foreign('animal_id')->references('id')->on('animal')->onUpdate('cascade')->onDelete('cascade');
             // // 
             $table->string('type', 20)->nullable();
+            
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

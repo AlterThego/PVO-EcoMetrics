@@ -25,6 +25,8 @@ return new class extends Migration {
             $table->integer('year');
             $table->integer('count');
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

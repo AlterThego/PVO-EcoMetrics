@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Population extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'populations';
 
@@ -16,4 +16,5 @@ class Population extends Model
         'census_year',
         'population_count',
     ];
+    protected $softDeleteColumn = 'deleted_at'; 
 }

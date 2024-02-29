@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FishSanctuary extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
 
     protected $table = 'fish_sanctuaries';
 
@@ -16,4 +18,5 @@ class FishSanctuary extends Model
         'year',
         'land_area',
     ];
+    protected $softDeleteColumn = 'deleted_at'; 
 }

@@ -31,8 +31,9 @@ final class PopulationTable extends PowerGridComponent
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-                Header::make()
+            Header::make()
                 ->showToggleColumns()
+                ->showSoftDeletes()
                 ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
@@ -49,8 +50,8 @@ final class PopulationTable extends PowerGridComponent
                 'municipalities.municipality_name as municipality_id',
             );
 
-        
-        
+
+
     }
 
     public function relationSearch(): array
@@ -72,6 +73,9 @@ final class PopulationTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
+            
+            Column::action('Action'),
+            
             Column::make('Municipality id', 'municipality_id'),
             Column::make('Census year', 'census_year')
                 ->sortable()
@@ -85,7 +89,6 @@ final class PopulationTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
         ];
     }
 
@@ -97,7 +100,7 @@ final class PopulationTable extends PowerGridComponent
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
                 ->optionValue('id'),
-                
+
             Filter::inputText('census_year')
                 ->operators(['contains']),
         ];
@@ -106,7 +109,7 @@ final class PopulationTable extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(Population $row): array

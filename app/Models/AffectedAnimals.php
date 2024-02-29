@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AffectedAnimals extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'affected_animals';
 
@@ -17,7 +18,8 @@ class AffectedAnimals extends Model
         'year',
         'count',
     ];
-
+    protected $softDeleteColumn = 'deleted_at'; 
+    
     public function municipality()
     {
         return $this->belongsTo(Municipality::class, 'municipality_id');

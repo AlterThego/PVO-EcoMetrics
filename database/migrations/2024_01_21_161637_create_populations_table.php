@@ -23,6 +23,8 @@ return new class extends Migration {
             $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

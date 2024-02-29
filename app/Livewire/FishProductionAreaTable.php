@@ -33,6 +33,7 @@ final class FishProductionAreaTable extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
+                ->showSoftDeletes()
                 ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
@@ -80,12 +81,12 @@ final class FishProductionAreaTable extends PowerGridComponent
             Column::make('Land area', 'land_area')
                 ->sortable()
                 ->searchable(),
-                
+
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),
 
-            
+
         ];
     }
 

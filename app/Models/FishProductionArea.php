@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FishProductionArea extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'fish_production_areas';
 
@@ -16,4 +17,6 @@ class FishProductionArea extends Model
         'year',
         'land_area',
     ];
+
+    protected $softDeleteColumn = 'deleted_at'; 
 }

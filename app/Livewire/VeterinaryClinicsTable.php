@@ -34,6 +34,7 @@ final class VeterinaryClinicsTable extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
+                ->showSoftDeletes()
                 ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
@@ -73,7 +74,7 @@ final class VeterinaryClinicsTable extends PowerGridComponent
         return [
             Column::make('Id', 'id')
                 ->sortable(),
-                
+
             Column::action('Action'),
 
             Column::make('Municipality id', 'municipality_id')

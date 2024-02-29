@@ -32,6 +32,7 @@ final class BeeKeeperTable extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
+                ->showSoftDeletes()
                 ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
@@ -71,7 +72,7 @@ final class BeeKeeperTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            
+
             Column::action('Action'),
 
             Column::make('Year', 'year')

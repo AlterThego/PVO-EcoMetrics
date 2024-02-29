@@ -22,6 +22,8 @@ return new class extends Migration {
             $table->integer('disease_count');
             // Add other columns as needed
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

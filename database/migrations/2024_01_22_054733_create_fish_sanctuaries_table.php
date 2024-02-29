@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->integer('year');
             $table->decimal('land_area', 10, 2);
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

@@ -17,6 +17,8 @@ return new class extends Migration {
 
             $table->string('barangay_name', 50);
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

@@ -29,6 +29,8 @@ return new class extends Migration {
 
             $table->decimal('volume', 10, 2)->nullable();
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->string('disease_name', 50);
             // Add other columns as needed
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

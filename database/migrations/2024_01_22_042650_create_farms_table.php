@@ -23,6 +23,8 @@ return new class extends Migration {
             $table->integer('year_established');
             $table->integer('year_closed')->nullable();
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

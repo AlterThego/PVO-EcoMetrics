@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->integer('bee_keepers');
             $table->integer('year');
             $table->timestamps();
+
+            $table->softDeletes(); 
         });
     }
 

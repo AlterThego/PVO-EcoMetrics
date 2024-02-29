@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FarmSupply extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'farm_supplies';
 
@@ -17,4 +18,6 @@ class FarmSupply extends Model
         'year_established',
         'year_closed',
     ];
+
+    protected $softDeleteColumn = 'deleted_at'; 
 }
