@@ -26,5 +26,6 @@ return array(
     'options' => [
         'positionClass' => 'toast-top-center',
         'preventDuplicates' => true,
+        'progressBar' => true,
     ],
 );
