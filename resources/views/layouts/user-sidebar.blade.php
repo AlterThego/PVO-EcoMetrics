@@ -181,7 +181,7 @@
                                 </div>
                             </div>
 
-                            <div class="nav__dropdown {{ request()->is('municipalities') ||
+                            {{-- <div class="nav__dropdown {{ request()->is('municipalities') ||
                             request()->is('barangays') ||
                             request()->is('animal-list') ||
                             request()->is('animal-type') ||
@@ -233,7 +233,7 @@
                                             class="nav__dropdown-item {{ request()->is('population') ? ' active' : '' }}">Population (Human)</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
 

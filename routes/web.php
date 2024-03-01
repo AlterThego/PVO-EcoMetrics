@@ -38,11 +38,11 @@ Route::get('/animal-population', function () {
 
 Route::get('/animal-list', function () {
     return view('animal.list');
-})->middleware(['auth', 'verified'])->name('animal.list');
+})->middleware(['auth', 'verified', 'admin'])->name('animal.list');
 
 Route::get('/animal-type', function () {
     return view('animal.type');
-})->middleware(['auth', 'verified'])->name('animal.type');
+})->middleware(['auth', 'verified', 'admin'])->name('animal.type');
 
 Route::get('/animal-infected', function () {
     return view('animal.infected');
@@ -54,7 +54,7 @@ Route::get('/animal-death', function () {
 
 Route::get('/fish-production', function () {
     return view('fish.production');
-})->middleware(['auth', 'verified'])->name('fish.production');
+})->middleware(['auth', 'verified', 'admin'])->name('fish.production');
 
 
 Route::get('/fish-production-area', function () {
@@ -63,7 +63,7 @@ Route::get('/fish-production-area', function () {
 
 Route::get('/disease', function () {
     return view('health.disease');
-})->middleware(['auth', 'verified'])->name('health.disease');
+})->middleware(['auth', 'verified', 'admin'])->name('health.disease');
 
 Route::get('/yearly-disease', function () {
     return view('health.yearly-disease');
@@ -75,7 +75,7 @@ Route::get('/farm', function () {
 
 Route::get('/farm-supply', function () {
     return view('farm.supply');
-})->middleware(['auth', 'verified'])->name('farm.supply');
+})->middleware(['auth', 'verified', 'admin'])->name('farm.supply');
 
 Route::get('/veterinary-clinics', function () {
     return view('health.veterinary-clinics');
@@ -93,15 +93,15 @@ Route::get('/sanctuaries', function () {
 
 Route::get('/municipalities', function () {
     return view('miscellaneous.municipalities');
-})->middleware(['auth', 'verified'])->name('miscellaneous.municipalities');
+})->middleware(['auth', 'verified', 'admin'])->name('miscellaneous.municipalities');
 
 Route::get('/barangays', function () {
     return view('miscellaneous.barangays');
-})->middleware(['auth', 'verified'])->name('miscellaneous.barangays');
+})->middleware(['auth', 'verified', 'admin'])->name('miscellaneous.barangays');
 
 Route::get('/population', function () {
     return view('miscellaneous.population');
-})->middleware(['auth', 'verified'])->name('miscellaneous.population');
+})->middleware(['auth', 'verified', 'admin'])->name('miscellaneous.population');
 
 
 // Charts

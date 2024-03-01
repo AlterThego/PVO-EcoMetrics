@@ -49,11 +49,10 @@ final class AnimalPopulationTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return AnimalPopulation::query()
+        $query = AnimalPopulation::query()
             ->join('municipalities', 'animal_population.municipality_id', '=', 'municipalities.id')
             ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
             ->leftJoin('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
-
             ->select(
                 'animal_population.*',
                 'animal.animal_name as animal_id',
@@ -61,6 +60,14 @@ final class AnimalPopulationTable extends PowerGridComponent
                 'animal_type.type as animal_type_id',
                 'animal.classification as classification'
             );
+
+        // Check if the authenticated user's municipality_id is 0 (granting full access)
+        if (auth()->user()->municipality_id !== 0) {
+            // Filter the query based on the authenticated user's municipality_id
+            $query->where('animal_population.municipality_id', auth()->user()->municipality_id);
+        }
+
+        return $query;
     }
 
 
@@ -119,17 +126,10 @@ final class AnimalPopulationTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
+
+        $filters = [
             Filter::inputText('year')
                 ->operators(['contains']),
-
-
-            Filter::select('municipality_id', 'municipality_id')
-                // ->dataSource(Municipality::where('id', 2)->get())
-                ->dataSource(Municipality::all())
-                ->optionLabel('municipality_name')
-                ->optionValue('id'),
-
 
             Filter::select('animal_id', 'animal_id')
                 ->dataSource(Animal::all())
@@ -139,24 +139,35 @@ final class AnimalPopulationTable extends PowerGridComponent
             Filter::enumSelect('classification', 'animal.classification')
                 ->dataSource(AnimalClassification::cases())
                 ->optionLabel('animal.classification'),
-
-
-            // Add if necessary
-            // Filter::select('animal_type_id', 'animal_type_id')
-            //     // ->dataSource(Municipality::where('id', 2)->get())
-            //     ->dataSource(AnimalType::all())
-            //     ->optionLabel('type')
-            //     ->optionValue('id'),
-
-            // If enum is used
-            // Filter::select('animal_type_id', 'animal_type_id')
-            //     ->dataSource(AnimalType::all())
-            //     ->optionLabel('type')
-            //     ->optionValue('id'),
-
-
-
         ];
+
+
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id');
+        }
+
+        return $filters;
+
+
+        // Add if necessary
+        // Filter::select('animal_type_id', 'animal_type_id')
+        //     // ->dataSource(Municipality::where('id', 2)->get())
+        //     ->dataSource(AnimalType::all())
+        //     ->optionLabel('type')
+        //     ->optionValue('id'),
+
+        // If enum is used
+        // Filter::select('animal_type_id', 'animal_type_id')
+        //     ->dataSource(AnimalType::all())
+        //     ->optionLabel('type')
+        //     ->optionValue('id'),
+
+
+
+
     }
 
     #[\Livewire\Attributes\On('destroy')]
