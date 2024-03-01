@@ -69,17 +69,21 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
                                 <input type="number" name="year" id="year"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year" required="" min="2000" max="2100">
+                                    placeholder="Type Year" required="" min="2000" max="2100"
+                                    autocomplete="off">
                             </div>
                             <div>
                                 <label for="municipality"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
                                 <select name="municipality" id="municipality"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @if (auth()->check() && auth()->user()->municipality_id != 0) pointer-events-none @endif"
                                     required="">
-                                    <option value="" disabled selected>Select Municipality</option>
+                                    <option value="" disabled @if (auth()->check() && auth()->user()->municipality_id == 0) selected @endif>Select
+                                        Municipality</option>
                                     @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
-                                        <option value="{{ $id }}">{{ $municipalityName }}</option>
+                                        <option value="{{ $id }}"
+                                            @if (auth()->user()->municipality_id == $id) selected @endif>{{ $municipalityName }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -88,7 +92,7 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Colonies</label>
                                 <input type="number" name="colonies" id="colonies"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Input Colonies" required="">
+                                    placeholder="Input Colonies" required="" autocomplete="off">
                             </div>
                             <div>
                                 <label for="beeKeepers"
@@ -96,7 +100,7 @@
                                     Keepers</label>
                                 <input type="number" name="beeKeepers" id="beeKeepers"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Input Bee Keepers" required="">
+                                    placeholder="Input Bee Keepers" required="" autocomplete="off">
                             </div>
 
                         </div>
@@ -104,9 +108,8 @@
                             class="text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"></path>
+                                <path fill-rule="evenodd" d=" M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0
+                                    011-1z" clip-rule="evenodd"></path>
                             </svg>
                             Add New Bee Keeping Data
                         </button>
