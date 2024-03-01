@@ -18,6 +18,7 @@ class FishProductionAreaController extends Controller
             $validatedData = $request->validate([
                 'year' => 'required|integer',
                 'fish_production_type' => 'required|exists:fish_productions,id',
+                'municipality' => 'required|exists:municipalities,id',
                 'land_area' => 'required|numeric',
             ]);
 
@@ -26,6 +27,7 @@ class FishProductionAreaController extends Controller
             FishProductionArea::create([
                 'year' => $validatedData['year'],
                 'fish_production_id' => $validatedData['fish_production_type'],
+                'municipality_id' => $validatedData['municipality'],
                 'land_area' => $validatedData['land_area'],
             ]);
 

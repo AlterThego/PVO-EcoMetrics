@@ -14,6 +14,7 @@ class FishProductionAreaUpdate extends ModalComponent
     }
 
     public $fishProductionAreaUpdateId;
+    public $municipalityId;
     public $fishProductionTypeId;
     public $year;
     public $landArea;
@@ -25,6 +26,7 @@ class FishProductionAreaUpdate extends ModalComponent
 
         // Set the Livewire component properties with the existing values
         $this->fishProductionAreaUpdateId = $fishProduction->id;
+        $this->municipalityId = $fishProduction->municipality_id;
         $this->fishProductionTypeId = $fishProduction->fish_production_id;
         $this->year = $fishProduction->year;
         $this->landArea = $fishProduction->land_area;
@@ -38,11 +40,13 @@ class FishProductionAreaUpdate extends ModalComponent
             $fishProduction = FishProductionArea::find($this->fishProductionAreaUpdateId);
             $this->validate([
                 'year' => 'required|integer',
+                'municipalityId' => 'required|exists:municipalities,id',
                 'fishProductionTypeId' => 'required|exists:fish_productions,id',
                 'landArea' => 'required|numeric',
             ]);
 
             $fishProduction->update([
+                'municipality_id' => $this->municipalityId,
                 'fish_production_id' => $this->fishProductionTypeId,
                 'year' => $this->year,
                 'land_area' => $this->landArea,

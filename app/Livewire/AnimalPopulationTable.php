@@ -61,9 +61,7 @@ final class AnimalPopulationTable extends PowerGridComponent
                 'animal.classification as classification'
             );
 
-        // Check if the authenticated user's municipality_id is 0 (granting full access)
         if (auth()->user()->municipality_id !== 0) {
-            // Filter the query based on the authenticated user's municipality_id
             $query->where('animal_population.municipality_id', auth()->user()->municipality_id);
         }
 

@@ -45,13 +45,19 @@ final class FarmTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Farm::query()
+        $query = Farm::query()
             ->join('municipalities', 'farms.municipality_id', '=', 'municipalities.id')
 
             ->select(
                 'farms.*',
                 'municipalities.municipality_name as municipality_id',
             );
+
+        if (auth()->user()->municipality_id !== 0) {
+            $query->where('farms.municipality_id', auth()->user()->municipality_id);
+        }
+
+        return $query;
     }
 
     public function relationSearch(): array
@@ -119,12 +125,12 @@ final class FarmTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
-            Filter::select('municipality_id', 'municipality_id')
-                // ->dataSource(Municipality::where('id', 2)->get())
-                ->dataSource(Municipality::all())
-                ->optionLabel('municipality_name')
-                ->optionValue('id'),
+        $filters = [
+            // Filter::select('municipality_id', 'municipality_id')
+            //     // ->dataSource(Municipality::where('id', 2)->get())
+            //     ->dataSource(Municipality::all())
+            //     ->optionLabel('municipality_name')
+            //     ->optionValue('id'),
 
             Filter::enumSelect('level', 'farms.level')
                 ->dataSource(FarmLevel::cases())
@@ -137,9 +143,16 @@ final class FarmTable extends PowerGridComponent
             Filter::enumSelect('farm_type', 'farms.farm_type')
                 ->dataSource(FarmType::cases())
                 ->optionLabel('farms.farm_type'),
-
-
         ];
+
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id');
+        }
+
+        return $filters;
     }
 
     #[\Livewire\Attributes\On('edit')]

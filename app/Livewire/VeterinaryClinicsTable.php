@@ -44,13 +44,18 @@ final class VeterinaryClinicsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return VeterinaryClinics::query()
+        $query = VeterinaryClinics::query()
             ->join('municipalities', 'veterinary_clinics.municipality_id', '=', 'municipalities.id')
 
             ->select(
                 'veterinary_clinics.*',
                 'municipalities.municipality_name as municipality_id',
             );
+        if (auth()->user()->municipality_id !== 0) {
+            $query->where('veterinary_clinics.municipality_id', auth()->user()->municipality_id);
+        }
+
+        return $query;
     }
     public function relationSearch(): array
     {
@@ -104,21 +109,25 @@ final class VeterinaryClinicsTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
+        $filters = [
             Filter::enumSelect('sector', 'veterinary_clinics.sector')
                 ->dataSource(VeterinaryClinicsSector::cases())
                 ->optionLabel('veterinary_clinics.sector'),
-            Filter::select('municipality_id', 'municipality_id')
-                // ->dataSource(Municipality::where('id', 2)->get())
-                ->dataSource(Municipality::all())
-                ->optionLabel('municipality_name')
-                ->optionValue('id'),
 
             Filter::inputText('year_established')
                 ->placeholder('Year')
                 ->operators(['contains']),
 
         ];
+
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id');
+        }
+
+        return $filters;
     }
 
     #[\Livewire\Attributes\On('edit')]

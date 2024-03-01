@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\FishProductionArea;
+use App\Models\Municipality;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -43,12 +44,21 @@ final class FishProductionAreaTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return FishProductionArea::query()
+        $query = FishProductionArea::query()
             ->join('fish_productions', 'fish_production_areas.fish_production_id', '=', 'fish_productions.id')
+            ->join('municipalities', 'fish_production_areas.municipality_id', '=', 'municipalities.id')
             ->select(
                 'fish_production_areas.*',
                 'fish_productions.type as fish_production_id',
+                'municipalities.municipality_name as municipality_id',
             );
+
+        if (auth()->user()->municipality_id !== 0) {
+            $query->where('fish_production_areas.municipality_id', auth()->user()->municipality_id);
+        }
+
+        return $query;
+
     }
 
     public function relationSearch(): array
@@ -75,6 +85,8 @@ final class FishProductionAreaTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
+            Column::make('Municipality', 'municipality_id'),
+
             Column::make('Fish production type', 'fish_production_id'),
 
 
@@ -92,7 +104,7 @@ final class FishProductionAreaTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
+        $filters = [
             Filter::inputText('year')
                 ->operators(['contains']),
 
@@ -104,7 +116,17 @@ final class FishProductionAreaTable extends PowerGridComponent
                 ->optionValue('id'),
 
         ];
+
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id');
+        }
+
+        return $filters;
     }
+    
 
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void

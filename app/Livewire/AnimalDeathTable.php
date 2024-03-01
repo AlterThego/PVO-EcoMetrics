@@ -44,7 +44,7 @@ final class AnimalDeathTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return AnimalDeath::query()
+        $query = AnimalDeath::query()
             ->join('municipalities', 'animal_deaths.municipality_id', '=', 'municipalities.id')
             ->join('animal', 'animal_deaths.animal_id', '=', 'animal.id')
             ->select(
@@ -52,6 +52,12 @@ final class AnimalDeathTable extends PowerGridComponent
                 'animal.animal_name as animal_id',
                 'municipalities.municipality_name as municipality_id',
             );
+
+        if (auth()->user()->municipality_id !== 0) {
+            $query->where('animal_deaths.municipality_id', auth()->user()->municipality_id);
+        }
+
+        return $query;
     }
 
     public function relationSearch(): array
@@ -96,14 +102,14 @@ final class AnimalDeathTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
+        $filters = [
             Filter::inputText('year')
                 ->operators(['contains']),
 
-            Filter::select('municipality_id', 'municipality_id')
-                ->dataSource(Municipality::all())
-                ->optionLabel('municipality_name')
-                ->optionValue('id'),
+            // Filter::select('municipality_id', 'municipality_id')
+            //     ->dataSource(Municipality::all())
+            //     ->optionLabel('municipality_name')
+            //     ->optionValue('id'),
 
 
             Filter::select('animal_id', 'animal_id')
@@ -112,6 +118,14 @@ final class AnimalDeathTable extends PowerGridComponent
                 ->optionValue('id'),
 
         ];
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id');
+        }
+
+        return $filters;
     }
 
     #[\Livewire\Attributes\On('edit')]

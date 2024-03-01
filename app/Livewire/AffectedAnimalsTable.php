@@ -44,7 +44,7 @@ final class AffectedAnimalsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return AffectedAnimals::query()
+        $query = AffectedAnimals::query()
             ->join('municipalities', 'affected_animals.municipality_id', '=', 'municipalities.id')
             ->join('animal', 'affected_animals.animal_id', '=', 'animal.id')
             ->select(
@@ -52,7 +52,12 @@ final class AffectedAnimalsTable extends PowerGridComponent
                 'animal.animal_name as animal_id',
                 'municipalities.municipality_name as municipality_id',
             );
-        ;
+
+         if (auth()->user()->municipality_id !== 0) {
+            $query->where('affected_animals.municipality_id', auth()->user()->municipality_id);
+        }
+
+        return $query;
     }
 
     public function relationSearch(): array
@@ -100,14 +105,15 @@ final class AffectedAnimalsTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
+        $filters = [
+      
             Filter::inputText('year')
                 ->operators(['contains']),
 
-            Filter::select('municipality_id', 'municipality_id')
-                ->dataSource(Municipality::all())
-                ->optionLabel('municipality_name')
-                ->optionValue('id'),
+            // Filter::select('municipality_id', 'municipality_id')
+            //     ->dataSource(Municipality::all())
+            //     ->optionLabel('municipality_name')
+            //     ->optionValue('id'),
 
 
             Filter::select('animal_id', 'animal_id')
@@ -116,6 +122,15 @@ final class AffectedAnimalsTable extends PowerGridComponent
                 ->optionValue('id'),
 
         ];
+
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id');
+        }
+
+        return $filters;
     }
 
     #[\Livewire\Attributes\On('edit')]

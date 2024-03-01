@@ -16,9 +16,11 @@ class FishProductionAreaFactory extends Factory
     {
         // Assuming there are existing FishProduction records
         $fishProductionId = \App\Models\FishProduction::inRandomOrder()->first()->id;
+        $municipalityId = \App\Models\Municipality::inRandomOrder()->first()->id;
 
         return [
             'fish_production_id' => $fishProductionId,
+            'municipality_id' => $municipalityId,
             'year' => $this->faker->year,
             'land_area' => $this->faker->randomFloat(2, 1, 100),
             // Add other attributes and their respective values as needed

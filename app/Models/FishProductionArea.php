@@ -15,6 +15,7 @@ class FishProductionArea extends Model
     protected $fillable = [
         'fish_production_id',
         'year',
+        'municipality_id',
         'land_area',
     ];
 
