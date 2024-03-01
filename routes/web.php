@@ -26,8 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/user-management', function () {
     return view('user-management');
-})->middleware(['auth', 'verified'])->name('user-mangement');
-
+})->middleware(['auth', 'verified', 'admin'])->name('user-management');
 
 Route::get('/compare', function () {
     return view('compare');
