@@ -2,7 +2,7 @@
     id="trend" role="tabpanel" aria-labelledby="trend-tab">
 
     <div class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30">
-        <div class="bg-opacity-0 row-end-auto z-30 border darK:border-gray-900 rounded-lg shadow-lg">
+        <div class="bg-opacity-0 row-end-auto z-30 border border-gray-200 dark:border-gray-950 rounded-lg shadow-lg">
             <div class="relative h-fit">
                 <div
                     class="rounded-lg dark:text-white rounded-b-xl px-3 pt-5 bg-white dark:bg-gray-900 overflow-hidden shadow-lg items-center justify-end h-full w-full">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30">
-        <div class="bg-opacity-0 row-end-auto z-30 border darK:border-gray-900 rounded-lg shadow-lg">
+        <div class="bg-opacity-0 row-end-auto z-30 border border-gray-200 dark:border-gray-950 rounded-lg shadow-lg">
             {{-- <div
                 class="rounded-t-xl shadow-lg text-center bg-white dark:bg-gray-900 pt-3 font-semibold text-base text-gray-900 dark:text-gray-100">
                 {{ __('Yearly Common Diseases Cases') }}
@@ -35,7 +35,7 @@
     </div>
 
     <div class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30">
-        <div class="bg-opacity-0 row-end-auto z-30 border darK:border-gray-900 rounded-lg shadow-lg">
+        <div class="bg-opacity-0 row-end-auto z-30 border border-gray-200 dark:border-gray-950 rounded-lg shadow-lg">
             <div class="relative h-fit">
                 <div
                     class="rounded-lg px-3 pt-5 bg-white dark:bg-gray-900 overflow-hidden shadow-lg items-center justify-end h-full w-full">
@@ -49,7 +49,7 @@
 
 
     <div class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30">
-        <div class="bg-opacity-0 row-end-auto z-30 border darK:border-gray-900 rounded-lg shadow-lg">
+        <div class="bg-opacity-0 row-end-auto z-30 border border-gray-200 dark:border-gray-950 rounded-lg shadow-lg">
             <div class="relative h-fit">
                 <div
                     class="rounded-lg dark:text-white px-3 pt-5 bg-white dark:bg-gray-900 overflow-hidden shadow-lg items-center justify-end h-full w-full">

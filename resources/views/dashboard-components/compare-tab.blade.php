@@ -130,7 +130,7 @@
         </div>
     </div> --}}
 
-    <div class="overflow-x-auto rounded-xl shadow-lg">
+    <div class="overflow-x-auto rounded-xl shadow-lg border border-gray-200 dark:border-gray-950">
         <table class="table-auto w-full">
             <thead>
                 <tr>

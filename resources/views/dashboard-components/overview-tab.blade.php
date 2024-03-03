@@ -12,7 +12,7 @@
                 }
             @endphp
             <a href="#"
-                class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 shadow transition-transform duration-300 transform hover:scale-105 border dark:border-gray-900">
+                class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 shadow transition-transform duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-950">
                 <div>
                     <div class="flex justify-between items-center">
                         <p class="pl-2 text-base font-normal tracking-tight text-gray-700 dark:text-gray-400">
@@ -42,7 +42,7 @@
     {{-- Animal Population Overview Chart --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 justify-center items-center">
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-5 sm:col-span-5 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-5 sm:col-span-5 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
             {{-- <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-lg text-gray-900 dark:text-gray-100">
                 {{ __('Overall Animal Population') }}
@@ -58,7 +58,7 @@
         </div>
 
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-3 sm:col-span-3 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-3 sm:col-span-3 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
             {{-- <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-semibold text-lg text-gray-900 dark:text-gray-100">
                 {{ __('Veterinary Clinics by Sector') }}
@@ -84,7 +84,7 @@
             <!-- Carousel wrapper -->
             <div
                 class="bg-white rounded-lg shadow-lg dark:bg-gray-900 overflow-hidden items-center h-lvh w-full items-center">
-                <div class="z-30 relative h-full overflow-hidden rounded-lg md:h-full border dark:border-gray-900">
+                <div class="z-30 relative h-full overflow-hidden rounded-lg md:h-full border border-gray-200 dark:border-gray-950">
                     @foreach ($municipalities as $index => $municipality)
                         <!-- Item {{ $index + 1 }} -->
                         <div class="{{ $index === $currentSlide ? 'block' : 'hidden' }} duration-700 ease-in-out"
@@ -99,13 +99,13 @@
                                     </p>
                                 </div>
 
-                                <table class="table-auto w-full border border-gray-300">
+                                <table class="table-auto w-full border border-gray-200">
                                     <thead>
                                         <tr class="dark:text-white">
-                                            <th class="px-6 py-3 border border-gray-300 dark:border-gray-700">Animal
+                                            <th class="px-6 py-3 border border-gray-200 dark:border-gray-700">Animal
                                                 Species
                                             </th>
-                                            <th class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                            <th class="px-6 py-3 border border-gray-200 dark:border-gray-700">
                                                 Population
                                                 Count
                                             </th>
@@ -115,9 +115,9 @@
                                         @if (isset($animalPopulationsByMunicipality[$municipality->id]))
                                             @foreach ($animalPopulationsByMunicipality[$municipality->id] as $animalPopulation)
                                                 <tr>
-                                                    <td class="px-4 py-3 border border-gray-300 dark:border-gray-700">
+                                                    <td class="px-4 py-3 border border-gray-200 dark:border-gray-700">
                                                         {{ $animalPopulation->animal->animal_name }}</td>
-                                                    <td class="px-4 py-3 border border-gray-300 dark:border-gray-700">
+                                                    <td class="px-4 py-3 border border-gray-200 dark:border-gray-700">
                                                         {{ $animalPopulation->animal_population_count }}</td>
                                                 </tr>
                                             @endforeach
@@ -179,7 +179,7 @@
     {{-- Affected Animals Overview Chart --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
             {{-- <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-2xl text-gray-900 dark:text-gray-100">
                 {{ __('Affected Animals per Municipality') }}
@@ -196,7 +196,7 @@
 
 
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
             {{-- <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-2xl text-gray-900 dark:text-gray-100">
                 {{ __('Affected Animals per Kind') }}
@@ -216,7 +216,7 @@
     {{-- Animal Death Overview Chart --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
             {{-- <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-2xl text-gray-900 dark:text-gray-100">
                 {{ __('Animal Death per Municipality') }}
@@ -233,7 +233,7 @@
 
 
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-2 sm:col-span-2 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
             {{-- <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-3 font-bold text-2xl text-gray-900 dark:text-gray-100">
                 {{ __('Animal Death per Animal') }}
@@ -252,7 +252,7 @@
     {{-- Yearly Common Disease Overview Chart --}}
     <div class="grid grid-cols-4 gap-3 justify-center items-center">
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-4 row-end-auto z-30 shadow-lg border dark:border-gray-900">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-4 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
             <div class="relative h-fit">
                 <div
                     class="bg-white rounded-lg px-3 pt-5 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
