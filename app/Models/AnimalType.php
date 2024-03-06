@@ -18,8 +18,18 @@ class AnimalType extends Model
     ];
     
     protected $softDeleteColumn = 'deleted_at'; 
-    public function setTypeAttribute($value)
+    public function animal()
     {
-        $this->attributes['type'] = ucfirst(strtolower($value));
+        return $this->belongsTo(AnimalType::class, 'animal_id');
+    }
+
+    public function animal_type()
+    {
+        return $this->belongsTo(AnimalType::class, 'animal_type_id');
+    }
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_id');
     }
 }

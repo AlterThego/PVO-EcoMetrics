@@ -103,6 +103,22 @@ Route::get('/population', function () {
     return view('miscellaneous.population');
 })->middleware(['auth', 'verified', 'admin'])->name('miscellaneous.population');
 
+Route::get('/about-us', function () {
+    return view('footer-components.about-us');
+})->middleware(['auth', 'verified'])->name('footer-components.about-us');
+
+Route::get('/contact-us', function () {
+    return view('footer-components.contact-us');
+})->middleware(['auth', 'verified'])->name('footer-components.contact-us');
+
+Route::get('/terms-of-service', function () {
+    return view('footer-components.terms-of-service');
+})->middleware(['auth', 'verified'])->name('footer-components.terms-of-service');
+
+Route::get('/privacy-policy', function () {
+    return view('footer-components.privacy-policy');
+})->middleware(['auth', 'verified'])->name('footer-components.privacy-policy');
+
 
 // Charts
 Route::get('/animal-population', 'App\Http\Controllers\AnimalPopulationController@index')->middleware(['auth', 'verified'])->name('animal.population');
@@ -164,6 +180,16 @@ Route::post('/population', 'App\Http\Controllers\PopulationController@store')
 
 Route::post('/municipalities', 'App\Http\Controllers\MunicipalityController@store')
     ->middleware(['auth', 'verified'])->name('miscellaneous.municipalities.store');
+
+Route::post('/user-management', 'App\Http\Controllers\UserController@store')
+    ->middleware(['auth', 'verified'])->name('user-management.store');
+
+
+//Export
+Route::get('/animal-population-excel', 'App\Http\Controllers\ExportController\AnimalPopulationExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('animal-population.generate-excel');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

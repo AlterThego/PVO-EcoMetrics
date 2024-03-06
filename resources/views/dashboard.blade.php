@@ -2,9 +2,6 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto" style="position:relative; z-index:30;">
         <div class="w-full">
-
-
-
             <div class="grid grid-cols-6 gap-3 pt-8">
                 <div class="flex flex-col space-y-1 col-span-2 text-center pb-6">
                     <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
@@ -91,7 +88,7 @@
                                 d="M11.95 18q.525 0 .888-.363t.362-.887q0-.525-.362-.888t-.888-.362q-.525 0-.887.363t-.363.887q0 .525.363.888t.887.362m-.9-3.85h1.85q0-.825.188-1.3t1.062-1.3q.65-.65 1.025-1.238T15.55 8.9q0-1.4-1.025-2.15T12.1 6q-1.425 0-2.312.75T8.55 8.55l1.65.65q.125-.45.563-.975T12.1 7.7q.8 0 1.2.438t.4.962q0 .5-.3.938t-.75.812q-1.1.975-1.35 1.475t-.25 1.825M12 22q-2.075 0-3.9-.787t-3.175-2.138q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8" />
                         </svg>
                         <div id="tooltip-help" role="tooltip"
-                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm text-xs text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                            class="absolute z-10 invisible inline-block px-3 py-2 text-xs text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                             Choose a year to view corresponding dashboard data. </br>The dashboard content will update
                             accordingly based on your selection.
                             <div class="tooltip-arrow" data-popper-arrow></div>
@@ -131,7 +128,7 @@
             <div class="sm:hidden">
                 <label for="tabs" class="sr-only">Select tab</label>
                 <select id="tabs"
-                    class="block w-full mb-5 bg-gray-40 border border-gray-200 dark:border-gray-950 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-lg">
+                    class="block w-full mb-5 bg-white border border-gray-300 dark:border-gray-950 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-900 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-lg">
                     <option value="#overview">Overview</option>
                     <option value="#trend">Trends</option>
                     <option value="#summary">Summary Report</option>

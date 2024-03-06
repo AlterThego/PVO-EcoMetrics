@@ -44,11 +44,13 @@ final class FishSanctuaryTable extends PowerGridComponent
     {
         return FishSanctuary::query()
             ->join('barangays', 'fish_sanctuaries.barangay_id', '=', 'barangays.id')
-
+            ->join('municipalities', 'barangays.municipality_id', '=', 'municipalities.id')
 
             ->select(
                 'fish_sanctuaries.*',
                 'barangays.barangay_name as barangay_id',
+                'barangays.municipality_id',
+                'municipalities.municipality_name as municipality_id',
             );
     }
 
@@ -61,6 +63,7 @@ final class FishSanctuaryTable extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
+            ->addColumn('municipality_id')
             ->addColumn('barangay_id')
             ->addColumn('year')
             ->addColumn('land_area')
@@ -72,6 +75,7 @@ final class FishSanctuaryTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::action('Action'),
+            Column::make('Municipality id', 'municipality_id',  'barangays.municipality_id'),
             Column::make('Barangay id', 'barangay_id'),
             Column::make('Year', 'year')
                 ->sortable()

@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.8",
         "markrogoyski/math-php": "2.*",
         "openspout/openspout": "^4.23",
+        "phpoffice/phpspreadsheet": "^2.0",
         "power-components/livewire-powergrid": "^5.2",
         "wire-elements/modal": "^2.0",
         "yoeunes/toastr": "^2.3"

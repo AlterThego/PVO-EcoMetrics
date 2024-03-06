@@ -18,7 +18,7 @@
                         <p class="pl-2 text-base font-normal tracking-tight text-gray-700 dark:text-gray-400">
                             {{ $animalType->type }}</p>
                         <p
-                            class="pl-2 text-yellow-900 text-semibold text-xs md:text-xs lg:text-xs tracking-tight text-gray-900 dark:text-white">
+                            class="pl-2 text-yellow-900 text-semibold text-xs md:text-xs lg:text-xs tracking-tight dark:text-white">
                             Poultry</p>
                     </div>
                     <div class="flex justify-between items-center">
@@ -83,14 +83,15 @@
         <div id="indicators-carousel" class="rounded-xl relative w-full pt-10" data-carousel="static">
             <!-- Carousel wrapper -->
             <div
-                class="bg-white rounded-lg shadow-lg dark:bg-gray-900 overflow-hidden items-center h-lvh w-full items-center">
-                <div class="z-30 relative h-full overflow-hidden rounded-lg md:h-full border border-gray-200 dark:border-gray-950">
+                class="bg-white rounded-lg shadow-lg dark:bg-gray-900 overflow-hidden items-center h-lvh w-full">
+                <div
+                    class="z-30 relative h-full overflow-hidden rounded-lg md:h-full border border-gray-200 dark:border-gray-950">
                     @foreach ($municipalities as $index => $municipality)
                         <!-- Item {{ $index + 1 }} -->
                         <div class="{{ $index === $currentSlide ? 'block' : 'hidden' }} duration-700 ease-in-out"
                             data-carousel-item="{{ $index === $currentSlide ? 'active' : '' }}">
                             <div class="max-w-5xl mx-auto pt-15">
-                                <div class="inline flex flex-row justify-between pb-5 pt-10">
+                                <div class="flex flex-row justify-between pb-5 pt-10">
                                     <div
                                         class="rounded-t-xl bg-white dark:bg-gray-900 pt-3 text-base text-gray-900 dark:text-gray-100">
                                         <p>{{ __('Animal Population per Municipality') }}({{ $selectedYear }})</p>
@@ -113,12 +114,37 @@
                                     </thead>
                                     <tbody>
                                         @if (isset($animalPopulationsByMunicipality[$municipality->id]))
+                                            {{-- Create an array to store aggregated population counts for each animal --}}
+                                            @php
+                                                $aggregatedPopulations = [];
+                                            @endphp
+
+                                            {{-- Loop through each animal population --}}
                                             @foreach ($animalPopulationsByMunicipality[$municipality->id] as $animalPopulation)
+                                                {{-- Check if the animal name already exists in the aggregated data --}}
+                                                @if (isset($aggregatedPopulations[$animalPopulation->animal->animal_name]))
+                                                    {{-- If the animal name exists, add the population count to the existing total --}}
+                                                    @php
+                                                        $aggregatedPopulations[
+                                                            $animalPopulation->animal->animal_name
+                                                        ] += $animalPopulation->animal_population_count;
+                                                    @endphp
+                                                @else
+                                                    {{-- If the animal name doesn't exist, initialize the total count --}}
+                                                    @php
+                                                        $aggregatedPopulations[$animalPopulation->animal->animal_name] =
+                                                            $animalPopulation->animal_population_count;
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+
+                                            {{-- Display the aggregated data --}}
+                                            @foreach ($aggregatedPopulations as $animalName => $totalPopulation)
                                                 <tr>
                                                     <td class="px-4 py-3 border border-gray-200 dark:border-gray-700">
-                                                        {{ $animalPopulation->animal->animal_name }}</td>
+                                                        {{ $animalName }}</td>
                                                     <td class="px-4 py-3 border border-gray-200 dark:border-gray-700">
-                                                        {{ $animalPopulation->animal_population_count }}</td>
+                                                        {{ $totalPopulation }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif

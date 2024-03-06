@@ -18,11 +18,11 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class UserTable extends PowerGridComponent
 {
-    use WithExport;
+    // use WithExport;
 
     public function setUp(): array
     {
-        $this->showCheckBox();
+        // $this->showCheckBox();
 
         return [
             Exportable::make('export')
@@ -60,7 +60,8 @@ final class UserTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Name', 'name')
+            Column::action('Action'),
+            Column::make('Username', 'name')
                 ->sortable()
                 ->searchable(),
 
@@ -80,7 +81,7 @@ final class UserTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+           
         ];
     }
 
@@ -96,7 +97,7 @@ final class UserTable extends PowerGridComponent
         $this->js('alert('.$rowId.')');
     }
 
-    public function actions(\App\Models\User $row): array
+    public function actions(User $row): array
     {
         return [
             Button::add('edit')

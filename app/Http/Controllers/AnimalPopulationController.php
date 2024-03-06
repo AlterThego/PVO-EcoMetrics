@@ -28,6 +28,24 @@ class AnimalPopulationController extends Controller
                 'volume' => 'nullable|numeric',
             ]);
 
+            // Check if a similar entry already exists
+            $existingEntry = AnimalPopulation::where('year', $validatedData['year'])
+                ->where('municipality_id', $validatedData['municipality'])
+                ->where('animal_id', $validatedData['animal'])
+                ->where('animal_type_id', $validatedData['animal_type'])
+                ->orWhere(function ($query) use ($validatedData) {
+                    $query->where('year', $validatedData['year'])
+                        ->where('municipality_id', $validatedData['municipality'])
+                        ->where('animal_id', $validatedData['animal'])
+                        ->whereNull('animal_type_id');
+                })
+                ->first();
+
+            if ($existingEntry) {
+                toastr()->error('Duplicate entry. Please check your data.');
+                return back();
+            }
+
             // Save the data to the database
             AnimalPopulation::create([
                 'year' => $validatedData['year'],
@@ -197,7 +215,7 @@ class AnimalPopulationController extends Controller
     }
 
 
-     
+
 
 }
 

@@ -432,18 +432,12 @@
         </div>
         <div class="flex flex-col">
             <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Company</h2>
-            <a href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Blog</a>
-            <a href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Pricing</a>
-            <a href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">About
+            <a href="/about-us-guest"
+                class=" hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">About
                 Us</a>
             <a href="javascript:void(0)"
                 class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Contact
                 us</a>
-            <a href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Testimonials</a>
         </div>
         <div class="flex flex-col">
             <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Support</h2>
