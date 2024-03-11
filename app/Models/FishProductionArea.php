@@ -20,4 +20,14 @@ class FishProductionArea extends Model
     ];
 
     protected $softDeleteColumn = 'deleted_at'; 
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+
+    public function fish_production()
+    {
+        return $this->belongsTo(FishProduction::class, 'fish_production_id');
+    }
 }

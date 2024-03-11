@@ -12,6 +12,24 @@
                 <!-- Buttons at the center -->
                 <div data-modal-target="affectedAnimalsModal"
                     class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 flex items-center justify-end z-10">
+                    <a href="{{ route('animal-death.generate-excel') }}" data-tooltip-target="export-tooltip"
+                        data-tooltip-placement="left" class="relative inline-block">
+                        <div
+                            class="z-30 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-950 rounded-lg px-4 py-2 mr-5 hover:bg-gray-200 dark:hover:bg-gray-600">
+                            <svg class="h-5 w-5 text-pg-primary-500 dark:text-pg-primary-300" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <!-- Tooltip -->
+                        <div id="export-tooltip" role="tooltip"
+                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                            Export
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                    </a>
                     <button id="affectedAnimalsModalButton" data-modal-target="affectedAnimalsModal"
                         data-modal-toggle="affectedAnimalsModal"
                         class="bg-green-500 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
@@ -27,7 +45,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="position: relative; z-index: 10;">
             <div class="bg-white dark:bg-gray-900 bg-opacity-90 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <livewire:animal-death-table/>
+                    <livewire:animal-death-table />
                 </div>
             </div>
         </div>
@@ -67,7 +85,8 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
                                 <input type="number" name="year" id="year"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year" required="" min="2000" max="2100" autocomplete="off">
+                                    placeholder="Type Year" required="" min="2000" max="2100"
+                                    autocomplete="off">
                             </div>
 
 
@@ -77,7 +96,8 @@
                                 <select name="municipality" id="municipality"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @if (auth()->check() && auth()->user()->municipality_id != 0) pointer-events-none @endif"
                                     required="">
-                                    <option value="" disabled @if (auth()->check() && auth()->user()->municipality_id == 0) selected @endif>Select
+                                    <option value="" disabled @if (auth()->check() && auth()->user()->municipality_id == 0) selected @endif>
+                                        Select
                                         Municipality</option>
                                     @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
                                         <option value="{{ $id }}"

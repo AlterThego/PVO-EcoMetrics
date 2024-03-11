@@ -19,7 +19,7 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class FishSanctuaryTable extends PowerGridComponent
 {
-    use WithExport;
+    // use WithExport;
     public bool $showFilters = true;
     public string $sortDirection = 'desc';
     public function setUp(): array
@@ -27,9 +27,9 @@ final class FishSanctuaryTable extends PowerGridComponent
         // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
                 ->showSoftDeletes()
@@ -85,9 +85,9 @@ final class FishSanctuaryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Created at', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
 
         ];

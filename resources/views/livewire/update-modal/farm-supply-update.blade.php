@@ -1,4 +1,4 @@
-<div tabindex="-1" class="relative rounded-lg shadow fixed top-0 left-0 w-full h-full flex items-center justify-center">
+<div tabindex="-1" class="relative rounded-lg shadow top-0 left-0 w-full h-full flex items-center justify-center">
     <div class="relative rounded-lg bg-white dark:bg-gray-800 p-4 max-w-2xl w-full h-full md:h-auto">
         <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -25,7 +25,7 @@
                     <label for="municipality"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
                     <select wire:model="municipalityId" name="municipality" id="municipality"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @if (auth()->check() && auth()->user()->municipality_id != 0) pointer-events-none @endif"
                         required="">
                         <option value="" disabled selected>Select Municipality</option>
                         @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)

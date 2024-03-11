@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Log;
 
 final class AffectedAnimalsTable extends PowerGridComponent
 {
-    use WithExport;
+    // use WithExport;
     public bool $showFilters = true;
     public string $sortDirection = 'desc';
     public function setUp(): array
@@ -29,9 +29,9 @@ final class AffectedAnimalsTable extends PowerGridComponent
         // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
                 ->showSoftDeletes()

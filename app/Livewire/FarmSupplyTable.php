@@ -19,7 +19,7 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class FarmSupplyTable extends PowerGridComponent
 {
-    use WithExport;
+    // use WithExport;
     public bool $showFilters = true;
     public string $sortDirection = 'desc';
     public function setUp(): array
@@ -27,9 +27,9 @@ final class FarmSupplyTable extends PowerGridComponent
         // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
                 ->showSoftDeletes()
@@ -42,13 +42,18 @@ final class FarmSupplyTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return FarmSupply::query()
+        $query = FarmSupply::query()
             ->join('municipalities', 'farm_supplies.municipality_id', '=', 'municipalities.id')
 
             ->select(
                 'farm_supplies.*',
                 'municipalities.municipality_name as municipality_id',
             );
+
+        if (auth()->user()->municipality_id !== 0) {
+            $query->where('farm_supplies.municipality_id', auth()->user()->municipality_id);
+        }
+        return $query;
     }
 
     public function relationSearch(): array
@@ -83,9 +88,9 @@ final class FarmSupplyTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Created at', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
 
         ];

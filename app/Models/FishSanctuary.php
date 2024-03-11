@@ -19,4 +19,9 @@ class FishSanctuary extends Model
         'land_area',
     ];
     protected $softDeleteColumn = 'deleted_at'; 
+
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
+    }
 }

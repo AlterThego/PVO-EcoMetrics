@@ -20,4 +20,9 @@ class YearlyCommonDisease extends Model
     ];
     
     protected $softDeleteColumn = 'deleted_at'; 
+
+    public function disease()
+    {
+        return $this->belongsTo(Disease::class, 'disease_id');
+    }
 }

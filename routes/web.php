@@ -75,7 +75,7 @@ Route::get('/farm', function () {
 
 Route::get('/farm-supply', function () {
     return view('farm.supply');
-})->middleware(['auth', 'verified', 'admin'])->name('farm.supply');
+})->middleware(['auth', 'verified'])->name('farm.supply');
 
 Route::get('/veterinary-clinics', function () {
     return view('health.veterinary-clinics');
@@ -189,6 +189,45 @@ Route::post('/user-management', 'App\Http\Controllers\UserController@store')
 Route::get('/animal-population-excel', 'App\Http\Controllers\ExportController\AnimalPopulationExport@generateExcel')
     ->middleware(['auth', 'verified'])
     ->name('animal-population.generate-excel');
+
+Route::get('/affected-animals-excel', 'App\Http\Controllers\ExportController\AffectedAnimalsExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('affected-animals.generate-excel');
+
+Route::get('/animal-death-excel', 'App\Http\Controllers\ExportController\AnimalDeathExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('animal-death.generate-excel');
+
+Route::get('/fish-production-area-excel', 'App\Http\Controllers\ExportController\FishProductionAreaExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('fish-production-area.generate-excel');
+
+Route::get('/fish-sanctuary-excel', 'App\Http\Controllers\ExportController\FishSanctuaryExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('fish-sanctuary.generate-excel');
+
+Route::get('/yearly-common-disease-excel', 'App\Http\Controllers\ExportController\YearlyCommonDiseaseExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('yearly-common-disease.generate-excel');
+
+Route::get('/veterinary-clinics-excel', 'App\Http\Controllers\ExportController\VeterinaryClinicsExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('veterinary-clinics.generate-excel');
+
+Route::get('/farms-excel', 'App\Http\Controllers\ExportController\FarmExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('farms.generate-excel');
+
+Route::get('/bee-keeper-excel', 'App\Http\Controllers\ExportController\BeeKeeperExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('bee-keeper.generate-excel');
+
+Route::get('/farm-supplies-excel', 'App\Http\Controllers\ExportController\FarmSuppliesExport@generateExcel')
+    ->middleware(['auth', 'verified'])
+    ->name('farm-supplies.generate-excel');
+
+
+
 
 
 Route::middleware('auth')->group(function () {

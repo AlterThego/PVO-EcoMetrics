@@ -169,9 +169,9 @@
                                 </div>
                             </div>
 
-                            <div class="nav__dropdown {{ request()->is('farm') || request()->is('bee-keeping') ? 'show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('farm') || request()->is('bee-keeping') || request()->is('farm-supply') ? 'show' : '' }}"
                                 id="farmDropDown">
-                                <a class="nav__link {{ request()->is('farm') || request()->is('bee-keeping') ? 'active' : '' }}"
+                                <a class="nav__link {{ request()->is('farm') || request()->is('bee-keeping') || request()->is('farm-supply') ? 'active' : '' }}"
                                     onclick="toggleDropdown('farmDropDown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -185,6 +185,9 @@
                                     <div class="nav__dropdown-content">
                                         <a href="/farm"
                                             class="nav__dropdown-item {{ request()->is('farm') ? ' active' : '' }}">List</a>
+                                        <a href="/farm-supply"
+                                            class="nav__dropdown-item{{ request()->is('farm-supply') ? ' active' : '' }}">
+                                            Supplies</a>
                                         <a href="/bee-keeping"
                                             class="nav__dropdown-item{{ request()->is('bee-keeping') ? ' active' : '' }}">Bee
                                             Keeping</a>
@@ -198,7 +201,6 @@
                             request()->is('animal-type') ||
                             request()->is('fish-production') ||
                             request()->is('disease') ||
-                            request()->is('farm-supply') ||
                             request()->is('population')
                                 ? ' show'
                                 : '' }}"
@@ -208,7 +210,6 @@
                                 request()->is('animal-type') ||
                                 request()->is('fish-production') ||
                                 request()->is('disease') ||
-                                request()->is('farm-supply') ||
                                 request()->is('barangays') ||
                                 request()->is('population')
                                     ? ' active'
@@ -234,8 +235,6 @@
                                             Types</a>
                                         <a href="/disease"
                                             class="nav__dropdown-item {{ request()->is('disease') ? ' active' : '' }}">Animal Diseases</a>
-                                        <a href="/farm-supply"
-                                            class="nav__dropdown-item{{ request()->is('farm-supply') ? ' active' : '' }}">Farm Supplies</a>
                                         <a href="/municipalities"
                                             class="nav__dropdown-item {{ request()->is('municipalities') ? ' active' : '' }}">Municipalities</a>
                                         <a href="/barangays"

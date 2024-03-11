@@ -23,5 +23,10 @@ class Farm extends Model
         'year_closed',
     ];
 
-    protected $softDeleteColumn = 'deleted_at'; 
+    protected $softDeleteColumn = 'deleted_at';
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
 }

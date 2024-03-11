@@ -20,7 +20,7 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class VeterinaryClinicsTable extends PowerGridComponent
 {
-    use WithExport;
+    // use WithExport;
     public bool $showFilters = true;
     public string $sortDirection = 'desc';
 
@@ -29,9 +29,9 @@ final class VeterinaryClinicsTable extends PowerGridComponent
         // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
                 ->showSoftDeletes()
@@ -87,21 +87,21 @@ final class VeterinaryClinicsTable extends PowerGridComponent
 
             Column::make('Sector', 'sector'),
 
-            Column::make('Clinic name', 'clinic_name')
+            Column::make('Clinic Name', 'clinic_name')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Year established', 'year_established')
+            Column::make('Year Established', 'year_established')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Year closed', 'year_closed')
+            Column::make('Year Closed', 'year_closed')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Created at', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
 
         ];

@@ -30,5 +30,10 @@ class AnimalPopulation extends Model
     {
         return $this->belongsTo(Animal::class, 'animal_id');
     }
+
+    public function animal_type()
+    {
+        return $this->belongsTo(AnimalType::class, 'animal_type_id');
+    }
     
 }

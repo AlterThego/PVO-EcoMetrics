@@ -12,7 +12,7 @@
                 }
             @endphp
             <a href="#"
-                class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 shadow transition-transform duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-950">
+                class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 shadow border border-gray-200 dark:border-gray-950">
                 <div>
                     <div class="flex justify-between items-center">
                         <p class="pl-2 text-base font-normal tracking-tight text-gray-700 dark:text-gray-400">

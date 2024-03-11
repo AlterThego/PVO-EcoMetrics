@@ -21,9 +21,9 @@
 
                     <br>We use the information we collect to -
 
-                    <li>Provide a Comprehensive Data about Socio-Economic Profile of Benguet</li>
-                    <li>Provide Analytical Analysis with the help of Linear Regression</li>
-                    <li>Sharing of Information</li>
+                    <li>Provide a Comprehensive Data about Socio-Economic Profile of Benguet.</li>
+                    <li>Provide Analytical Analysis with the help of Linear Regression.</li>
+                    <li>Sharing of Information to Authorized Personnels through exportation of data, and automated reports.</li>
 
                     </br>We do not sell, trade, or otherwise transfer the information to outside parties. Your
                     information may be shared with project team members solely for the purpose of operating the Website

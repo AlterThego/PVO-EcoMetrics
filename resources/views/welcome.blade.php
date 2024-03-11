@@ -63,22 +63,25 @@
 </head>
 
 <body class="antialiased overflow-x-hidden">
-    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen min-w-screenbg-center">
+    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen min-w-screenbg-center border-b-4">
         <div>
             {{-- Navigation bar --}}
             <nav id="navbar"
                 class="fixed bg-white dark:bg-gray-900 top-0 left-0 z-50 w-screen transition duration-500 ease-in-out shadow-2xl">
                 <div class="max-w-7xl mx-auto py-2 flex justify-between items-center">
                     <div class="flex items-center"> <!-- Added flex and items-center to align items horizontally -->
-                        <div class="flex items-center"> <!-- Added flex and items-center to align items horizontally -->
-                            <div class="pl-6">
-                                <div class="bg-white rounded-full">
-                                    <img fetchpriority="high" src="./assets/images/logo.png" alt=""
-                                        class="header__img">
+                        <a href="/">
+                            <div class="flex items-center">
+                                <!-- Added flex and items-center to align items horizontally -->
+                                <div class="pl-6">
+                                    <div class="bg-white rounded-full">
+                                        <img fetchpriority="high" src="./assets/images/logo.png" alt=""
+                                            class="header__img">
+                                    </div>
                                 </div>
+                                <div class="h-px bg-gray-400 m-2"></div> <!-- Horizontal line break -->
                             </div>
-                            <div class="h-px bg-gray-400 m-2"></div> <!-- Horizontal line break -->
-                        </div>
+                        </a>
                         <div class="hidden sm:block">
                             <h1 class="text-xs">Province of Benguet</h1>
                             {{-- <div class="h-px bg-gray-400"></div> <!-- Horizontal line break --> --}}
@@ -133,8 +136,10 @@
                         <!-- Background Image with Opacity -->
                     </div>
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-center">
-                        <span class="font-bold text-6xl text-yellow-300">Lorem ipsum </span><br />
-                        <span class="text-6xl text-white">Lorem Ipsum</span>
+                        <span class="font-bold text-6xl text-yellow-300">『Lorem ipsum』</span><br />
+                        <span class="text-3xl text-white">The Heart of Benguet</span>
+                        <span class="text-md text-white pt-12">Thank you for testing out our application, hoping to hear
+                            some of your feedbacks!</span>
                     </div>
                 </div>
             </section>
@@ -155,15 +160,24 @@
 
 
             {{-- Section 2 --}}
-            <section class=" w-5/6 m-auto mt-28 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center">
+            <section class="w-5/6 m-auto mt-28 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center">
                 <div class="py-3 px-2">
-                    <p1 class="text-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in turpis
-                        at
-                        libero euismod luctus vel sit amet lorem.<br /> Maecenas lorem metus, semper in lobortis
-                        imperdiet,
-                        pulvinar sed felis. Maecenas aliquam velit in ligula tincidunt imperdiet. Integer interdum enim
-                        ut
-                        placerat dignissim. Maecenas turpis orci, facilisis vitae ligula non, luctus convallis risus.
+                    <p1 class="text-md">
+                        Explore Benguet's animals, fisheries, farms, and more with our user-friendly website:
+                        </br>
+                        <br>
+                        <li>Dynamic Dashboards: Interactive charts and graphs.</li>
+                        <li>Linear Regression: Prediction based on statistics.</li>
+                        <li>Scalable: Ready for the future.</li>
+                        <li>Automated Reports: Stay updated on trends.</li>
+                        <li>Easy Navigation: Simple interface for all users.</li>
+                        </br>
+                        <br>
+                        Join us in celebrating Benguet – its animals, agriculture, and future.
+
+                        </br>
+                        <br>
+                        Welcome to [Project Name], where we uncover the heart of Benguet!
                     </p1>
                 </div>
                 <div class="py-3 px-2">
@@ -330,37 +344,6 @@
 
                 <div
                     class="flex flex-col justify-between bg-primary  bg-no-repeat bg-fixed bg-cover bg-right md:bg-center ">
-                    <nav class="mt-5 border-b py-1">
-                        <ul class="flex justify-center">
-                            <li class="py-2 px-3 text-2xl font-thin text-white  ">Home</li>
-                            <li class="py-2 px-3 text-2xl font-thin text-white">Services</li>
-                            <li class="py-2 px-3 text-2xl font-thin text-white">About</li>
-                            <li class="py-2 px-3 text-2xl font-thin text-white">Models</li>
-                        </ul>
-                    </nav>
-                    <div class="-mt-44 py-4 text-center text-6xl font-bold text-yellow-300">
-                        <span class="font-extralight">R8</span><br />
-                        <span class=" font-anybody">THE POWER</span>
-                    </div>
-                    <div class="flex items-center md:w-6/12 md:self-center">
-                        <div class="flex w-1/3 justify-center border-r py-4 px-4 gap-5 text-white">
-                            <span>250 MPH</span>
-                            <span class="material-icons">speed</span>
-
-                        </div>
-                        <div class="flex w-1/3 justify-center py-4 px-4 gap-5 text-white">
-                            <span>300 km</span>
-                            <span class="material-icons">
-                                directions_car
-                            </span>
-                        </div>
-                        <div class="flex w-1/3 justify-center border-l py-4 px-4 gap-5 text-white">
-                            <span>SuperChargh</span>
-                            <span class="material-icons">
-                                bolt
-                            </span>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -368,18 +351,14 @@
             <section
                 class=" w-5/6 m-auto mt-28 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center">
                 <div class="py-3 px-2">
-                    <h1 class="text-5xl mb-8">New interior</h1>
-                    <p1 class="text-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in turpis
-                        at
-                        libero euismod luctus vel sit amet lorem.<br /> Maecenas lorem metus, semper in lobortis
-                        imperdiet,
-                        pulvinar sed felis. Maecenas aliquam velit in ligula tincidunt imperdiet. Integer interdum enim
-                        ut
-                        placerat dignissim. Maecenas turpis orci, facilisis vitae ligula non, luctus convallis risus.
+                    <h1 class="text-6xl font-bold mb-8">Mission</h1>
+                    <p1 class="text-md">
+                        An intuitive digital hub for authorized personnel, ensuring efficient data management of
+                        regional animals and agriculture.
                     </p1>
                 </div>
                 <div class="py-3 px-2">
-                    <img src="https://vehint.com/wp-content/uploads/2020/10/audi_r8_green_hell_2021_1.jpg">
+                    {{-- <img src="https://cdn.pixabay.com/photo/2017/06/04/20/48/vision-2372177_1280.jpg"> --}}
                 </div>
             </section>
 
@@ -390,21 +369,16 @@
 
             {{-- Section 8 --}}
             <section
-                class=" w-5/6 m-auto mt-10 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center mb-20  ">
+                class=" w-5/6 m-auto mt-10 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center mb-20">
 
                 <div class="py-3 px-2">
-                    {{-- <img src="https://vehint.com/wp-content/uploads/2020/10/audi_r8_green_hell_2021_1.jpg"> --}}
+                    {{-- <img src="https://cdn.pixabay.com/photo/2017/06/04/20/48/vision-2372177_1280.jpg"> --}}
                 </div>
 
-                <div class="py-3 px-2 ">
-                    <h1 class="text-5xl mb-8">New interior</h1>
-                    <p1 class="text-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in turpis
-                        at
-                        libero euismod luctus vel sit amet lorem.<br /> Maecenas lorem metus, semper in lobortis
-                        imperdiet,
-                        pulvinar sed felis. Maecenas aliquam velit in ligula tincidunt imperdiet. Integer interdum enim
-                        ut
-                        placerat dignissim. Maecenas turpis orci, facilisis vitae ligula non, luctus convallis risus.
+                <div class="py-3 px-2">
+                    <h1 class="text-6xl mb-8 font-bold">Vision</h1>
+                    <p1 class="text-md">Empowering stakeholders with a user-friendly platform to securely access and
+                        analyze information, promoting sustainable growth for local farming and livestock communities.
                     </p1>
                 </div>
 
@@ -416,46 +390,39 @@
 
         </div>
     </div>
-    <div class=" mx-auto py-16 xl:px-20 lg:px-12 sm:px-6 px-4 text-center"
-    style="position:relative; z-index:30;">
-    <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-    <div class="flex w-full flex-col items-center justify-center pb-10">
-        <img class="h-20"
-            src="https://benguet.gov.ph/wp-content/uploads/2020/09/province-of-benguet-banner-1-768x154.png">
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 md:gap-8 gap-4">
-        <div class="flex flex-col">
-            <p class="text-lg font-bold leading-none text-gray-800 dark:text-white">DigiStock</p>
-            <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">Copyright © 2021 DigiStock
-            </p>
-            <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">All rights reserved</p>
+    <div class=" mx-auto py-16 xl:px-20 lg:px-12 sm:px-6 px-4 text-center" style="position:relative; z-index:30;">
+        <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+        <div class="flex w-full flex-col items-center justify-center pb-10">
+            <img class="h-20"
+                src="https://benguet.gov.ph/wp-content/uploads/2020/09/province-of-benguet-banner-1-768x154.png">
         </div>
-        <div class="flex flex-col">
-            <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Company</h2>
-            <a href="/about-us-guest"
-                class=" hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">About
-                Us</a>
-            <a href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Contact
-                us</a>
-        </div>
-        <div class="flex flex-col">
-            <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Support</h2>
-            <a href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Legal
-                policy</a>
-            <a href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Status
-                policy</a>
-            <a href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Privacy
-                policy</a>
-            <a href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Terms
-                of service</a>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 md:gap-8 gap-4">
+            <div class="flex flex-col">
+                <p class="text-lg font-bold leading-none text-gray-800 dark:text-white">DigiStock</p>
+                <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">Copyright © 2021 DigiStock
+                </p>
+                <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">All rights reserved</p>
+            </div>
+            <div class="flex flex-col">
+                <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Developers</h2>
+                <a href="/about-us"
+                    class="hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">About
+                    Us</a>
+                <a href="/contact-us"
+                    class="hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Contact
+                    us</a>
+            </div>
+            <div class="flex flex-col">
+                <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Support</h2>
+                <a href="/privacy-policy"
+                    class=" hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Privacy
+                    Policy</a>
+                <a href="/terms-of-service"
+                    class="hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">Terms
+                    of Service</a>
+            </div>
         </div>
     </div>
-</div>
     @livewireScripts
 
     <script>

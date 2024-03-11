@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('animal_population', function (Blueprint $table) {
-            $table->unique(['year', 'municipality_id', 'animal_id', 'animal_type_id']);
+            $table->unique(['year', 'municipality_id', 'animal_type_id']);
             //  'animal_type_id'
             $table->id();
 

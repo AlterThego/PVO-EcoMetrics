@@ -16,4 +16,10 @@ class Barangay extends Model
         'barangay_name',
     ];
     protected $softDeleteColumn = 'deleted_at'; 
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+
 }

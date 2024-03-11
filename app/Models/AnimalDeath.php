@@ -24,4 +24,9 @@ class AnimalDeath extends Model
     {
         return $this->belongsTo(Animal::class, 'animal_id');
     }
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
 }
