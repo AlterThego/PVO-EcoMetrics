@@ -28,6 +28,10 @@
             background-image: url('assets/images/benguet_image.jpg')
         }
 
+        .bg-third {
+            background-image: url('assets/images/capitol_image.png')
+        }
+
         .header__img {
             width: 40px;
             height: 40px;
@@ -187,7 +191,7 @@
 
             {{-- Section 3 --}}
             <section
-                class="w-full bg-secondary md:py-52 py-28 md:bg-cover md:bg-center bg-contain my-20 border   bg-fixed bg-no-repeat ">
+                class="w-full bg-third md:py-52 py-28 md:bg-cover md:bg-center bg-contain my-20 border   bg-fixed bg-no-repeat ">
             </section>
 
             {{-- Section 4 --}}

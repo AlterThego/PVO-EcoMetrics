@@ -98,13 +98,14 @@ final class FarmSupplyTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
-            Filter::select('municipality_id', 'municipality_id')
-                // ->dataSource(Municipality::where('id', 2)->get())
+        $filters = [];
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipality_id')
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
-                ->optionValue('id'),
-        ];
+                ->optionValue('id');
+        }
+        return $filters;
     }
 
     #[\Livewire\Attributes\On('edit')]
