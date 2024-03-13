@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportExportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnimalPopulationController;
 
@@ -226,6 +227,11 @@ Route::get('/farm-supplies-excel', 'App\Http\Controllers\ExportController\FarmSu
     ->middleware(['auth', 'verified'])
     ->name('farm-supplies.generate-excel');
 
+
+
+Route::get('/report-export', [ReportExportController::class, 'exportData'])
+    ->middleware(['auth', 'verified'])
+    ->name('report-export');
 
 
 

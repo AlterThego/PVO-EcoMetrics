@@ -79,6 +79,18 @@ class AnimalPopulationExport extends Controller
         $drawing->setOffsetY(100); // Reset Y offset to align with the top of the cell
         $drawing->setWorksheet($sheet);
 
+        // Add image to the spreadsheet
+        $imagePath = public_path('assets/images/bagong-pilipinas.png'); // Change this to the path of your image file
+        $drawing = new Drawing();
+        $drawing->setName('Logo');
+        $drawing->setDescription('Bagong Pilipinas Logo');
+        $drawing->setPath($imagePath);
+        $drawing->setWidthAndHeight(90, 90);
+        $drawing->setCoordinates('E1'); // Set the cell where the image will start
+        $drawing->setOffsetX(40); // Reset X offset to align with the left of the cell
+        $drawing->setOffsetY(100); // Reset Y offset to align with the top of the cell
+        $drawing->setWorksheet($sheet);
+
         // Retrieve data from the AnimalPopulation model
         $data = AnimalPopulation::orderBy('year', 'desc')->get();
         $animalTypes = \App\Models\AnimalType::all();
@@ -94,7 +106,7 @@ class AnimalPopulationExport extends Controller
         $headerStyle = $sheet->getStyle('A7:F7');
         $headerFont = $headerStyle->getFont();
         $headerFont->setBold(true);
-        
+
         // Add data to the spreadsheet
         $row = 8;
         foreach ($data as $item) {

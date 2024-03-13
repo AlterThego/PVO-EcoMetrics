@@ -17,4 +17,9 @@ class Population extends Model
         'population_count',
     ];
     protected $softDeleteColumn = 'deleted_at'; 
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
 }

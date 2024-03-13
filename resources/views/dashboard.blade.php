@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto" style="position:relative; z-index:30;">
         <div class="w-full">
             <div class="grid grid-cols-6 gap-3 pt-8">
-                <div class="flex flex-col space-y-1 col-span-2 text-center pb-6">
+                <div class="flex flex-col space-y-1 col-span-6 lg:col-span-2 text-center items-center pb-6 px-10 lg:px-0">
                     <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
                     <p class="text-sm font-normal text-gray-700 dark:text-gray-300">Benguet Animals and Agriculture</p>
                 </div>
@@ -80,7 +80,7 @@
                 </ul>
 
                 {{-- Year Dropdown Selection --}}
-                <div class="flex text-center align-center justify-center col-span-2">
+                <div class="flex text-center align-center justify-center col-span-6 lg:col-span-2">
                     <form method="GET" action="{{ route('dashboard') }}" class="flex items-center justify-between">
                         <svg data-tooltip-target="tooltip-help" class="w-4 h-4 mr-3 text-gray-500 dark:text-gray-400"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@
                             accordingly based on your selection.
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
-                        <div class="relative max-w-sm flex-grow">
+                        <div class="relative max-w-sm flex-grow pointer">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -105,7 +105,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                                 focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-4 py-2.5 
                                 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
-                                dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
                                 @foreach ($years as $year)
                                     <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>
                                         {{ $year }}</option>
@@ -119,8 +119,18 @@
                             </div>
                         </div>
                         <button type="submit"
-                            class="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">View
-                            Data</button>
+                            class="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+
+                            <p class="hidden lg:block">View Data</p>
+                            <svg class="w-4 h-4 block lg:hidden"xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 32 32">
+                                <circle cx="16" cy="16" r="4" fill="currentColor" />
+                                <path fill="currentColor"
+                                    d="M30.94 15.66A16.69 16.69 0 0 0 16 5A16.69 16.69 0 0 0 1.06 15.66a1 1 0 0 0 0 .68A16.69 16.69 0 0 0 16 27a16.69 16.69 0 0 0 14.94-10.66a1 1 0 0 0 0-.68M16 22.5a6.5 6.5 0 1 1 6.5-6.5a6.51 6.51 0 0 1-6.5 6.5" />
+                            </svg>
+                        </button>
+
+
                     </form>
                 </div>
             </div>
@@ -375,41 +385,3 @@
         // Add your code to load the page content here
     }
 </script> --}}
-
-
-
-
-{{-- Button to Start --}}
-<script>
-    function scrollToStart() {
-        // Assuming the second page has an element with an id of 'secondPage'
-        document.getElementById('startPage').scrollIntoView({
-            behavior: 'smooth'
-        });
-    }
-
-    function scrollToStart() {
-        const duration = 500;
-        const start = performance.now();
-        const from = window.scrollY || document.documentElement.scrollTop;
-        const to = document.getElementById('startPage').offsetTop;
-
-        function scrollStep(timestamp) {
-            const elapsed = timestamp - start;
-            window.scrollTo(0, easeInOutCubic(elapsed, from, to - from, duration));
-
-            if (elapsed < duration) {
-                requestAnimationFrame(scrollStep);
-            }
-        }
-
-        function easeInOutCubic(t, b, c, d) {
-            t /= d / 2;
-            if (t < 1) return c / 2 * t * t * t + b;
-            t -= 2;
-            return c / 2 * (t * t * t + 2) + b;
-        }
-
-        requestAnimationFrame(scrollStep);
-    }
-</script>

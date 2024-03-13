@@ -67,7 +67,7 @@
 </head>
 
 <body class="antialiased overflow-x-hidden">
-    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen min-w-screenbg-center border-b-4">
+    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen min-w-screenbg-center border-b-4 border-red-900 ">
         <div>
             {{-- Navigation bar --}}
             <nav id="navbar"
@@ -102,9 +102,14 @@
                                     {{ __('Features') }}
                                 </div>
                             </x-nav-link>
-                            <x-nav-link href="#about">
+                            <x-nav-link href="#mission">
                                 <div class="text-bold">
-                                    {{ __('About') }}
+                                    {{ __('Mission') }}
+                                </div>
+                            </x-nav-link>
+                            <x-nav-link href="#vision">
+                                <div class="text-bold">
+                                    {{ __('Vision') }}
                                 </div>
                             </x-nav-link>
                         </div>
@@ -133,15 +138,15 @@
             {{-- Section 1 --}}
             {{-- Static cover --}}
             <section id="introduction"
-                class="grid h-screen w-screen grid-cols-1 bg-slate-200 md:grid-cols-1 bg-gradient-to-r from-zinc-900 to-gray-900">
+                class="grid h-screen w-screen grid-cols-1 md:grid-cols-1 bg-gradient-to-r from-zinc-900 to-gray-900">
                 <div class="relative h-screen">
                     <div
                         class="absolute inset-0 bg-primary bg-no-repeat bg-fixed bg-cover bg-right md:bg-center opacity-70">
                         <!-- Background Image with Opacity -->
                     </div>
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-center">
-                        <span class="font-bold text-6xl text-yellow-300">『Lorem ipsum』</span><br />
-                        <span class="text-3xl text-white">The Heart of Benguet</span>
+                        <span class="font-bold text-7xl text-yellow-300">EcoMetrics</span><br />
+                        <span class="text-4xl font-bold text-white">lorem ipsum</span>
                         <span class="text-md text-white pt-12">Thank you for testing out our application, hoping to hear
                             some of your feedbacks!</span>
                     </div>
@@ -163,8 +168,10 @@
             </section> --}}
 
 
+            <section id="features"></section>
             {{-- Section 2 --}}
-            <section class="w-5/6 m-auto mt-28 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center">
+            <section
+                class="w-5/6 m-auto mt-28 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center">
                 <div class="py-3 px-2">
                     <p1 class="text-md">
                         Explore Benguet's animals, fisheries, farms, and more with our user-friendly website:
@@ -181,7 +188,7 @@
 
                         </br>
                         <br>
-                        Welcome to [Project Name], where we uncover the heart of Benguet!
+                        Welcome to EcoMetrics, where we uncover the heart of Benguet!
                     </p1>
                 </div>
                 <div class="py-3 px-2">
@@ -195,7 +202,7 @@
             </section>
 
             {{-- Section 4 --}}
-            <section id="features"
+            <section
                 class="w-5/6 m-auto mt-10 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center mb-20">
                 <div
                     class="flex flex-col flex-grow items-stretch max-w-2xl min-w-md w-full sm:flex-row sm:h-72 sm:overflow-hidden">
@@ -351,8 +358,9 @@
                 </div>
             </section>
 
+            <section id="mission"></section>
             {{-- Section 6 --}}
-            <section
+            <section 
                 class=" w-5/6 m-auto mt-28 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center">
                 <div class="py-3 px-2">
                     <h1 class="text-6xl font-bold mb-8">Mission</h1>
@@ -368,11 +376,11 @@
 
             {{-- Section 7 --}}
             <section
-                class="w-full bg-secondary md:py-52 py-28 md:bg-cover md:bg-center bg-contain my-20 border   bg-fixed bg-no-repeat ">
+                class="w-full bg-secondary md:py-52 py-28 md:bg-cover md:bg-center bg-contain my-20 border bg-fixed bg-no-repeat ">
             </section>
 
             {{-- Section 8 --}}
-            <section
+            <section id="vision"
                 class=" w-5/6 m-auto mt-10 grid grid-col-1 gap-x-3 gap-y-10 md:grid-cols-2 max-w-6xl items-center mb-20">
 
                 <div class="py-3 px-2">
@@ -400,9 +408,11 @@
             <img class="h-20"
                 src="https://benguet.gov.ph/wp-content/uploads/2020/09/province-of-benguet-banner-1-768x154.png">
         </div>
+
+        {{-- Footer --}}
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 md:gap-8 gap-4">
             <div class="flex flex-col">
-                <p class="text-lg font-bold leading-none text-gray-800 dark:text-white">DigiStock</p>
+                <p class="text-lg font-bold leading-none text-gray-800 dark:text-white">EcoMetrics</p>
                 <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">Copyright © 2021 DigiStock
                 </p>
                 <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">All rights reserved</p>
@@ -447,15 +457,15 @@
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 0) {
                 navbar.classList.add('bg-transparent', 'bg-opacity-60', 'backdrop-filter',
-                    'backdrop-blur-6xl');
+                    'backdrop-blur-6xl','border-b-2', 'border-red-900');
             } else {
                 navbar.classList.remove('bg-transparent', 'bg-opacity-60', 'backdrop-filter',
-                    'backdrop-blur-6xl');
+                    'backdrop-blur-6xl','border-b-2', 'border-red-900');
             }
         });
     </script>
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('x-nav-link');
@@ -481,7 +491,7 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 </body>
 
 </html>

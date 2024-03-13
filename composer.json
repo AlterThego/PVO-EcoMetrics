@@ -16,6 +16,7 @@
         "markrogoyski/math-php": "2.*",
         "openspout/openspout": "^4.23",
         "phpoffice/phpspreadsheet": "^2.0",
+        "phpoffice/phpword": "^1.2",
         "power-components/livewire-powergrid": "^5.2",
         "wire-elements/modal": "^2.0",
         "yoeunes/toastr": "^2.3"
