@@ -2,10 +2,10 @@
     style="position:relative; z-index: 40;">
     <!-- Primary Navigation Menu -->
     @if (auth()->check() && auth()->user()->role === 'admin')
-    @include('layouts.admin-sidebar')
-@else
-    @include('layouts.user-sidebar')
-@endif
+        @include('layouts.admin-sidebar')
+    @else
+        @include('layouts.user-sidebar')
+    @endif
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -86,17 +86,68 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        <div class="space-y-1 grid grid-cols-2 items-center">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+
             </x-responsive-nav-link>
 
+            <x-responsive-nav-link :href="route('user-management')" :active="request()->routeIs('user-management')">
+                {{ __('User Management') }}
+            </x-responsive-nav-link>
+
+        </div>
+        <hr />
+        <div class="space-y-1 grid grid-cols-3 items-center">
             <x-responsive-nav-link :href="route('animal.population')" :active="request()->routeIs('animal.population')">
                 {{ __('Animal Population') }}
             </x-responsive-nav-link>
 
-            {{-- To be added soon --}}
+            <x-responsive-nav-link :href="route('animal.infected')" :active="request()->routeIs('animal.infected')">
+                {{ __('Animals Affect w/ Disease') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('animal.death')" :active="request()->routeIs('animal.death')">
+                {{ __('Animal Death') }}
+            </x-responsive-nav-link>
         </div>
+        <hr />
+        <div class="space-y-1 grid grid-cols-2 items-center">
+            <x-responsive-nav-link :href="route('fish.production-area')" :active="request()->routeIs('fish.production-area')">
+                {{ __('Fish Production Areas') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('fish.sanctuaries')" :active="request()->routeIs('fish.sanctuaries')">
+                {{ __('Fish Sanctuaries') }}
+            </x-responsive-nav-link>
+        </div>
+        <hr />
+
+        <div class="space-y-1 grid grid-cols-2 items-center">
+            <x-responsive-nav-link :href="route('health.yearly-disease')" :active="request()->routeIs('health.yearly-disease')">
+                {{ __('Yearly Disease') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('health.veterinary-clinics')" :active="request()->routeIs('health.veterinary-clinics')">
+                {{ __('Veterinary Clinics') }}
+            </x-responsive-nav-link>
+        </div>
+        <hr />
+
+        <div class="space-y-1 grid grid-cols-3 items-center">
+            <x-responsive-nav-link :href="route('farm.list')" :active="request()->routeIs('farm.list')">
+                {{ __('Farm List') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('farm.supply')" :active="request()->routeIs('farm.supply')">
+                {{ __('Farm Supplies') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('farm.bee-keeping')" :active="request()->routeIs('farm.bee-keeping')">
+                {{ __('Bee Keeping') }}
+            </x-responsive-nav-link>
+        </div>
+        <hr />
 
 
         <!-- Responsive Settings Options -->

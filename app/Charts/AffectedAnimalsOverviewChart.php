@@ -19,7 +19,7 @@ class AffectedAnimalsOverviewChart
         $counts = collect($affectedAnimalsOverviewData)->pluck('count')->toArray();
 
         return $this->chart->horizontalBarChart()
-            ->setTitle('Affected Animals')
+            // ->setTitle('Affected Animals')
             ->setLabels($municipalities)
             ->addData('Affected Aniimals', $counts)
             ->setColors(['#17becf'])

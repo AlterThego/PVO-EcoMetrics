@@ -39,8 +39,8 @@ class YearlyCommonDiseaseTrendChart
         $recentYearsDiseaseCounts = array_values($aggregatedData);
 
         return $this->chart->areaChart()
-            ->setTitle('Disease Trend')
-            ->setSubtitle('Cases of common diseases reported for the recent 20 years')
+            // ->setTitle('Disease Trend')
+            // ->setSubtitle('Cases of common diseases reported for the recent 20 years')
             ->setXAxis(array_reverse($recentYears))
             ->addData('Cases', array_reverse($recentYearsDiseaseCounts))
             ->setFontFamily('Poppins')

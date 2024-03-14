@@ -21,7 +21,7 @@ class AnimalDeathOverviewChart
         $counts = collect($animalDeathOverviewData)->pluck('count')->toArray();
 
         return $this->chart->horizontalBarChart()
-            ->setTitle('Animal Death per Municipality')
+            // ->setTitle('Animal Death per Municipality')
             ->setLabels($municipalities)
             ->addData('Animal Deaths', $counts)
             ->setColors(['#F46300'])

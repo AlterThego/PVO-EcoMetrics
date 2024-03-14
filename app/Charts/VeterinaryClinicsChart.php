@@ -17,7 +17,7 @@ class VeterinaryClinicsChart
     public function build($data): \ArielMejiaDev\LarapexCharts\HorizontalBar
     {
         return $this->chart->horizontalBarChart()
-            ->setTitle('Veterinary Clinics per Sector')
+            // ->setTitle('Veterinary Clinics per Sector')
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
             ->setColors(['rgba(255, 99, 132, 0.9)', 'rgba(255, 205, 86, 0.9)'])

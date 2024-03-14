@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.image_wrapper {
+    overflow: hidden;
+}
+
+.image_wrapper .image_container {
+    display: flex;
+}
+
+.image_wrapper .image_container img {
+    height: 360px;
+    width: auto;
+}
+
+.image_wrapper .image_container img:nth-child(1) {
+    background-color: aqua;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-135px);
+    transition: transform ease-in-out 600ms;
+}
+
+.image_wrapper .image_container img:nth-child(1):hover {
+    background-color: aqua;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-135px) scale(1.1);
+}
+
+.image_wrapper .image_container img:nth-child(2) {
+    background-color: green;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-385px); /* 270 */
+    transition: transform ease-in-out 600ms;
+}
+
+.image_wrapper .image_container img:nth-child(2):hover {
+    background-color: aqua;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-385px) scale(1.1);
+}
+
+.image_wrapper .image_container img:nth-child(3) {
+    background-color: black;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-635px); /* 475 */
+    transition: transform ease-in-out 600ms;
+}
+
+.image_wrapper .image_container img:nth-child(3):hover {
+    background-color: aqua;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-635px) scale(1.1);
+}
+
+.image_wrapper .image_container img:nth-child(4) {
+    background-color: yellow;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-885px); /* 360 */
+    transition: transform ease-in-out 600ms;
+}
+
+.image_wrapper .image_container img:nth-child(4):hover {
+    background-color: aqua;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-885px) scale(1.1);
+}
+
+.image_wrapper .image_container img:nth-child(5) {
+    background-color: blanchedalmond;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-1105px);
+    transition: transform ease-in-out 600ms;
+}
+
+.image_wrapper .image_container img:nth-child(5):hover {
+    background-color: aqua;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-1105px) scale(1.1);
+}
+
+.image_wrapper .image_container img:nth-child(6) {
+    background-color: red;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-1385px);
+    transition: transform ease-in-out 600ms;
+}
+
+.image_wrapper .image_container img:nth-child(6):hover {
+    background-color: aqua;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transform: translateX(-1385px) scale(1.1);
+}

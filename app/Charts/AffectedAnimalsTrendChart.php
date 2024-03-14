@@ -26,7 +26,7 @@ class AffectedAnimalsTrendChart
         $fontColor = $isDarkMode ? '#FFFFFF' : '#808080';
 
         return $this->chart->areaChart()
-            ->setTitle('Affected Animals with Disease Trend')
+            // ->setTitle('Affected Animals with Disease Trend')
             ->addData('Affected Animals Count', $counts)
             ->setXAxis($years)
             ->setColors(['#7f7f7f'])

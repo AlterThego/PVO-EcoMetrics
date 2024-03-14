@@ -19,7 +19,7 @@ class AnimalDeathOverviewSecondChart
         $counts = collect($animalDeathOverviewSecondData)->pluck('count')->toArray();
 
         return $this->chart->horizontalBarChart()
-            ->setTitle('Animal Death per Kind')
+            // ->setTitle('Animal Death per Kind')
             ->setLabels($animalNames)
             ->addData('Animal Deaths', $counts)
             ->setColors(['#8c564b'])

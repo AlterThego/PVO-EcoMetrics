@@ -19,7 +19,7 @@ class AnimalPopulationOverviewChart
         $counts = collect($animalPopulationOverviewData)->pluck('count')->toArray();
 
         return $this->chart->barChart()
-            ->setTitle('Overall Animal Population')
+            // ->setTitle('Overall Animal Population')
             ->addData('Population', $counts)
             ->setColors(['rgba(54, 162, 235, 1)', '#ff6384'])
             ->setGrid()

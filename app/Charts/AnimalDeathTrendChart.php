@@ -19,7 +19,7 @@ class AnimalDeathTrendChart
         $counts = array_values($data);
 
         return $this->chart->areaChart()
-            ->setTitle('Animal Death Trend')
+            // ->setTitle('Animal Death Trend')
             ->addData('Animal Deaths Count', $counts)
             ->setXAxis($years)
             ->setColors(['#B10DC9'])

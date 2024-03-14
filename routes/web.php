@@ -80,7 +80,7 @@ Route::get('/farm-supply', function () {
 
 Route::get('/veterinary-clinics', function () {
     return view('health.veterinary-clinics');
-})->middleware(['auth', 'verified'])->name('farm.veterinary-clinics');
+})->middleware(['auth', 'verified'])->name('health.veterinary-clinics');
 
 Route::get('/bee-keeping', function () {
     return view('farm.bee-keeping');

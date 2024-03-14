@@ -19,7 +19,7 @@ class YearlyCommonDiseaseOverviewChart
         $disease_count = collect($yearlyCommonDiseaseOverviewData)->pluck('disease_count')->toArray();
 
         return $this->chart->horizontalBarChart()
-            ->setTitle('Animal Disease Count')
+            // ->setTitle('Animal Disease Count')
             ->setLabels($diseases)
             ->addData('Disease Count', $disease_count)
             ->setColors(['#0074D9'])

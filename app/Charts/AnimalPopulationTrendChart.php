@@ -20,8 +20,8 @@ class AnimalPopulationTrendChart
         $counts = array_values($data);
 
         return $this->chart->areaChart()
-            ->setTitle('Animal Population Trend')
-            ->setSubtitle('For the past 20 years')
+            // ->setTitle('Animal Population Trend')
+            // ->setSubtitle('For the past 20 years')
             ->addData('Animal Population Count', $counts)
             ->setXAxis($years)
             ->setColors(['#FF69B4'])

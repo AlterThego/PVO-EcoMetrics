@@ -13,7 +13,7 @@
                     <br>
                     </br><strong>1. Information We Collect:</strong>
 
-                    The website may collect personal information, such as email address, when administrators use it to add new users. 
+                    The website may collect personal information, such as names and email addresses, when administrators use it to add new users. 
                     In addition, this website also collects information about the Socio-economic profile of Benguet, primarily about Animals and Agriculture.
 
                     <br>
@@ -30,19 +30,19 @@
                     and conducting the capstone project.
 
                     <br>
-                    </br><strong>3. Data Security</strong>
+                    </br><strong>3. Data Security: </strong>
 
                     <br>We implement security measures to protect your personal information from unauthorized access,
                     alteration, disclosure, or destruction by utilizing Laravel's built-in authentication.
 
                     <br>
-                    </br><strong>4. Changes to This Policy</strong>
+                    </br><strong>4. Changes to This Policy: </strong>
 
                     <br>We reserve the right to update or change our Privacy Policy at any time. Any changes will be
                     effective immediately upon posting on this page.
 
                     <br>
-                    </br><strong>5. Contact Us</strong>
+                    </br><strong>5. Contact Us: </strong>
 
                     <br>If you have any questions or concerns about our Privacy Policy, please contact us at theosuaking@gmail.com.
                 </p>
