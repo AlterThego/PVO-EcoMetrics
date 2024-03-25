@@ -20,13 +20,13 @@ class CustomTheme extends Tailwind
             ->tr('')
             ->trFilters('bg-blue-900 bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-0
             shadow-sm dark:bg-gray-900')
-            ->th('font-semibold px-5 pr-3 py-2 text-left font-semibold text-gray-700 tracking-wider whitespace-nowrap dark:text-gray-300')
+            ->th('font-semibold px-5 pr-3 py-1 text-left font-semibold text-gray-700 tracking-wider whitespace-nowrap dark:text-gray-300')
             ->tbody('text-gray-800')
             ->trBody('text-sm border-b bg-white border-gray-100 dark:border-gray-950 hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800')
-            ->tdBody('pl-[19px] px-3 py-2 whitespace-nowrap dark:text-gray-200')
+            ->tdBody('pl-[19px] px-3 py-1 whitespace-nowrap dark:text-gray-200')
             ->tdBodyEmpty('px-2 py-1 whitespace-nowrap dark:text-gray-200')
             ->trBodyClassTotalColumns('!bg-red-800')
-            ->tdBodyTotalColumns('px-3 py-2dark:text-gray-200 text-sm text-gray-600 text-right space-y-2')
+            ->tdBodyTotalColumns('px-3 py-2 dark:text-gray-200 text-sm text-gray-600 text-right space-y-2')
         ;
     }
 
@@ -118,7 +118,7 @@ class CustomTheme extends Tailwind
     {
         return Theme::filterInputText()
             ->view($this->root() . '.filters.input-text')
-            ->base('min-w-[9.5rem] pb-2 flex')
+            ->base('min-w-[9.5rem] pb-4 pt-2')
             ->select('appearance-none justify-center block bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full placeholder-gray-400 dark:bg-gray-800 dark:text-gray-200 dark:placeholder-gray-300 dark:border-gray-600')
             ->input('w-full block bg-white text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 placeholder-gray-400 dark:bg-gray-800 dark:text-gray-200 dark:placeholder-gray-300 dark:border-gray-600');
     }

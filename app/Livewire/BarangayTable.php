@@ -18,7 +18,7 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class BarangayTable extends PowerGridComponent
 {
-    use WithExport;
+    // use WithExport;
     public bool $showFilters = true;
     public string $sortDirection = 'desc';
     public function setUp(): array
@@ -26,9 +26,9 @@ final class BarangayTable extends PowerGridComponent
         // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
                 ->showSoftDeletes()

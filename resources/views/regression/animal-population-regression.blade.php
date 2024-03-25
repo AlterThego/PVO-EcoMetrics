@@ -13,17 +13,17 @@
                         <option>Regression</option>
                     </select>
                 </div>
-                <ul class="hidden font-bold shadow text-base font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-sm sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
+                <ul class="hidden font-bold shadow text-base text-center text-gray-500 divide-x divide-gray-200 rounded-sm sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
                     id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
                     <li class="w-full">
                         <button id="stats-tab" data-tabs-target="#stats" type="button" role="tab"
                             aria-controls="stats" aria-selected="true"
-                            class="inline-block w-full py-4  hover:bg-gray-200 dark:hover:bg-gray-800 focus:outline-none dark:hover:bg-gray-600">Statistics</button>
+                            class="inline-block w-full py-4  hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none">Statistics</button>
                     </li>
                     <li class="w-full">
                         <button id="regression-tab" data-tabs-target="#regression" type="button" role="tab"
                             aria-controls="regression" aria-selected="false"
-                            class="inline-block w-full py-4 hover:bg-gray-200 dark:hover:bg-gray-800 focus:outline-none dark:hover:bg-gray-600">Prediction</button>
+                            class="inline-block w-full py-4 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-600">Prediction</button>
                     </li>
                 </ul>
 

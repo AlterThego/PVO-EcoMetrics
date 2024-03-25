@@ -45,7 +45,7 @@ class YearlyCommonDiseaseTrendChart
             ->addData('Cases', array_reverse($recentYearsDiseaseCounts))
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
-            ->setHeight(525);
+            ->setHeight(475);
     }
 
 }

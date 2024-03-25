@@ -33,7 +33,7 @@ class AffectedAnimalsTrendChart
             ->setFontFamily('Poppins')
             ->setFontColor($fontColor)
             // ->setGrid()
-            ->setHeight(525)
+            ->setHeight(475)
             // ->setMarkers(['#0074D9', '#E040FB '], 7, 10)
             ;
     }

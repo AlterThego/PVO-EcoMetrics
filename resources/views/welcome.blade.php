@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex hover:text-black">
-                            <x-nav-link href="#introduction">
+                            <x-nav-link href="/">
                                 <div class="font-bold">
                                     {{ __('Introduction') }}
                                 </div>
@@ -125,9 +125,9 @@
                                 <a href="{{ url('/dashboard') }}" class="font-bold hover:text-red-900">Dashboard</a>
                             @else
                                 <a href="{{ route('login') }}" class="font-bold hover:text-red-900 ml-4">Log in</a>
-                                @if (Route::has('register'))
+                                {{-- @if (Route::has('register'))
                                     <a href="{{ route('register') }}" class="font-bold hover:text-red-900 ml-4">Register</a>
-                                @endif
+                                @endif --}}
                             @endauth
                         </div>
                     @endif
@@ -151,14 +151,11 @@
                 {{-- Section 4 --}}
                 @include('landing-page-components.section-4')
 
-
                 {{-- Section 5  --}}
                 @include('landing-page-components.section-5')
 
                 {{-- Section 6 (image) --}}
-                <section
-                    class="w-full bg-secondary md:py-52 py-28 md:bg-cover md:bg-center bg-contain my-20 border bg-fixed bg-no-repeat ">
-                </section>
+                @include('landing-page-components.section-6')
 
                 {{-- Section 7  --}}
                 @include('landing-page-components.section-7')
@@ -178,19 +175,6 @@
     </div>
 
     @livewireScripts
-
-    <script>
-        const panes = document.querySelectorAll('.pane');
-        let activePaneIndex = 0;
-
-        panes.forEach((pane, index) => {
-            pane.addEventListener('click', () => {
-                panes[activePaneIndex].classList.remove('active');
-                activePaneIndex = index;
-                panes[activePaneIndex].classList.add('active');
-            });
-        });
-    </script>
 
     <script>
         window.addEventListener('scroll', function() {

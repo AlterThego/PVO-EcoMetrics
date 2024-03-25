@@ -26,9 +26,9 @@ final class DiseaseTable extends PowerGridComponent
         // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
                 ->showSoftDeletes()
@@ -62,13 +62,13 @@ final class DiseaseTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::action('Action'),
-            Column::make('Disease name', 'disease_name')
+            Column::make('Disease Name', 'disease_name')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Created at', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
 
         ];

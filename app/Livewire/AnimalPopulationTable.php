@@ -40,6 +40,8 @@ final class AnimalPopulationTable extends PowerGridComponent
                 ->showToggleColumns()
                 ->showSoftDeletes()
                 ->showSearchInput(),
+                // ->includeViewOnTop('custom-layout.animal-population-header'), together with the table
+
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),

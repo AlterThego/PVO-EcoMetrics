@@ -79,12 +79,12 @@ final class BeeKeeperTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Municipality id', 'municipality_id'),
+            Column::make('Municipality', 'municipality_id'),
             Column::make('Colonies', 'colonies')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Bee keepers', 'bee_keepers')
+            Column::make('Bee Keepers', 'bee_keepers')
                 ->sortable()
                 ->searchable(),
 

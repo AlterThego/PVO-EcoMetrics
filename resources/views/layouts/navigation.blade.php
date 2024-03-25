@@ -1,11 +1,16 @@
 <nav x-data="{ open: false }" class="bg-white dark:bg-transparent bg-opacity-80 shadow dark:shadow-lg"
     style="position:relative; z-index: 40;">
+
     <!-- Primary Navigation Menu -->
-    @if (auth()->check() && auth()->user()->role === 'admin')
+    {{-- @if (auth()->check() && auth()->user()->role === 'admin')
         @include('layouts.admin-sidebar')
     @else
         @include('layouts.user-sidebar')
-    @endif
+    @endif --}}
+
+    @include('layouts.sidebar')
+
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">

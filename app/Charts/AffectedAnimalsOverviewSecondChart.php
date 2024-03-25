@@ -26,6 +26,6 @@ class AffectedAnimalsOverviewSecondChart
             ->setGrid()
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
-            ->setHeight(675);
+            ->setHeight(600);
     }
 }

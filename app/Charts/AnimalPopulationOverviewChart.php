@@ -25,7 +25,7 @@ class AnimalPopulationOverviewChart
             ->setGrid()
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
-            ->setHeight(425)
+            ->setHeight(370)
             ->setXAxis($animalNames);
     }
 }

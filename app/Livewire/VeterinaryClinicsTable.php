@@ -82,7 +82,7 @@ final class VeterinaryClinicsTable extends PowerGridComponent
 
             Column::action('Action'),
 
-            Column::make('Municipality id', 'municipality_id')
+            Column::make('Municipality', 'municipality_id')
                 ->searchable(),
 
             Column::make('Sector', 'sector'),

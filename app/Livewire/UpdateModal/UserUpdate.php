@@ -12,6 +12,7 @@ class UserUpdate extends ModalComponent
     public $name;
     public $email;
     public $password;
+    public $re_password;
     public $role;
     public $municipalityId;
     public function render()
@@ -29,6 +30,7 @@ class UserUpdate extends ModalComponent
         $this->name = $userUpdate->name;
         $this->email = $userUpdate->email;
         $this->password = $userUpdate->password;
+        $this->re_password = $userUpdate->password;
         $this->role = $userUpdate->role;
         $this->municipalityId = $userUpdate->municipality_id;
 
@@ -43,9 +45,12 @@ class UserUpdate extends ModalComponent
             $this->validate([
                 'name' => 'required',
                 'email' => 'required|email',
-                'password' => 'required',
+                'password' => 'nullable|min:8',
                 'role' => 'required',
                 'municipalityId' => 'required|exists:municipalities,id',
+                're_password' => 'nullable|same:password'
+            ], [
+                're_password.same' => 'The password and re-entered password must match.',
             ]);
 
             $userUpdate->update([
@@ -69,7 +74,7 @@ class UserUpdate extends ModalComponent
             toastr()->error('An error occurred while updating the item. Please try again. Error: ' . $e->getMessage());
 
 
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
     }
 }

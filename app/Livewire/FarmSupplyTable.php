@@ -74,7 +74,7 @@ final class FarmSupplyTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::action('Action'),
-            Column::make('Municipality id', 'municipality_id'),
+            Column::make('Municipality', 'municipality_id'),
 
             Column::make('Establishment Name', 'establishment_name')
                 ->sortable()

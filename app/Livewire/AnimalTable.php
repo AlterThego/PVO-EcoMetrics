@@ -18,7 +18,7 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class AnimalTable extends PowerGridComponent
 {
-    use WithExport;
+    // use WithExport;
     public string $sortDirection = 'desc';
     public function setUp(): array
     {
@@ -26,9 +26,9 @@ final class AnimalTable extends PowerGridComponent
 
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
                 ->showSoftDeletes()
@@ -75,9 +75,9 @@ final class AnimalTable extends PowerGridComponent
 
             // Column::make('Type', 'type')
             //     ->searchable(),
-            Column::make('Date Added', 'created_at')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Date Added', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
 
         ];

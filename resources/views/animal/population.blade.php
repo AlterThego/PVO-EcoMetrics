@@ -1,16 +1,5 @@
 <title>Animal Population</title>
 <x-app-layout>
-    {{-- <x-slot name="header">
-        <div class="mx-5">
-          <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Animal Population') }}
-          </h2>
-        </div>
-      </x-slot>
-       --}}
-
-
-
     <div class="pt-10">
         <div class="max-w-7xl mx-auto sm:px-2 lg:px-4">
             <div class="container relative">

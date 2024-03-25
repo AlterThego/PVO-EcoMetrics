@@ -3,9 +3,10 @@
     <div class="max-w-7xl mx-auto" style="position:relative; z-index:30;">
         <div class="w-full">
             <div class="grid grid-cols-6 gap-3 pt-8">
-                <div class="flex flex-col space-y-1 col-span-6 lg:col-span-2 text-center items-center pb-6 px-10 lg:px-0">
+                <div
+                    class="flex flex-col space-y-1 col-span-6 lg:col-span-2 text-center items-center pb-6 px-10 lg:px-0">
                     <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
-                    <p class="text-sm font-normal text-gray-700 dark:text-gray-300">Benguet Animals and Agriculture</p>
+                    <p class="text-sm font-normal text-gray-700 dark:text-gray-300">Benguet Socio-Economic Profile</p>
                 </div>
 
                 <!-- Tabs for larger screens -->
@@ -47,25 +48,9 @@
                     </li>
 
                     <li class="w-full relative">
-                        <button id="summary-tab" data-tooltip-target="tooltip-summary" data-tabs-target="#summary"
-                            type="button" role="tab" aria-controls="summary" aria-selected="false"
-                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6">
-                                <path fill="currentColor"
-                                    d="m20 8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9 19H7v-9h2zm4 0h-2v-6h2zm4 0h-2v-3h2zM14 9h-1V4l5 5z" />
-                            </svg>
-                            <div id="tooltip-summary" role="tooltip"
-                                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                Summary Report
-                                <div class="tooltip-arrow" data-popper-arrow></div>
-                            </div>
-                        </button>
-                    </li>
-
-                    <li class="w-full relative">
                         <button id="trend-tab" data-tooltip-target="tooltip-trend" data-tabs-target="#trend"
                             type="button" role="tab" aria-controls="trend" aria-selected="false"
-                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center rounded-tr-lg w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
+                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-6 h-6">
                                 <path fill="currentColor"
                                     d="M244 56v64a12 12 0 0 1-24 0V85l-75.51 75.52a12 12 0 0 1-17 0L96 129l-63.51 63.49a12 12 0 0 1-17-17l72-72a12 12 0 0 1 17 0L136 135l67-67h-35a12 12 0 0 1 0-24h64a12 12 0 0 1 12 12" />
@@ -73,6 +58,22 @@
                             <div id="tooltip-trend" role="tooltip"
                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                 Trends
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </button>
+                    </li>
+
+                    <li class="w-full relative">
+                        <button id="summary-tab" data-tooltip-target="tooltip-summary" data-tabs-target="#summary"
+                            type="button" role="tab" aria-controls="summary" aria-selected="false"
+                            class="shadow text-lg bg-gray-100 dark:bg-gray-800 font-extrabold hover:text-gray-500 flex items-center justify-center w-full p-2 hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-700 rounded-tr-lg ">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6">
+                                <path fill="currentColor"
+                                    d="m20 8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9 19H7v-9h2zm4 0h-2v-6h2zm4 0h-2v-3h2zM14 9h-1V4l5 5z" />
+                            </svg>
+                            <div id="tooltip-summary" role="tooltip"
+                                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                Summary Report
                                 <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         </button>
@@ -103,9 +104,9 @@
                             </div>
                             <select name="year" id="year"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-                                focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-4 py-2.5 
+                                focus:ring-green-500 focus:border-green-500 block w-full pl-10 pr-4 py-2.5 
                                 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
-                                dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
+                                dark:focus:ring-green-500 dark:focus:border-green-500 cursor-pointer">
                                 @foreach ($years as $year)
                                     <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>
                                         {{ $year }}</option>
@@ -119,7 +120,7 @@
                             </div>
                         </div>
                         <button type="submit"
-                            class="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+                            class="ml-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:bg-green-500">
 
                             <p class="hidden lg:block">View Data</p>
                             <svg class="w-4 h-4 block lg:hidden"xmlns="http://www.w3.org/2000/svg"
@@ -140,9 +141,9 @@
                 <select id="tabs"
                     class="block w-full mb-5 bg-white border border-gray-300 dark:border-gray-950 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-900 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-lg">
                     <option value="#overview">Overview</option>
+                    <option value="#compare">Density and Ratio</option>
                     <option value="#trend">Trends</option>
                     <option value="#summary">Summary Report</option>
-                    <option value="#compare">Density and Ratio</option>
                 </select>
             </div>
 
@@ -161,7 +162,7 @@
 
 
 {{-- Dynamic Tab when pressed --}}
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         var tabs = document.querySelectorAll('[role="tab"]');
 
@@ -220,10 +221,10 @@
             }
         });
     });
-</script>
+</script> --}}
 
 {{-- Script for saving state of the tab selected --}}
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Function to handle tab button click
         function handleTabClick(event) {
@@ -273,41 +274,11 @@
             }
         }
     });
-</script>
-
-
-{{-- Save Selected Year Script --}}
-{{-- Stable script --}}
-{{-- <script>
-    // Function to save selected year to local storage
-    function saveSelectedYear() {
-        var yearSelect = document.getElementById('year');
-        var selectedYear = yearSelect.value;
-        localStorage.setItem('selectedYear', selectedYear);
-    }
-
-    // Function to load selected year from local storage
-    function loadSelectedYear() {
-        var selectedYear = localStorage.getItem('selectedYear');
-        if (selectedYear) {
-            document.getElementById('year').value = selectedYear;
-        }
-    }
-
-    // Load selected year when the page loads
-    window.onload = function() {
-        loadSelectedYear();
-    };
-
-    // Save selected year when it changes
-    document.getElementById('year').addEventListener('change', function() {
-        saveSelectedYear();
-    });
 </script> --}}
 
 
 {{-- Experimental 1: success --}}
-<script>
+{{-- <script>
     // Function to save selected year to local storage
     function saveSelectedYear() {
         var yearSelect = document.getElementById('year');
@@ -340,48 +311,75 @@
     document.getElementById('year').addEventListener('change', function() {
         saveSelectedYear();
     });
-</script>
-
-{{-- Experimental 2: --}}
-{{-- <script>
-    // Function to save selected year to local storage
-    function saveSelectedYear() {
-        var yearSelect = document.getElementById('year');
-        var selectedYear = yearSelect.value;
-        localStorage.setItem('selectedYear', selectedYear);
-    }
-
-    // Function to load selected year from local storage
-    function loadSelectedYear() {
-        var selectedYear = localStorage.getItem('selectedYear');
-        var yearSelect = document.getElementById('year');
-        if (selectedYear) {
-            yearSelect.value = selectedYear;
-            // Trigger the page content loading after the selected year is set
-            loadPageContent();
-        }
-    }
-
-    // Set default value to the latest year
-    function setDefaultYear() {
-        var yearSelect = document.getElementById('year');
-        var latestYearOption = yearSelect.lastElementChild;
-        yearSelect.value = latestYearOption.value; // Set default value to the latest year option
-    }
-
-    // Load selected year when the page loads
-    window.onload = function() {
-        setDefaultYear(); // Set default value to the latest year
-        loadSelectedYear(); // Load selected year from local storage
-    };
-
-    // Save selected year when it changes
-    document.getElementById('year').addEventListener('change', function() {
-        saveSelectedYear();
-    });
-
-    // Function to load page content
-    function loadPageContent() {
-        // Add your code to load the page content here
-    }
 </script> --}}
+
+
+{{-- Script for the carousel table --}}
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carouselItems = document.querySelectorAll('[data-carousel-item]');
+        const prevButton = document.querySelector('[data-carousel-prev]');
+        const nextButton = document.querySelector('[data-carousel-next]');
+        const slideIndicators = document.querySelectorAll('[data-carousel-slide-to]');
+        let currentSlide = 0;
+
+        // Function to show the current slide and hide others
+        function showSlide(slideIndex) {
+            carouselItems.forEach((item, index) => {
+                if (index === slideIndex) {
+                    item.classList.add('block');
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('block');
+                }
+            });
+            updateActiveIndicator(slideIndex);
+        }
+
+        // Function to handle previous slide
+        function prevSlide() {
+            currentSlide = (currentSlide === 0) ? carouselItems.length - 1 : currentSlide - 1;
+            showSlide(currentSlide);
+        }
+
+        // Function to handle next slide
+        function nextSlide() {
+            currentSlide = (currentSlide === carouselItems.length - 1) ? 0 : currentSlide + 1;
+            showSlide(currentSlide);
+        }
+
+        // Function to update active indicator with animation
+        function updateActiveIndicator(index) {
+            slideIndicators.forEach((indicator, i) => {
+                if (i === index) {
+                    indicator.classList.add('bg-blue-600', 'transition', 'duration-300');
+                    indicator.classList.remove('bg-gray-300');
+                } else {
+                    indicator.classList.remove('bg-blue-600');
+                    indicator.classList.add('bg-gray-300', 'transition', 'duration-300');
+                }
+            });
+        }
+
+        // Event listener for previous button
+        prevButton.addEventListener('click', prevSlide);
+
+        // Event listener for next button
+        nextButton.addEventListener('click', nextSlide);
+
+        // Event listeners for slide indicators
+        slideIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', function() {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Show initial slide
+        showSlide(currentSlide);
+    });
+</script> --}}
+
+
+<script src="{{ asset('./assets/js/dashboard.js') }}"></script>

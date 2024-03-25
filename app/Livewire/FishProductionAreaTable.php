@@ -87,10 +87,10 @@ final class FishProductionAreaTable extends PowerGridComponent
 
             Column::make('Municipality', 'municipality_id'),
 
-            Column::make('Fish production type', 'fish_production_id'),
+            Column::make('Fish Production Type', 'fish_production_id'),
 
 
-            Column::make('Land area', 'land_area')
+            Column::make('Land Area', 'land_area')
                 ->sortable()
                 ->searchable(),
 

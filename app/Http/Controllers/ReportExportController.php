@@ -72,7 +72,7 @@ class ReportExportController extends Controller
             'marginRight' => Converter::inchToTwip(1),   // Right margin in inches
             'marginTop' => Converter::inchToTwip(1),   // Top margin in inches
             'marginBottom' => Converter::inchToTwip(1),
-            'pageSizeH' => Converter::inchToTwip(14),
+            'pageSizeH' => Converter::inchToTwip(13),
             'pageSizeW' => Converter::inchToTwip(8.5)
         ]);
 
@@ -175,7 +175,11 @@ class ReportExportController extends Controller
             $table->addCell(1000)->addText($animalPopulation->year, null, $alignCenter);
             $table->addCell(3000)->addText($animalPopulation->municipality->municipality_name, null, $alignCenter);
             $table->addCell(3000)->addText($animalPopulation->animal->animal_name, null, $alignCenter);
-            $table->addCell(3000)->addText($animalPopulation->animal_type->type, null, $alignCenter);
+
+            //  Since animal type is nullable
+            $animalType = ($animalPopulation->animal_type !== null) ? $animalPopulation->animal_type->type : "";
+            $table->addCell(3000)->addText($animalType, null, $alignCenter);
+
             $table->addCell(1500)->addText($animalPopulation->animal_population_count, null, $alignCenter);
             $table->addCell(1500)->addText($animalPopulation->volume, null, $alignCenter);
         }
@@ -426,7 +430,7 @@ class ReportExportController extends Controller
         $table->addCell(3250, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
         $table->addCell(3250, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
         $table->addCell(3250, $tableStyle)->addText('Colonies', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Bee Keepers', ['bold' => true], $alignCenter);
+        $table->addCell(3250, $tableStyle)->addText('Beekeepers', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($beeKeepings as $beeKeeping) {

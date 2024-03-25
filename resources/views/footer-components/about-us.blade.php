@@ -9,10 +9,12 @@
                     alt="A group of People" />
                 <div class="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg rounded-md">
                     <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                        <img class="md:block hidden dark:opacity-70" src="https://i.ibb.co/FYTKDG6/Rectangle-118-2.png"
-                            alt="Alexa featured Image" />
-                        <img class="md:hidden block dark:opacity-70" src="https://i.ibb.co/zHjXqg4/Rectangle-118.png"
-                            alt="Alexa featured Image" />
+                        <a href="https://uc-bcf.edu.ph">
+                            <img class="md:block hidden dark:opacity-70"
+                                src="/assets/images/about-us-images/uc_logo.jpg" alt="UC Logo Image" />
+                            <img class="md:hidden block dark:opacity-70 p-20"
+                                src="/assets/images/about-us-images/uc_logo.jpg" alt="UC Logo Image" />
+                        </a>
                     </div>
                     <div class="p-4 pb-6 flex justify-center flex-col items-center">
                         <img class="md:block hidden dark:opacity-70" src="https://i.ibb.co/fGmxhVy/Rectangle-119.png"
@@ -27,10 +29,12 @@
                             alt="Liam featued Image" />
                     </div>
                     <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                        <img class="md:block hidden dark:opacity-70" src="https://i.ibb.co/Pc6XVVC/Rectangle-120.png"
-                            alt="Liam featued Image" />
-                        <img class="md:hidden block dark:opacity-70" src="https://i.ibb.co/C5MMBcs/Rectangle-120.png"
-                            alt="Liam featued Image" />
+                        <a href="https://benguet.gov.ph">
+                            <img class="md:block hidden dark:opacity-70" src="/assets/images/benguet.png"
+                                alt="Benguet Logo Image" />
+                            <img class="md:hidden block dark:opacity-70 p-20" src="/assets/images/benguet.png"
+                                alt="Benguet Logo Image" />
+                        </a>
                     </div>
                 </div>
             </div>
@@ -44,7 +48,9 @@
                     </br>
                     <br>At EcoMetrics, we're on a mission to uncover the stories behind the numbers, delving deep
                     into the heartbeat of Benguet's animal population, fisheries, farms, veterinary clinics, and beyond.
-                    Through hard work and dedication to learn new things, we strive to paint a vivid picture of the
+
+                    </br>
+                    <br>Through hard work and dedication to learn new things, we strive to paint a vivid picture of the
                     region's socio-economic profile, illuminating the connections between its people, their livelihoods,
                     and the natural world that surrounds them.
 
@@ -80,7 +86,7 @@
 
                     </br>
                     <br>
-                    Welcome to EcoMetrics. Welcome to the heart of Benguet.
+                    Welcome to EcoMetrics, from Fields to Figures.
                 </p>
             </div>
             <div class="w-full lg:w-fit lg:pt-8">

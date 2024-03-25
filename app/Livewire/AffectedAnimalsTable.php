@@ -86,8 +86,8 @@ final class AffectedAnimalsTable extends PowerGridComponent
                 ->searchable(),
 
 
-            Column::make('Municipality id', 'municipality_id'),
-            Column::make('Animal id', 'animal_id'),
+            Column::make('Municipality', 'municipality_id'),
+            Column::make('Animal', 'animal_id'),
             // Column::make('Year', 'year')
             //     ->sortable()
             //     ->searchable(),

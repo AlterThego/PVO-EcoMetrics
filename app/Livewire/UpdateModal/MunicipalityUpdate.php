@@ -42,7 +42,7 @@ class MunicipalityUpdate extends ModalComponent
             ]);
 
             $municipality->update([
-                'municipalityName' => $this->municipalityName,
+                'municipality_name' => $this->municipalityName,
                 'zip_code' => $this->zipCode,
                 'land_area' => $this->landArea,
 

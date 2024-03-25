@@ -1,7 +1,7 @@
 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 md:gap-8 gap-4">
     <div class="flex flex-col">
         <p class="text-lg font-bold leading-none text-gray-800 dark:text-white">EcoMetrics</p>
-        <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">Copyright © 2021 EcoMetrics
+        <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">Copyright © 2024 EcoMetrics
         </p>
         <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">All rights reserved</p>
     </div>

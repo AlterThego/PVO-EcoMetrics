@@ -29,10 +29,6 @@ Route::get('/user-management', function () {
     return view('user-management');
 })->middleware(['auth', 'verified', 'admin'])->name('user-management');
 
-Route::get('/compare', function () {
-    return view('compare');
-})->middleware(['auth', 'verified'])->name('compare');
-
 Route::get('/animal-population', function () {
     return view('animal.population');
 })->middleware(['auth', 'verified'])->name('animal.population');

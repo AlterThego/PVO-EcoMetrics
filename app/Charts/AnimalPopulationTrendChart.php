@@ -28,7 +28,7 @@ class AnimalPopulationTrendChart
             ->setFontFamily('Poppins')
             ->setFontColor('#808080')
             // ->setGrid()
-            ->setHeight(525)
+            ->setHeight(475)
             // ->setMarkers(['#FF5722', '#E040FB'], 7, 10)
             ;
     }

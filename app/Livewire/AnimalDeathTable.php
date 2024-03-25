@@ -85,8 +85,8 @@ final class AnimalDeathTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Municipality id', 'municipality_id'),
-            Column::make('Animal id', 'animal_id'),
+            Column::make('Municipality', 'municipality_id'),
+            Column::make('Animal', 'animal_id'),
 
             Column::make('Count', 'count')
                 ->sortable()

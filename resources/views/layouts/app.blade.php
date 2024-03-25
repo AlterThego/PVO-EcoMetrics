@@ -19,7 +19,7 @@
     <div class="lg:pl-16 md:pl-8 sm:pl-4 min-h-screen bg-white dark:bg-gray-900 z-0 dark:[color-scheme:dark]">
         <div class="absolute inset-x-0 top-0 z-0 flex min-h-0 flex-col overflow-hidden pt-32 pl-10 h-screen w-screen">
             <span
-                class="lg:h-9w-96 h-full w-80 rounded-full bg-lime-300 dark:bg-blue-600 opacity-20 mix-blend-multiply blur-3xl filter lg:w-full fixed z-0 bottom-0 left-0"></span>
+                class="lg:h-9w-96 h-full w-80 rounded-full bg-lime-400 dark:bg-blue-600 opacity-20 mix-blend-multiply blur-3xl filter lg:w-full fixed z-0 bottom-0 left-0"></span>
             <span
                 class="lg:h-9w-96 nc-animation-delay-2000 ml-10 -mt-10 h-80 w-80 rounded-full bg-white dark:bg-violet-600 opacity-20 mix-blend-multiply blur-3xl filter lg:w-full fixed z-0 top-0 right-0"></span>
         </div>

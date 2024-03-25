@@ -18,16 +18,16 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class AnimalTypeTable extends PowerGridComponent
 {
-    use WithExport;
+    // use WithExport;
 
     public function setUp(): array
     {
         // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
                 ->showSoftDeletes()
@@ -67,9 +67,9 @@ final class AnimalTypeTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Created at', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
 
         ];

@@ -15,9 +15,11 @@ class UserController extends Controller
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
-                // 'municipality' => 'exists:municipalities,id',
                 'password' => 'required|string|min:8',
+                're-password' => 'required|same:password', // New validation rule for password confirmation
                 'role' => 'required|in:admin,user',
+            ], [
+                're-password.same' => 'The password and re-entered password must match.',
             ]);
 
             $municipality_id = $request->input('municipality', 0);
@@ -37,7 +39,7 @@ class UserController extends Controller
 
         } catch (\Exception $e) {
             // Handle the exception
-            toastr()->error('An error occurred while creating the user. Please try again.'. $e->getMessage());
+            toastr()->error('An error occurred while creating the user. Please try again. ' . $e->getMessage());
             return back();
         }
     }

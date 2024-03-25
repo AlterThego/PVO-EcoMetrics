@@ -18,16 +18,16 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class MunicipalityTable extends PowerGridComponent
 {
-    use WithExport;
+    // use WithExport;
     public bool $showFilters = true;
     public function setUp(): array
     {
         // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()
                 ->showToggleColumns()
                 ->showSoftDeletes()
@@ -64,15 +64,15 @@ final class MunicipalityTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::action('Action'),
-            Column::make('Municipality name', 'municipality_name')
+            Column::make('Municipality Name', 'municipality_name')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Zip code', 'zip_code')
+            Column::make('Zip Code', 'zip_code')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Land area (km²)', 'land_area')
+            Column::make('Land Area (km²)', 'land_area')
                 ->sortable()
                 ->searchable(),
 

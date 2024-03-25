@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Barangay;
 use App\Models\FishSanctuary;
+use App\Models\Municipality;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -75,13 +76,13 @@ final class FishSanctuaryTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::action('Action'),
-            Column::make('Municipality id', 'municipality_id',  'barangays.municipality_id'),
-            Column::make('Barangay id', 'barangay_id'),
+            Column::make('Municipality', 'municipality_id',  'barangays.municipality_id'),
+            Column::make('Barangay', 'barangay_id'),
             Column::make('Year', 'year')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Land area', 'land_area')
+            Column::make('Land Area', 'land_area')
                 ->sortable()
                 ->searchable(),
 
@@ -96,6 +97,12 @@ final class FishSanctuaryTable extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id'),
+
+
             Filter::select('barangay_id', 'barangay_id')
                 ->dataSource(Barangay::all())
                 ->optionLabel('barangay_name')

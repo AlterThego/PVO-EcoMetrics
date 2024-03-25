@@ -42,7 +42,7 @@
     {{-- Animal Population Overview Chart --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 justify-center items-center">
         <div
-            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-5 sm:col-span-5 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-8 sm:col-span-8 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
             <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-5 font-bold text-md text-gray-900 dark:text-gray-100">
                 {{ __('Overall Animal Population') }}
@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div
+        {{-- <div
             class="rounded-lg bg-clip-padding bg-opacity-0 col-span-3 sm:col-span-3 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
             <div
                 class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-5 font-semibold text-md text-gray-900 dark:text-gray-100">
@@ -72,19 +72,18 @@
                     {!! $veterinaryClinicsChart->script() !!}
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
     </div>
 
-
     {{-- Animal Population per Municipality Carousel --}}
-    <div class="grid grid-cols-1 gap-4 pb-10">
-        <div id="indicators-carousel" class="rounded-xl relative w-full pt-10" data-carousel="static">
+    <div class="flex flex-col items-center justify-center pb-5">
+        <div id="indicators-carousel" class="rounded-xl relative w-full pt-5">
             <!-- Carousel wrapper -->
-            <div class="bg-white rounded-lg shadow-lg dark:bg-gray-900 overflow-hidden items-center h-lvh w-full">
+            <div class="bg-white rounded-lg shadow-lg dark:bg-gray-900 overflow-hidden items-center w-full">
                 <div
-                    class="z-30 relative h-full overflow-hidden rounded-lg md:h-full border border-gray-200 dark:border-gray-950">
+                    class="z-30 relative overflow-hidden rounded-lg md:h-full border border-gray-200 dark:border-gray-950 pb-16">
                     @foreach ($municipalities as $index => $municipality)
                         <!-- Item {{ $index + 1 }} -->
                         <div class="{{ $index === $currentSlide ? 'block' : 'hidden' }} duration-700 ease-in-out"
@@ -92,10 +91,10 @@
                             <div class="max-w-5xl mx-auto pt-15">
                                 <div class="flex flex-row justify-between pb-5 pt-10">
                                     <div
-                                        class="rounded-t-xl bg-white dark:bg-gray-900 pt-3 text-base text-gray-900 dark:text-gray-100">
+                                        class="rounded-t-xl bg-white dark:bg-gray-900 pt-3 text-sm text-gray-900 dark:text-gray-100">
                                         <p>{{ __('Animal Population per Municipality') }}({{ $selectedYear }})</p>
                                     </div>
-                                    <p class="text-end text-3xl font-bold pe-10">{{ $municipality->municipality_name }}
+                                    <p class="text-end text-2xl font-bold pe-10">{{ $municipality->municipality_name }}
                                     </p>
                                 </div>
 
@@ -103,47 +102,20 @@
                                     <thead>
                                         <tr class="dark:text-white">
                                             <th class="px-6 py-3 border border-gray-200 dark:border-gray-700">Animal
-                                                Species
-                                            </th>
-                                            <th class="px-6 py-3 border border-gray-200 dark:border-gray-700">
-                                                Population
-                                                Count
-                                            </th>
+                                                Species</th>
+                                            <th class="px-6 py-3 border border-gray-200 dark:border-gray-700">Population
+                                                Count</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if (isset($animalPopulationsByMunicipality[$municipality->id]))
-                                            {{-- Create an array to store aggregated population counts for each animal --}}
-                                            @php
-                                                $aggregatedPopulations = [];
-                                            @endphp
-
                                             {{-- Loop through each animal population --}}
                                             @foreach ($animalPopulationsByMunicipality[$municipality->id] as $animalPopulation)
-                                                {{-- Check if the animal name already exists in the aggregated data --}}
-                                                @if (isset($aggregatedPopulations[$animalPopulation->animal->animal_name]))
-                                                    {{-- If the animal name exists, add the population count to the existing total --}}
-                                                    @php
-                                                        $aggregatedPopulations[
-                                                            $animalPopulation->animal->animal_name
-                                                        ] += $animalPopulation->animal_population_count;
-                                                    @endphp
-                                                @else
-                                                    {{-- If the animal name doesn't exist, initialize the total count --}}
-                                                    @php
-                                                        $aggregatedPopulations[$animalPopulation->animal->animal_name] =
-                                                            $animalPopulation->animal_population_count;
-                                                    @endphp
-                                                @endif
-                                            @endforeach
-
-                                            {{-- Display the aggregated data --}}
-                                            @foreach ($aggregatedPopulations as $animalName => $totalPopulation)
                                                 <tr>
-                                                    <td class="px-4 py-3 border border-gray-200 dark:border-gray-700">
-                                                        {{ $animalName }}</td>
-                                                    <td class="px-4 py-3 border border-gray-200 dark:border-gray-700">
-                                                        {{ $totalPopulation }}</td>
+                                                    <td class="px-4 py-2 border border-gray-200 dark:border-gray-700">
+                                                        {{ $animalPopulation->animal->animal_name }}</td>
+                                                    <td class="px-4 py-2 border border-gray-200 dark:border-gray-700">
+                                                        {{ $animalPopulation->animal_population_count }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -154,7 +126,6 @@
                     @endforeach
                 </div>
             </div>
-
 
             <!-- Slider indicators -->
             <div class="absolute z-40 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
@@ -197,9 +168,6 @@
             </button>
         </div>
     </div>
-
-
-
 
     {{-- Affected Animals Overview Chart --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
@@ -293,9 +261,31 @@
         </div>
     </div>
 
+    {{-- Animal Population Overview Chart --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 justify-center items-center">
+        <div
+            class="rounded-lg bg-clip-padding bg-opacity-0 col-span-4 sm:col-span-4 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
+
+            <div
+                class="rounded-lg bg-clip-padding bg-opacity-0 col-span-3 sm:col-span-3 row-end-auto z-30 shadow-lg border border-gray-200 dark:border-gray-950">
+                <div
+                    class="rounded-t-xl text-center bg-white dark:bg-gray-900 pt-5 font-semibold text-md text-gray-900 dark:text-gray-100">
+                    {{ __('Veterinary Clinics by Sector') }}
+                </div>
+
+                <div class="relative h-fit">
+                    <div
+                        class="bg-white rounded-lg px-3 dark:bg-gray-900 overflow-hidden items-center justify-end h-full w-full">
+                        {!! $veterinaryClinicsChart->container() !!}
+                        <script src="{{ $veterinaryClinicsChart->cdn() }}"></script>
+                        {!! $veterinaryClinicsChart->script() !!}
+                    </div>
+                </div>
+            </div>
 
 
+        </div>
 
-
+    </div>
 
 </div>
