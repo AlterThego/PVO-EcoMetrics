@@ -2,25 +2,13 @@
 
 namespace App\Livewire;
 
-use App\Models\BeeKeeper;
-use App\Models\Municipality;
-use App\Models\Population;
-use App\Models\User;
+use App\Models\{
+    AffectedAnimals, Animal, AnimalDeath, AnimalPopulation, AnimalType, Barangay,
+    BeeKeeper, Disease, Farm, FarmSupply, FishProduction, FishProductionArea,
+    FishSanctuary, Municipality, Population, User, VeterinaryClinics, YearlyCommonDisease
+};
+
 use LivewireUI\Modal\ModalComponent;
-use App\Models\FishSanctuary;
-use App\Models\Animal;
-use App\Models\AnimalType;
-use App\Models\AnimalPopulation;
-use App\Models\AffectedAnimals;
-use App\Models\AnimalDeath;
-use App\Models\FishProduction;
-use App\Models\FishProductionArea;
-use App\Models\Disease;
-use App\Models\YearlyCommonDisease;
-use App\Models\Farm;
-use App\Models\FarmSupply;
-use App\Models\VeterinaryClinics;
-use App\Models\Barangay;
 
 
 class DeleteRow extends ModalComponent

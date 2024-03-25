@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
 
             $table->unsignedBigInteger('disease_id');
-            $table->foreign('disease_id')->references('id')->on('diseases')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('disease_id')->references('id')->on('diseases')->onUpdate('cascade');
 
             $table->integer('year');
             $table->integer('disease_count');

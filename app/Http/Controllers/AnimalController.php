@@ -62,4 +62,21 @@ class AnimalController extends Controller
             return back();
         }
     }
+
+    public function restore(Request $request, $id)
+{
+    $animal = Animal::withTrashed()->findOrFail($id);
+    
+    // Check if the animal is soft-deleted
+    if ($animal->trashed()) {
+        // Restore the soft-deleted animal
+        $animal->restore();
+        
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Animal restored successfully.');
+    }
+    
+    // Redirect back with a warning message if the animal is not soft-deleted
+    return redirect()->back()->with('warning', 'Animal is not deleted.');
+}
 }

@@ -53,7 +53,7 @@ final class AffectedAnimalsTable extends PowerGridComponent
                 'municipalities.municipality_name as municipality_id',
             );
 
-         if (auth()->user()->municipality_id !== 0) {
+        if (auth()->user()->municipality_id !== 0) {
             $query->where('affected_animals.municipality_id', auth()->user()->municipality_id);
         }
 
@@ -106,7 +106,7 @@ final class AffectedAnimalsTable extends PowerGridComponent
     public function filters(): array
     {
         $filters = [
-      
+
             Filter::inputText('year')
                 ->operators(['contains']),
 
@@ -152,6 +152,11 @@ final class AffectedAnimalsTable extends PowerGridComponent
                 ->slot('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2zM18 4h-2.5l-.71-.71c-.18-.18-.44-.29-.7-.29H9.91c-.26 0-.52.11-.7.29L8.5 4H6c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1"/></svg>')
                 ->class('bg-red-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
                 ->openModal('delete-row', ['affectedAnimalsId' => $row->id]);
+        } else {
+            $actions[] = Button::add('restore-row')
+                ->class('bg-green-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
+                ->slot('<svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path fill="currentColor" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z" /></svg>')
+                ->openModal('restore-row', ['affectedAnimalsId' => $row->id]);
         }
 
         return $actions;

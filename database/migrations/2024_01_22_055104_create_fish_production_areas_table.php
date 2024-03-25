@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->id();
 
             $table->unsignedBigInteger('fish_production_id');
-            $table->foreign('fish_production_id')->references('id')->on('fish_productions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('fish_production_id')->references('id')->on('fish_productions')->onUpdate('cascade');
 
             $table->unsignedBigInteger('municipality_id');
             $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade');

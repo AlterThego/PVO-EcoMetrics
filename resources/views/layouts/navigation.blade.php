@@ -17,10 +17,10 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center z-10">
                     <a href="{{ route('dashboard') }}">
-                        <img src="./assets/images/logo.png" alt="" class="header__img">
+                        <img src="./assets/images/logo.png" alt="" class="header__img" loading="lazy" preload>
                     </a>
                 </div>
-
+                
                 <!-- Navigation Links -->
                 {{-- TOP NAVIGATION  --}}
                 {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

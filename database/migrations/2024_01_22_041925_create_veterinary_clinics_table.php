@@ -14,7 +14,7 @@ return new class extends Migration {
 
 
             $table->unsignedBigInteger('municipality_id');
-            $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade');
 
             $table->enum('sector', ['Government', 'Private']);
             $table->string('clinic_name', 50);

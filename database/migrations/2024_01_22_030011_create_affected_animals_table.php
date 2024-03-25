@@ -17,10 +17,10 @@ return new class extends Migration {
             $table->id();
 
             $table->unsignedBigInteger('municipality_id');
-            $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade');
 
             $table->unsignedBigInteger('animal_id');
-            $table->foreign('animal_id')->references('id')->on('animal')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('animal_id')->references('id')->on('animal')->onUpdate('cascade');
 
             $table->integer('year');
             $table->integer('count');

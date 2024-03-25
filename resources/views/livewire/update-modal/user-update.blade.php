@@ -64,6 +64,18 @@
                 </div>
 
                 <div>
+                    <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Role
+                    </label>
+                    <select wire:model="role" name="role" id="role" required
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option value="" disabled selected>Select role</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+                
+                <div>
                     <label for="password"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                     <input wire:model="password" type="password" name="password" id="password"
@@ -80,17 +92,7 @@
                 </div>
 
 
-                <div>
-                    <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Role
-                    </label>
-                    <select wire:model="role" name="role" id="role" required
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option value="" disabled selected>Select role</option>
-                        <option value="admin">Admin</option>
-                        <option value="user">User</option>
-                    </select>
-                </div>
+
             </div>
             <button wire:click.prevent="updateitem"
                 class="text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">

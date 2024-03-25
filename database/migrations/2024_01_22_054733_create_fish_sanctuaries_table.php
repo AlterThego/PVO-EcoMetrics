@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->id();
 
             $table->unsignedBigInteger('barangay_id');
-            $table->foreign('barangay_id')->references('id')->on('barangays')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('barangay_id')->references('id')->on('barangays')->onUpdate('cascade');
 
             $table->integer('year');
             $table->decimal('land_area', 10, 2);
