@@ -38,7 +38,7 @@ class AnimalPopulationChart
             ->setColors(['#ff6384'])
             ->setFontFamily('Poppins')
             ->setFontColor('#777')
-            ->setGrid()
+            // ->setGrid()
             ->setHeight(400)
             ->setMarkers(['#FF5722', '#E040FB'], 7, 10);
         // ->setSparkline();

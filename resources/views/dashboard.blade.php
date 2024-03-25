@@ -2,7 +2,7 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto" style="position:relative; z-index:30;">
         <div class="w-full">
-            <div class="grid grid-cols-6 gap-3 pt-8">
+            <div class="grid grid-cols-6 gap-3 pt-8 justify-center">
                 <div
                     class="flex flex-col space-y-1 col-span-6 lg:col-span-2 text-center items-center pb-6 px-10 lg:px-0">
                     <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
@@ -10,7 +10,7 @@
                 </div>
 
                 <!-- Tabs for larger screens -->
-                <ul class="col-span-2 hidden sm:flex text-sm font-medium text-center items-end justify-end text-gray-500 divide-x 
+                <ul class="col-span-3 lg:col-span-2 px-10 lg:px-0 hidden sm:flex text-sm font-medium text-center items-end justify-end text-gray-500 divide-x 
                 divide-gray-100 dark:divide-gray-950 rounded-t-lg"
                     id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
                     <li class="w-full relative">
@@ -81,7 +81,7 @@
                 </ul>
 
                 {{-- Year Dropdown Selection --}}
-                <div class="flex text-center align-center justify-center col-span-6 lg:col-span-2">
+                <div class="flex text-center align-center justify-center col-span-6 md:col-span-3 lg:col-span-2">
                     <form method="GET" action="{{ route('dashboard') }}" class="flex items-center justify-between">
                         <svg data-tooltip-target="tooltip-help" class="w-4 h-4 mr-3 text-gray-500 dark:text-gray-400"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -106,7 +106,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                                 focus:ring-green-500 focus:border-green-500 block w-full pl-10 pr-4 py-2.5 
                                 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
-                                dark:focus:ring-green-500 dark:focus:border-green-500 cursor-pointer">
+                                dark:focus:ring-custom-orange dark:focus:border-custom-orange cursor-pointer">
                                 @foreach ($years as $year)
                                     <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>
                                         {{ $year }}</option>
@@ -134,9 +134,11 @@
 
                     </form>
                 </div>
+
+
             </div>
             <!-- Dropdown for small screens -->
-            <div class="sm:hidden">
+            <div class="sm:hidden px-10">
                 <label for="tabs" class="sr-only">Select tab</label>
                 <select id="tabs"
                     class="block w-full mb-5 bg-white border border-gray-300 dark:border-gray-950 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-900 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-lg">
@@ -148,7 +150,7 @@
             </div>
 
             <!-- Tab content -->
-            <div id="fullWidthTabContent" class="border rounded-lg dark:border-gray-950">
+            <div id="fullWidthTabContent" class="border rounded-lg dark:border-gray-950 mx-5 lg:mx-0">
                 @include('dashboard-components.overview-tab')
                 @include('dashboard-components.compare-tab')
                 @include('dashboard-components.report-tab')

@@ -144,8 +144,8 @@
             <tbody class="bg-white dark:bg-gray-900">
                 @foreach ($municipalities as $municipality)
                 <tr>
-                    <td class="border dark:border-gray-950 px-4 py-2">{{ $municipality->municipality_name }}</td>
-                    <td class="border dark:border-gray-950 px-4 py-2">
+                    <td class="border dark:border-gray-950 px-4 py-1">{{ $municipality->municipality_name }}</td>
+                    <td class="border dark:border-gray-950 px-4 py-1">
                         @if (isset($animalDensityAndRatio[$municipality->id]['density']) &&
                         $animalDensityAndRatio[$municipality->id]['density'] !== null)
                         {{ number_format($animalDensityAndRatio[$municipality->id]['density'], 2) }}
@@ -153,7 +153,7 @@
                         Insufficient Data!
                         @endif
                     </td>
-                    <td class="border dark:border-gray-950 px-4 py-2">
+                    <td class="border dark:border-gray-950 px-4 py-1.5">
                         @if (isset($animalDensityAndRatio[$municipality->id]['ratio']) &&
                         $animalDensityAndRatio[$municipality->id]['ratio'] !== null)
                         Percentage: {{ number_format($animalDensityAndRatio[$municipality->id]['ratio'] * 100, 4) }}%

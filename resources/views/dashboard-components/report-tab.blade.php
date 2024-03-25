@@ -13,10 +13,10 @@
                     </span>
                 </h1>
                 <h2 class="mx-auto mt-6 max-w-xl text sm:text-white-400 text-white-500 dark:text-gray-300 leading-7">
-                    The downloaded report provides a concise overview of raw data related to
+                    The report provides a concise overview of raw data related to
                     socio-economic profile and agriculture in the Benguet. The purpose of this report is to offer quick
                     access to summarized information, without the need to navigate through extensive datasets,
-                    and provide document for reporting.
+                    and especially provide document for reporting.
                 </h2>
                 <a href="{{ route('report-export') }}"
                     class="bg-orange-600 dark:bg-gray-950 rounded-xl text-white dark:text-gray-300 font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-orange-500 dark:hover:bg-gray-600 transition">Download

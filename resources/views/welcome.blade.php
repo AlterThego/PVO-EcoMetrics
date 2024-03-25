@@ -68,7 +68,7 @@
     {{-- Main --}}
     <section id="introduction"></section>
     <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen min-w-screenbg-center border-b-2 border-red-900 ">
+        class="relative sm:flex sm:justify-center sm:items-center min-h-screen min-w-screen bg-center border-b-2 border-red-900 ">
         <div>
             {{-- Navigation bar --}}
             <nav id="navbar"

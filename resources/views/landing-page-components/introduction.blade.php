@@ -1,5 +1,5 @@
 <section
-    class="grid h-screen w-screen grid-cols-1 md:grid-cols-1 bg-gradient-to-r from-zinc-900 to-gray-900">
+    class="grid h-screen w-screen grid-cols-1 md:grid-cols-1 bg-gradient-to-r from-zinc-950 to-gray-950">
     <div class="relative h-screen">
         <div class="absolute inset-0 bg-primary bg-no-repeat bg-fixed bg-cover bg-right md:bg-center opacity-50">
             <!-- Background Image with Opacity -->

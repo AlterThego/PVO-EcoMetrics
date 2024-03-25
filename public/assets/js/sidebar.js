@@ -40,7 +40,7 @@ function toggleDarkMode(isDarkMode) {
         root.style.setProperty('--text-color-light', '#A5A1AA');
         root.style.setProperty('--body-color', '#F0FFF0');
         root.style.setProperty('--container-color', '#FFFFFF');
-        root.style.setProperty('--nav-dropdown-collapse', '#f0fdf4');
+        root.style.setProperty('--nav-dropdown-collapse', '#f7fee7');
         // Add more properties for other variables if needed
     }
 
