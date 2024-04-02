@@ -8,11 +8,11 @@
             <div class="flex content-end gap-4 items-center lg:items-end">
                 <span class="font-bold text-5xl lg:text-8xl text-yellow-300">EcoMetrics: </span>
                 <div class="flex m-auto">
-                    <span class="font-bold text-2xl lg:text-4xl text-left text-gray-300">FROM FIELDS<br>TO FIGURES</span>
+                    <span class="font-bold text-2xl lg:text-5xl text-left text-gray-300">FROM FIELDS<br>TO FIGURES</span>
                 </div>
             </div>
 
-            <span class="text-md font-bold lg:text-xl text-white">Socio-Economic Profile and Inventory System <br>of Benguet
+            <span class="text-md font-bold lg:text-2xl text-white">Socio-Economic Profile and Inventory System <br>of Benguet
                 Provincial Veterinary Office</span>
             <span class="text-md lg:text-lg text-white pt-12">Thank you for testing out our application, hoping to hear
                 some of your feedbacks!</span>

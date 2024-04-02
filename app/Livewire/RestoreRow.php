@@ -96,7 +96,7 @@ class RestoreRow extends ModalComponent
                 $user->restore();
             }
             // Optionally, you can add a success message
-            toastr()->info('Item restored successfully!', 'Success');
+            toastr()->warning('Item restored successfully!', 'Success');
 
             // Close the modal after restoration
             return redirect()->to(url()->previous());
