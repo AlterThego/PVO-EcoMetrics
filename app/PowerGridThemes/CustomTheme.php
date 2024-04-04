@@ -110,7 +110,7 @@ class CustomTheme extends Tailwind
     {
         return Theme::filterSelect()
             ->view($this->root() . '.filters.select')
-            ->base('min-w-[9.5rem]')
+            ->base('min-w-[9.5rem] pb-2 pt-2 flex')
             ->select('appearance-none block bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full dark:bg-gray-800 dark:text-gray-200 dark:placeholder-gray-300 dark:border-gray-600');
     }
 
@@ -118,7 +118,7 @@ class CustomTheme extends Tailwind
     {
         return Theme::filterInputText()
             ->view($this->root() . '.filters.input-text')
-            ->base('min-w-[9.5rem] pb-4 pt-2')
+            ->base('min-w-[9.5rem] pb-4 pt-2 flex')
             ->select('appearance-none justify-center block bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full placeholder-gray-400 dark:bg-gray-800 dark:text-gray-200 dark:placeholder-gray-300 dark:border-gray-600')
             ->input('w-full block bg-white text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 placeholder-gray-400 dark:bg-gray-800 dark:text-gray-200 dark:placeholder-gray-300 dark:border-gray-600');
     }

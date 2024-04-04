@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Barangay;
+use App\Models\Municipality;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -20,7 +21,6 @@ final class BarangayTable extends PowerGridComponent
 {
     // use WithExport;
     public bool $showFilters = true;
-    public string $sortDirection = 'desc';
     public function setUp(): array
     {
         // $this->showCheckBox();
@@ -71,8 +71,8 @@ final class BarangayTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::action('Action'),
-            Column::make('Municipality id', 'municipality_id'),
-            Column::make('Barangay name', 'barangay_name')
+            Column::make('Municipality Id', 'municipality_id'),
+            Column::make('Barangay Name', 'barangay_name')
                 ->sortable()
                 ->searchable(),
 
@@ -89,8 +89,39 @@ final class BarangayTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
+
+        $filters = [
+            Filter::inputText('barangay_name')
+                ->operators(['contains']),
         ];
+
+
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipality_id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id');
+        }
+
+        return $filters;
+
+
+        // Add if necessary
+        // Filter::select('animal_type_id', 'animal_type_id')
+        //     // ->dataSource(Municipality::where('id', 2)->get())
+        //     ->dataSource(AnimalType::all())
+        //     ->optionLabel('type')
+        //     ->optionValue('id'),
+
+        // If enum is used
+        // Filter::select('animal_type_id', 'animal_type_id')
+        //     ->dataSource(AnimalType::all())
+        //     ->optionLabel('type')
+        //     ->optionValue('id'),
+
+
+
+
     }
 
     #[\Livewire\Attributes\On('edit')]
