@@ -50,8 +50,8 @@
                 <div data-modal-target="animalPopulationModal"
                     class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm p-6 flex items-center justify-end z-10">
 
-                    <a href="{{ route('animal-population.generate-excel') }}" data-tooltip-target="export-tooltip" data-tooltip-placement="left"
-                        class="relative inline-block">
+                    <a href="{{ route('animal-population.generate-excel') }}" data-tooltip-target="export-tooltip"
+                        data-tooltip-placement="left" class="relative inline-block">
                         <div
                             class="z-30 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-950 rounded-lg px-4 py-2 mr-5 hover:bg-gray-200 dark:hover:bg-gray-600">
                             <svg class="h-5 w-5 text-pg-primary-500 dark:text-pg-primary-300" fill="none"
@@ -62,7 +62,8 @@
                             </svg>
                         </div>
                         <!-- Tooltip -->
-                        <div id="export-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        <div id="export-tooltip" role="tooltip"
+                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                             Export
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
@@ -160,13 +161,14 @@
 
                         <div>
                             <label for="animal_type"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal
-                                Type</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal Type</label>
                             <select name="animal_type" id="animal_type"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option value="" selected>Select Animal Type (optional)</option>
-                                @foreach (\App\Models\AnimalType::pluck('type', 'id') as $id => $animalType)
-                                    <option value="{{ $id }}">{{ $animalType }}</option>
+                                <option value="" disabled selected>Select Animal Type (optional)</option>
+                                @foreach (\App\Models\AnimalType::all() as $animalType)
+                                    <option value="{{ $animalType->id }}" class="animal-option"
+                                        data-animal-id="{{ $animalType->animal_id }}" style="display: none;">
+                                        {{ $animalType->type }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -204,6 +206,19 @@
             </div>
         </div>
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#animal').change(function() {
+                var animalId = $(this).val();
+                $('.animal-option').hide(); // Hide all animal types initially
+                $('.animal-option[data-animal-id="' + animalId + '"]').show(); // Show types of selected animal
+                $('#animal_type').val(''); // Reset the selected animal type
+            });
+        });
+    </script>
 
     @livewire('wire-elements-modal')
     <script>

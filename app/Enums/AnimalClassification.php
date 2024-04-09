@@ -3,12 +3,12 @@ namespace App\Enums;
 
 enum AnimalClassification: string
 {
-    case Fishery = 'Fishery';
+    
+case Fishery = 'Fishery';
     case Livestock = 'Livestock';
     case Poultry = 'Poultry';
     case Pet = 'Pet';
     case Insect = 'Insect';
-
     public function labels(): string
     {
         return match ($this) {

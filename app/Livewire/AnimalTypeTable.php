@@ -40,9 +40,20 @@ final class AnimalTypeTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return AnimalType::query();
-    }
+        $query = AnimalType::query()
+            ->join('animal', 'animal_type.animal_id', '=', 'animal.id')
 
+            ->select(
+                'animal_type.*',
+                'animal.animal_name as animal_id',
+            );
+
+        if (auth()->user()->municipality_id !== 0) {
+            $query->where('animal_population.municipality_id', auth()->user()->municipality_id);
+        }
+
+        return $query;
+    }
     public function relationSearch(): array
     {
         return [];
@@ -52,7 +63,7 @@ final class AnimalTypeTable extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            // ->addColumn('animal_id')
+            ->addColumn('animal_id')
             ->addColumn('type')
             ->addColumn('created_at');
     }
@@ -61,8 +72,8 @@ final class AnimalTypeTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            // Column::make('Animal id', 'animal_id'),
             Column::action('Action'),
+            Column::make('Animal id', 'animal_id'),
             Column::make('Type', 'type')
                 ->sortable()
                 ->searchable(),

@@ -15,9 +15,9 @@ return new class extends Migration {
             $table->unique(['type']);
             $table->id();
 
-            // $table->unsignedBigInteger('animal_id');
-            // $table->foreign('animal_id')->references('id')->on('animal')->onUpdate('cascade')->onDelete('cascade');
-            // // 
+            $table->unsignedBigInteger('animal_id');
+            $table->foreign('animal_id')->references('id')->on('animal')->onUpdate('cascade')->onDelete('cascade');
+            
             $table->string('type', 20)->nullable();
             
             $table->timestamps();

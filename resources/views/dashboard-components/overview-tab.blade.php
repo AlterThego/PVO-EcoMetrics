@@ -3,7 +3,7 @@
 
 
     {{-- 4 Cards --}}
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
+    {{-- <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
         @foreach ($animalTypes as $animalType)
             @php
                 $percentage = 0; // Default value in case of division by zero
@@ -36,7 +36,7 @@
                 </div>
             </a>
         @endforeach
-    </div>
+    </div> --}}
 
 
     {{-- Animal Population Overview Chart --}}

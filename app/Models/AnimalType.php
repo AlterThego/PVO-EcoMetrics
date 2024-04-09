@@ -13,15 +13,15 @@ class AnimalType extends Model
     protected $table = 'animal_type';
 
     protected $fillable = [
-        // 'animal_id',
+        'animal_id',
         'type',
     ];
     
     protected $softDeleteColumn = 'deleted_at'; 
-    // public function animal()
-    // {
-    //     return $this->belongsTo(AnimalType::class, 'animal_id');
-    // }
+    public function animal()
+    {
+        return $this->belongsTo(AnimalType::class, 'animal_id');
+    }
 
     // public function animal_type()
     // {
