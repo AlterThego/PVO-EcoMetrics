@@ -8,10 +8,11 @@
     <div
         class="flex flex-col flex-grow items-stretch max-w-2xl min-w-md w-full sm:flex-row sm:h-auto sm:overflow-hidden">
         <video class="w-full rounded-xl" controls muted>
-            <source src="https://benguet.gov.ph/wp-content/uploads/2023/01/Kabayan-Drone-1080p-scaled-1.mp4"
+            <source src="https://www.youtube.com/watch?v=TK9LHd0-efo"
                 type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        {{-- <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/TK9LHd0-efo?si=fCzOKS-EoDoVUQrE" title="EcoMetrics" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> --}}
 
 
     </div>

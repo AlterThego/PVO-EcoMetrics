@@ -14,12 +14,17 @@ class FishSanctuary extends Model
     protected $table = 'fish_sanctuaries';
 
     protected $fillable = [
+        'municipality_id',
         'barangay_id',
         'year',
         'land_area',
     ];
     protected $softDeleteColumn = 'deleted_at'; 
 
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
     public function barangay()
     {
         return $this->belongsTo(Barangay::class, 'barangay_id');

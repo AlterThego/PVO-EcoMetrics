@@ -1,10 +1,10 @@
 <div tabindex="-1" class="relative rounded-lg shadow ">
-    <div class="relative bg-white dark:bg-gray-800 p-4 w-full h-full md:h-auto items-center m-auto">
+    <div class="relative bg-white dark:bg-gray-800 p-6 w-full h-full md:h-auto items-center m-auto">
         <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                 Update Data
             </h3>
-            
+
             <button wire:click="$dispatch('closeModal')" type="button"
                 class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 data-modal-hide="popup-modal">
@@ -26,7 +26,7 @@
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
                     <input wire:model="year" type="number" name="year" id="year"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Type Year" required="" min="2000" max="2100">
+                        placeholder="Type Year" required="" min="1900" max="2100">
                 </div>
 
                 <div>
@@ -42,7 +42,7 @@
                     </select>
                 </div>
 
-                <div>
+                {{-- <div>
                     <label for="animal"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal</label>
                     <select wire:model="animalId" name="animal" id="animal"
@@ -65,6 +65,50 @@
                             <option value="{{ $id }}">{{ $animalType }}</option>
                         @endforeach
                     </select>
+                </div> --}}
+
+                <div x-data="{ selectedAnimal: @entangle('animalId'), selectedAnimalType: @entangle('animalTypeId') }">
+                    <label for="animal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal</label>
+                    <select name="animal" id="animal"
+                            x-model="selectedAnimal"
+                            @change="
+                                const animalId = $event.target.value;
+                                const animalOptions = document.querySelectorAll('.animal-option');
+                                animalOptions.forEach(function(option) {
+                                    if (option.getAttribute('data-animal-id') === animalId) {
+                                        option.style.display = 'block';
+                                    } else {
+                                        option.style.display = 'none';
+                                    }
+                                });
+                                $refs.animalType.value = '';
+                                selectedAnimalType = ''; // Reset selected animal type
+                                document.getElementById('animal_type').classList.remove('border', 'border-red-500'); // Remove border
+                            "
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            required="">
+                        <option value="" disabled>Select Animal</option>
+                        @foreach (\App\Models\Animal::pluck('animal_name', 'id') as $id => $animalName)
+                            <option value="{{ $id }}" @if ($id == $animalId) selected @endif>{{ $animalName }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="animal_type"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal Type</label>
+                    <select wire:model="animalTypeId" name="animal_type" id="animal_type" x-ref="animalType" required=""
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option value="" disabled>Select Animal Type</option>
+                        @foreach (\App\Models\AnimalType::all() as $animalType)
+                            <option value="{{ $animalType->id }}" class="animal-option"
+                                data-animal-id="{{ $animalType->animal_id }}" 
+                                @if ($animalType->animal_id == $animalId) style="display: block;" @else style="display: none;" @endif
+                                @if ($animalType->id == $animalTypeId) selected @endif>
+                                {{ $animalType->type }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div>
@@ -79,9 +123,14 @@
                 <div>
                     <label for="volume"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Volume</label>
-                    <input wire:model="volume" type="number" step="any" name="volume" id="volume"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Input Volume" required="">
+                    <div class="relative">
+
+                        <input wire:model="volume" type="number" step="any" name="volume" id="volume"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Input Volume (optional)">
+                        <span
+                            class="absolute inset-y-0 right-0 flex items-center pr-10 text-gray-500 sm:text-sm dark:text-white">mt</span>
+                    </div>
                 </div>
 
             </div>
@@ -100,3 +149,5 @@
 
     </div>
 </div>
+
+

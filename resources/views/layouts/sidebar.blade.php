@@ -68,13 +68,9 @@
                         <div class="nav__items">
                             <h3 class="nav__subtitle">Menu</h3>
 
-                            <div class="nav__dropdown {{ request()->is('animal-population') || request()->is('animal-infected') || request()->is('animal-death')
-                                ? 'show'
-                                : '' }}"
+                            <div class="nav__dropdown {{ request()->is('animal-population') || request()->is('animal-death') ? 'show' : '' }}"
                                 id="animalsDropdown">
-                                <a class="nav__link {{ request()->is('animal-population') || request()->is('animal-infected') || request()->is('animal-death')
-                                    ? 'active'
-                                    : '' }}"
+                                <a class="nav__link {{ request()->is('animal-population') || request()->is('animal-death') ? 'active' : '' }}"
                                     onclick="toggleDropdown('animalsDropdown')">
                                     <svg xmlns="/benguetlivestock/assets/images/dog.svg" class='bx nav__icon'
                                         width="20" height="20" viewBox="0 0 256 256">
@@ -89,9 +85,6 @@
                                     <div class="nav__dropdown-content">
                                         <a href="/animal-population"
                                             class="nav__dropdown-item {{ request()->is('animal-population') ? ' active' : '' }}">Population</a>
-                                        <a href="/animal-infected"
-                                            class="nav__dropdown-item {{ request()->is('animal-infected') ? ' active' : '' }}">Affected
-                                            w/ Disease</a>
                                         <a href="/animal-death"
                                             class="nav__dropdown-item {{ request()->is('animal-death') ? ' active' : '' }}">Death</a>
                                     </div>
@@ -132,9 +125,9 @@
                                 </div>
                             </div>
 
-                            <div class="nav__dropdown {{ request()->is('yearly-disease') || request()->is('veterinary-clinics') ? ' show' : '' }}"
+                            <div class="nav__dropdown {{ request()->is('yearly-disease') || request()->is('animal-infected') || request()->is('veterinary-clinics') ? ' show' : '' }}"
                                 id="healthDropdown">
-                                <a class="nav__link {{ request()->is('yearly-disease') || request()->is('veterinary-clinics') ? ' active' : '' }}"
+                                <a class="nav__link {{ request()->is('yearly-disease') || request()->is('animal-infected') || request()->is('veterinary-clinics') ? ' active' : '' }}"
                                     onclick="toggleDropdown('healthDropdown')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class='bx nav__icon' width="20"
                                         height="20" viewBox="0 0 16 16">
@@ -148,6 +141,9 @@
 
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
+                                        <a href="/animal-infected"
+                                            class="nav__dropdown-item {{ request()->is('animal-infected') ? ' active' : '' }}">Affected
+                                            w/ Disease</a>
                                         <a href="/yearly-disease"
                                             class="nav__dropdown-item {{ request()->is('yearly-disease') ? ' active' : '' }}">Yearly
                                             Diseases</a>

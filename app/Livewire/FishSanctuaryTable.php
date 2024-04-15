@@ -82,7 +82,7 @@ final class FishSanctuaryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Land Area', 'land_area')
+            Column::make('Land Area (km²)', 'land_area')
                 ->sortable()
                 ->searchable(),
 
@@ -97,7 +97,7 @@ final class FishSanctuaryTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::select('municipality_id', 'municipality_id')
+            Filter::select('municipality_id', 'municipalities.id')
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
                 ->optionValue('id'),

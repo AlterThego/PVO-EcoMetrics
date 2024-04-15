@@ -17,4 +17,7 @@ import './../../vendor/power-components/livewire-powergrid/dist/tailwind.css'
 
 import 'flowbite';
 
+import jQuery from 'jquery';
+window.$ = jQuery;
+
 

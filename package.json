@@ -21,6 +21,7 @@
     "dependencies": {
         "@alpinejs/focus": "^3.13.5",
         "apexcharts": "^3.45.2",
+        "jquery": "^3.7.1",
         "tailwind-toast": "^1.1.0",
         "toastr": "^2.1.4",
         "vue3-apexcharts": "^1.4.4"

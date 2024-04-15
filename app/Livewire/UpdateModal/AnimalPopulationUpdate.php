@@ -47,13 +47,15 @@ class AnimalPopulationUpdate extends ModalComponent
             $animalPopulation = AnimalPopulation::find($this->animalPopulationUpdateId);
             $animalTypeId = $this->animalTypeId ?: null;
 
+            $volume = $this->volume !== '' ? $this->volume : null;
+
             $this->validate([
                 'year' => 'required|integer',
                 'municipalityId' => 'required|exists:municipalities,id',
                 'animalId' => 'required|exists:animal,id',
-                'animalTypeId' => 'nullable|exists:animal_type,id',
+                'animalTypeId' => 'required|exists:animal_type,id',
                 'animalPopulationCount' => 'required|integer',
-                'volume' => 'required|numeric',
+                'volume' => 'nullable|numeric',
             ]);
 
             $animalPopulation->update([
@@ -62,7 +64,7 @@ class AnimalPopulationUpdate extends ModalComponent
                 'animal_type_id' => $animalTypeId, 
                 'year' => $this->year,
                 'animal_population_count' => $this->animalPopulationCount,
-                'volume' => $this->volume,
+                'volume' => $volume,
             ]);
 
             \DB::commit();
@@ -77,7 +79,7 @@ class AnimalPopulationUpdate extends ModalComponent
             toastr()->error('An error occurred while updating the item. Please try again. Error: ' . $e->getMessage());
 
 
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
     }
 

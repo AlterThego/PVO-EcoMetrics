@@ -162,9 +162,9 @@
                         <div>
                             <label for="animal_type"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal Type</label>
-                            <select name="animal_type" id="animal_type"
+                            <select name="animal_type" id="animal_type" required=""
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option value="" disabled selected>Select Animal Type (optional)</option>
+                                <option value="" disabled selected>Select Animal Type</option>
                                 @foreach (\App\Models\AnimalType::all() as $animalType)
                                     <option value="{{ $animalType->id }}" class="animal-option"
                                         data-animal-id="{{ $animalType->animal_id }}" style="display: none;">
@@ -184,12 +184,17 @@
                         <div>
                             <label for="volume"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Volume</label>
-                            <input type="number" step="any" name="volume" id="volume"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Input Volume">
-                        </div>
+                            <div class="relative">
 
+                                <input type="number" step="any" name="volume" id="volume"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Input Volume (optional)">
+                                <span
+                                    class="absolute inset-y-0 right-0 flex items-center pr-10 text-gray-500 sm:text-sm dark:text-white">mt</span>
+                            </div>
+                        </div>
                     </div>
+
                     <button type="submit"
                         class="text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
@@ -208,13 +213,14 @@
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    <script type="module">
         $(document).ready(function() {
             $('#animal').change(function() {
                 var animalId = $(this).val();
                 $('.animal-option').hide(); // Hide all animal types initially
-                $('.animal-option[data-animal-id="' + animalId + '"]').show(); // Show types of selected animal
+                $('.animal-option[data-animal-id="' + animalId + '"]')
+                    .show(); // Show types of selected animal
                 $('#animal_type').val(''); // Reset the selected animal type
             });
         });

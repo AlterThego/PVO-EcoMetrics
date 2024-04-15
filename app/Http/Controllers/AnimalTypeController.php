@@ -17,12 +17,14 @@ class AnimalTypeController extends Controller
             // Validate the form data
             $validatedData = $request->validate([
                 'type' => 'required',
+                'animal' => 'required|exists:animal,id',
             ]);
 
 
             // Save the data to the database
             AnimalType::create([
                 'type' => $validatedData['type'],
+                'animal_id'=> $validatedData['animal']
             ]);
 
             \DB::commit();

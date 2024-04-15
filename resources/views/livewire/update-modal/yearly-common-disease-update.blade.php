@@ -1,5 +1,5 @@
-<div tabindex="-1" class="relative shadow fixed top-0 left-0 w-full h-full flex items-center justify-center">
-    <div class="relative rounded-lg bg-white dark:bg-gray-800 p-4 max-w-md w-full h-full md:h-auto">
+<div tabindex="-1" class="relative shadow top-0 left-0 w-full h-full flex items-center justify-center">
+    <div class="relative rounded-lg bg-white dark:bg-gray-800 p-4 max-w-2xl w-full h-full md:h-auto">
         <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                 Update Data
@@ -20,7 +20,7 @@
 
         <form wire:submit.prevent="updateitem">
             @csrf
-            <div class="grid gap-4 mb-4 sm:grid-cols-1">
+            <div class="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
                     <label for="disease"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disease</label>

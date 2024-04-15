@@ -58,7 +58,7 @@
         <!-- Main modal -->
         <div id="animalPopulationModal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-            <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+            <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
                 <!-- Modal content -->
                 <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                     <!-- Modal header -->
@@ -82,17 +82,23 @@
                     <!-- Modal body -->
                     <form action="{{ route('fish.sanctuaries.store') }}" method="post">
                         @csrf
-                        <div class="grid gap-4 mb-4 sm:grid-cols-1">
+                        <p class="text-xs italic pb-3">Note: Select Municipality first before selecting a Barangay.</p>
+                        <div class="grid gap-4 mb-4 sm:grid-cols-2">
                             <div>
-                                <label for="barangay_name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barangay
-                                    Name</label>
-                                <select name="barangay_name" id="barangay_name"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required="">
-                                    <option value="" disabled selected>Select Barangay Name</option>
-                                    @foreach (\App\Models\Barangay::pluck('barangay_name', 'id') as $id => $barangayName)
-                                        <option value="{{ $id }}">{{ $barangayName }}</option>
+                                <label for="municipality_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
+                                <select name="municipality_name" id="municipality_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                                    <option value="" disabled selected>Select Municipality</option>
+                                    @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
+                                        <option value="{{ $id }}">{{ $municipalityName }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label for="barangay_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barangay Name</label>
+                                <select name="barangay_name" id="barangay_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option value="" disabled selected>Select Barangay</option>
+                                    @foreach (\App\Models\Barangay::all() as $barangay)
+                                        <option value="{{ $barangay->id }}" class="barangay-option" data-animal-id="{{ $barangay->municipality_id }}" style="display: none;">{{ $barangay->barangay_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -104,15 +110,20 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
                                 <input type="number" name="year" id="year"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year" required="" min="1900" max="2100">
+                                    placeholder="Type Year" required="" min="1900" max="2100"
+                                    autocomplete="off">
                             </div>
                             <div>
                                 <label for="land_area"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Land
                                     Area</label>
-                                <input type="number" step="any" name="land_area" id="land_area"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Input Land Area" required="">
+                                <div class="relative">
+                                    <input type="number" step="any" name="land_area" id="land_area"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        placeholder="Input Land Area" required="">
+                                    <span
+                                        class="absolute inset-y-0 right-0 flex items-center pr-10 text-gray-500 sm:text-sm dark:text-white">km²</span>
+                                </div>
                             </div>
                         </div>
 
@@ -132,6 +143,18 @@
                 </div>
             </div>
         </div>
+
+        <script type="module">
+            $(document).ready(function() {
+                $('#municipality_name').change(function() {
+                    var municipalityId = $(this).val();
+                    $('.barangay-option').hide(); // Hide all barangays initially
+                    $('.barangay-option[data-animal-id="' + municipalityId + '"]')
+                .show(); // Show barangays of selected municipality
+                    $('#barangay_name').val(''); // Reset the selected barangay
+                });
+            });
+        </script>
 
         @livewire('wire-elements-modal')
         <script>

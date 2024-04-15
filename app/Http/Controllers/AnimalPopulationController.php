@@ -122,7 +122,7 @@ class AnimalPopulationController extends Controller
 
         if ($dataPointsCount < $minDataPoints) {
             // Handle insufficient data points
-            toastr()->warning('Insufficient data points for accurate regression.');
+            // toastr()->warning('Insufficient data points for accurate regression.');
 
             return [
                 'predictedYear' => null,
@@ -179,7 +179,7 @@ class AnimalPopulationController extends Controller
             ];
         } catch (\Exception $e) {
             // Handle the exception, e.g., display a warning
-            toastr()->warning('An error occurred during linear regression: ' . $e->getMessage());
+            // toastr()->warning('An error occurred during linear regression: ' . $e->getMessage());
 
             return [
                 'predictedYear' => null,

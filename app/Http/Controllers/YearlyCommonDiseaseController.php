@@ -17,7 +17,7 @@ class YearlyCommonDiseaseController extends Controller
             // Validate the form data
             $validatedData = $request->validate([
                 'year' => 'required|integer',
-                'disease' => 'required|exists:yearly_common_diseases,id',
+                'disease' => 'required|exists:diseases,id',
                 'disease_count' => 'required|integer',
             ]);
 

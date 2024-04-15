@@ -75,7 +75,7 @@ class AnimalPopulationExport extends Controller
         $drawing->setPath($imagePath);
         $drawing->setWidthAndHeight(75, 75);
         $drawing->setCoordinates('B1'); // Set the cell where the image will start
-        $drawing->setOffsetX(40); // Reset X offset to align with the left of the cell
+        $drawing->setOffsetX(20); // Reset X offset to align with the left of the cell
         $drawing->setOffsetY(100); // Reset Y offset to align with the top of the cell
         $drawing->setWorksheet($sheet);
 
@@ -85,10 +85,10 @@ class AnimalPopulationExport extends Controller
         $drawing->setName('Logo');
         $drawing->setDescription('Bagong Pilipinas Logo');
         $drawing->setPath($imagePath);
-        $drawing->setWidthAndHeight(90, 90);
+        $drawing->setWidthAndHeight(100, 100);
         $drawing->setCoordinates('E1'); // Set the cell where the image will start
-        $drawing->setOffsetX(40); // Reset X offset to align with the left of the cell
-        $drawing->setOffsetY(100); // Reset Y offset to align with the top of the cell
+        $drawing->setOffsetX(70); // Reset X offset to align with the left of the cell
+        $drawing->setOffsetY(10); // Reset Y offset to align with the top of the cell
         $drawing->setWorksheet($sheet);
 
         // Retrieve data from the AnimalPopulation model

@@ -3,11 +3,13 @@
 namespace App\Livewire\Updatemodal;
 
 
+use App\Models\AnimalPopulation;
 use App\Models\AnimalType;
 use LivewireUI\Modal\ModalComponent;
 
 class AnimalTypeUpdate extends ModalComponent
 {
+  
 
     public function render()
     {
@@ -16,6 +18,7 @@ class AnimalTypeUpdate extends ModalComponent
 
     public $animalTypeUpdateId;
     public $animalType;
+    public $animalId;
 
     public function mount($animalTypeUpdateId)
     {
@@ -25,6 +28,8 @@ class AnimalTypeUpdate extends ModalComponent
         // Set the Livewire component properties with the existing values
         $this->animalTypeUpdateId = $animalType->id;
         $this->animalType = $animalType->type;
+        $this->animalId = $animalType->animal_id;
+        
 
     }
 
@@ -37,10 +42,12 @@ class AnimalTypeUpdate extends ModalComponent
 
             $this->validate([
                 'animalTypeUpdateId' => 'required',
+                'animalId' => 'required|exists:animal,id',
             ]);
 
             $animalType->update([
                 'type' => $this->animalType,
+                'animal_id' => $this->animalId,
             ]);
 
             \DB::commit();

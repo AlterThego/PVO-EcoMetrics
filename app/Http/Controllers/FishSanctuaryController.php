@@ -17,6 +17,7 @@ class FishSanctuaryController extends Controller
             // Validate the form data
             $validatedData = $request->validate([
                 'year' => 'required|integer',
+                'municipality_name' => 'required|exists:municipalities,id',
                 'barangay_name' => 'required|exists:barangays,id',
                 'land_area' => 'required|numeric',
             ]);
@@ -26,6 +27,7 @@ class FishSanctuaryController extends Controller
             FishSanctuary::create([
                 'year' => $validatedData['year'],
                 'barangay_id' => $validatedData['barangay_name'],
+                'municipality_id' => $validatedData['municipality_name'],
                 'land_area' => $validatedData['land_area'],
             ]);
 

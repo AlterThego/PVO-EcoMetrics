@@ -1,4 +1,4 @@
-<div tabindex="-1" class="relative shadow fixed top-0 left-0 w-full h-full flex items-center justify-center">
+<div tabindex="-1" class="relative shadow top-0 left-0 w-full h-full flex items-center justify-center">
     <div class="relative rounded-lg bg-white dark:bg-gray-800 p-4 max-w-2xl w-full h-full md:h-auto">
         <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -61,9 +61,13 @@
                 <div>
                     <label for="land_area" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Land
                         Area</label>
-                    <input wire:model="landArea" type="number" step="any" name="land_area" id="land_area"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Input Land Area" required="">
+                    <div class="relative">
+                        <input wire:model="landArea" type="number" step="any" name="land_area" id="land_area"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Input Land Area" required="">
+                        <span
+                            class="absolute inset-y-0 right-0 flex items-center pr-10 text-gray-500 sm:text-sm dark:text-white">ha</span>
+                    </div>
                 </div>
 
             </div>
