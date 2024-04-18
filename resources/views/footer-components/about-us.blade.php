@@ -1,117 +1,66 @@
 <title>About Us</title>
 <x-app-layout>
-    <div class="max-w-7xl m-auto mt-10 rounded-lg !border-opacity-0 bg-white dark:bg-gray-900 bg-opacity-60 dark:bg-opacity-60 shadow-lg backdrop-blur-lg backdrop-filter sm:space-y-5 sm:p-8 md:px-10 xl:py-5  border border-gray-100 dark:border-gray-950"
+    <div class="max-w-7xl m-auto px-10 mt-10 rounded-lg !border-opacity-0 bg-white dark:bg-gray-900 bg-opacity-60 dark:bg-opacity-60 shadow-lg backdrop-blur-lg backdrop-filter sm:space-y-5 sm:p-8 md:px-10 xl:py-5  border border-gray-100 dark:border-gray-950"
         style="position: relative; z-index:30;">
 
         <div class="flex flex-col lg:flex-row justify-between gap-8 items-center">
             <div class="w-full lg:w-8/12">
                 <img class="w-full h-100 dark:opacity-70" src="https://i.ibb.co/FhgPJt8/Rectangle-116.png"
                     alt="A group of People" />
-                <div class="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg rounded-md">
-                    <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                        <a href="https://uc-bcf.edu.ph">
-                            <img class="md:block hidden dark:opacity-70"
-                                src="/assets/images/about-us-images/uc_logo.jpg" alt="UC Logo Image" />
-                            <img class="md:hidden block dark:opacity-70 p-20"
-                                src="/assets/images/about-us-images/uc_logo.jpg" alt="UC Logo Image" />
-                        </a>
-                    </div>
-                    <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                        <img class="md:block hidden dark:opacity-70" src="https://i.ibb.co/fGmxhVy/Rectangle-119.png"
-                            alt="Olivia featured Image" />
-                        <img class="md:hidden block dark:opacity-70" src="https://i.ibb.co/NrWKJ1M/Rectangle-119.png"
-                            alt="Olivia featured Image" />
-                    </div>
-                    <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                        <img class="md:block hidden dark:opacity-70" src="https://i.ibb.co/Pc6XVVC/Rectangle-120.png"
-                            alt="Liam featued Image" />
-                        <img class="md:hidden block dark:opacity-70" src="https://i.ibb.co/C5MMBcs/Rectangle-120.png"
-                            alt="Liam featued Image" />
-                    </div>
-                    <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                        <a href="https://benguet.gov.ph">
-                            <img class="md:block hidden dark:opacity-70" src="/assets/images/benguet.png"
-                                alt="Benguet Logo Image" />
-                            <img class="md:hidden block dark:opacity-70 p-20" src="/assets/images/benguet.png"
-                                alt="Benguet Logo Image" />
-                        </a>
-                    </div>
-                </div>
             </div>
             <div class="w-full lg:w-5/12 h-full flex flex-col">
                 <h1 class="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 dark:text-slate-200 pb-4">About Us
                 </h1>
                 <p class="font-normal text-base leading-6 text-gray-600 dark:text-slate-300">
 
-                    Welcome to EcoMetrics, where we explore the intricate tapestry of Benguet's socio-economic
-                    landscape through the lens of data and innovation.
+                    PROVINCIAL VETERINARY OFFICE
                     </br>
-                    <br>At EcoMetrics, we're on a mission to uncover the stories behind the numbers, delving deep
-                    into the heartbeat of Benguet's animal population, fisheries, farms, veterinary clinics, and beyond.
+                    <br><b>MISSION</b><br>
+                    A premier gender -responsive and service-oriented skilled workforce, delivering a healthy and
+                    environmentally-balance socio-economic development of the province.
 
                     </br>
-                    <br>Through hard work and dedication to learn new things, we strive to paint a vivid picture of the
-                    region's socio-economic profile, illuminating the connections between its people, their livelihoods,
-                    and the natural world that surrounds them.
+                    <br><b>VISION</b><br>
+                    The people of Benguet enjoying sufficiency to safe and quality meat, fish, honey and their products
+                    and living in a zoonotic disease-free community.
 
+                    </br>
                 </p>
             </div>
         </div>
 
-        <div class="flex lg:flex-row flex-col justify-between gap-8 pt-12">
-            <div class="w-full lg:w-9/12 flex flex-col">
-                <h1 class="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 dark:text-slate-200 pb-4">Our Story
-                </h1>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Mandate Section -->
+            <div class="w-full">
                 <p class="font-normal text-base leading-6 text-gray-600 dark:text-slate-300">
-                    Our journey began with a simple question:
+                    <br><b>MANDATE</b>
                     <br>
-                    How can we harness the power of data to better understand
-                    and empower communities?
-                    <br>
-                    </br>
-                    What started as a curiosity has blossomed into a passion project, fueled by
-                    our dedication to creating meaningful insights and driving positive change.
-
-                    </br>
-                    <br>
-                    But EcoMetrics is more than just a collection of data points and statistics. It's a
-                    celebration of the rich tapestry of Benguet's culture, heritage, and traditions. It's a tribute to
-                    the resilience of its people and the beauty of its landscapes. And above all, it's a testament to
-                    the power of knowledge to transform lives and communities.
-
-                    </br>
-                    <br>
-                    Join us on this journey of discovery as we explore Benguet's past, present, and future. Together,
-                    let's uncover the stories waiting to be told and shape a brighter tomorrow for generations to come.
-
-                    </br>
-                    <br>
-                    Welcome to EcoMetrics, from Fields to Figures.
+                    a. Regulate the keeping of domestic animals;
+                    <br>b. Regulate and inspect livestock, poultry, fish, bee, and meat products for public consumption;
+                    <br>c. Take the necessary measures to prevent, control, eradicate, and treat all forms of animal diseases;
+                    <br>d. Empower and capacitate livestock and poultry raisers, fisher folks, and beekeepers to become successful entrepreneurs with due consideration to environmental preservation and protection;
+                    <br>e. Enforce all laws and regulations for the prevention of cruelty to animals and
+                    <br>f. Provide extension services to clientele.
                 </p>
             </div>
-            <div class="w-full lg:w-fit lg:pt-8">
-                <div class="grid md:grid-cols-3 sm:grid-cols-1 grid-cols-1 lg:gap-2 shadow-lg rounded-md">
-                    <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                        <img class="md:block hidden dark:opacity-70 rounded-xl"
-                            src="/assets/images/members/christian.png" alt="Christian featured Image" />
-                        <img class="md:hidden block dark:opacity-70 rounded-xl"
-                            src="/assets/images/members/christian.png" alt="Christian featured Image" />
-                        <p class="font-medium text-xl leading-5 text-gray-800 dark:text-white mt-4">Christian</p>
-                    </div>
-                    <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                        <img class="md:block hidden dark:opacity-70 rounded-xl" src="/assets/images/members/euan.png"
-                            alt="Euan featured Image" />
-                        <img class="md:hidden block dark:opacity-70 rounded-xl" src="/assets/images/members/euan.png"
-                            alt="Euan featured Image" />
-                        <p class="font-medium text-xl leading-5 text-gray-800 dark:text-white mt-4">Euan</p>
-                    </div>
-                    <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                        <img class="md:block hidden dark:opacity-70 rounded-xl"
-                            src="/assets/images/members/theodore.png" alt="Theodore featured Image" />
-                        <img class="md:hidden block dark:opacity-70 rounded-xl"
-                            src="/assets/images/members/theodore.png" alt="Theodore featured Image" />
-                        <p class="font-medium text-xl leading-5 text-gray-800 dark:text-white mt-4">Theodore</p>
-                    </div>
+        
+            <!-- Images Section -->
+            <div class="grid grid-cols-3 gap-2">
+                <div class="p-4 pb-6 flex justify-center flex-col items-center">
+                    <a href="https://uc-bcf.edu.ph">
+                        <img class="md:block hidden dark:opacity-70" src="/assets/images/about-us-images/UC-BCF-Logo.png" alt="UC Logo Image" />
+                        <img class="md:hidden block dark:opacity-70" src="/assets/images/about-us-images/UC-BCF-Logo.png" alt="UC Logo Image" />
+                    </a>
+                </div>
+                <div class="p-4 pb-6 flex justify-center flex-col items-center">
+                    <img class="md:block hidden dark:opacity-70" src="/assets/images/about-us-images/PVO-Logo.png" alt="Olivia featured Image" />
+                    <img class="md:hidden block dark:opacity-70" src="/assets/images/about-us-images/PVO-Logo.png" alt="Olivia featured Image" />
+                </div>
+                <div class="p-4 pb-6 flex justify-center flex-col items-center">
+                    <a href="https://benguet.gov.ph">
+                        <img class="md:block hidden dark:opacity-70" src="/assets/images/benguet.png" alt="Benguet Logo Image" />
+                        <img class="md:hidden block dark:opacity-70" src="/assets/images/benguet.png" alt="Benguet Logo Image" />
+                    </a>
                 </div>
             </div>
         </div>

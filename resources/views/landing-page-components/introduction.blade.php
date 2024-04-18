@@ -12,10 +12,9 @@
                 </div>
             </div>
 
-            <span class="text-md font-bold lg:text-2xl text-white">Socio-Economic Profile and Inventory System <br>of Benguet
+            <span class="text-md pb-20 font-bold uppercase lg:text-2xl text-white">Socio-Economic Profile and Inventory System <br>of Benguet
                 Provincial Veterinary Office</span>
-            <span class="text-md lg:text-lg text-white pt-12">Thank you for testing out our application, hoping to hear
-                some of your feedbacks!</span>
+
         </div>
     </div>
 </section>

@@ -7,9 +7,9 @@
             <div class="w-full pt-5 pb-10">
                 <h1 class="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 dark:text-white pb-4">Terms of Service
                 </h1>
-                <p class="font-normal text-base leading-6 text-gray-600 dark:text-white">Welcome to the DigiStock!
+                <p class="font-normal text-base leading-6 text-gray-600 dark:text-white">Welcome to the EcoMetrics!
                     <br>
-                    </br>These terms and conditions govern your use of the DigiStock,
+                    </br>These terms and conditions govern your use of the EcoMetrics,
                     created as
                     part of the capstone project conducted by students from the University of Cordilleras. By accessing
                     and using this Website, you agree to comply with these terms of service. If you disagree with any

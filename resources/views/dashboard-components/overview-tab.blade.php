@@ -38,7 +38,142 @@
         @endforeach
     </div> --}}
 
+    {{-- 4 Cards --}}
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 justify-center items-center">
+        <!-- Animal Population -->
+        <div class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 shadow border border-gray-200 dark:border-gray-950">
+            <div>
+                <div class="flex justify-center items-center">
+                    <p class="pl-2 font-normal tracking-tight text-gray-700 dark:text-gray-400">
+                        Animal Population</p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <p class="pl-2 pt-1 text-lg md:text-xl lg:text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {{ $totalAnimalCount ?? 'N/A' }}</p>
+                </div>
 
+                <div class="flex justify-between items-center pt-1">
+                    @if (isset($totalAnimalCountLastYear))
+                        @php
+                            $animalCountDifference = $totalAnimalCount - $totalAnimalCountLastYear;
+                            $animalCountDifferencePercentage = $totalAnimalCountLastYear != 0
+                                ? ($animalCountDifference / $totalAnimalCountLastYear) * 100
+                                : 0;
+                            $colorClass = $animalCountDifference > 0
+                                ? 'green'
+                                : ($animalCountDifference < 0 ? 'red' : 'gray');
+                        @endphp
+                        <p class="pl-2 text-sm md:text-base lg:text-sm tracking-tight dark:text-white">
+                            vs. Last Year: {{ $animalCountDifference > 0 ? '+' : '' }}{{ $animalCountDifference }}
+                        </p>
+                        <p class="font-bold text-{{ $colorClass }}-500">
+                            ({{ $animalCountDifferencePercentage > 0 ? '+' : '' }}{{ number_format($animalCountDifferencePercentage, 2) }}%)
+                        </p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    
+        <!-- Yearly Common Disease -->
+        <div class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 shadow border border-gray-200 dark:border-gray-950">
+            <div>
+                <div class="flex justify-center items-center">
+                    <p class="pl-2 font-normal tracking-tight text-gray-700 dark:text-gray-400">
+                        Yearly Common Disease</p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <p class="pl-2 pt-1 text-lg md:text-xl lg:text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {{ $totalYearlyDisease ?? 'N/A' }}</p>
+                </div>
+                <div class="flex justify-between items-center pt-1">
+                    @if (isset($totalYearlyDiseaseLastYear))
+                        @php
+                            $yearlyDiseaseDifference = $totalYearlyDisease - $totalYearlyDiseaseLastYear;
+                            $yearlyDiseaseDifferencePercentage = $totalYearlyDiseaseLastYear != 0
+                                ? ($yearlyDiseaseDifference / $totalYearlyDiseaseLastYear) * 100
+                                : 0;
+                            $colorClass = $yearlyDiseaseDifference > 0
+                                ? 'green'
+                                : ($yearlyDiseaseDifference < 0 ? 'red' : 'gray');
+                        @endphp
+                        <p class="pl-2 text-sm md:text-base lg:text-sm tracking-tight dark:text-white">
+                            vs. Last Year: {{ $yearlyDiseaseDifference > 0 ? '+' : '' }}{{ $yearlyDiseaseDifference }}
+                        </p>
+                        <p class="font-bold text-{{ $colorClass }}-500">
+                            ({{ $yearlyDiseaseDifferencePercentage > 0 ? '+' : '' }}{{ number_format($yearlyDiseaseDifferencePercentage, 2) }}%)
+                        </p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    
+        <!-- Affected Animals -->
+        <div class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 shadow border border-gray-200 dark:border-gray-950">
+            <div>
+                <div class="flex justify-center items-center">
+                    <p class="pl-2 font-normal tracking-tight text-gray-700 dark:text-gray-400">
+                        Affected Animals</p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <p class="pl-2 pt-1 text-lg md:text-xl lg:text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {{ $totalAffectedAnimals ?? 'N/A' }}</p>
+                </div>
+                <div class="flex justify-between items-center pt-1">
+                    @if (isset($totalAffectedAnimalsLastYear))
+                        @php
+                            $yearlyAffectedAnimalsDifference = $totalAffectedAnimals - $totalAffectedAnimalsLastYear;
+                            $yearlyAffectedAnimalsDifferencePercentage = $totalAffectedAnimalsLastYear != 0
+                                ? ($yearlyAffectedAnimalsDifference / $totalAffectedAnimalsLastYear) * 100
+                                : 0;
+                            $colorClass = $yearlyAffectedAnimalsDifference > 0
+                                ? 'green'
+                                : ($yearlyAffectedAnimalsDifference < 0 ? 'red' : 'gray');
+                        @endphp
+                        <p class="pl-2 text-sm md:text-base lg:text-sm tracking-tight dark:text-white">
+                            vs. Last Year: {{ $yearlyAffectedAnimalsDifference > 0 ? '+' : '' }}{{ $yearlyAffectedAnimalsDifference }}
+                        </p>
+                        <p class="font-bold text-{{ $colorClass }}-500">
+                            ({{ $yearlyAffectedAnimalsDifferencePercentage > 0 ? '+' : '' }}{{ number_format($yearlyAffectedAnimalsDifferencePercentage, 2) }}%)
+                        </p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    
+        <!-- Animal Death -->
+        <div class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 shadow border border-gray-200 dark:border-gray-950">
+            <div>
+                <div class="flex justify-center items-center">
+                    <p class="pl-2 font-normal tracking-tight text-gray-700 dark:text-gray-400">
+                        Animal Death</p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <p class="pl-2 pt-1 text-lg md:text-xl lg:text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {{ $totalAnimalDeath ?? 'N/A' }}</p>
+                </div>
+                <div class="flex justify-between items-center pt-1">
+                    @if (isset($totalAnimalDeathLastYear))
+                        @php
+                            $yearlyAnimalDeathDifference = $totalAnimalDeath - $totalAnimalDeathLastYear;
+                            $yearlyAnimalDeathDifferencePercentage = $totalAnimalDeathLastYear != 0
+                                ? ($yearlyAnimalDeathDifference / $totalAnimalDeathLastYear) * 100
+                                : 0;
+                            $colorClass = $yearlyAnimalDeathDifference > 0
+                                ? 'green'
+                                : ($yearlyAnimalDeathDifference < 0 ? 'red' : 'gray');
+                        @endphp
+                        <p class="pl-2 text-sm md:text-base lg:text-sm tracking-tight dark:text-white">
+                            vs. Last Year: {{ $yearlyAnimalDeathDifference > 0 ? '+' : '' }}{{ $yearlyAnimalDeathDifference }}
+                        </p>
+                        <p class="font-bold text-{{ $colorClass }}-500">
+                            ({{ $yearlyAnimalDeathDifferencePercentage > 0 ? '+' : '' }}{{ number_format($yearlyAnimalDeathDifferencePercentage, 2) }}%)
+                        </p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    
     {{-- Animal Population Overview Chart --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 justify-center items-center">
         <div
@@ -78,8 +213,8 @@
     </div>
 
     {{-- Animal Population per Municipality Carousel --}}
-    <div class="flex flex-col items-center justify-center pb-5">
-        <div id="indicators-carousel" class="rounded-xl relative w-full pt-5">
+    <div class="flex flex-col items-center justify-center py-5 lg:py-0">
+        <div id="indicators-carousel" class="rounded-xl relative w-full">
             <!-- Carousel wrapper -->
             <div class="bg-white rounded-lg shadow-lg dark:bg-gray-900 overflow-hidden items-center w-full">
                 <div

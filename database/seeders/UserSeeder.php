@@ -21,28 +21,29 @@ class UserSeeder extends Seeder
         // Create users directly
         User::create([
             'name' => 'RootAdmin',
-            'email' => 'admin@admin',
+            'email' => 'admin@benguet.gov.ph',
             'email_verified_at' => now(),
             'municipality_id' => 0,
             'role' => 'admin',
-            'password' => Hash::make('admin@admin'),
+            'password' => Hash::make('admin@benguet.gov.ph'),
             'remember_token' => Str::random(10),
         ]);
 
         // Add users for each municipality
         $municipalities = [
             'Atok', 'Bakun', 'Bokod', 'Buguias', 'Itogon', 'Kabayan', 'Kapangan', 'Kibungan',
-            'La Trinidad', 'Mankayan', 'Sablan', 'Tuba', 'Tublay'
+            'LaTrinidad', 'Mankayan', 'Sablan', 'Tuba', 'Tublay'
         ];
 
         foreach ($municipalities as $index => $municipality) {
+            $email = strtolower($municipality) . '@' . strtolower($municipality);
             User::create([
                 'name' => $municipality,
-                'email' => strtolower($municipality) . '@' . strtolower($municipality),
+                'email' => $email,
                 'email_verified_at' => now(),
-                'municipality_id' => $index + 1, // Assuming municipality IDs start from 1
+                'municipality_id' => $index + 1,
                 'role' => 'user',
-                'password' => Hash::make($municipality),
+                'password' => Hash::make($email),
                 'remember_token' => Str::random(10),
             ]);
         }

@@ -162,9 +162,11 @@
 
 </x-app-layout>
 
+<script src="{{ asset('assets/js/dashboard.js') }}"></script>
 
-{{-- Dynamic Tab when pressed --}}
 {{-- <script>
+    // 
+    // Tabs JS
     document.addEventListener('DOMContentLoaded', function() {
         var tabs = document.querySelectorAll('[role="tab"]');
 
@@ -223,10 +225,9 @@
             }
         });
     });
-</script> --}}
 
-{{-- Script for saving state of the tab selected --}}
-{{-- <script>
+    // 
+    // Save state of the tabs when reloaded
     document.addEventListener('DOMContentLoaded', function() {
         // Function to handle tab button click
         function handleTabClick(event) {
@@ -276,11 +277,9 @@
             }
         }
     });
-</script> --}}
 
-
-{{-- Experimental 1: success --}}
-{{-- <script>
+    // 
+    // Year dropdown save js
     // Function to save selected year to local storage
     function saveSelectedYear() {
         var yearSelect = document.getElementById('year');
@@ -313,11 +312,10 @@
     document.getElementById('year').addEventListener('change', function() {
         saveSelectedYear();
     });
-</script> --}}
 
 
-{{-- Script for the carousel table --}}
-{{-- <script>
+    // 
+    // Carousel js
     document.addEventListener('DOMContentLoaded', function() {
         const carouselItems = document.querySelectorAll('[data-carousel-item]');
         const prevButton = document.querySelector('[data-carousel-prev]');
@@ -382,6 +380,3 @@
         showSlide(currentSlide);
     });
 </script> --}}
-
-
-<script src="{{ asset('./assets/js/dashboard.js') }}"></script>

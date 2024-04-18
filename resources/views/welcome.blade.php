@@ -104,11 +104,6 @@
                                     {{ __('Features') }}
                                 </div>
                             </x-nav-link>
-                            <x-nav-link href="#walkthrough">
-                                <div class="font-bold">
-                                    {{ __('Walkthrough') }}
-                                </div>
-                            </x-nav-link>
                             <x-nav-link href="#mission">
                                 <div class="font-bold">
                                     {{ __('Mission and Vision') }}

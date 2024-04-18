@@ -6,7 +6,7 @@
         <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">All rights reserved</p>
     </div>
     <div class="flex flex-col">
-        <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Developers</h2>
+        <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Benguet Provincial Veterinary Office </h2>
         <a href="/about-us"
             class="hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer">About
             Us</a>

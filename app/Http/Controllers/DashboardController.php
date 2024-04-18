@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Disease;
-use App\Models\YearlyCommonDisease;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 // Models
 use App\Models\AffectedAnimals;
@@ -14,7 +14,8 @@ use App\Models\AnimalType;
 use App\Models\Municipality;
 use App\Models\Population;
 use App\Models\VeterinaryClinics;
-
+use App\Models\Disease;
+use App\Models\YearlyCommonDisease;
 
 // Overview
 use App\Charts\AnimalPopulationOverviewChart;
@@ -89,10 +90,6 @@ class DashboardController extends Controller
         $animalPopulationOverviewData = $this->getAnimalPopulationOverviewData($selectedYear);
         $animalPopulationOverviewChart = $animalPopulationOverviewChart->build($animalPopulationOverviewData);
 
-        // Affected Animals
-        $AffectedAnimalsTrendData = $this->getAffectedAnimalsTrendData();
-        $affectedAnimalsTrendChart = $affectedAnimalsTrendChart->build($AffectedAnimalsTrendData);
-
 
         // Animal Death Overview Data
         $animalDeathOverviewData = $this->getAnimalDeathOverviewData($selectedYear);
@@ -133,8 +130,14 @@ class DashboardController extends Controller
         $AnimalDeathTrendData = $this->getAnimalDeathTrendData();
         $animalDeathTrendChart = $animalDeathTrendChart->build($AnimalDeathTrendData);
 
+        // Affected Animals
+        $AffectedAnimalsTrendData = $this->getAffectedAnimalsTrendData();
+        $affectedAnimalsTrendChart = $affectedAnimalsTrendChart->build($AffectedAnimalsTrendData);
+
         // Yearly Common Disease
-        $yearlyCommonDiseaseTrendChart = $yearlyCommonDiseaseTrendChart->build();
+        $YearlyCommonDiseaseTrendChart = $this->getYearlyCommonDiseaseTrendChart();
+        $yearlyCommonDiseaseTrendChart = $yearlyCommonDiseaseTrendChart->build($YearlyCommonDiseaseTrendChart);
+        // $yearlyCommonDiseaseTrendChart = $yearlyCommonDiseaseTrendChart->build();
 
 
         // Density and Ratio
@@ -142,6 +145,31 @@ class DashboardController extends Controller
         foreach ($municipalities as $municipality) {
             $animalDensityAndRatio[$municipality->id] = $this->calculateAnimalPopulationDensityAndRatio($municipality->id, $selectedYear);
         }
+
+        // Getting previous year for dashboard growth and loss
+        $previousYear = $selectedYear - 1;
+
+        // Total Animal Count and last year
+        $totalAnimalCountLastYear = AnimalPopulation::where('year', $previousYear)->sum('animal_population_count');
+        $totalAnimalCount = AnimalPopulation::where('year', $selectedYear)->sum('animal_population_count');
+
+
+        // Total Yearly Common Disease and last year
+        $totalYearlyDiseaseLastYear = YearlyCommonDisease::where('year', $previousYear)->sum('disease_count');
+        $totalYearlyDisease = YearlyCommonDisease::where('year', $selectedYear)->sum('disease_count');
+
+
+        // Total Yearly Common Disease and last year
+        $totalAffectedAnimalsLastYear = AffectedAnimals::where('year', $previousYear)->sum('count');
+        $totalAffectedAnimals = AffectedAnimals::where('year', $selectedYear)->sum('count');
+
+
+        // Total Animal Death
+        $totalAnimalDeathLastYear = AnimalDeath::where('year', $previousYear)->sum('count');
+        $totalAnimalDeath = AnimalDeath::where('year', $selectedYear)->sum('count');
+
+
+
         return view(
             'dashboard',
             compact(
@@ -174,7 +202,19 @@ class DashboardController extends Controller
                 'animalDeathTrendChart',
 
                 // Compare
-                'animalDensityAndRatio'
+                'animalDensityAndRatio',
+
+                // Total
+                'totalAnimalCount',
+                'totalYearlyDisease',
+                'totalAffectedAnimals',
+                'totalAnimalDeath',
+
+                'totalAnimalCountLastYear',
+                'totalYearlyDiseaseLastYear',
+                'totalAffectedAnimalsLastYear',
+                'totalAnimalDeathLastYear',
+
 
 
             )
@@ -332,18 +372,24 @@ class DashboardController extends Controller
             ->pluck('year')
             ->toArray();
 
-        $affectedAnimalsData = AffectedAnimals::whereIn('year', $recentYears)
-            ->get();
-
         $data = [];
-        foreach ($affectedAnimalsData as $record) {
-            $data[$record->year] = $record->count;
+
+        foreach ($recentYears as $year) {
+            $affectedAnimalsRecords = AffectedAnimals::where('year', $year)->get();
+            $totalAffectedAnimals = 0;
+
+            foreach ($affectedAnimalsRecords as $record) {
+                $totalAffectedAnimals += $record->count;
+            }
+
+            $data[$year] = $totalAffectedAnimals;
         }
 
         ksort($data);
 
         return $data;
     }
+
 
     // Animal Death Trend
     public function getAnimalDeathTrendData()
@@ -354,18 +400,24 @@ class DashboardController extends Controller
             ->pluck('year')
             ->toArray();
 
-        $animalDeathdata = AnimalDeath::whereIn('year', $recentYears)
-            ->get();
-
         $data = [];
-        foreach ($animalDeathdata as $record) {
-            $data[$record->year] = $record->count;
+
+        foreach ($recentYears as $year) {
+            $animalDeathRecords = AnimalDeath::where('year', $year)->get();
+            $totalAnimalDeath = 0;
+
+            foreach ($animalDeathRecords as $record) {
+                $totalAnimalDeath += $record->count;
+            }
+
+            $data[$year] = $totalAnimalDeath;
         }
 
         ksort($data);
 
         return $data;
     }
+
 
 
     public function getAnimalPopulationTrendData()
@@ -376,12 +428,44 @@ class DashboardController extends Controller
             ->pluck('year')
             ->toArray();
 
-        $animalPopulationData = AnimalPopulation::whereIn('year', $recentYears)
-            ->get();
+        $data = [];
+
+        foreach ($recentYears as $year) {
+            $populationRecords = AnimalPopulation::where('year', $year)->get();
+
+            $totalPopulation = 0;
+
+            foreach ($populationRecords as $record) {
+                $totalPopulation += $record->animal_population_count;
+            }
+
+            $data[$year] = $totalPopulation;
+        }
+
+        ksort($data);
+
+        return $data;
+    }
+
+    public function getYearlyCommonDiseaseTrendChart()
+    {
+        $recentYears = YearlyCommonDisease::distinct('year')
+            ->orderBy('year', 'desc')
+            ->take(20)
+            ->pluck('year')
+            ->toArray();
 
         $data = [];
-        foreach ($animalPopulationData as $record) {
-            $data[$record->year] = $record->animal_population_count;
+
+        foreach ($recentYears as $year) {
+            $diseaseRecords = YearlyCommonDisease::where('year', $year)->get();
+            $totalDiseaseCount = 0;
+
+            foreach ($diseaseRecords as $record) {
+                $totalDiseaseCount += $record->disease_count;
+            }
+
+            $data[$year] = $totalDiseaseCount;
         }
 
         ksort($data);
@@ -445,13 +529,4 @@ class DashboardController extends Controller
 
         return $data;
     }
-
-
-
-
-
-
-
-
-
 }

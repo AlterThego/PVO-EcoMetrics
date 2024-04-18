@@ -64,8 +64,8 @@
                             <div class="ml-4 mb-4">
                                 <h3 class="mb-2 text-lg font-medium leading-6 text-gray-900 dark:text-white">Our Address
                                 </h3>
-                                <p class="text-gray-600 dark:text-slate-400">Baguio City, Benguet, 2600</p>
-                                <p class="text-gray-600 dark:text-slate-400">Philippines</p>
+                                <p class="text-gray-600 dark:text-slate-400">Provincial Capitol Compound, La Trinidad Road</p>
+                                <p class="text-gray-600 dark:text-slate-400">La Trinidad, 2601 Benguet, Philippines</p>
                             </div>
                         </li>
                         <li class="flex">
@@ -83,10 +83,9 @@
                             <div class="ml-4 mb-4">
                                 <h3 class="mb-2 text-lg font-medium leading-6 text-gray-900 dark:text-white">Contact
                                 </h3>
-                                <p class="text-gray-600 dark:text-slate-400">Mobile: <br>+63 9369-300-246 <br>+63
-                                    9515-421-008 <br>+63 9515-421-008</p>
+                                <p class="text-gray-600 dark:text-slate-400">Mobile: <br>(074) 422-2306<br>(074) 422-5657 <br>(074) 422-1116/ 422-5760</p>
                                 <p class="text-gray-600 dark:text-slate-400">Mail:
-                                    <br>cdbernal36@gmail.com<br>euanthieu@gmail.com<br>theosuaking@gmail.com
+                                    <br>pvo@benguet.gov.ph
                                 </p>
                             </div>
                         </li>
@@ -103,7 +102,7 @@
                                 <h3 class="mb-2 text-lg font-medium leading-6 text-gray-900 dark:text-white">Working
                                     hours
                                 </h3>
-                                <p class="text-gray-600 dark:text-slate-400">Monday - Saturday: 08:00AM - 06:00PM</p>
+                                <p class="text-gray-600 dark:text-slate-400">Monday - Friday: 08:00AM - 05:00PM</p>
                             </div>
                         </li>
                     </ul>

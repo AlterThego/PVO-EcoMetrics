@@ -9,6 +9,7 @@ case Fishery = 'Fishery';
     case Poultry = 'Poultry';
     case Pet = 'Pet';
     case Insect = 'Insect';
+    case Others = 'Others';
     public function labels(): string
     {
         return match ($this) {
@@ -17,6 +18,7 @@ case Fishery = 'Fishery';
             self::Poultry => 'Poultry',
             self::Pet => 'Pet',
             self::Insect => 'Insect',
+            self::Others => 'Others',
         };
     }
 

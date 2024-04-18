@@ -1,36 +1,37 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
-
-
-
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-/* #crud-modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5); 
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+/* Scrollbar customization*/
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-#modal-container {
-    max-width: 400px; 
-    width: 100%;
-    position: fixed;
+:root {
+    --scrollbar-track-color: #f1f1f1;
+    --scrollbar-thumb-color: #cccccc;
+    --scrollbar-thumb-hover-color: #999999;
 }
 
+/* Dark mode scrollbar styles */
+.dark {
+    --scrollbar-track-color: #333333;
+    --scrollbar-thumb-color: #666666;
+    --scrollbar-thumb-hover-color: #999;
+}
 
-.hidden {
-    display: none;
-} */
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-color);
+}

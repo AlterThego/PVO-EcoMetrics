@@ -38,7 +38,7 @@
                     <label for="level" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Sector</label>
                     <select wire:model="farmLevel" id="level" name="level" required=""
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         <option value="" disabled selected>Select Level</option>
                         <option value="Municipal">Municipal</option>
                         <option value="Provincial">Provincial</option>
@@ -58,16 +58,20 @@
                 <div>
                     <label for="farm_area" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farm
                         Area</label>
-                    <input wire:model="farmArea" type="number" step="any" name="farm_area" id="farm_area"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Input Farm Area" required="">
+                    <div class="relative">
+                        <input wire:model="farmArea" type="number" step="any" name="farm_area" id="farm_area"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Input Farm Area" required="">
+                        <span
+                            class="absolute inset-y-0 right-0 flex items-center pr-10 text-gray-500 sm:text-sm dark:text-white">ha</span>
+                    </div>
                 </div>
 
                 <div>
                     <label for="farm_sector" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Sector</label>
                     <select wire:model="farmSector" id="farm_sector" name="farm_sector" required=""
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         <option value="" disabled selected>Select Sector</option>
                         <option value="Government">Government</option>
                         <option value="Commercial">Commercial</option>
@@ -78,7 +82,7 @@
                     <label for="farm_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Farm Type</label>
                     <select wire:model="farmType" id="farm_type" name="farm_type" required=""
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         <option value="" disabled selected>Select Type</option>
                         <option value="Animal and Fishery Breeding">Animal and Fishery Breeding</option>
                         <option value="Piggery">Piggery</option>

@@ -43,6 +43,7 @@
                         <option value="Livestock">Livestock</option>
                         <option value="Fishery">Fishery</option>
                         <option value="Insect">Insect</option>
+                        <option value="Others">Others</option>
                     </select>
 
                 </div>

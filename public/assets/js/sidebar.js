@@ -30,7 +30,7 @@ function toggleDarkMode(isDarkMode) {
         root.style.setProperty('--container-color', '#2D3748');
         root.style.setProperty('--nav-dropdown-collapse', '#1f2937');
 
-        // Add more properties for other variables if needed
+
     } else {
         // Toggle to light mode
         root.style.setProperty('--first-color', '#008000');
@@ -40,8 +40,8 @@ function toggleDarkMode(isDarkMode) {
         root.style.setProperty('--text-color-light', '#A5A1AA');
         root.style.setProperty('--body-color', '#F0FFF0');
         root.style.setProperty('--container-color', '#FFFFFF');
-        root.style.setProperty('--nav-dropdown-collapse', '#f7fee7');
-        // Add more properties for other variables if needed
+        root.style.setProperty('--nav-dropdown-collapse', '#fefce8');
+
     }
 
     // Toggle dark mode class on the body element

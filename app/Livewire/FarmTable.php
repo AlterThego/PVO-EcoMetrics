@@ -95,7 +95,7 @@ final class FarmTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Farm Area', 'farm_area')
+            Column::make('Farm Area (ha)', 'farm_area')
                 ->sortable()
                 ->searchable(),
 

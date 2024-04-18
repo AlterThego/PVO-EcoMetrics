@@ -109,19 +109,16 @@ class AnimalPopulationController extends Controller
 
     public function linearRegression()
     {
-        // Get the data for all municipalities
         $data = AnimalPopulation::groupBy('year')
             ->selectRaw('year, SUM(animal_population_count) as total_population')
             ->orderBy('year')
             ->get()
             ->toArray();
 
-        // Check if there are enough data points for regression
-        $minDataPoints = 2; // Set your minimum required data points
+        $minDataPoints = 2; 
         $dataPointsCount = count($data);
 
         if ($dataPointsCount < $minDataPoints) {
-            // Handle insufficient data points
             // toastr()->warning('Insufficient data points for accurate regression.');
 
             return [
@@ -131,19 +128,15 @@ class AnimalPopulationController extends Controller
         }
 
         try {
-            // Prepare the data points for linear regression
             $points = [];
             foreach ($data as $entry) {
                 $points[] = [$entry['year'], $entry['total_population']];
             }
 
-            // Simple linear regression (least squares method)
             $regression = new Linear($points);
 
-            // Check if regression parameters are valid
             $parameters = $regression->getParameters();
             if (empty($parameters) || $parameters['m'] === null || $parameters['b'] === null) {
-                // Handle invalid regression parameters
                 toastr()->warning('Invalid regression parameters.');
 
                 return [
@@ -152,12 +145,10 @@ class AnimalPopulationController extends Controller
                 ];
             }
 
-            // Calculate degrees of freedom
             $degreesOfFreedom = $dataPointsCount - count($parameters) - 1;
 
             if ($degreesOfFreedom <= 0) {
-                // Handle invalid degrees of freedom
-                toastr()->warning('Invalid degrees of freedom in regression.');
+                // toastr()->warning('Invalid degrees of freedom in regression.');
 
                 return [
                     'predictedYear' => null,
