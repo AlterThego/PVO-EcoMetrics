@@ -78,35 +78,53 @@
                     <!-- Modal body -->
                     <form action="{{ route('animal.death.store') }}" method="post">
                         @csrf
-                        <div class="grid gap-4 mb-4 sm:grid-cols-2">
 
-                            <div>
-                                <label for="year"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
-                                <input type="number" name="year" id="year"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Type Year" required="" min="1900" max="2100"
-                                    autocomplete="off">
+                        <div class="mx-auto w-3/6">
+                            <div class="grid gap-4 mb-4 sm:grid-cols-1">
+                                <div>
+                                    <label for="year"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
+                                    <input type="number" name="year" id="year"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        placeholder="Type Year" required="" min="1900" max="2100"
+                                        autocomplete="off">
+                                </div>
                             </div>
-
-
+                        </div>
+                        <div class="grid gap-4 mb-4 sm:grid-cols-2">
                             <div>
                                 <label for="municipality"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
                                 <select name="municipality" id="municipality"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @if (auth()->check() && auth()->user()->municipality_id != 0) pointer-events-none @endif"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500  @if (auth()->check() && auth()->user()->municipality_id != 0) pointer-events-none @endif"
                                     required="">
                                     <option value="" disabled @if (auth()->check() && auth()->user()->municipality_id == 0) selected @endif>
-                                        Select
-                                        Municipality</option>
+                                        Select Municipality</option>
                                     @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
                                         <option value="{{ $id }}"
-                                            @if (auth()->user()->municipality_id == $id) selected @endif>{{ $municipalityName }}
+                                            @if (auth()->user()->municipality_id == $id) selected @endif>
+                                            {{ $municipalityName }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
 
+                            <div>
+                                <label for="barangay"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barangay
+                                    Name</label>
+                                <select name="barangay" id="barangay"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    required="">
+                                    <option value="" disabled selected>Select Barangay</option>
+                                    @foreach (\App\Models\Barangay::all() as $barangay)
+                                        <option value="{{ $barangay->id }}" class="barangay-option"
+                                            data-animal-id="{{ $barangay->municipality_id }}" style="display: none;">
+                                            {{ $barangay->barangay_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div>
                                 <label for="animal"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animal</label>
@@ -119,7 +137,6 @@
                                     @endforeach
                                 </select>
                             </div>
-
                             <div>
                                 <label for="count"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -129,8 +146,8 @@
                                     placeholder="Input Animals Death Count" required="">
                             </div>
 
-
                         </div>
+
                         <button type="submit"
                             class="text-white inline-flex items-center bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
@@ -148,6 +165,20 @@
             </div>
         </div>
 
+        <script type="module">
+            $(document).ready(function() {
+                $('#municipality').change(function() {
+                    var municipalityId = $(this).val();
+                    $('.barangay-option').hide(); // Hide all barangays initially
+                    $('.barangay-option[data-animal-id="' + municipalityId + '"]')
+                        .show(); // Show barangays of selected municipality
+                    $('#barangay').val(''); // Reset the selected barangay
+                });
+
+                // Trigger the change event on document ready to initially display barangays of the selected municipality
+                $('#municipality').change();
+            });
+        </script>
         @livewire('wire-elements-modal')
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {

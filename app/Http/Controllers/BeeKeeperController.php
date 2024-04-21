@@ -16,6 +16,7 @@ class BeeKeeperController extends Controller
             // Validate the form data
             $validatedData = $request->validate([
                 'municipality' => 'required|exists:municipalities,id',
+                'barangay' => 'required|exists:barangays,id',
                 'year' => 'required|integer',
                 'colonies' => 'required|integer',
                 'beeKeepers' => 'required|integer',
@@ -27,6 +28,7 @@ class BeeKeeperController extends Controller
             // Save the data to the database
             BeeKeeper::create([
                 'municipality_id' => $validatedData['municipality'],
+                'barangay_id' => $validatedData['barangay'],
                 'year' => $validatedData['year'],
                 'colonies' => $validatedData['colonies'],
                 'bee_keepers' => $validatedData['beeKeepers'],

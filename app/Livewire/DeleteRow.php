@@ -3,11 +3,27 @@
 namespace App\Livewire;
 
 use App\Models\{
-    AffectedAnimals, Animal, AnimalDeath, AnimalPopulation, AnimalType, Barangay,
-    BeeKeeper, Disease, Farm, FarmSupply, FishProduction, FishProductionArea,
-    FishSanctuary, Municipality, Population, User, VeterinaryClinics, YearlyCommonDisease
+    AffectedAnimals,
+    Animal,
+    AnimalDeath,
+    AnimalPopulation,
+    AnimalType,
+    Barangay,
+    BeeKeeper,
+    Disease,
+    Farm,
+    FarmSupply,
+    FishProduction,
+    FishProductionArea,
+    FishSanctuary,
+    Municipality,
+    Population,
+    User,
+    VeterinaryClinics,
+    YearlyCommonDisease
 };
 
+use App\Models\FarmType;
 use LivewireUI\Modal\ModalComponent;
 
 
@@ -31,6 +47,7 @@ class DeleteRow extends ModalComponent
     public $populationId;
     public $municipalityId;
     public $userId;
+    public $farmTypeId;
     public function render()
     {
         return view('livewire.delete-row');
@@ -43,6 +60,7 @@ class DeleteRow extends ModalComponent
             $animalPopulation = AnimalPopulation::find($this->animalPopulationId);
             $animal = Animal::find($this->animalId);
             $animalType = AnimalType::find($this->animalTypeId);
+            $farmType = FarmType::find($this->farmTypeId);
             $affectedAnimals = AffectedAnimals::find($this->affectedAnimalsId);
             $animalDeath = AnimalDeath::find($this->animalDeathId);
             $fishProduction = FishProduction::find($this->fishProductionId);
@@ -59,12 +77,15 @@ class DeleteRow extends ModalComponent
             $municipality = Municipality::find($this->municipalityId);
             $user = User::find($this->userId);
 
+
             if ($animalPopulation) {
                 $animalPopulation->delete();
             } else if ($animal) {
                 $animal->delete();
             } else if ($animalType) {
                 $animalType->delete();
+            } else if ($farmType) {
+                $farmType->delete();
             } else if ($affectedAnimals) {
                 $affectedAnimals->delete();
             } else if ($animalDeath) {

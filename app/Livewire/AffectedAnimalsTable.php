@@ -46,11 +46,13 @@ final class AffectedAnimalsTable extends PowerGridComponent
     {
         $query = AffectedAnimals::query()
             ->join('municipalities', 'affected_animals.municipality_id', '=', 'municipalities.id')
+            ->join('barangays', 'affected_animals.barangay_id', '=', 'barangays.id')
             ->join('animal', 'affected_animals.animal_id', '=', 'animal.id')
             ->select(
                 'affected_animals.*',
                 'animal.animal_name as animal_id',
                 'municipalities.municipality_name as municipality_id',
+                'barangays.barangay_name as barangay_id',
             );
 
         if (auth()->user()->municipality_id !== 0) {
@@ -70,6 +72,7 @@ final class AffectedAnimalsTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('municipality_id')
+            ->addColumn('barangay_id')
             ->addColumn('animal_id')
             ->addColumn('year')
             ->addColumn('count');
@@ -87,6 +90,7 @@ final class AffectedAnimalsTable extends PowerGridComponent
 
 
             Column::make('Municipality', 'municipality_id'),
+            Column::make('Barangay', 'barangay_id'),
             Column::make('Animal', 'animal_id'),
             // Column::make('Year', 'year')
             //     ->sortable()
@@ -124,7 +128,7 @@ final class AffectedAnimalsTable extends PowerGridComponent
         ];
 
         if (auth()->user()->municipality_id == 0) {
-            $filters[] = Filter::select('municipality_id', 'municipality_id')
+            $filters[] = Filter::select('municipality_id', 'municipalities.id')
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
                 ->optionValue('id');

@@ -16,12 +16,13 @@ class AnimalDeathFactory extends Factory
 
     public function definition(): array
     {
-        // Assuming there are existing Municipality and Animal records
         $municipalityId = \App\Models\Municipality::inRandomOrder()->first()->id;
+        $barangayId = \App\Models\Barangay::inRandomOrder()->first()->id;
         $animalId = \App\Models\Animal::inRandomOrder()->first()->id;
 
         return [
             'municipality_id' => $municipalityId,
+            'barangay_id' => $barangayId,
             'animal_id' => $animalId,
             'year' => $this->faker->year,
             'count' => $this->faker->numberBetween(1, 100),

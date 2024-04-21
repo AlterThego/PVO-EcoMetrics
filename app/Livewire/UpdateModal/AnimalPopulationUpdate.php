@@ -12,6 +12,7 @@ class AnimalPopulationUpdate extends ModalComponent
 
     public $animalPopulationUpdateId;
     public $municipalityId;
+    public $barangayId;
     public $animalId;
     public $animalTypeId;
     public $year;
@@ -32,6 +33,7 @@ class AnimalPopulationUpdate extends ModalComponent
         // Set the Livewire component properties with the existing values
         $this->animalPopulationUpdateId = $animalPopulation->id;
         $this->municipalityId = $animalPopulation->municipality_id;
+        $this->barangayId = $animalPopulation->barangay_id;
         $this->animalId = $animalPopulation->animal_id;
         $this->animalTypeId = $animalPopulation->animal_type_id;
         $this->year = $animalPopulation->year;
@@ -52,6 +54,7 @@ class AnimalPopulationUpdate extends ModalComponent
             $this->validate([
                 'year' => 'required|integer',
                 'municipalityId' => 'required|exists:municipalities,id',
+                'barangayId' => 'required|exists:barangays,id',
                 'animalId' => 'required|exists:animal,id',
                 'animalTypeId' => 'required|exists:animal_type,id',
                 'animalPopulationCount' => 'required|integer',
@@ -60,6 +63,7 @@ class AnimalPopulationUpdate extends ModalComponent
 
             $animalPopulation->update([
                 'municipality_id' => $this->municipalityId,
+                'barangay_id' => $this->barangayId,
                 'animal_id' => $this->animalId,
                 'animal_type_id' => $animalTypeId, 
                 'year' => $this->year,

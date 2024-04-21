@@ -16,12 +16,13 @@ class FarmController extends Controller
             // Validate the form data
             $validatedData = $request->validate([
                 'municipality' => 'required|exists:municipalities,id',
+                'barangay' => 'required|exists:barangays,id',
                 'level' => 'required',
                 'farm_name' => 'required',
                 'farm_area' => 'required|numeric',
 
                 'farm_sector' => 'required',
-                'farm_type' => 'required',
+                'farm_type' => 'required|exists:farm_type,id',
                 'year_established' => 'required|integer',
                 'year_closed' => 'nullable|integer',
 
@@ -32,12 +33,13 @@ class FarmController extends Controller
             // Save the data to the database
             Farm::create([
                 'municipality_id' => $validatedData['municipality'],
+                'barangay_id' => $validatedData['barangay'],
                 'level' => $validatedData['level'],
                 'farm_name' => $validatedData['farm_name'],
                 'farm_area' => $validatedData['farm_area'],
 
                 'farm_sector' => $validatedData['farm_sector'],
-                'farm_type' => $validatedData['farm_type'],
+                'farm_type_id' => $validatedData['farm_type'],
                 'year_established' => $validatedData['year_established'],
                 'year_closed' => $validatedData['year_closed'],
             ]);
@@ -70,7 +72,8 @@ class FarmController extends Controller
             Log::error('Error saving data: ' . $e->getMessage());
 
             // Redirect with an error message or handle the error accordingly
-            toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
+            // toastr()->error('An error occurred while saving data. Please try again.' . $e->getMessage());
+ dd($e->getMessage());
             return back();
         }
     }

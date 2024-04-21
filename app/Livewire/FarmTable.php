@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use App\Enums\FarmSector;
-use App\Enums\FarmType;
+use App\Models\FarmType;
 use App\Models\Farm;
 use App\Models\Municipality;
 use App\Enums\FarmLevel;
@@ -47,10 +47,14 @@ final class FarmTable extends PowerGridComponent
     {
         $query = Farm::query()
             ->join('municipalities', 'farms.municipality_id', '=', 'municipalities.id')
+            ->join('barangays', 'farms.barangay_id', '=', 'barangays.id')
+            ->join('farm_type', 'farms.farm_type_id', '=', 'farm_type.id')
 
             ->select(
                 'farms.*',
                 'municipalities.municipality_name as municipality_id',
+                'barangays.barangay_name as barangay_id',
+                'farm_type.type as farm_type_id',
             );
 
         if (auth()->user()->municipality_id !== 0) {
@@ -70,11 +74,12 @@ final class FarmTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('municipality_id')
+            ->addColumn('barangay')
             ->addColumn('level')
             ->addColumn('farm_name')
             ->addColumn('farm_area')
             ->addColumn('farm_sector')
-            ->addColumn('farm_type')
+            ->addColumn('farm_type_id')
             ->addColumn('year_established')
             ->addColumn('year_closed')
             ->addColumn('created_at');
@@ -86,6 +91,7 @@ final class FarmTable extends PowerGridComponent
             Column::make('Id', 'id'),
             Column::action('Action'),
             Column::make('Municipality', 'municipality_id'),
+            Column::make('Barangay', 'barangay_id'),
             // Column::make('Level', 'level')
             Column::make('Farm Level', 'level', 'farms.level')
                 ->sortable()
@@ -103,7 +109,7 @@ final class FarmTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Farm Type', 'farm_type')
+            Column::make('Farm Type', 'farm_type_id')
                 ->sortable()
                 ->searchable(),
 
@@ -132,6 +138,9 @@ final class FarmTable extends PowerGridComponent
             //     ->optionLabel('municipality_name')
             //     ->optionValue('id'),
 
+            Filter::inputText('farm_name')
+                ->operators(['contains']),
+
             Filter::enumSelect('level', 'farms.level')
                 ->dataSource(FarmLevel::cases())
                 ->optionLabel('farms.level'),
@@ -140,13 +149,14 @@ final class FarmTable extends PowerGridComponent
                 ->dataSource(FarmSector::cases())
                 ->optionLabel('farms.farm_sector'),
 
-            Filter::enumSelect('farm_type', 'farms.farm_type')
-                ->dataSource(FarmType::cases())
-                ->optionLabel('farms.farm_type'),
+            Filter::select('farm_type_id', 'farm_type_id')
+                ->dataSource(FarmType::all())
+                ->optionLabel('type')
+                ->optionValue('id'),
         ];
 
         if (auth()->user()->municipality_id == 0) {
-            $filters[] = Filter::select('municipality_id', 'municipality_id')
+            $filters[] = Filter::select('municipality_id', 'municipalities.id')
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
                 ->optionValue('id');

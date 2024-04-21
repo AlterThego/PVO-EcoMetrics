@@ -1,43 +1,6 @@
 <div class="tab-content hidden rounded-lg !border-opacity-0 bg-white dark:bg-gray-900 bg-opacity-60 dark:bg-opacity-60 shadow-lg backdrop-blur-lg backdrop-filter sm:space-y-5 sm:p-8 md:px-10 xl:py-5"
     id="overview" role="tabpanel" aria-labelledby="overview-tab">
 
-
-    {{-- 4 Cards --}}
-    {{-- <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-center items-center">
-        @foreach ($animalTypes as $animalType)
-            @php
-                $percentage = 0; // Default value in case of division by zero
-                if ($overallAnimalPopulationCount !== 0) {
-                    $percentage = ($animalPopulationData[$animalType->type] / $overallAnimalPopulationCount) * 100;
-                }
-            @endphp
-            <a href="#"
-                class="block w-full sm:max-w-sm p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 shadow border border-gray-200 dark:border-gray-950">
-                <div>
-                    <div class="flex justify-between items-center">
-                        <p class="pl-2 font-normal tracking-tight text-gray-700 dark:text-gray-400">
-                            {{ $animalType->type }}</p>
-                        <p
-                            class="pl-2 text-yellow-900 text-semibold text-xs md:text-xs lg:text-xs tracking-tight dark:text-white">
-                            Poultry</p>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <p
-                            class="pl-2 text-lg md:text-xl lg:text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                            @if (isset($animalPopulationData[$animalType->type]))
-                                {{ $animalPopulationData[$animalType->type] }}
-                            @else
-                                N/A
-                            @endif
-                        </p>
-                        <p class="pl-2 text-sm md:text-base lg:text-sm tracking-tight text-gray-900 dark:text-white">
-                            {{ round($percentage, 2) }}%</p>
-                    </div>
-                </div>
-            </a>
-        @endforeach
-    </div> --}}
-
     {{-- 4 Cards --}}
     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 justify-center items-center">
         <!-- Animal Population -->

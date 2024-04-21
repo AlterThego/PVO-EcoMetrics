@@ -8,12 +8,15 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('farm_supplies', function (Blueprint $table) {
-            $table->unique(['municipality_id', 'establishment_name']);
+            $table->unique(['barangay_id', 'establishment_name']);
 
             $table->id();
 
             $table->unsignedBigInteger('municipality_id');
             $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('barangay_id');
+            $table->foreign('barangay_id')->references('id')->on('barangays')->onUpdate('cascade');
 
             $table->string('establishment_name', 20);
             $table->integer('year_established');

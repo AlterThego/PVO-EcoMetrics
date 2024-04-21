@@ -9,10 +9,12 @@ class FarmUpdate extends ModalComponent
 {
     public $farmUpdateId;
     public $municipalityId;
+    public $barangayId;
     public $farmName;
+    public $farmLevel;
     public $farmArea;
     public $farmSector;
-    public $farmType;
+    public $farmTypeId;
     public $yearEstablished;
     public $yearClosed;
 
@@ -30,6 +32,8 @@ class FarmUpdate extends ModalComponent
         // Set the Livewire component properties with the existing values
         $this->farmUpdateId = $farm->id;
         $this->municipalityId = $farm->municipality_id;
+        $this->barangayId = $farm->barangay_id;
+        $this->farmLevel = $farm->level;
         $this->farmName = $farm->farm_name;
         $this->farmArea = $farm->farm_area;
         $this->farmSector = $farm->farm_sector;
@@ -45,23 +49,29 @@ class FarmUpdate extends ModalComponent
         try {
             $farm = Farm::find($this->farmUpdateId);
 
-
+            if (empty($this->yearClosed)) {
+                $this->yearClosed = null;
+            }
             $this->validate([
                 'municipalityId' => 'required|exists:municipalities,id',
+                'barangayId' => 'required|exists:barangays,id',
                 'farmName' => 'required',
+                'farmLevel' => 'required',
                 'farmArea' => 'required|numeric',
                 'farmSector' => 'required',
-                'farmType' => 'required',
+                'farmTypeId' => 'required',
                 'yearEstablished' => 'required|integer',
-                'yearClosed' => 'required|integer',
+                'yearClosed' => 'nullable|digits:4|integer|min:1900|max:2100',
             ]);
 
             $farm->update([
                 'municipality_id' => $this->municipalityId,
+                'barangay_id' => $this->barangayId,
                 'farm_name' => $this->farmName,
+                'level' => $this->farmLevel,
                 'farm_area' => $this->farmArea,
                 'farm_sector' => $this->farmSector,
-                'farm_type' => $this->farmType,
+                'farm_type_id' => $this->farmTypeId,
                 'year_established' => $this->yearEstablished,
                 'year_closed' => $this->yearClosed,
             ]);
@@ -78,7 +88,7 @@ class FarmUpdate extends ModalComponent
             toastr()->error('An error occurred while updating the item. Please try again. Error: ' . $e->getMessage());
 
 
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
     }
 

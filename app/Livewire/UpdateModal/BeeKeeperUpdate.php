@@ -10,6 +10,7 @@ class BeeKeeperUpdate extends ModalComponent
 {
     public $beeKeepersUpdateId;
     public $municipalityId;
+    public $barangayId;
     public $year;
     public $colonies;
     public $beeKeepers;
@@ -25,6 +26,7 @@ class BeeKeeperUpdate extends ModalComponent
         // Set the Livewire component properties with the existing values
         $this->farmSupplyUpdateId = $beekeeper->id;
         $this->municipalityId = $beekeeper->municipality_id;
+        $this->barangayId = $beekeeper->barangay_id;
         $this->year = $beekeeper->year;
         $this->colonies = $beekeeper->colonies;
         $this->beeKeepers = $beekeeper->bee_keepers;
@@ -39,6 +41,7 @@ class BeeKeeperUpdate extends ModalComponent
 
             $this->validate([
                 'municipalityId' => 'required|exists:municipalities,id',
+                'barangayId' => 'required|exists:barangays,id',
                 'year' => 'required|integer',
                 'colonies' => 'required|integer',
                 'beeKeepers' => 'required|integer',
@@ -46,6 +49,7 @@ class BeeKeeperUpdate extends ModalComponent
 
             $beeKeepers->update([
                 'municipality_id' => $this->municipalityId,
+                'barangay_id' => $this->barangayId,
                 'year' => $this->year,
                 'colonies' => $this->colonies,
                 'bee_keepers' => $this->beeKeepers,
@@ -63,7 +67,7 @@ class BeeKeeperUpdate extends ModalComponent
             toastr()->error('An error occurred while updating the item. Please try again. Error: ' . $e->getMessage());
 
 
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
     }
 

@@ -16,14 +16,17 @@ class FarmFactory extends Factory
     {
         // Assuming there are existing Municipality records
         $municipalityId = \App\Models\Municipality::inRandomOrder()->first()->id;
+        $barangayId = \App\Models\Barangay::inRandomOrder()->first()->id;
+        $farmTypeId = \App\Models\FarmType::inRandomOrder()->first()->id;
 
         return [
             'municipality_id' => $municipalityId,
+            'barangay_id' => $barangayId,
             'level' => $this->faker->randomElement(['provincial', 'municipal']),
             'farm_name' => $this->faker->unique()->company,
             'farm_area' => $this->faker->randomFloat(2, 1, 100),
             'farm_sector' => $this->faker->randomElement(['government', 'commercial']),
-            'farm_type' => $this->faker->randomElement(['Animal and Fishery Breeding', 'Cattle', 'Poultry', 'Piggery']),
+            'farm_type_id' => $farmTypeId,
             'year_established' => $this->faker->year,
             'year_closed' => $this->faker->optional(0.2)->year, // 20% chance of being nullable
         ];

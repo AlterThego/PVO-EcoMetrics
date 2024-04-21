@@ -19,6 +19,7 @@ class FishProductionAreaController extends Controller
                 'year' => 'required|integer',
                 'fish_production_type' => 'required|exists:fish_productions,id',
                 'municipality' => 'required|exists:municipalities,id',
+                'barangay' => 'required|exists:barangays,id',
                 'land_area' => 'required|numeric',
             ]);
 
@@ -28,6 +29,7 @@ class FishProductionAreaController extends Controller
                 'year' => $validatedData['year'],
                 'fish_production_id' => $validatedData['fish_production_type'],
                 'municipality_id' => $validatedData['municipality'],
+                'barangay_id' => $validatedData['barangay'],
                 'land_area' => $validatedData['land_area'],
             ]);
 

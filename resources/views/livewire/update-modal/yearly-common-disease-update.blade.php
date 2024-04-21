@@ -20,6 +20,17 @@
 
         <form wire:submit.prevent="updateitem">
             @csrf
+            <div class="mx-auto w-3/6">
+                <div class="grid gap-4 mb-4 sm:grid-cols-1">
+                    <div>
+                        <label for="year"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
+                        <input wire:model="year" type="number" name="year" id="year"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Type Year" required="" min="2000" max="2100">
+                    </div>
+                </div>
+            </div>
             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
                     <label for="disease"
@@ -32,16 +43,6 @@
                             <option value="{{ $id }}">{{ $diseaseName }}</option>
                         @endforeach
                     </select>
-                </div>
-
-            </div>
-            <div class="grid gap-4 mb-4 sm:grid-cols-2">
-                <div>
-                    <label for="year"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
-                    <input wire:model="year" type="number" name="year" id="year"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Type Year" required="" min="2000" max="2100">
                 </div>
                 <div>
                     <label for="disease_count"

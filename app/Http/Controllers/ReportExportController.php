@@ -64,6 +64,7 @@ class ReportExportController extends Controller
 
         // Instantiate PHPWord
         $phpWord = new PhpWord();
+        $phpWord->setDefaultFontSize(11);
         $phpWord->getCompatibility()->setOoxmlVersion(15);
 
         // Add content to document
@@ -73,7 +74,7 @@ class ReportExportController extends Controller
             'marginTop' => Converter::inchToTwip(1),   // Top margin in inches
             'marginBottom' => Converter::inchToTwip(1),
             'pageSizeH' => Converter::inchToTwip(13),
-            'pageSizeW' => Converter::inchToTwip(8.5)
+            'pageSizeW' => Converter::inchToTwip(8.5),
         ]);
 
         // Add header
@@ -163,25 +164,27 @@ class ReportExportController extends Controller
         // Add table header row
         $table->addRow();
         $table->addCell(1000, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
-        $table->addCell(3000, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
-        $table->addCell(3000, $tableStyle)->addText('Animal', ['bold' => true], $alignCenter);
-        $table->addCell(3000, $tableStyle)->addText('Animal Type', ['bold' => true], $alignCenter);
-        $table->addCell(1500, $tableStyle)->addText('Population Count', ['bold' => true], $alignCenter);
-        $table->addCell(1500, $tableStyle)->addText('Volume', ['bold' => true], $alignCenter);
+        $table->addCell(2000, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
+        $table->addCell(2000, $tableStyle)->addText('Barangay', ['bold' => true], $alignCenter);
+        $table->addCell(2000, $tableStyle)->addText('Animal', ['bold' => true], $alignCenter);
+        $table->addCell(2000, $tableStyle)->addText('Animal Type', ['bold' => true], $alignCenter);
+        $table->addCell(1750, $tableStyle)->addText('Population Count', ['bold' => true], $alignCenter);
+        $table->addCell(1750, $tableStyle)->addText('Volume (LW in MT)', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($animalPopulations as $animalPopulation) {
             $table->addRow();
             $table->addCell(1000)->addText($animalPopulation->year, null, $alignCenter);
-            $table->addCell(3000)->addText($animalPopulation->municipality->municipality_name, null, $alignCenter);
-            $table->addCell(3000)->addText($animalPopulation->animal->animal_name, null, $alignCenter);
+            $table->addCell(2000)->addText($animalPopulation->municipality->municipality_name, null, $alignCenter);
+            $table->addCell(2000)->addText($animalPopulation->barangay->barangay_name, null, $alignCenter);
+            $table->addCell(2000)->addText($animalPopulation->animal->animal_name, null, $alignCenter);
 
             //  Since animal type is nullable
             $animalType = ($animalPopulation->animal_type !== null) ? $animalPopulation->animal_type->type : "";
-            $table->addCell(3000)->addText($animalType, null, $alignCenter);
+            $table->addCell(2000)->addText($animalType, null, $alignCenter);
 
-            $table->addCell(1500)->addText($animalPopulation->animal_population_count, null, $alignCenter);
-            $table->addCell(1500)->addText($animalPopulation->volume, null, $alignCenter);
+            $table->addCell(1750)->addText($animalPopulation->animal_population_count, null, $alignCenter);
+            $table->addCell(1750)->addText($animalPopulation->volume, null, $alignCenter);
         }
         $section->addTextBreak();
     }
@@ -197,18 +200,20 @@ class ReportExportController extends Controller
 
         // Add table header row
         $table->addRow();
-        $table->addCell(3250, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Animal', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Count', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Barangay', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Animal', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Count', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($affectedAnimals as $affectedAnimal) {
             $table->addRow();
-            $table->addCell(3250)->addText($affectedAnimal->year, null, $alignCenter);
-            $table->addCell(3250)->addText($affectedAnimal->municipality->municipality_name, null, $alignCenter);
-            $table->addCell(3250)->addText($affectedAnimal->animal->animal_name, null, $alignCenter);
-            $table->addCell(3250)->addText($affectedAnimal->count, null, $alignCenter);
+            $table->addCell(2600)->addText($affectedAnimal->year, null, $alignCenter);
+            $table->addCell(2600)->addText($affectedAnimal->municipality->municipality_name, null, $alignCenter);
+            $table->addCell(2600)->addText($affectedAnimal->barangay->barangay_name, null, $alignCenter);
+            $table->addCell(2600)->addText($affectedAnimal->animal->animal_name, null, $alignCenter);
+            $table->addCell(2600)->addText($affectedAnimal->count, null, $alignCenter);
         }
         $section->addTextBreak();
     }
@@ -224,18 +229,20 @@ class ReportExportController extends Controller
 
         // Add table header row
         $table->addRow();
-        $table->addCell(3250, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Animal', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Count', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Barangay', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Animal', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Count', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($animalDeaths as $animalDeath) {
             $table->addRow();
-            $table->addCell(3250)->addText($animalDeath->year, null, $alignCenter);
-            $table->addCell(3250)->addText($animalDeath->municipality->municipality_name, null, $alignCenter);
-            $table->addCell(3250)->addText($animalDeath->animal->animal_name, null, $alignCenter);
-            $table->addCell(3250)->addText($animalDeath->count, null, $alignCenter);
+            $table->addCell(2600)->addText($animalDeath->year, null, $alignCenter);
+            $table->addCell(2600)->addText($animalDeath->municipality->municipality_name, null, $alignCenter);
+            $table->addCell(2600)->addText($animalDeath->barangay->barangay_name, null, $alignCenter);
+            $table->addCell(2600)->addText($animalDeath->animal->animal_name, null, $alignCenter);
+            $table->addCell(2600)->addText($animalDeath->count, null, $alignCenter);
         }
         $section->addTextBreak();
     }
@@ -251,18 +258,20 @@ class ReportExportController extends Controller
 
         // Add table header row
         $table->addRow();
-        $table->addCell(3250, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Fish Production Type', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Count', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Barangay', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Fish Production Type', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Land Area (ha)', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($fishProductionAreas as $fishProductionArea) {
             $table->addRow();
-            $table->addCell(3250)->addText($fishProductionArea->year, null, $alignCenter);
-            $table->addCell(3250)->addText($fishProductionArea->municipality->municipality_name, null, $alignCenter);
-            $table->addCell(3250)->addText($fishProductionArea->fish_production->type, null, $alignCenter);
-            $table->addCell(3250)->addText($fishProductionArea->land_area, null, $alignCenter);
+            $table->addCell(2600)->addText($fishProductionArea->year, null, $alignCenter);
+            $table->addCell(2600)->addText($fishProductionArea->municipality->municipality_name, null, $alignCenter);
+            $table->addCell(2600)->addText($fishProductionArea->barangay->barangay_name, null, $alignCenter);
+            $table->addCell(2600)->addText($fishProductionArea->fish_production->type, null, $alignCenter);
+            $table->addCell(2600)->addText($fishProductionArea->land_area, null, $alignCenter);
         }
         $section->addTextBreak();
     }
@@ -281,7 +290,7 @@ class ReportExportController extends Controller
         $table->addCell(3250, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
         $table->addCell(3250, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
         $table->addCell(3250, $tableStyle)->addText('Barangay', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Land Area', ['bold' => true], $alignCenter);
+        $table->addCell(3250, $tableStyle)->addText('Land Area (ha)', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($fishSanctuaries as $fishSanctuary) {
@@ -330,20 +339,22 @@ class ReportExportController extends Controller
 
         // Add table header row
         $table->addRow();
-        $table->addCell(2600, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
-        $table->addCell(2600, $tableStyle)->addText('Sector', ['bold' => true], $alignCenter);
-        $table->addCell(2600, $tableStyle)->addText('Clinic Name', ['bold' => true], $alignCenter);
-        $table->addCell(2600, $tableStyle)->addText('Year Established', ['bold' => true], $alignCenter);
-        $table->addCell(2600, $tableStyle)->addText('Year Closed', ['bold' => true], $alignCenter);
+        $table->addCell(2167, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
+        $table->addCell(2167, $tableStyle)->addText('Barangay', ['bold' => true], $alignCenter);
+        $table->addCell(2167, $tableStyle)->addText('Sector', ['bold' => true], $alignCenter);
+        $table->addCell(2167, $tableStyle)->addText('Clinic Name', ['bold' => true], $alignCenter);
+        $table->addCell(2167, $tableStyle)->addText('Year Established', ['bold' => true], $alignCenter);
+        $table->addCell(2167, $tableStyle)->addText('Year Closed', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($veterinaryClinics as $veterinaryClinic) {
             $table->addRow();
-            $table->addCell(2600)->addText($veterinaryClinic->municipality->municipality_name, null, $alignCenter);
-            $table->addCell(2600)->addText($veterinaryClinic->sector, null, $alignCenter);
-            $table->addCell(2600)->addText($veterinaryClinic->clinic_name, null, $alignCenter);
-            $table->addCell(2600)->addText($veterinaryClinic->year_established, null, $alignCenter);
-            $table->addCell(2600)->addText($veterinaryClinic->year_closed, null, $alignCenter);
+            $table->addCell(2167)->addText($veterinaryClinic->municipality->municipality_name, null, $alignCenter);
+            $table->addCell(2167)->addText($veterinaryClinic->barangay->barangay_name, null, $alignCenter);
+            $table->addCell(2167)->addText($veterinaryClinic->sector, null, $alignCenter);
+            $table->addCell(2167)->addText($veterinaryClinic->clinic_name, null, $alignCenter);
+            $table->addCell(2167)->addText($veterinaryClinic->year_established, null, $alignCenter);
+            $table->addCell(2167)->addText($veterinaryClinic->year_closed, null, $alignCenter);
 
 
         }
@@ -361,26 +372,28 @@ class ReportExportController extends Controller
 
         // Add table header row
         $table->addRow();
-        $table->addCell(1625, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
-        $table->addCell(1625, $tableStyle)->addText('Level', ['bold' => true], $alignCenter);
-        $table->addCell(1625, $tableStyle)->addText('Farm Name', ['bold' => true], $alignCenter);
-        $table->addCell(1625, $tableStyle)->addText('Farm Area', ['bold' => true], $alignCenter);
-        $table->addCell(1625, $tableStyle)->addText('Farm Sector', ['bold' => true], $alignCenter);
-        $table->addCell(1625, $tableStyle)->addText('Farm Type', ['bold' => true], $alignCenter);
-        $table->addCell(1625, $tableStyle)->addText('Year Established', ['bold' => true], $alignCenter);
-        $table->addCell(1625, $tableStyle)->addText('Year Closed', ['bold' => true], $alignCenter);
+        $table->addCell(1444, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
+        $table->addCell(1444, $tableStyle)->addText('Barangay', ['bold' => true], $alignCenter);
+        $table->addCell(1444, $tableStyle)->addText('Level', ['bold' => true], $alignCenter);
+        $table->addCell(1444, $tableStyle)->addText('Farm Name', ['bold' => true], $alignCenter);
+        $table->addCell(1444, $tableStyle)->addText('Farm Area', ['bold' => true], $alignCenter);
+        $table->addCell(1444, $tableStyle)->addText('Farm Sector', ['bold' => true], $alignCenter);
+        $table->addCell(1444, $tableStyle)->addText('Farm Type', ['bold' => true], $alignCenter);
+        $table->addCell(1444, $tableStyle)->addText('Year Established', ['bold' => true], $alignCenter);
+        $table->addCell(1444, $tableStyle)->addText('Year Closed', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($farms as $farm) {
             $table->addRow();
-            $table->addCell(1625)->addText($farm->municipality->municipality_name, null, $alignCenter);
-            $table->addCell(1625)->addText($farm->level, null, $alignCenter);
-            $table->addCell(1625)->addText($farm->farm_name, null, $alignCenter);
-            $table->addCell(1625)->addText($farm->farm_area, null, $alignCenter);
-            $table->addCell(1625)->addText($farm->farm_sector, null, $alignCenter);
-            $table->addCell(1625)->addText($farm->farm_type, null, $alignCenter);
-            $table->addCell(1625)->addText($farm->year_established, null, $alignCenter);
-            $table->addCell(1625)->addText($farm->year_closed, null, $alignCenter);
+            $table->addCell(1444)->addText($farm->municipality->municipality_name, null, $alignCenter);
+            $table->addCell(1444)->addText($farm->barangay->barangay_name, null, $alignCenter);
+            $table->addCell(1444)->addText($farm->level, null, $alignCenter);
+            $table->addCell(1444)->addText($farm->farm_name, null, $alignCenter);
+            $table->addCell(1444)->addText($farm->farm_area, null, $alignCenter);
+            $table->addCell(1444)->addText($farm->farm_sector, null, $alignCenter);
+            $table->addCell(1444)->addText($farm->farm_type->type, null, $alignCenter);
+            $table->addCell(1444)->addText($farm->year_established, null, $alignCenter);
+            $table->addCell(1444)->addText($farm->year_closed, null, $alignCenter);
 
 
 
@@ -399,18 +412,20 @@ class ReportExportController extends Controller
 
         // Add table header row
         $table->addRow();
-        $table->addCell(3250, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Establishment Name', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Year Established', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Year Closed', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Barangay', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Establishment Name', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Year Established', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Year Closed', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($farmSupplies as $farmSupply) {
             $table->addRow();
-            $table->addCell(3250)->addText($farmSupply->municipality->municipality_name, null, $alignCenter);
-            $table->addCell(3250)->addText($farmSupply->establishment_name, null, $alignCenter);
-            $table->addCell(3250)->addText($farmSupply->year_established, null, $alignCenter);
-            $table->addCell(3250)->addText($farmSupply->year_closed, null, $alignCenter);
+            $table->addCell(2600)->addText($farmSupply->municipality->municipality_name, null, $alignCenter);
+            $table->addCell(2600)->addText($farmSupply->barangay->barangay_name, null, $alignCenter);
+            $table->addCell(2600)->addText($farmSupply->establishment_name, null, $alignCenter);
+            $table->addCell(2600)->addText($farmSupply->year_established, null, $alignCenter);
+            $table->addCell(2600)->addText($farmSupply->year_closed, null, $alignCenter);
 
 
 
@@ -429,18 +444,20 @@ class ReportExportController extends Controller
 
         // Add table header row
         $table->addRow();
-        $table->addCell(3250, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Colonies', ['bold' => true], $alignCenter);
-        $table->addCell(3250, $tableStyle)->addText('Beekeepers', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Year', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Municipality', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Barangay', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Bee Colonies', ['bold' => true], $alignCenter);
+        $table->addCell(2600, $tableStyle)->addText('Beekeepers', ['bold' => true], $alignCenter);
 
         // Add table rows with filtered data
         foreach ($beeKeepings as $beeKeeping) {
             $table->addRow();
-            $table->addCell(3250)->addText($beeKeeping->year, null, $alignCenter);
-            $table->addCell(3250)->addText($beeKeeping->municipality->municipality_name, null, $alignCenter);
-            $table->addCell(3250)->addText($beeKeeping->colonies, null, $alignCenter);
-            $table->addCell(3250)->addText($beeKeeping->bee_keepers, null, $alignCenter);
+            $table->addCell(2600)->addText($beeKeeping->year, null, $alignCenter);
+            $table->addCell(2600)->addText($beeKeeping->municipality->municipality_name, null, $alignCenter);
+            $table->addCell(2600)->addText($beeKeeping->barangay->barangay_name, null, $alignCenter);
+            $table->addCell(2600)->addText($beeKeeping->colonies, null, $alignCenter);
+            $table->addCell(2600)->addText($beeKeeping->bee_keepers, null, $alignCenter);
 
 
 

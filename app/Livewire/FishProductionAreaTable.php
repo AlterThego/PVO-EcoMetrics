@@ -47,10 +47,12 @@ final class FishProductionAreaTable extends PowerGridComponent
         $query = FishProductionArea::query()
             ->join('fish_productions', 'fish_production_areas.fish_production_id', '=', 'fish_productions.id')
             ->join('municipalities', 'fish_production_areas.municipality_id', '=', 'municipalities.id')
+            ->join('barangays', 'fish_production_areas.barangay_id', '=', 'barangays.id')
             ->select(
                 'fish_production_areas.*',
                 'fish_productions.type as fish_production_id',
                 'municipalities.municipality_name as municipality_id',
+                'barangays.barangay_name as barangay_id',
             );
 
         if (auth()->user()->municipality_id !== 0) {
@@ -72,6 +74,8 @@ final class FishProductionAreaTable extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('fish_production_id')
             ->addColumn('year')
+            ->addColumn('municipality_id')
+            ->addColumn('barangay_id')
             ->addColumn('land_area')
             ->addColumn('created_at');
     }
@@ -86,6 +90,7 @@ final class FishProductionAreaTable extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Municipality', 'municipality_id'),
+            Column::make('Barangay', 'barangay_id'),
 
             Column::make('Fish Production Type', 'fish_production_id'),
 
@@ -118,7 +123,7 @@ final class FishProductionAreaTable extends PowerGridComponent
         ];
 
         if (auth()->user()->municipality_id == 0) {
-            $filters[] = Filter::select('municipality_id', 'municipality_id')
+            $filters[] = Filter::select('municipality_id', 'municipalities.id')
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
                 ->optionValue('id');

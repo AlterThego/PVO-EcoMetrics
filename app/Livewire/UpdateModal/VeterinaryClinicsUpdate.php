@@ -16,6 +16,7 @@ class VeterinaryClinicsUpdate extends ModalComponent
 
     public $veterinaryClinicsUpdateId;
     public $municipalityId;
+    public $barangayId;
     public $sector;
     public $clinicName;
     public $yearEstablished;
@@ -29,6 +30,7 @@ class VeterinaryClinicsUpdate extends ModalComponent
         // Set the Livewire component properties with the existing values
         $this->veterinaryClinicsUpdateId = $veterinaryClinics->id;
         $this->municipalityId = $veterinaryClinics->municipality_id;
+        $this->barangayId = $veterinaryClinics->barangay_id;
         // $this->sector = $veterinaryClinics->sector;
         $this->sector = VeterinaryClinicsSector::from($veterinaryClinics->sector);
         $this->clinicName = $veterinaryClinics->clinic_name;
@@ -49,6 +51,7 @@ class VeterinaryClinicsUpdate extends ModalComponent
             $this->validate([
 
                 'municipalityId' => 'required|exists:municipalities,id',
+                'barangayId' => 'required|exists:barangays,id',
                 'sector' => 'required',
                 'clinicName' => 'required',
                 'yearEstablished' => 'required|integer',
@@ -57,6 +60,7 @@ class VeterinaryClinicsUpdate extends ModalComponent
 
             $veterinaryClinics->update([
                 'municipality_id' => $this->municipalityId,
+                'barangay_id' => $this->barangayId,
                 'sector' => $this->sector,
                 'clinic_name' => $this->clinicName,
                 'year_established' => $this->yearEstablished,

@@ -43,6 +43,7 @@ class AnimalTypeUpdate extends ModalComponent
             $this->validate([
                 'animalTypeUpdateId' => 'required',
                 'animalId' => 'required|exists:animal,id',
+                'animalType' => 'required'
             ]);
 
             $animalType->update([
@@ -62,7 +63,7 @@ class AnimalTypeUpdate extends ModalComponent
             toastr()->error('An error occurred while updating the item. Please try again. Error: ' . $e->getMessage());
 
 
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
     }
 

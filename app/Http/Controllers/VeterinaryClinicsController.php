@@ -17,6 +17,7 @@ class VeterinaryClinicsController extends Controller
             // Validate the form data
             $validatedData = $request->validate([
                 'municipality' => 'required|exists:municipalities,id',
+                'barangay' => 'required|exists:barangays,id',
                 'sector' => 'required',
                 'clinic_name' => 'required',
                 'year_established' => 'required|integer',
@@ -29,6 +30,7 @@ class VeterinaryClinicsController extends Controller
             // Save the data to the database
             VeterinaryClinics::create([
                 'municipality_id' => $validatedData['municipality'],
+                'barangay_id' => $validatedData['barangay'],
                 'clinic_name' => $validatedData['clinic_name'],
                 'sector' => $validatedData['sector'],
                 'year_established' => $validatedData['year_established'],

@@ -10,6 +10,7 @@ class AffectedAnimalsUpdate extends ModalComponent
 {
     public $affectedAnimalsUpdateId;
     public $municipalityId;
+    public $barangayId;
     public $animalId;
     public $year;
     public $affectedAnimalsCount;
@@ -27,6 +28,7 @@ class AffectedAnimalsUpdate extends ModalComponent
         // Set the Livewire component properties with the existing values
         $this->animalPopulationUpdateId = $affectedAnimals->id;
         $this->municipalityId = $affectedAnimals->municipality_id;
+        $this->barangayId = $affectedAnimals->barangay_id;
         $this->animalId = $affectedAnimals->animal_id;
         $this->year = $affectedAnimals->year;
         $this->affectedAnimalsCount = $affectedAnimals->count;
@@ -43,12 +45,14 @@ class AffectedAnimalsUpdate extends ModalComponent
             $this->validate([
                 'year' => 'required|integer',
                 'municipalityId' => 'required|exists:municipalities,id',
+                'barangayId' => 'required|exists:barangays,id',
                 'animalId' => 'required|exists:animal,id',
                 'affectedAnimalsCount' => 'required|integer',
             ]);
 
             $affectedAnimals->update([
                 'municipality_id' => $this->municipalityId,
+                'barangay_id' => $this->barangayId,
                 'animal_id' => $this->animalId,
                 'year' => $this->year,
                 'count' => $this->affectedAnimalsCount,
@@ -66,7 +70,7 @@ class AffectedAnimalsUpdate extends ModalComponent
             toastr()->error('An error occurred while updating the item. Please try again. Error: ' . $e->getMessage());
 
 
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
     }
 

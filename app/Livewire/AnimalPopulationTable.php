@@ -53,19 +53,21 @@ final class AnimalPopulationTable extends PowerGridComponent
     {
         $query = AnimalPopulation::query()
             ->join('municipalities', 'animal_population.municipality_id', '=', 'municipalities.id')
+            ->join('barangays', 'animal_population.barangay_id', '=', 'barangays.id')
             ->join('animal', 'animal_population.animal_id', '=', 'animal.id')
             ->leftJoin('animal_type', 'animal_population.animal_type_id', '=', 'animal_type.id')
             ->select(
                 'animal_population.*',
                 'animal.animal_name as animal_id',
                 'municipalities.municipality_name as municipality_id',
+                'barangays.barangay_name as barangay_id',
                 'animal_type.type as animal_type_id',
                 'animal.classification as classification'
             );
 
         if (auth()->user()->municipality_id !== 0) {
             $query->where('animal_population.municipality_id', auth()->user()->municipality_id);
-            $query->where('animal_population.animal_id', 'animal.id');
+            // $query->where('animal_population.animal_id', 'animal.id');
         }
 
         return $query;
@@ -83,6 +85,7 @@ final class AnimalPopulationTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('municipality_id')
+            ->addColumn('barangay_id')
             ->addColumn('animal_id')
             ->addColumn('animal_type_id')
             ->addColumn('classification')
@@ -102,6 +105,7 @@ final class AnimalPopulationTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
             Column::make('Municipality', 'municipality_id'),
+            Column::make('Barangay', 'barangay_id'),
             Column::make('Animal', 'animal_id')
                 ->searchable(),
             // Column::make('Classification', 'classification'),
@@ -127,36 +131,35 @@ final class AnimalPopulationTable extends PowerGridComponent
     }
 
     public function filters(): array
-{
-    $filters = [
-        Filter::inputText('year')
-            ->operators(['contains']),
+    {
+        $filters = [
+            Filter::inputText('year')
+                ->operators(['contains']),
 
-        // Specify the table or alias for the 'animal_id' column
-        Filter::select('animal_id', 'animal.id')
-            ->dataSource(Animal::all())
-            ->optionLabel('animal_name')
-            ->optionValue('id'),
+            Filter::select('animal_id', 'animal.id')
+                ->dataSource(Animal::all())
+                ->optionLabel('animal_name')
+                ->optionValue('id'),
 
-        Filter::select('animal_type_id', 'animal_type_id')
-            ->dataSource(AnimalType::all())
-            ->optionLabel('type')
-            ->optionValue('id'),
+            Filter::select('animal_type_id', 'animal_type_id')
+                ->dataSource(AnimalType::all())
+                ->optionLabel('type')
+                ->optionValue('id'),
 
-        Filter::enumSelect('classification', 'animal.classification')
-            ->dataSource(AnimalClassification::cases())
-            ->optionLabel('animal.classification'),
-    ];
+            Filter::enumSelect('classification', 'animal.classification')
+                ->dataSource(AnimalClassification::cases())
+                ->optionLabel('animal.classification'),
+        ];
 
-    if (auth()->user()->municipality_id == 0) {
-        $filters[] = Filter::select('municipality_id', 'municipality_id')
-            ->dataSource(Municipality::all())
-            ->optionLabel('municipality_name')
-            ->optionValue('id');
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipalities.id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id');
+        }
+
+        return $filters;
     }
-
-    return $filters;
-}
 
 
     #[\Livewire\Attributes\On('destroy')]

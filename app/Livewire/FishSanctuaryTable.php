@@ -82,7 +82,7 @@ final class FishSanctuaryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Land Area (km²)', 'land_area')
+            Column::make('Land Area (ha)', 'land_area')
                 ->sortable()
                 ->searchable(),
 

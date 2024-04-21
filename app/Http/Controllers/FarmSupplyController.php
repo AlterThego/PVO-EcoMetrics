@@ -17,6 +17,7 @@ class FarmSupplyController extends Controller
             // Validate the form data
             $validatedData = $request->validate([
                 'municipality' => 'required|exists:municipalities,id',
+                'barangay' => 'required|exists:barangays,id',
                 'establishment_name' => 'required',
 
                 'year_established' => 'required|integer',
@@ -29,6 +30,7 @@ class FarmSupplyController extends Controller
             // Save the data to the database
             FarmSupply::create([
                 'municipality_id' => $validatedData['municipality'],
+                'barangay_id' => $validatedData['barangay'],
 
                 'establishment_name' => $validatedData['establishment_name'],
 

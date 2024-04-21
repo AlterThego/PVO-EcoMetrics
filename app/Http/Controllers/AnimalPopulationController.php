@@ -22,6 +22,7 @@ class AnimalPopulationController extends Controller
             $validatedData = $request->validate([
                 'year' => 'required|integer',
                 'municipality' => 'required|exists:municipalities,id',
+                'barangay' => 'required|exists:barangays,id',
                 'animal' => 'required|exists:animal,id',
                 'animal_type' => 'nullable|exists:animal_type,id',
                 'animal_population_count' => 'required|integer',
@@ -30,12 +31,12 @@ class AnimalPopulationController extends Controller
 
             // Check if a similar entry already exists
             $existingEntry = AnimalPopulation::where('year', $validatedData['year'])
-                ->where('municipality_id', $validatedData['municipality'])
+                ->where('barangay_id', $validatedData['barangay'])
                 ->where('animal_id', $validatedData['animal'])
                 ->where('animal_type_id', $validatedData['animal_type'])
                 ->orWhere(function ($query) use ($validatedData) {
                     $query->where('year', $validatedData['year'])
-                        ->where('municipality_id', $validatedData['municipality'])
+                        ->where('barangay_id', $validatedData['barangay'])
                         ->where('animal_id', $validatedData['animal'])
                         ->whereNull('animal_type_id');
                 })
@@ -50,6 +51,7 @@ class AnimalPopulationController extends Controller
             AnimalPopulation::create([
                 'year' => $validatedData['year'],
                 'municipality_id' => $validatedData['municipality'],
+                'barangay_id' => $validatedData['barangay'],
                 'animal_id' => $validatedData['animal'],
                 'animal_type_id' => $validatedData['animal_type'],
                 'animal_population_count' => $validatedData['animal_population_count'],

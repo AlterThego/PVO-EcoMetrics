@@ -100,6 +100,11 @@ Route::get('/population', function () {
     return view('miscellaneous.population');
 })->middleware(['auth', 'verified', 'admin'])->name('miscellaneous.population');
 
+Route::get('/farm-type', function () {
+    return view('farm.type');
+})->middleware(['auth', 'verified', 'admin'])->name('farm.type');
+
+
 Route::get('/about-us', function () {
     return view('footer-components.about-us');
 })->middleware(['auth', 'verified'])->name('footer-components.about-us');
@@ -181,6 +186,8 @@ Route::post('/municipalities', 'App\Http\Controllers\MunicipalityController@stor
 Route::post('/user-management', 'App\Http\Controllers\UserController@store')
     ->middleware(['auth', 'verified'])->name('user-management.store');
 
+Route::post('/farm-type', 'App\Http\Controllers\FarmTypeController@store')
+    ->middleware(['auth', 'verified'])->name('farm.type.store');
 
 //Export
 Route::get('/animal-population-excel', 'App\Http\Controllers\ExportController\AnimalPopulationExport@generateExcel')

@@ -69,11 +69,14 @@ final class YearlyCommonDiseaseTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
+            
             Column::action('Action'),
-            Column::make('Disease', 'disease_id'),
+
             Column::make('Year', 'year')
                 ->sortable()
                 ->searchable(),
+
+            Column::make('Disease', 'disease_id'),
 
             Column::make('Count per Disease', 'disease_count')
                 ->sortable()

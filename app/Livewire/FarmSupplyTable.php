@@ -44,10 +44,12 @@ final class FarmSupplyTable extends PowerGridComponent
     {
         $query = FarmSupply::query()
             ->join('municipalities', 'farm_supplies.municipality_id', '=', 'municipalities.id')
+            ->join('barangays', 'farm_supplies.barangay_id', '=', 'barangays.id')
 
             ->select(
                 'farm_supplies.*',
                 'municipalities.municipality_name as municipality_id',
+                'barangays.barangay_name as barangay_id',
             );
 
         if (auth()->user()->municipality_id !== 0) {
@@ -66,6 +68,7 @@ final class FarmSupplyTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('municipality_id')
+            ->addColumn('barangay_id')
             ->addColumn('created_at');
     }
 
@@ -75,6 +78,7 @@ final class FarmSupplyTable extends PowerGridComponent
             Column::make('Id', 'id'),
             Column::action('Action'),
             Column::make('Municipality', 'municipality_id'),
+            Column::make('Barangay', 'barangay_id'),
 
             Column::make('Establishment Name', 'establishment_name')
                 ->sortable()
@@ -98,7 +102,10 @@ final class FarmSupplyTable extends PowerGridComponent
 
     public function filters(): array
     {
-        $filters = [];
+        $filters = [
+            Filter::inputText('establishment_name')
+                ->operators(['contains']),
+        ];
         if (auth()->user()->municipality_id == 0) {
             $filters[] = Filter::select('municipality_id', 'municipality_id')
                 ->dataSource(Municipality::all())

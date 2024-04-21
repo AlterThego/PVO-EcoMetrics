@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('fish_production_areas', function (Blueprint $table) {
-            $table->unique(['fish_production_id', 'municipality_id', 'year'], 'land_area');
+            $table->unique(['fish_production_id', 'barangay_id', 'year'], 'land_area');
 
             $table->id();
 
@@ -17,6 +17,9 @@ return new class extends Migration {
 
             $table->unsignedBigInteger('municipality_id');
             $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('barangay_id');
+            $table->foreign('barangay_id')->references('id')->on('barangays')->onUpdate('cascade');
 
             $table->integer('year');
             $table->decimal('land_area', 10, 2);

@@ -25,9 +25,11 @@
                     <a href="/" class="nav__link nav__logo">
                         {{-- <i class='bx bxs-disc nav__icon'></i> --}}
                         <svg xmlns="http://www.w3.org/2000/svg" class="bx nav__icon" viewBox="0 0 24 24">
-                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5">
                                 <path d="M14.5 8h-5v4m5 4h-5v-4m0 0h4" />
-                                <path d="M7.805 3.469C8.16 3.115 8.451 3 8.937 3h6.126c.486 0 .778.115 1.132.469l4.336 4.336c.354.354.469.646.469 1.132v6.126c0 .5-.125.788-.469 1.132l-4.336 4.336c-.354.354-.646.469-1.132.469H8.937c-.5 0-.788-.125-1.132-.469L3.47 16.195c-.355-.355-.47-.646-.47-1.132V8.937c0-.5.125-.788.469-1.132z" />
+                                <path
+                                    d="M7.805 3.469C8.16 3.115 8.451 3 8.937 3h6.126c.486 0 .778.115 1.132.469l4.336 4.336c.354.354.469.646.469 1.132v6.126c0 .5-.125.788-.469 1.132l-4.336 4.336c-.354.354-.646.469-1.132.469H8.937c-.5 0-.788-.125-1.132-.469L3.47 16.195c-.355-.355-.47-.646-.47-1.132V8.937c0-.5.125-.788.469-1.132z" />
                             </g>
                         </svg>
                         <span class="nav__logo-name">EcoMetrics</span>
@@ -81,9 +83,11 @@
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
                                         <a href="/animal-population"
-                                            class="nav__dropdown-item {{ request()->is('animal-population') ? ' active' : '' }}">Population</a>
+                                            class="nav__dropdown-item {{ request()->is('animal-population') ? ' active' : '' }}">Animal
+                                            Population</a>
                                         <a href="/animal-death"
-                                            class="nav__dropdown-item {{ request()->is('animal-death') ? ' active' : '' }}">Death</a>
+                                            class="nav__dropdown-item {{ request()->is('animal-death') ? ' active' : '' }}">Animal
+                                            Death</a>
                                     </div>
                                 </div>
                             </div>
@@ -113,11 +117,13 @@
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
                                         <a href="/fish-production-area"
-                                            class="nav__dropdown-item {{ request()->is('fish-production-area') ? ' active' : '' }}">Production
+                                            class="nav__dropdown-item {{ request()->is('fish-production-area') ? ' active' : '' }}">
+                                            Fish Production
                                             Area</a>
 
                                         <a href="/sanctuaries"
-                                            class="nav__dropdown-item {{ request()->is('sanctuaries') ? ' active' : '' }}">Sanctuaries</a>
+                                            class="nav__dropdown-item {{ request()->is('sanctuaries') ? ' active' : '' }}">Fish
+                                            Sanctuaries</a>
                                     </div>
                                 </div>
                             </div>
@@ -167,10 +173,11 @@
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
                                         <a href="/farm"
-                                            class="nav__dropdown-item {{ request()->is('farm') ? ' active' : '' }}">List</a>
+                                            class="nav__dropdown-item {{ request()->is('farm') ? ' active' : '' }}">Farm
+                                            List</a>
                                         <a href="/farm-supply"
                                             class="nav__dropdown-item{{ request()->is('farm-supply') ? ' active' : '' }}">
-                                            Supplies</a>
+                                            Farm Supplies</a>
                                         <a href="/bee-keeping"
                                             class="nav__dropdown-item{{ request()->is('bee-keeping') ? ' active' : '' }}">Bee
                                             Keeping</a>
@@ -183,6 +190,7 @@
                                 request()->is('barangays') ||
                                 request()->is('animal-list') ||
                                 request()->is('animal-type') ||
+                                request()->is('farm-type') ||
                                 request()->is('fish-production') ||
                                 request()->is('disease') ||
                                 request()->is('population')
@@ -192,6 +200,7 @@
                                     <a class="nav__link {{ request()->is('municipalities') ||
                                     request()->is('animal-list') ||
                                     request()->is('animal-type') ||
+                                    request()->is('farm-type') ||
                                     request()->is('fish-production') ||
                                     request()->is('disease') ||
                                     request()->is('barangays') ||
@@ -215,6 +224,9 @@
                                                 List</a>
                                             <a href="/animal-type"
                                                 class="nav__dropdown-item {{ request()->is('animal-type') ? ' active' : '' }}">Animal
+                                                Types</a>
+                                            <a href="/farm-type"
+                                                class="nav__dropdown-item {{ request()->is('farm-type') ? ' active' : '' }}">Farm
                                                 Types</a>
                                             <a href="/fish-production"
                                                 class="nav__dropdown-item {{ request()->is('fish-production') ? ' active' : '' }}">Fish

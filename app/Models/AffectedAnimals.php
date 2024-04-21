@@ -14,6 +14,7 @@ class AffectedAnimals extends Model
 
     protected $fillable = [
         'municipality_id',
+        'barangay_id',
         'animal_id',
         'year',
         'count',
@@ -23,6 +24,11 @@ class AffectedAnimals extends Model
     public function municipality()
     {
         return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
     }
 
     public function animal()

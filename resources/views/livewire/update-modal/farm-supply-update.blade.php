@@ -20,30 +20,67 @@
 
         <form wire:submit.prevent="updateitem">
             @csrf
+            <div class="mx-auto w-3/6">
+                <div class="grid gap-4 mb-4 sm:grid-cols-1">
+                    <div>
+                        <label for="establishment_name"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Establishment
+                            Name</label>
+                        <input wire:model="establishmentName" type="text" name="establishment_name"
+                            id="establishment_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter Establishment Name" required="" autocomplete="off">
+                    </div>
+                </div>
+            </div>
             <div class="grid gap-4 mb-4 sm:grid-cols-2">
-                <div>
+                <div x-data="{ selectedMunicipality: @entangle('municipalityId'), selectedBarangay: @entangle('barangayId') }">
                     <label for="municipality"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
-                    <select wire:model="municipalityId" name="municipality" id="municipality"
+                    <select name="municipality" id="municipality" x-model="selectedMunicipality"
+                        @change="
+                                    const municipalityId = $event.target.value;
+                                    const barangayOptions = document.querySelectorAll('.barangay-option');
+                                    barangayOptions.forEach(function(option) {
+                                        if (option.getAttribute('data-municipality-id') === municipalityId) {
+                                            option.style.display = 'block';
+                                        } else {
+                                            option.style.display = 'none';
+                                        }
+                                    });
+                                    $refs.barangay.value = '';
+                                    selectedBarangay = ''; // Reset selected barangay
+                                    document.getElementById('barangay').classList.remove('border', 'border-red-500'); // Remove border
+                                "
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @if (auth()->check() && auth()->user()->municipality_id != 0) pointer-events-none @endif"
                         required="">
-                        <option value="" disabled selected>Select Municipality</option>
+                        <option value="" disabled>Select Municipality</option>
                         @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
-                            <option value="{{ $id }}">{{ $municipalityName }}</option>
+                            <option value="{{ $id }}" @if ($id == $municipalityId) selected @endif>
+                                {{ $municipalityName }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div>
+                    <label for="barangay"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barangay</label>
+                    <select wire:model="barangayId" name="barangay" id="barangay" x-ref="barangay" required=""
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option value="" disabled>Select Barangay</option>
+                        @foreach (\App\Models\Barangay::all() as $barangay)
+                            <option value="{{ $barangay->id }}" class="barangay-option"
+                                data-municipality-id="{{ $barangay->municipality_id }}"
+                                @if ($barangay->municipality_id == $municipalityId) style="display: block;" @else style="display: none;" @endif
+                                @if ($barangay->id == $barangayId) selected @endif>
+                                {{ $barangay->barangay_name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
 
 
-                <div>
-                    <label for="establishment_name"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Establishment
-                        Name</label>
-                    <input wire:model="establishmentName" type="text" name="establishment_name"
-                        id="establishment_name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Enter Establishment Name" required="" autocomplete="off">
-                </div>
+
 
                 <div>
                     <label for="year_established"

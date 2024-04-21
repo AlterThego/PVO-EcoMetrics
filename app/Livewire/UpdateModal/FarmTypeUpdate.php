@@ -2,47 +2,43 @@
 
 namespace App\Livewire\UpdateModal;
 
-
-use App\Models\Barangay;
+use App\Models\FarmType;
 use LivewireUI\Modal\ModalComponent;
 
-class BarangayUpdate extends ModalComponent
+class FarmTypeUpdate extends ModalComponent
 {
-    public $barangayUpdateId;
-    public $municipalityId;
-    public $barangayName;
+    public $farmTypeUpdateId;
+    public $farmType;
 
     public function render()
     {
-        return view('livewire.update-modal.barangay-update');
+        return view('livewire.update-modal.farm-type-update');
     }
 
-    public function mount($barangayUpdateId)
+    public function mount($farmTypeUpdateId)
     {
         // Load the existing data from the database
-        $barangay = Barangay::find($barangayUpdateId);
+        $type = FarmType::find($farmTypeUpdateId);
 
         // Set the Livewire component properties with the existing values
-        $this->barangayUpdateId = $barangay->id;
-        $this->municipalityId = $barangay->municipality_id;
-        $this->barangayName = $barangay->barangay_name;
-    }
+        $this->farmTypeUpdateId = $type->id;
+        $this->farmType = $type->type;
 
+    }
     public function updateitem()
     {
         \DB::beginTransaction();
         try {
-            $barangay = Barangay::find($this->barangayUpdateId);
+            $type = FarmType::find($this->farmTypeUpdateId);
 
 
             $this->validate([
-                'municipalityId' => 'required|exists:municipalities,id',
-                'barangayName' => 'required',
+                'farmTypeUpdateId' => 'required',
+                'farmType' => 'required',
             ]);
 
-            $barangay->update([
-                'municipality_id' => $this->municipalityId,
-                'barangay_name' => $this->barangayName,
+            $type->update([
+                'type' => $this->farmType,
             ]);
 
             \DB::commit();
@@ -60,4 +56,5 @@ class BarangayUpdate extends ModalComponent
             // dd($e->getMessage());
         }
     }
+
 }

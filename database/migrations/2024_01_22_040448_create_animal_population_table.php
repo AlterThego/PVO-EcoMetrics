@@ -11,12 +11,15 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('animal_population', function (Blueprint $table) {
-            $table->unique(['year', 'municipality_id', 'animal_type_id']);
+            $table->unique(['year', 'barangay_id', 'animal_type_id']);
             //  'animal_type_id'
             $table->id();
 
             $table->unsignedBigInteger('municipality_id');
             $table->foreign('municipality_id')->references('id')->on('municipalities')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('barangay_id');
+            $table->foreign('barangay_id')->references('id')->on('barangays')->onUpdate('cascade');
 
             $table->unsignedBigInteger('animal_id');
             $table->foreign('animal_id')->references('id')->on('animal')->onUpdate('cascade');

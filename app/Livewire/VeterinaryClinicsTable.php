@@ -46,10 +46,12 @@ final class VeterinaryClinicsTable extends PowerGridComponent
     {
         $query = VeterinaryClinics::query()
             ->join('municipalities', 'veterinary_clinics.municipality_id', '=', 'municipalities.id')
+            ->join('barangays', 'veterinary_clinics.barangay_id', '=', 'barangays.id')
 
             ->select(
                 'veterinary_clinics.*',
                 'municipalities.municipality_name as municipality_id',
+                'barangays.barangay_name as barangay_id',
             );
         if (auth()->user()->municipality_id !== 0) {
             $query->where('veterinary_clinics.municipality_id', auth()->user()->municipality_id);
@@ -67,6 +69,7 @@ final class VeterinaryClinicsTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('municipality_id')
+            ->addColumn('barangay_id')
             ->addColumn('sector')
             ->addColumn('clinic_name')
             ->addColumn('year_established')
@@ -84,6 +87,8 @@ final class VeterinaryClinicsTable extends PowerGridComponent
 
             Column::make('Municipality', 'municipality_id')
                 ->searchable(),
+
+            Column::make('Barangay', 'barangay_id'),
 
             Column::make('Sector', 'sector'),
 
@@ -121,7 +126,7 @@ final class VeterinaryClinicsTable extends PowerGridComponent
         ];
 
         if (auth()->user()->municipality_id == 0) {
-            $filters[] = Filter::select('municipality_id', 'municipality_id')
+            $filters[] = Filter::select('municipality_id', 'municipalities.id')
                 ->dataSource(Municipality::all())
                 ->optionLabel('municipality_name')
                 ->optionValue('id');

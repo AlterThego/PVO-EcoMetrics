@@ -14,6 +14,7 @@ class BeeKeeper extends Model
 
     protected $fillable = [
         'municipality_id',
+        'barangay_id',
         'colonies',
         'bee_keepers',
         'year',
@@ -24,5 +25,9 @@ class BeeKeeper extends Model
     public function municipality()
     {
         return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
     }
 }

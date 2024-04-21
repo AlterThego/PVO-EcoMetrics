@@ -76,7 +76,7 @@ class FarmExport extends Controller
         $drawing->setPath($imagePath);
         $drawing->setWidthAndHeight(75, 75);
         $drawing->setCoordinates('C1'); // Set the cell where the image will start
-        $drawing->setOffsetX(150); // Reset X offset to align with the left of the cell
+        $drawing->setOffsetX(70); // Reset X offset to align with the left of the cell
         $drawing->setOffsetY(100); // Reset Y offset to align with the top of the cell
         $drawing->setWorksheet($sheet);
 
@@ -88,7 +88,7 @@ class FarmExport extends Controller
         $drawing->setPath($imagePath);
         $drawing->setWidthAndHeight(100, 100);
         $drawing->setCoordinates('F1'); // Set the cell where the image will start
-        $drawing->setOffsetX(50); // Reset X offset to align with the left of the cell
+        $drawing->setOffsetX(35); // Reset X offset to align with the left of the cell
         $drawing->setOffsetY(10); // Reset Y offset to align with the top of the cell
         $drawing->setWorksheet($sheet);
 
@@ -97,15 +97,16 @@ class FarmExport extends Controller
 
         // Add headers to the spreadsheet
         $sheet->setCellValue('A7', 'Municipality');
-        $sheet->setCellValue('B7', 'Level');
-        $sheet->setCellValue('C7', 'Name');
-        $sheet->setCellValue('D7', 'Area');
-        $sheet->setCellValue('E7', 'Sector');
-        $sheet->setCellValue('F7', 'Type');
-        $sheet->setCellValue('G7', 'Year Esablished');
-        $sheet->setCellValue('H7', 'Year Closed');
+        $sheet->setCellValue('B7', 'Barangay');
+        $sheet->setCellValue('C7', 'Level');
+        $sheet->setCellValue('D7', 'Name');
+        $sheet->setCellValue('E7', 'Area');
+        $sheet->setCellValue('F7', 'Sector');
+        $sheet->setCellValue('G7', 'Type');
+        $sheet->setCellValue('H7', 'Year Esablished');
+        $sheet->setCellValue('I7', 'Year Closed');
 
-        $headerStyle = $sheet->getStyle('A7:H7');
+        $headerStyle = $sheet->getStyle('A7:I7');
         $headerFont = $headerStyle->getFont();
         $headerFont->setBold(true);
 
@@ -113,26 +114,27 @@ class FarmExport extends Controller
         $row = 8;
         foreach ($data as $item) {
             $sheet->setCellValue('A' . $row, $item->municipality->municipality_name);
-            $sheet->setCellValue('B' . $row, $item->level);
-            $sheet->setCellValue('C' . $row, $item->farm_name);
-            $sheet->setCellValue('D' . $row, $item->farm_area);
-            $sheet->setCellValue('E' . $row, $item->farm_sector);
-            $sheet->setCellValue('F' . $row, $item->farm_type);
-            $sheet->setCellValue('G' . $row, $item->year_established);
-            $sheet->setCellValue('H' . $row, $item->year_closed);
+            $sheet->setCellValue('B' . $row, $item->barangay->barangay_name);
+            $sheet->setCellValue('C' . $row, $item->level);
+            $sheet->setCellValue('D' . $row, $item->farm_name);
+            $sheet->setCellValue('E' . $row, $item->farm_area);
+            $sheet->setCellValue('F' . $row, $item->farm_sector);
+            $sheet->setCellValue('G' . $row, $item->farm_type->type);
+            $sheet->setCellValue('H' . $row, $item->year_established);
+            $sheet->setCellValue('I' . $row, $item->year_closed);
             $row++;
         }
 
         // Center the data cells horizontally and vertically
-        $sheet->getStyle('A7:H' . ($row - 1))->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-        $sheet->getStyle('A7:H' . ($row - 1))->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getStyle('A7:I' . ($row - 1))->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A7:I' . ($row - 1))->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
 
         // Adjust page setup for better display
         $sheet->getPageSetup()->setFitToWidth(1);
         $sheet->getPageSetup()->setFitToHeight(0);
 
         // Set column width to auto
-        foreach (range('A', 'H') as $column) {
+        foreach (range('A', 'I') as $column) {
             $sheet->getColumnDimension($column)->setAutoSize(true);
         }
 

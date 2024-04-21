@@ -3,17 +3,34 @@
 namespace App\Livewire;
 
 use App\Models\{
-    AffectedAnimals, Animal, AnimalDeath, AnimalPopulation, AnimalType, Barangay,
-    BeeKeeper, Disease, Farm, FarmSupply, FishProduction, FishProductionArea,
-    FishSanctuary, Municipality, Population, User, VeterinaryClinics, YearlyCommonDisease
+    AffectedAnimals,
+    Animal,
+    AnimalDeath,
+    AnimalPopulation,
+    AnimalType,
+    Barangay,
+    BeeKeeper,
+    Disease,
+    Farm,
+    FarmSupply,
+    FishProduction,
+    FishProductionArea,
+    FishSanctuary,
+    Municipality,
+    Population,
+    User,
+    VeterinaryClinics,
+    YearlyCommonDisease
 };
 
+use App\Models\FarmType;
 use LivewireUI\Modal\ModalComponent;
 
 class RestoreRow extends ModalComponent
 {
     public $animalId;
     public $animalTypeId;
+    public $farmTypeId;
     public $fishProductionId;
     public $diseaseId;
     public $municipalityId;
@@ -41,6 +58,7 @@ class RestoreRow extends ModalComponent
             // Assuming you have a model associated with the item (e.g., Animal)
             $animal = Animal::withTrashed()->find($this->animalId);
             $animalType = AnimalType::withTrashed()->find($this->animalTypeId);
+            $farmType = FarmType::withTrashed()->find($this->farmTypeId);
             $fishProductionType = FishProduction::withTrashed()->find($this->fishProductionId);
             $disease = Disease::withTrashed()->find($this->diseaseId);
             $municipality = Municipality::withTrashed()->find($this->municipalityId);
@@ -62,6 +80,8 @@ class RestoreRow extends ModalComponent
                 $animal->restore();
             } else if ($animalType) {
                 $animalType->restore();
+            } else if ($farmType) {
+                $farmType->restore();
             } else if ($fishProductionType) {
                 $fishProductionType->restore();
             } else if ($disease) {

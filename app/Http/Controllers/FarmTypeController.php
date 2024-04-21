@@ -2,37 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\DashboardAffectedAnimalsChart;
+use App\Models\FarmType;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
-use App\Models\AffectedAnimals;
-use Illuminate\Database\QueryException;
 
-class AffectedAnimalsController extends Controller
+class FarmTypeController extends Controller
 {
     public function store(Request $request)
     {
+        \DB::beginTransaction();
         try {
-            \DB::beginTransaction();
+            // Validate the form data
             $validatedData = $request->validate([
-                'year' => 'required|integer|digits:4',
-                'municipality' => 'required|exists:municipalities,id',
-                'barangay' => 'required|exists:barangays,id',
-                'animal' => 'required|exists:animal,id',
-                'count' => 'required|integer',
+                'type' => 'required',
             ]);
 
 
             // Save the data to the database
-            AffectedAnimals::create([
-                'year' => $validatedData['year'],
-                'municipality_id' => $validatedData['municipality'],
-                'barangay_id' => $validatedData['barangay'],
-                'animal_id' => $validatedData['animal'],
-                'count' => $validatedData['count'],
-
+            FarmType::create([
+                'type' => $validatedData['type'],
             ]);
+
             \DB::commit();
             toastr()->success('Data has been saved successfully!');
             return back();
@@ -57,7 +49,6 @@ class AffectedAnimalsController extends Controller
             return back();
 
         } catch (\Exception $e) {
-            // Log or handle the exception
             Log::error('Error saving data: ' . $e->getMessage());
 
             \DB::rollback();
@@ -65,5 +56,4 @@ class AffectedAnimalsController extends Controller
             return back();
         }
     }
-
 }

@@ -21,15 +21,47 @@
         <form wire:submit.prevent="updateitem">
             @csrf
             <div class="grid gap-4 mb-4 sm:grid-cols-2">
-                <div>
+                <div x-data="{ selectedMunicipality: @entangle('municipalityId'), selectedBarangay: @entangle('barangayId') }">
                     <label for="municipality"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipality</label>
-                    <select wire:model="municipalityId" name="municipality" id="municipality"
+                    <select name="municipality" id="municipality" x-model="selectedMunicipality"
+                        @change="
+                                    const municipalityId = $event.target.value;
+                                    const barangayOptions = document.querySelectorAll('.barangay-option');
+                                    barangayOptions.forEach(function(option) {
+                                        if (option.getAttribute('data-municipality-id') === municipalityId) {
+                                            option.style.display = 'block';
+                                        } else {
+                                            option.style.display = 'none';
+                                        }
+                                    });
+                                    $refs.barangay.value = '';
+                                    selectedBarangay = ''; // Reset selected barangay
+                                    document.getElementById('barangay').classList.remove('border', 'border-red-500'); // Remove border
+                                "
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @if (auth()->check() && auth()->user()->municipality_id != 0) pointer-events-none @endif"
                         required="">
-                        <option value="" disabled selected>Select Municipality</option>
+                        <option value="" disabled>Select Municipality</option>
                         @foreach (\App\Models\Municipality::pluck('municipality_name', 'id') as $id => $municipalityName)
-                            <option value="{{ $id }}">{{ $municipalityName }}</option>
+                            <option value="{{ $id }}" @if ($id == $municipalityId) selected @endif>
+                                {{ $municipalityName }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div>
+                    <label for="barangay"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barangay</label>
+                    <select wire:model="barangayId" name="barangay" id="barangay" x-ref="barangay" required=""
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option value="" disabled>Select Barangay</option>
+                        @foreach (\App\Models\Barangay::all() as $barangay)
+                            <option value="{{ $barangay->id }}" class="barangay-option"
+                                data-municipality-id="{{ $barangay->municipality_id }}"
+                                @if ($barangay->municipality_id == $municipalityId) style="display: block;" @else style="display: none;" @endif
+                                @if ($barangay->id == $barangayId) selected @endif>
+                                {{ $barangay->barangay_name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -79,15 +111,15 @@
                 </div>
 
                 <div>
-                    <label for="farm_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Farm Type</label>
-                    <select wire:model="farmType" id="farm_type" name="farm_type" required=""
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option value="" disabled selected>Select Type</option>
-                        <option value="Animal and Fishery Breeding">Animal and Fishery Breeding</option>
-                        <option value="Piggery">Piggery</option>
-                        <option value="Poultry">Poultry</option>
-                        <option value="Cattle">Cattle</option>
+                    <label for="farm_type"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farm Type</label>
+                    <select wire:model="farmTypeId" name="farm_type" id="farm_type"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        required="">
+                        <option value="" disabled selected>Select Farm Type</option>
+                        @foreach (\App\Models\FarmType::pluck('type', 'id') as $id => $farmType)
+                            <option value="{{ $id }}">{{ $farmType }}</option>
+                        @endforeach
                     </select>
                 </div>
 

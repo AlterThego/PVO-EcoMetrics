@@ -55,14 +55,14 @@ class AffectedAnimalsExport extends Controller
         $sheet->getStyle('A6')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
         // Merge cells for title and subtitle
-        $sheet->mergeCells('A1:D1'); // Republic of the Philippines
-        $sheet->mergeCells('A2:D2'); // Province of Benguet
-        $sheet->mergeCells('A3:D3'); // Socio-Economic Profile
-        $sheet->mergeCells('A5:D5'); // Animal Population Count
-        $sheet->mergeCells('A6:D6'); // For the Year
+        $sheet->mergeCells('A1:E1'); // Republic of the Philippines
+        $sheet->mergeCells('A2:E2'); // Province of Benguet
+        $sheet->mergeCells('A3:E3'); // Socio-Economic Profile
+        $sheet->mergeCells('A5:E5'); // Animal Population Count
+        $sheet->mergeCells('A6:E6'); // For the Year
 
         // Center the header cells horizontally and vertically
-        $headerCells = ['A1:F6'];
+        $headerCells = ['A1:E6'];
         foreach ($headerCells as $cellRange) {
             $sheet->getStyle($cellRange)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
             $sheet->getStyle($cellRange)->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
@@ -75,8 +75,8 @@ class AffectedAnimalsExport extends Controller
         $drawing->setDescription('Benguet Logo');
         $drawing->setPath($imagePath);
         $drawing->setWidthAndHeight(75, 75);
-        $drawing->setCoordinates('A1'); // Set the cell where the image will start
-        $drawing->setOffsetX(40); // Reset X offset to align with the left of the cell
+        $drawing->setCoordinates('B1'); // Set the cell where the image will start
+        $drawing->setOffsetX(-30); // Reset X offset to align with the left of the cell
         $drawing->setOffsetY(100); // Reset Y offset to align with the top of the cell
         $drawing->setWorksheet($sheet);
 
@@ -86,8 +86,8 @@ class AffectedAnimalsExport extends Controller
         $drawing->setDescription('Bagong Pilipinas Logo');
         $drawing->setPath($imagePath);
         $drawing->setWidthAndHeight(100, 100);
-        $drawing->setCoordinates('D1'); // Set the cell where the image will start
-        $drawing->setOffsetX(90); // Reset X offset to align with the left of the cell
+        $drawing->setCoordinates('E1'); // Set the cell where the image will start
+        $drawing->setOffsetX(30); // Reset X offset to align with the left of the cell
         $drawing->setOffsetY(10); // Reset Y offset to align with the top of the cell
         $drawing->setWorksheet($sheet);
 
@@ -97,12 +97,13 @@ class AffectedAnimalsExport extends Controller
 
         // Add headers to the spreadsheet
         $sheet->setCellValue('A7', 'Municipality');
-        $sheet->setCellValue('B7', 'Animal');
-        $sheet->setCellValue('C7', 'Year');
-        $sheet->setCellValue('D7', 'Affected Animals Count');
+        $sheet->setCellValue('B7', 'Barangay');
+        $sheet->setCellValue('C7', 'Animal');
+        $sheet->setCellValue('D7', 'Year');
+        $sheet->setCellValue('E7', 'Affected Animals Count');
 
 
-        $headerStyle = $sheet->getStyle('A7:D7');
+        $headerStyle = $sheet->getStyle('A7:E7');
         $headerFont = $headerStyle->getFont();
         $headerFont->setBold(true);
 
@@ -110,23 +111,24 @@ class AffectedAnimalsExport extends Controller
         $row = 8;
         foreach ($data as $item) {
             $sheet->setCellValue('A' . $row, $item->municipality->municipality_name);
-            $sheet->setCellValue('B' . $row, $item->animal->animal_name);
-            $sheet->setCellValue('C' . $row, $item->year);
-            $sheet->setCellValue('D' . $row, $item->count);
+            $sheet->setCellValue('B' . $row, $item->barangay->barangay_name);
+            $sheet->setCellValue('C' . $row, $item->animal->animal_name);
+            $sheet->setCellValue('D' . $row, $item->year);
+            $sheet->setCellValue('E' . $row, $item->count);
 
             $row++;
         }
 
         // Center the data cells horizontally and vertically
-        $sheet->getStyle('A7:D' . ($row - 1))->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-        $sheet->getStyle('A7:D' . ($row - 1))->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getStyle('A7:E' . ($row - 1))->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A7:E' . ($row - 1))->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
 
         // Adjust page setup for better display
         $sheet->getPageSetup()->setFitToWidth(1);
         $sheet->getPageSetup()->setFitToHeight(0);
 
         // Set column width to auto
-        foreach (range('A', 'D') as $column) {
+        foreach (range('A', 'E') as $column) {
             $sheet->getColumnDimension($column)->setAutoSize(true);
         }
 

@@ -44,10 +44,12 @@ final class BeeKeeperTable extends PowerGridComponent
     {
         return BeeKeeper::query()
             ->join('municipalities', 'bee_keepers.municipality_id', '=', 'municipalities.id')
+            ->join('barangays', 'bee_keepers.barangay_id', '=', 'barangays.id')
 
             ->select(
                 'bee_keepers.*',
                 'municipalities.municipality_name as municipality_id',
+                'barangays.barangay_name as barangay_id',
             );
     }
 
@@ -62,6 +64,7 @@ final class BeeKeeperTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('municipality_id')
+            ->addColumn('barangay_id')
             ->addColumn('colonies')
             ->addColumn('bee_keepers')
             ->addColumn('year')
@@ -80,6 +83,7 @@ final class BeeKeeperTable extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Municipality', 'municipality_id'),
+            Column::make('Barangay', 'barangay_id'),
             Column::make('Colonies', 'colonies')
                 ->sortable()
                 ->searchable(),
@@ -102,16 +106,19 @@ final class BeeKeeperTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
-            Filter::select('municipality_id', 'municipality_id')
-                // ->dataSource(Municipality::where('id', 2)->get())
-                ->dataSource(Municipality::all())
-                ->optionLabel('municipality_name')
-                ->optionValue('id'),
-
+        $filters = [
             Filter::inputText('year')
                 ->operators(['contains']),
         ];
+
+        if (auth()->user()->municipality_id == 0) {
+            $filters[] = Filter::select('municipality_id', 'municipalities.id')
+                ->dataSource(Municipality::all())
+                ->optionLabel('municipality_name')
+                ->optionValue('id');
+        }
+
+        return $filters;
     }
 
     #[\Livewire\Attributes\On('edit')]

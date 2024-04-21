@@ -14,15 +14,21 @@ class FarmSupply extends Model
 
     protected $fillable = [
         'municipality_id',
+        'barangay_id',
         'establishment_name',
         'year_established',
         'year_closed',
     ];
 
-    protected $softDeleteColumn = 'deleted_at'; 
+    protected $softDeleteColumn = 'deleted_at';
 
     public function municipality()
     {
         return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
     }
 }

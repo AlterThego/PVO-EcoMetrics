@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Disease extends Model
+class FarmType extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'diseases';
+    protected $table = 'farm_type';
 
     protected $fillable = [
-        'disease_name',
+        'type',
     ];
 
     protected $softDeleteColumn = 'deleted_at';
 
-    public function setTypeAttribute($value)
-    {
-        $this->attributes['disease_name'] = ucfirst(strtolower($value));
-    }
+    // public function setTypeAttribute($value)
+    // {
+    //     $this->attributes['type'] = ucfirst(strtolower($value));
+    // }
 }

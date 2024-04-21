@@ -16,9 +16,11 @@ class VeterinaryClinicsFactory extends Factory
     {
         // Assuming there are existing Municipality records
         $municipalityId = \App\Models\Municipality::inRandomOrder()->first()->id;
+        $barangayId = \App\Models\Barangay::inRandomOrder()->first()->id;
 
         return [
             'municipality_id' => $municipalityId,
+            'barangay_id' => $barangayId,
             'sector' => $this->faker->randomElement(['Government', 'Private']),
             'clinic_name' => $this->faker->unique()->company,
             'year_established' => $this->faker->year,

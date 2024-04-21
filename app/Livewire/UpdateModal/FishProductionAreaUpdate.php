@@ -15,6 +15,7 @@ class FishProductionAreaUpdate extends ModalComponent
 
     public $fishProductionAreaUpdateId;
     public $municipalityId;
+    public $barangayId;
     public $fishProductionTypeId;
     public $year;
     public $landArea;
@@ -27,6 +28,7 @@ class FishProductionAreaUpdate extends ModalComponent
         // Set the Livewire component properties with the existing values
         $this->fishProductionAreaUpdateId = $fishProduction->id;
         $this->municipalityId = $fishProduction->municipality_id;
+        $this->barangayId = $fishProduction->barangay_id;
         $this->fishProductionTypeId = $fishProduction->fish_production_id;
         $this->year = $fishProduction->year;
         $this->landArea = $fishProduction->land_area;
@@ -41,12 +43,14 @@ class FishProductionAreaUpdate extends ModalComponent
             $this->validate([
                 'year' => 'required|integer',
                 'municipalityId' => 'required|exists:municipalities,id',
+                'barangayId' => 'required|exists:barangays,id',
                 'fishProductionTypeId' => 'required|exists:fish_productions,id',
                 'landArea' => 'required|numeric',
             ]);
 
             $fishProduction->update([
                 'municipality_id' => $this->municipalityId,
+                'barangay_id' => $this->barangayId,
                 'fish_production_id' => $this->fishProductionTypeId,
                 'year' => $this->year,
                 'land_area' => $this->landArea,
@@ -64,7 +68,7 @@ class FishProductionAreaUpdate extends ModalComponent
             toastr()->error('An error occurred while updating the item. Please try again. Error: ' . $e->getMessage());
 
 
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
     }
 

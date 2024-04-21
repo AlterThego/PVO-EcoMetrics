@@ -14,11 +14,12 @@ class Farm extends Model
 
     protected $fillable = [
         'municipality_id',
+        'barangay_id',
         'level',
         'farm_name',
         'farm_area',
         'farm_sector',
-        'farm_type',
+        'farm_type_id',
         'year_established',
         'year_closed',
     ];
@@ -28,5 +29,14 @@ class Farm extends Model
     public function municipality()
     {
         return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
+    }
+
+    public function farm_type()
+    {
+        return $this->belongsTo(FarmType::class, 'farm_type_id');
     }
 }

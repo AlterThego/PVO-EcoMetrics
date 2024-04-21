@@ -14,6 +14,7 @@ class AnimalPopulation extends Model
 
     protected $fillable = [
         'municipality_id',
+        'barangay_id',
         'animal_id',
         'animal_type_id',
         'year',
@@ -24,6 +25,11 @@ class AnimalPopulation extends Model
     public function municipality()
     {
         return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
     }
 
     public function animal()

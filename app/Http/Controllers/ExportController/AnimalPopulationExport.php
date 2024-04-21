@@ -40,6 +40,7 @@ class AnimalPopulationExport extends Controller
 
         // Add space between header lines
         $sheet->setCellValue('A4', ''); // Empty cell for space
+        $sheet->getStyle('A4')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
         $sheet->getRowDimension(4)->setRowHeight(10); // Adjust row height for space
 
         // Animal Population Count
@@ -54,14 +55,14 @@ class AnimalPopulationExport extends Controller
         $sheet->getStyle('A6')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
         // Merge cells for title and subtitle
-        $sheet->mergeCells('A1:F1'); // Republic of the Philippines
-        $sheet->mergeCells('A2:F2'); // Province of Benguet
-        $sheet->mergeCells('A3:F3'); // Socio-Economic Profile
-        $sheet->mergeCells('A5:F5'); // Animal Population Count
-        $sheet->mergeCells('A6:F6'); // For the Year
+        $sheet->mergeCells('A1:G1'); // Republic of the Philippines
+        $sheet->mergeCells('A2:G2'); // Province of Benguet
+        $sheet->mergeCells('A3:G3'); // Socio-Economic Profile
+        $sheet->mergeCells('A5:G5'); // Animal Population Count
+        $sheet->mergeCells('A6:G6'); // For the Year
 
         // Center the header cells horizontally and vertically
-        $headerCells = ['A1:F6'];
+        $headerCells = ['A1:G6'];
         foreach ($headerCells as $cellRange) {
             $sheet->getStyle($cellRange)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
             $sheet->getStyle($cellRange)->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
@@ -75,7 +76,7 @@ class AnimalPopulationExport extends Controller
         $drawing->setPath($imagePath);
         $drawing->setWidthAndHeight(75, 75);
         $drawing->setCoordinates('B1'); // Set the cell where the image will start
-        $drawing->setOffsetX(20); // Reset X offset to align with the left of the cell
+        $drawing->setOffsetX(35); // Reset X offset to align with the left of the cell
         $drawing->setOffsetY(100); // Reset Y offset to align with the top of the cell
         $drawing->setWorksheet($sheet);
 
@@ -86,8 +87,8 @@ class AnimalPopulationExport extends Controller
         $drawing->setDescription('Bagong Pilipinas Logo');
         $drawing->setPath($imagePath);
         $drawing->setWidthAndHeight(100, 100);
-        $drawing->setCoordinates('E1'); // Set the cell where the image will start
-        $drawing->setOffsetX(70); // Reset X offset to align with the left of the cell
+        $drawing->setCoordinates('f1'); // Set the cell where the image will start
+        $drawing->setOffsetX(35); // Reset X offset to align with the left of the cell
         $drawing->setOffsetY(10); // Reset Y offset to align with the top of the cell
         $drawing->setWorksheet($sheet);
 
@@ -97,13 +98,14 @@ class AnimalPopulationExport extends Controller
 
         // Add headers to the spreadsheet
         $sheet->setCellValue('A7', 'Municipality');
-        $sheet->setCellValue('B7', 'Animal');
-        $sheet->setCellValue('C7', 'Animal Type');
-        $sheet->setCellValue('D7', 'Year');
-        $sheet->setCellValue('E7', 'Animal Population Count');
-        $sheet->setCellValue('F7', 'Volume');
+        $sheet->setCellValue('B7', 'Barangay');
+        $sheet->setCellValue('C7', 'Animal');
+        $sheet->setCellValue('D7', 'Animal Type');
+        $sheet->setCellValue('E7', 'Year');
+        $sheet->setCellValue('F7', 'Animal Population Count');
+        $sheet->setCellValue('G7', 'Volume');
 
-        $headerStyle = $sheet->getStyle('A7:F7');
+        $headerStyle = $sheet->getStyle('A7:G7');
         $headerFont = $headerStyle->getFont();
         $headerFont->setBold(true);
 
@@ -111,24 +113,25 @@ class AnimalPopulationExport extends Controller
         $row = 8;
         foreach ($data as $item) {
             $sheet->setCellValue('A' . $row, $item->municipality->municipality_name);
-            $sheet->setCellValue('B' . $row, $item->animal->animal_name);
-            $sheet->setCellValue('C' . $row, $animalTypes->where('id', $item->animal_type_id)->first()->type ?? '');
-            $sheet->setCellValue('D' . $row, $item->year);
-            $sheet->setCellValue('E' . $row, $item->animal_population_count);
-            $sheet->setCellValue('F' . $row, $item->volume);
+            $sheet->setCellValue('B' . $row, $item->barangay->barangay_name);
+            $sheet->setCellValue('C' . $row, $item->animal->animal_name);
+            $sheet->setCellValue('D' . $row, $animalTypes->where('id', $item->animal_type_id)->first()->type ?? '');
+            $sheet->setCellValue('E' . $row, $item->year);
+            $sheet->setCellValue('F' . $row, $item->animal_population_count);
+            $sheet->setCellValue('G' . $row, $item->volume);
             $row++;
         }
 
         // Center the data cells horizontally and vertically
-        $sheet->getStyle('A7:F' . ($row - 1))->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-        $sheet->getStyle('A7:F' . ($row - 1))->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getStyle('A7:G' . ($row - 1))->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A7:G' . ($row - 1))->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
 
         // Adjust page setup for better display
         $sheet->getPageSetup()->setFitToWidth(1);
         $sheet->getPageSetup()->setFitToHeight(0);
 
         // Set column width to auto
-        foreach (range('A', 'F') as $column) {
+        foreach (range('A', 'G') as $column) {
             $sheet->getColumnDimension($column)->setAutoSize(true);
         }
 

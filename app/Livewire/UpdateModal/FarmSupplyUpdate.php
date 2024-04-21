@@ -9,6 +9,7 @@ class FarmSupplyUpdate extends ModalComponent
 {
     public $farmSupplyUpdateId;
     public $municipalityId;
+    public $barangayId;
     public $establishmentName;
     public $yearEstablished;
     public $yearClosed;
@@ -25,6 +26,7 @@ class FarmSupplyUpdate extends ModalComponent
         // Set the Livewire component properties with the existing values
         $this->farmSupplyUpdateId = $farmSupply->id;
         $this->municipalityId = $farmSupply->municipality_id;
+        $this->barangayId = $farmSupply->barangay_id;
         $this->establishmentName = $farmSupply->establishment_name;
         $this->yearEstablished = $farmSupply->year_established;
         $this->yearClosed = $farmSupply->year_closed;
@@ -36,16 +38,21 @@ class FarmSupplyUpdate extends ModalComponent
         try {
             $farmSupply = FarmSupply::find($this->farmSupplyUpdateId);
 
+            if (empty($this->yearClosed)) {
+                $this->yearClosed = null;
+            }
 
             $this->validate([
                 'municipalityId' => 'required|exists:municipalities,id',
+                'barangayId' => 'required|exists:barangays,id',
                 'establishmentName' => 'required',
                 'yearEstablished' => 'required|integer',
-                'yearClosed' => 'required|integer',
+                'yearClosed' => 'nullable|digits:4|integer|min:1900|max:2100',
             ]);
 
             $farmSupply->update([
                 'municipality_id' => $this->municipalityId,
+                'barangay_id' => $this->barangayId,
                 'establishment_name' => $this->establishmentName,
                 'year_established' => $this->yearEstablished,
                 'year_closed' => $this->yearClosed,
@@ -63,7 +70,7 @@ class FarmSupplyUpdate extends ModalComponent
             toastr()->error('An error occurred while updating the item. Please try again. Error: ' . $e->getMessage());
 
 
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
     }
 }

@@ -16,9 +16,11 @@ class BeeKeeperFactory extends Factory
     {
         // Assuming there are existing Municipality records
         $municipalityId = \App\Models\Municipality::inRandomOrder()->first()->id;
+        $barangayId = \App\Models\Barangay::inRandomOrder()->first()->id;
 
         return [
             'municipality_id' => $municipalityId,
+            'barangay_id' => $barangayId,
             'colonies' => $this->faker->numberBetween(1, 100),
             'bee_keepers' => $this->faker->numberBetween(1, 100),
             'year' => $this->faker->year,

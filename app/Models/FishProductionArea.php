@@ -16,14 +16,20 @@ class FishProductionArea extends Model
         'fish_production_id',
         'year',
         'municipality_id',
+        'barangay_id',
         'land_area',
     ];
 
-    protected $softDeleteColumn = 'deleted_at'; 
+    protected $softDeleteColumn = 'deleted_at';
 
     public function municipality()
     {
         return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
     }
 
     public function fish_production()

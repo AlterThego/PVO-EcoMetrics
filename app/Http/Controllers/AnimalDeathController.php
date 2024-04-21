@@ -17,6 +17,7 @@ class AnimalDeathController extends Controller
             $validatedData = $request->validate([
                 'year' => 'required|integer|digits:4',
                 'municipality' => 'required|exists:municipalities,id',
+                'barangay' => 'required|exists:barangays,id',
                 'animal' => 'required|exists:animal,id',
                 'count' => 'required|integer',
             ]);
@@ -26,6 +27,7 @@ class AnimalDeathController extends Controller
             AnimalDeath::create([
                 'year' => $validatedData['year'],
                 'municipality_id' => $validatedData['municipality'],
+                'barangay_id' => $validatedData['barangay'],
                 'animal_id' => $validatedData['animal'],
                 'count' => $validatedData['count'],
 

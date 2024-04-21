@@ -14,6 +14,7 @@ class VeterinaryClinics extends Model
 
     protected $fillable = [
         'municipality_id',
+        'barangay_id',
         'sector',
         'clinic_name',
         'year_established',
@@ -23,5 +24,10 @@ class VeterinaryClinics extends Model
     public function municipality()
     {
         return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
+
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
     }
 }
