@@ -108,9 +108,10 @@
                                 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
                                 dark:focus:ring-custom-orange dark:focus:border-custom-orange cursor-pointer">
                                 @foreach ($years as $year)
-                                    <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>
-                                        {{ $year }}</option>
-                                @endforeach
+                                <option value="{{ $year }}" {{ (empty($selectedYear) && $year == $recentYear) || $year == $selectedYear ? 'selected' : '' }}>
+                                    {{ $year }}
+                                </option>
+                            @endforeach
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-1 pointer-events-none">
                                 <svg class="w-6 h-6 text-gray-500 dark:text-gray-400"

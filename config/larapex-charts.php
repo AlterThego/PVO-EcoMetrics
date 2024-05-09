@@ -10,7 +10,7 @@ return [
     | Here you may specify font family and font color.
     |
     */
-
+    
     'font_family' => 'Helvetica, Arial, sans-serif',
 
     'font_color' => '#373d3f',

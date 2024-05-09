@@ -16,10 +16,11 @@ class YearlyCommonDiseaseFactory extends Factory
     public function definition(): array
     {
         $diseaseId = \App\Models\Disease::inRandomOrder()->first()->id;
+        $year = $this->faker->numberBetween(2017, 2024);
 
         return [
             'disease_id' => $diseaseId,
-            'year' => $this->faker->year,
+            'year' => $year,
             'disease_count' => $this->faker->numberBetween(100, 10000),
         ];
     }
