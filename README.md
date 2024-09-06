@@ -11,11 +11,7 @@
 
 ECOMETRICS: SOCIO-ECONOMIC PROFILE AND INVENTORY SYSTEM OF BENGUET PROVINCIAL VETERINARY OFFICE
 
-EcoMetrics is a a digital platform for socio-economic profiling and inventory management. This solution enhanced data accuracy, accessibility, and analysis capabilities, enabling the Bengetuet Provincial Veterinary Office (BPVO)and stakeholders to better understand:
-
-- economic impacts,
-- identify trends,
-- and make data-driven decisions to support animal-based livelihoods in the province.
+EcoMetrics is a a digital platform for socio-economic profiling and inventory management. This solution enhanced data accuracy, accessibility, and analysis capabilities, enabling the Bengetuet Provincial Veterinary Office (BPVO)and stakeholders to better understand economic impacts, identify trends, and make data-driven decisions to support animal-based livelihoods in the province.
 
 Built with Laravel. An accessible, powerful, and provides tools required for large, robust applications powered by php.
 
