@@ -36,11 +36,10 @@ Built with Laravel. An accessible, powerful, and provides tools required for lar
 3. cp .env.example .env
 4. php artisan migrate (run with xampp)
 5. php artisan key:generate
-6. npm run dev
--->New Terminal
+6. npm run build
 7. php artisan serve
--->New Terminal
-8. OPTIONAL: php artisan db:seed (email: 'admin@benguet.gov.ph', password: 'admin@benguet.gov.ph')
+-------------------------------------------------------------------------------------------------
+8. OPTIONAL: open new terminal and type 'php artisan db:seed' (email: 'admin@benguet.gov.ph', password: 'admin@benguet.gov.ph')
 
 *Login = http://127.0.0.1:8000/login
 *Register = http://127.0.0.1:8000/register
