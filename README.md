@@ -25,6 +25,10 @@ Built with Laravel. An accessible, powerful, and provides tools required for lar
 - Miscellaneous Data Management
 - User Management
 
+## Requirements:
+- composer [https://getcomposer.org/download/]
+- node.js [https://nodejs.org/en/download/current]
+
 ## How to run the code?
 
 1. composer install (zip and gd extensions should be enabled in php.ini)
@@ -33,7 +37,9 @@ Built with Laravel. An accessible, powerful, and provides tools required for lar
 4. php artisan migrate (run with xampp)
 5. php artisan key:generate
 6. npm run dev
+-->New Terminal
 7. php artisan serve
+-->New Terminal
 8. OPTIONAL: php artisan db:seed (email: 'admin@benguet.gov.ph', password: 'admin@benguet.gov.ph')
 
 *Login = http://127.0.0.1:8000/login
